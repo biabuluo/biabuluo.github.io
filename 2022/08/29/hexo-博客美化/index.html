@@ -159,7 +159,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/博客美化/" style="color: #03a9f4">
+                <a href="/tags/博客美化/" style="color: #00bcd4">
                     博客美化
                 </a>
             </span>
@@ -168,7 +168,72 @@
         
     </div>
     <div class="content" v-pre>
-        <h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">新生要军训，好几天都不能跑步，崩溃了。。 </font>   </p>
+<img src=https://w.wallhaven.cc/full/72/wallhaven-72yqlv.png width = "300" height = "200" alt="我" align=center />   
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/69211731">参考资料</a></p>
+</li>
+<li><h2 id="添加看板娘（我的是看板狗hahaha"><a href="#添加看板娘（我的是看板狗hahaha" class="headerlink" title="添加看板娘（我的是看板狗hahaha)"></a>添加看板娘（我的是看板狗hahaha)</h2><blockquote>
+<p><strong>在git bash上获取live2d：</strong></p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="bash">$ npm install --save hexo-helper-live2d
+</code></pre>
+<blockquote>
+<p>输入以下命令，下载相应的模型，将 packagename 更换成型名称即可，更多模型选择请<a target="_blank" rel="noopener" href="https://github.com/xiazeyu/live2d-widget-models">点击此处</a>，各个模型的预览请访问<a target="_blank" rel="noopener" href="https://huaji8.top/post/live2d-plugin-2.0/">原作者的博客</a></p>
+</blockquote>
+<pre><code class="bash">$ npm install packagename
+</code></pre>
+<blockquote>
+<p>打开站点目录下的 _config.yml 文件，添加如下代码：</p>
+</blockquote>
+<pre><code class="yml">live2d:
+    enable: true
+    scriptFrom: local
+    model: 
+        use: live2d-widget-model-haruto #模型选择
+    display: 
+        position: right  #模型位置
+        width: 150       #模型宽度
+        height: 300      #模型高度
+    mobile: 
+        show: false      #是否在手机端显示
+</code></pre>
+<blockquote>
+<p>设置好过后我们就拥有了一个卡通人物 （我在想是否能搞个米蒂的模型呢hahahaha）</p>
+</blockquote>
+<ul>
+<li><h2 id="鼠标点击效果"><a href="#鼠标点击效果" class="headerlink" title="鼠标点击效果"></a>鼠标点击效果</h2><blockquote>
+<p><strong>效果烟花爆炸：</strong><br>在 \themes\主题\source\js 目录下新建一个 fireworks.js 的文件，里面写入以下代码：</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="js">&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;;
+</code></pre>
+<blockquote>
+<p>然后在 \themes\主题\layout\layout.ejs 文件中写入以下代码：</p>
+</blockquote>
+<pre><code class="ejs">&lt;canvas class=&quot;fireworks&quot; style=&quot;position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;&quot; &gt;&lt;/canvas&gt; 
+&lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/animejs/2.2.0/anime.min.js&quot;&gt;&lt;/script&gt; 
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/fireworks.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<ul>
+<li><h2 id="添加背景音乐"><a href="#添加背景音乐" class="headerlink" title="添加背景音乐"></a>添加背景音乐</h2><blockquote>
+<h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><blockquote>
+<p>打开网页版<a target="_blank" rel="noopener" href="https://music.163.com/">网易云音乐</a>，选择你准备添加的背景音乐，点击生成外链播放器，前提是要有版权，不然是无法生成外链播放器的，复制底下的HTML代码</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/v2-19a363752b9ac44ca80824b81e86233d_1440w.jpg" alt="easenet">   </p>
+<blockquote>
+<blockquote>
+<p>然后将此代码放到你想要放的地方，比如放在博客的左侧，则打开 \themes\主题\layout\left.ejs 文件，将复制的HTML代码粘贴进去，再进行适当的位置设置让播放器更美观，其中 auto&#x3D;1 表示打开网页自动播放音乐，auto&#x3D;0 表示关闭自动播放音乐</p>
+</blockquote>
+</blockquote>
+
     </div>
     
 </div>

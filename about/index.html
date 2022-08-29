@@ -18,6 +18,12 @@
         <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
     <meta name="generator" content="Hexo 6.2.0"></head>
     <body>
+         <!--音乐-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="509098792" data-server="netease" data-type="song" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#cbcdcd" data-autoplay="true"></div>
+
         <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><p style="word-break:keep-all">加载过慢请开启缓存(浏览器默认开启)</p><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
         <div id="layout">
             <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
@@ -168,9 +174,7 @@
         
 
     <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
- <div style="position:absolute ; top: 50px; right:0px; width: 25%">
-    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=509098792&auto=1&height=66"></iframe>
-</div>
+
 <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
 <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
 <script type="text/javascript" src="/js/fireworks.js"></script>

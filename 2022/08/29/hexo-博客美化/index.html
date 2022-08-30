@@ -22,17 +22,14 @@
         <div id="cursor"></div>
 <script src="/css/cursor.css"></script>
 <script src="/js/cursor.js"></script>
-         <!-- 音乐
+         <!-- 音乐 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
   <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
-  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="509098792" data-server="netease" data-type="song" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#cbcdcd" data-autoplay="true"></div> -->
-  
-  <link rel="stylesheet" href="/dist/APlayer.min.css">
-  <div id="aplayer"></div>
-  <script type="text/javascript" src="/dist/APlayer.min.js"></script>
-  <script type="text/javascript" src="/dist/music.js"></script>
-  <!-- 音乐aplayer -->
+  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="7361775742" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#cbcdcd" data-autoplay="true"></div>
+  <!-- 隐藏aplayer -->
+  <link rel="stylesheet" href="/css/aplayer.css"/>
+
         <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><h3 style="word-break:keep-all">飞船空间曲翘中🚀</h3><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
         <div id="layout">
             <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
@@ -71,6 +68,16 @@
         <a href="/tags">
             <i class="fa-solid fa-tags fa-fw"></i>
             <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-magnifying-glass-location fa-fw"></i>
+            <span>&ensp;search</span>
+        </a>
+        
+        <a href="/bangumis/index.html">
+            <i class="fa-brands fa-bilibili fa-fw"></i>
+            <span>&ensp;bilibili</span>
         </a>
         
     </div>
@@ -128,6 +135,24 @@
                 </div>
             </a>
             
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-magnifying-glass-location fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">search</div>
+                </div>
+            </a>
+            
+            <a href="/bangumis/index.html">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-brands fa-bilibili fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">bilibili</div>
+                </div>
+            </a>
+            
         </div>
         </transition>
     </div>
@@ -164,7 +189,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/博客美化/" style="color: #03a9f4">
+                <a href="/tags/博客美化/" style="color: #ffa2c4">
                     博客美化
                 </a>
             </span>
@@ -289,7 +314,7 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 20xx - 2022 小宇の万事屋
+            © 2022 - 2022 小宇の万事屋
             <span class="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>

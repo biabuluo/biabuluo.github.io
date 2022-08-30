@@ -1,0 +1,555 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>小宇の追番列表 | 小宇の万事屋</title>
+        <meta name="author" content="阿小橙">
+        <meta name="description" content="                  ————黎明卿">
+        <meta name="keywords" content="好想赚大钱然后摆烂啊！">
+        <link rel="icon" href="https://avatars.githubusercontent.com/u/101565351?s=400&u=604f299e774fa27d00960a7476088c37fb45448e&v=4">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    <body>
+        <!-- cursor -->
+        <div id="cursor"></div>
+<script src="/css/cursor.css"></script>
+<script src="/js/cursor.js"></script>
+         <!-- 音乐 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="7361775742" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#cbcdcd" data-autoplay="true"></div>
+  <!-- 隐藏aplayer -->
+  <link rel="stylesheet" href="/css/aplayer.css"/>
+
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><h3 style="word-break:keep-all">飞船空间曲翘中🚀</h3><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">小宇の万事屋</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-magnifying-glass-location fa-fw"></i>
+            <span>&ensp;search</span>
+        </a>
+        
+        <a href="/bangumis/index.html">
+            <i class="fa-brands fa-bilibili fa-fw"></i>
+            <span>&ensp;bilibili</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;小宇の万事屋</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-magnifying-glass-location fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">search</div>
+                </div>
+            </a>
+            
+            <a href="/bangumis/index.html">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-brands fa-bilibili fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">bilibili</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>小宇の追番列表 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/30
+        </span>
+        
+        
+    </div>
+    <div class="content" v-pre>
+        
+<blockquote>
+    <p>生命不息，追番不止！</p>
+</blockquote>
+
+
+<style>
+    .bangumi-tabs{margin-bottom:15px;margin-top:15px}.bangumi-tab{padding:5px}a.bangumi-tab{text-decoration:none}.bangumi-active{background:#657b83;color:#fff}.bangumi-item{position:relative;clear:both;padding:10px 0;border-bottom:1px solid #ddd;min-height:180px}@media screen and (max-width:600px){.bangumi-item{width:100%}}.bangumi-picture{position:absolute;left:0;top:10px;width:110px}.bangumi-picture img{margin:10px 0}.bangumi-info{padding-left:120px;margin-top:10px}.bangumi-meta{font-size:12px;padding-right:10px;height:45px}.bangumi-comments{font-size:12px;margin-top:10px}.bangumi-comments>p{word-break:break-all;text-overflow:ellipsis;overflow:hidden;white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3}.bangumi-pagination{margin-top:15px;text-align:center;margin-bottom:10px}.bangumi-button{padding:5px}.bangumi-button:hover{background:#657b83;color:#fff}.bangumi-hide{display:none}.bangumi-show{display:block}.bangumi-title{font-size:18px}.bangumi-title a{line-height:1;text-decoration:none}.bangumi-info-items{font-size:12px;color:#2fd8d8;padding-top:10px;line-height:1;float:left;width:100%}.bangumi-info-item{display:inline-block;width:13%;border-right:1px solid #2fd8d8;text-align:center;height:34px}.bangumi-info-label{display:block;line-height:12px}.bangumi-info-item em{display:block;padding-top:6px;line-height:17px;font-style:normal;font-weight:700}.bangumi-info-total{padding-top:11px;display:block;line-height:12px;font-weight:700}.bangumi-info-item-score{border-right:1px solid #0000;width:50px}.bangumi-info-label-em{color:transparent;opacity:0;visibility:hidden;line-height:6px!important;padding:0!important}@media (max-width:650px){.bangumi-coin,.bangumi-type{display:none}.bangumi-info-item{width:16%}}@media (max-width:590px){.bangumi-danmaku,.bangumi-wish{display:none}.bangumi-info-item{width:19%}}@media (max-width:520px){.bangumi-doing,.bangumi-play{display:none}.bangumi-info-item{width:24%}}@media (max-width:480px){.bangumi-collect,.bangumi-follow{display:none}.bangumi-info-item{width:30%}}@media (max-width:400px){.bangumi-area{display:none}.bangumi-info-item{width:45%}}.bangumi-my-comments{border:1px dashed #8f8f8f;padding:3px;border-radius:5px;margin-left:-120px}.bangumi-starstop{background:url(https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.7.9/lib/img/rate_star_2x.png) 100% 100%/10px 19.5px repeat-x;height:10px;width:50px;display:inline-block;float:none}.bangumi-starlight{background:url(https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.7.9/lib/img/rate_star_2x.png) 0 0/10px 19.5px repeat-x;height:10px;display:block;width:100%}.bangumi-starlight.stars1{width:5px}.bangumi-starlight.stars2{width:10px}.bangumi-starlight.stars3{width:15px}.bangumi-starlight.stars4{width:20px}.bangumi-starlight.stars5{width:25px}.bangumi-starlight.stars6{width:30px}.bangumi-starlight.stars7{width:35px}.bangumi-starlight.stars8{width:405px}.bangumi-starlight.stars9{width:45px}.bangumi-starlight.stars10{width:50px}
+</style>
+<div class="bangumi-tabs">
+    <a class="bangumi-tab" id="bangumi-tab1" href="javascript:;" rel="external" target="_self" onclick="return false">
+    想看
+    (0)</a>
+    <a class="bangumi-tab" id="bangumi-tab2" href="javascript:;" rel="external" target="_self" onclick="return false">
+        在看
+        (6)</a>
+    <a class="bangumi-tab" id="bangumi-tab3" href="javascript:;" rel="external" target="_self" onclick="return false">
+        已看
+        (0)</a>
+</div>
+<div>
+    <div id="bangumi-item1">
+        
+        
+        <div class="bangumi-pagination">
+    <a class="bangumi-button bangumi-firstpage" href="javascript:;" target="_self" onclick="return false"> 首页</a>
+    <a class="bangumi-button bangumi-previouspage" href="javascript:;" target="_self" onclick="return false">上一页</a>
+    <span class="bangumi-pagenum">2 / 3</span>
+    <a class="bangumi-button bangumi-nextpage" href="javascript:;" target="_self" onclick="return false">下一页</a>
+    <a class="bangumi-button bangumi-lastpage" href="javascript:;" target="_self" onclick="return false">尾页</a>
+</div>
+        
+    </div>
+    <div id="bangumi-item2">
+        
+        
+        <div class="bangumi-item">
+    <div class="bangumi-picture"><img src="https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.2.0/lib/img/loading.gif"  data-src="https://i0.hdslb.com/bfs/bangumi/image/c72a95c3cae82f58f8fa25facd40960aa2003d26.png@220w_280h.webp" referrerPolicy="no-referrer" width="110" style="width:110px;margin:10px auto;" />
+    </div>
+    <div class="bangumi-info">
+        <div class="bangumi-title">
+            <a target="_blank" href="https://www.bilibili.com/bangumi/media/md5800/">小林家的龙女仆</a>
+        </div>
+        <div class="bangumi-meta">
+            <span class="bangumi-info-items" >
+                <span class="bangumi-info-item">
+                
+                <span class="bangumi-info-total">全14话</span><em
+                        class="bangumi-info-label-em">0</em>
+                </span>
+                
+                
+                <span class="bangumi-info-item bangumi-area">
+                    <span class="bangumi-info-label">番剧</span> <em>日本</em>
+                </span>
+                
+                <span class="bangumi-info-item bangumi-play">
+                    <span class="bangumi-info-label">总播放</span> <em>3.3 亿</em>
+                </span>
+                <span class="bangumi-info-item bangumi-follow">
+                    <span class="bangumi-info-label">追番人数</span> <em>798.7 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-coin">
+                    <span class="bangumi-info-label">硬币数</span> <em>109.6 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-danmaku">
+                    <span class="bangumi-info-label">弹幕总数</span> <em>575.0 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-info-item-score">
+                    <span class="bangumi-info-label">评分</span> <em>9.7</em>
+                </span>
+            </span>
+        </div>
+        <div class="bangumi-comments" ><p>简介：在单身的辛苦OL小林身边突然出现的女仆装束的美少女托尔。
+长着角和尾巴的她的身姿正是所谓的龙娘。
+在醉酒的小林邀请下说要到家里去的托尔，鬼使神差地开始以小林家女仆的身份工作……！？
+“女仆”+“龙”=...</p> </div>
+    </div>
+</div>
+
+        
+        <div class="bangumi-item">
+    <div class="bangumi-picture"><img src="https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.2.0/lib/img/loading.gif"  data-src="https://i0.hdslb.com/bfs/bangumi/image/adb5e7eb3dfe565675818ced4a88482904c4a42b.jpg@220w_280h.webp" referrerPolicy="no-referrer" width="110" style="width:110px;margin:10px auto;" />
+    </div>
+    <div class="bangumi-info">
+        <div class="bangumi-title">
+            <a target="_blank" href="https://www.bilibili.com/bangumi/media/md28338773/">小林家的龙女仆 第二季 中配版</a>
+        </div>
+        <div class="bangumi-meta">
+            <span class="bangumi-info-items" >
+                <span class="bangumi-info-item">
+                
+                <span class="bangumi-info-total">全13话</span><em
+                        class="bangumi-info-label-em">0</em>
+                </span>
+                
+                
+                <span class="bangumi-info-item bangumi-area">
+                    <span class="bangumi-info-label">番剧</span> <em>日本</em>
+                </span>
+                
+                <span class="bangumi-info-item bangumi-play">
+                    <span class="bangumi-info-label">总播放</span> <em>1202.1 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-follow">
+                    <span class="bangumi-info-label">追番人数</span> <em>21.9 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-coin">
+                    <span class="bangumi-info-label">硬币数</span> <em>1.9 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-danmaku">
+                    <span class="bangumi-info-label">弹幕总数</span> <em>3.0 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-info-item-score">
+                    <span class="bangumi-info-label">评分</span> <em>9.5</em>
+                </span>
+            </span>
+        </div>
+        <div class="bangumi-comments" ><p>简介：那位不可思议的龙女仆再度登场！
+因为各种奇妙的原因而作为小林家的女仆而工作中的龙·托尔。
+偶尔（胡说，是经常）给亲爱的小林添麻烦，总算是融入了人类社会，成为了一个完美的（骗人，也就还行）女仆。
+同样是...</p> </div>
+    </div>
+</div>
+
+        
+        <div class="bangumi-item">
+    <div class="bangumi-picture"><img src="https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.2.0/lib/img/loading.gif"  data-src="https://i0.hdslb.com/bfs/bangumi/image/dc1e7f563602ba498caa94275ed904fe34d886a1.jpg@220w_280h.webp" referrerPolicy="no-referrer" width="110" style="width:110px;margin:10px auto;" />
+    </div>
+    <div class="bangumi-info">
+        <div class="bangumi-title">
+            <a target="_blank" href="https://www.bilibili.com/bangumi/media/md28235391/">暂停！让我查攻略</a>
+        </div>
+        <div class="bangumi-meta">
+            <span class="bangumi-info-items" >
+                <span class="bangumi-info-item">
+                
+                <span class="bangumi-info-total">全12话</span><em
+                        class="bangumi-info-label-em">0</em>
+                </span>
+                
+                
+                <span class="bangumi-info-item bangumi-area">
+                    <span class="bangumi-info-label">国创</span> <em>中国大陆</em>
+                </span>
+                
+                <span class="bangumi-info-item bangumi-play">
+                    <span class="bangumi-info-label">总播放</span> <em>6867.7 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-follow">
+                    <span class="bangumi-info-label">追番人数</span> <em>154.6 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-coin">
+                    <span class="bangumi-info-label">硬币数</span> <em>61.2 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-danmaku">
+                    <span class="bangumi-info-label">弹幕总数</span> <em>58.1 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-info-item-score">
+                    <span class="bangumi-info-label">评分</span> <em>9.4</em>
+                </span>
+            </span>
+        </div>
+        <div class="bangumi-comments" ><p>简介：因为召唤过程中的失误，30岁社畜刘依诺意外被召唤到游戏世界中。为了尽快回到现实，刘依诺开始协助18岁的“勇者”田恩雅拯救世界。本来就是高玩的依诺凭借自己出色的认知，在异世界里如鱼得水。恩雅也从一个任性...</p> </div>
+    </div>
+</div>
+
+        
+        <div class="bangumi-item">
+    <div class="bangumi-picture"><img src="https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.2.0/lib/img/loading.gif"  data-src="https://i0.hdslb.com/bfs/bangumi/image/8aead7650fb3ded88f24654b7b66823169cb9a8c.png@220w_280h.webp" referrerPolicy="no-referrer" width="110" style="width:110px;margin:10px auto;" />
+    </div>
+    <div class="bangumi-info">
+        <div class="bangumi-title">
+            <a target="_blank" href="https://www.bilibili.com/bangumi/media/md28235154/">国王排名</a>
+        </div>
+        <div class="bangumi-meta">
+            <span class="bangumi-info-items" >
+                <span class="bangumi-info-item">
+                
+                <span class="bangumi-info-total">全23话</span><em
+                        class="bangumi-info-label-em">0</em>
+                </span>
+                
+                
+                <span class="bangumi-info-item bangumi-area">
+                    <span class="bangumi-info-label">番剧</span> <em>日本</em>
+                </span>
+                
+                <span class="bangumi-info-item bangumi-play">
+                    <span class="bangumi-info-label">总播放</span> <em>4.9 亿</em>
+                </span>
+                <span class="bangumi-info-item bangumi-follow">
+                    <span class="bangumi-info-label">追番人数</span> <em>921.7 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-coin">
+                    <span class="bangumi-info-label">硬币数</span> <em>261.6 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-danmaku">
+                    <span class="bangumi-info-label">弹幕总数</span> <em>252.3 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-info-item-score">
+                    <span class="bangumi-info-label">评分</span> <em>7</em>
+                </span>
+            </span>
+        </div>
+        <div class="bangumi-comments" ><p>简介：国家的丰饶、麾下勇者的数量、
+以及国王本人如何像勇者一般强大，
+这些要素的综合排名，便是所谓的“国王排名”。
+主人公波吉是国王排名第七名的伯斯王治下王国的第一王子。
+但是波吉却生来又聋又哑，贫弱到挥不...</p> </div>
+    </div>
+</div>
+
+        
+        <div class="bangumi-item">
+    <div class="bangumi-picture"><img src="https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.2.0/lib/img/loading.gif"  data-src="https://i0.hdslb.com/bfs/bangumi/image/5ab04233a441e3b5cc68d0c88bd39d1e5a89cc33.png@220w_280h.webp" referrerPolicy="no-referrer" width="110" style="width:110px;margin:10px auto;" />
+    </div>
+    <div class="bangumi-info">
+        <div class="bangumi-title">
+            <a target="_blank" href="https://www.bilibili.com/bangumi/media/md28234650/">漂流少年</a>
+        </div>
+        <div class="bangumi-meta">
+            <span class="bangumi-info-items" >
+                <span class="bangumi-info-item">
+                
+                <span class="bangumi-info-total">全12话</span><em
+                        class="bangumi-info-label-em">0</em>
+                </span>
+                
+                
+                <span class="bangumi-info-item bangumi-area">
+                    <span class="bangumi-info-label">番剧</span> <em>日本</em>
+                </span>
+                
+                <span class="bangumi-info-item bangumi-play">
+                    <span class="bangumi-info-label">总播放</span> <em>1779.4 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-follow">
+                    <span class="bangumi-info-label">追番人数</span> <em>106.0 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-coin">
+                    <span class="bangumi-info-label">硬币数</span> <em>18.0 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-danmaku">
+                    <span class="bangumi-info-label">弹幕总数</span> <em>12.6 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-info-item-score">
+                    <span class="bangumi-info-label">评分</span> <em>9.7</em>
+                </span>
+            </span>
+        </div>
+        <div class="bangumi-comments" ><p>简介：漫长的暑假已然过半的8月16日。聚集在学校里的中学三年级学生·长良一行人突然被卷进从未设想过的事态之中。
+长良本人自不必说，神秘的转校生·希和瑞穗以及朝风等36名同班同学，都随着学校一起在异次元之中漂...</p> </div>
+    </div>
+</div>
+
+        
+        <div class="bangumi-item">
+    <div class="bangumi-picture"><img src="https://cdn.jsdelivr.net/npm/hexo-bilibili-bangumi@1.2.0/lib/img/loading.gif"  data-src="https://i0.hdslb.com/bfs/bangumi/image/5064d5adf17f281e351b5846b7b274be6f080b93.png@220w_280h.webp" referrerPolicy="no-referrer" width="110" style="width:110px;margin:10px auto;" />
+    </div>
+    <div class="bangumi-info">
+        <div class="bangumi-title">
+            <a target="_blank" href="https://www.bilibili.com/bangumi/media/md28234637/">侦探已死</a>
+        </div>
+        <div class="bangumi-meta">
+            <span class="bangumi-info-items" >
+                <span class="bangumi-info-item">
+                
+                <span class="bangumi-info-total">全12话</span><em
+                        class="bangumi-info-label-em">0</em>
+                </span>
+                
+                
+                <span class="bangumi-info-item bangumi-area">
+                    <span class="bangumi-info-label">番剧</span> <em>日本</em>
+                </span>
+                
+                <span class="bangumi-info-item bangumi-play">
+                    <span class="bangumi-info-label">总播放</span> <em>5214.1 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-follow">
+                    <span class="bangumi-info-label">追番人数</span> <em>253.8 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-coin">
+                    <span class="bangumi-info-label">硬币数</span> <em>35.5 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-danmaku">
+                    <span class="bangumi-info-label">弹幕总数</span> <em>69.4 万</em>
+                </span>
+                <span class="bangumi-info-item bangumi-info-item-score">
+                    <span class="bangumi-info-label">评分</span> <em>7.1</em>
+                </span>
+            </span>
+        </div>
+        <div class="bangumi-comments" ><p>简介：“你、来当我的助手吧。”
+有着被卷入事件体质的少年・君冢君彦，在高空一万米的飞机上，成为了自称是侦探的天使般的美丽少女・谢丝塔的助手。二人为了同世界各地的敌人战斗，三年来辗转于世界各地，展开了一系列惊...</p> </div>
+    </div>
+</div>
+
+        
+        <div class="bangumi-pagination">
+    <a class="bangumi-button bangumi-firstpage" href="javascript:;" target="_self" onclick="return false"> 首页</a>
+    <a class="bangumi-button bangumi-previouspage" href="javascript:;" target="_self" onclick="return false">上一页</a>
+    <span class="bangumi-pagenum">2 / 3</span>
+    <a class="bangumi-button bangumi-nextpage" href="javascript:;" target="_self" onclick="return false">下一页</a>
+    <a class="bangumi-button bangumi-lastpage" href="javascript:;" target="_self" onclick="return false">尾页</a>
+</div>
+        
+    </div>
+    <div id="bangumi-item3">
+        
+        
+        <div class="bangumi-pagination">
+    <a class="bangumi-button bangumi-firstpage" href="javascript:;" target="_self" onclick="return false"> 首页</a>
+    <a class="bangumi-button bangumi-previouspage" href="javascript:;" target="_self" onclick="return false">上一页</a>
+    <span class="bangumi-pagenum">2 / 3</span>
+    <a class="bangumi-button bangumi-nextpage" href="javascript:;" target="_self" onclick="return false">下一页</a>
+    <a class="bangumi-button bangumi-lastpage" href="javascript:;" target="_self" onclick="return false">尾页</a>
+</div>
+        
+    </div>
+</div>
+<script>
+    
+    "use strict";/* eslint-disable no-plusplus */(function(){// eslint-disable-next-line func-style
+function a(){this.classList.add("bangumi-active");for(var a=this.siblings(),b=0;b<a.length;b++)a[b].classList.remove("bangumi-active");// 显示对应板块
+var c=this.id.replace("tab","item"),d=document.getElementById(c);d.classList.remove("bangumi-hide"),d.classList.add("bangumi-show"),a=document.getElementById(c).siblings();for(var e=0;e<a.length;e++)a[e].classList.remove("bangumi-show"),a[e].classList.add("bangumi-hide")}Element.prototype.siblings=function(){for(var a=[],b=this.parentNode.children,c=0;c<b.length;c++)b[c]!==this&&a.push(b[c]);return a};for(var b=document.getElementsByClassName("bangumi-tab"),c=0;c<b.length;c++)b[c].onclick=a,b[c].onclick.apply(b[c]);"undefined"!=typeof pagenumsPre&&axios.get(new URL("../bangumis.json",window.location.href)).then(function(a){if(a.data){var b={wantWatch:a.data.wantWatch.slice(10).map(function(a){return ejs.render(ejsTemplate,{item:a,loading:loading,metaColor:metaColor,type:type})}).join("\n"),watching:a.data.watching.slice(10).map(function(a){return ejs.render(ejsTemplate,{item:a,loading:loading,metaColor:metaColor,type:type})}).join("\n"),watched:a.data.watched.slice(10).map(function(a){return ejs.render(ejsTemplate,{item:a,loading:loading,metaColor:metaColor,type:type})}).join("\n")};document.querySelectorAll("#bangumi-item1>.bangumi-pagination")[0].insertAdjacentHTML("beforeBegin",b.wantWatch),document.querySelectorAll("#bangumi-item2>.bangumi-pagination")[0].insertAdjacentHTML("beforeBegin",b.watching),document.querySelectorAll("#bangumi-item3>.bangumi-pagination")[0].insertAdjacentHTML("beforeBegin",b.watched)}})})();
+
+    document.getElementsByClassName('bangumi-tab')[1].click();
+    /* eslint-disable no-plusplus, func-style */(function(){var a=Math.ceil;function b(b,c){return`${b+1} / ${a(0==c.length/10?1:a(c.length/10))}`}function c(){const a=this.parentNode.siblings();g(a,0),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=b(0,a)}function d(){const a=this.parentNode.siblings();let c=this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText;c=c.substr(0,c.indexOf("/")-1),c=parseInt(c,10)-1,0<c&&c--,g(a,c),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=b(c,a)}function e(){const c=this.parentNode.siblings();let d=this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText;d=d.substr(0,d.indexOf("/")-1),d=parseInt(d,10)-1,d<a(c.length/10)-1&&d++,g(c,d),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=b(d,c)}function f(){const c=this.parentNode.siblings();g(c,a(c.length/10)-1),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=b(-1==a(c.length/10)-1?0:a(c.length/10)-1,c)}function g(a,b){for(let c=0;c<a.length;c++)if(Math.floor(c/10)===b){a[c].classList.remove("bangumi-hide");const[b]=a[c].getElementsByTagName("img");b.src=b.getAttribute("data-src")}else a[c].classList.add("bangumi-hide")}const h=document.getElementsByClassName("bangumi-firstpage"),j=document.getElementsByClassName("bangumi-previouspage"),k=document.getElementsByClassName("bangumi-nextpage"),l=document.getElementsByClassName("bangumi-lastpage"),m=document.getElementsByClassName("bangumi-pagenum");for(let b=0;b<h.length;b++){h[b].onclick=c,j[b].onclick=d,k[b].onclick=e,l[b].onclick=f;// set page num
+const g="undefined"==typeof pagenumsPre?m[b].parentNode.siblings().length:pagenumsPre[b]??m[b].parentNode.siblings().length;h[b].click(),m[b].innerText=`1 / ${0===a(g/10)?1:a(g/10)}`}})();
+
+</script>
+
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2022 小宇の万事屋
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @阿小橙
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+<!-- 流星特效 -->
+<canvas
+    id="background"
+    style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"
+></canvas>
+<script src="/js/background.js"></script>
+
+</html>

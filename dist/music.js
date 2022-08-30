@@ -12,13 +12,13 @@ const ap = new APlayer({
       {
         name: 'Endless Embrace',
         artist: 'MYTH & ROID',
-        url: 'https://m701.music.126.net/20220830145337/b261a10ac3de1e46a597955b3ba386e7/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/17807014832/c2a9/d6bc/2eb6/c001b5ba5b4406901126cade2b01706d.m4a',
+        url: 'https://m701.music.126.net/20220830154148/b99c823d64e1fa3a8daf99d7b6dbce6c/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/17807014832/c2a9/d6bc/2eb6/c001b5ba5b4406901126cade2b01706d.m4a',
         cover: 'http://p1.music.126.net/-H0kjb6trH38D-If8NbRxA==/109951167811038018.jpg?param=130y130',
       },
       {
         name: "形状",
-        artist: '安月名莉子',
-        url: 'https://m701.music.126.net/20220830144726/24eac4052020afc202e0a6a2e69a6bf1/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/17806528270/a917/3425/e6d3/5f87507db17e7dca57426cfb6890b565.m4a',
+        artist: "安月名莉子",
+        url: 'https://m701.music.126.net/20220830153958/fc720ec52b9e07b01025f3f71e5412b5/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/17806528270/a917/3425/e6d3/5f87507db17e7dca57426cfb6890b565.m4a',
         cover: 'http://p1.music.126.net/H0xkmdZ2KhAvApLJMw9Dag==/109951167811003416.jpg?param=130y130',
       }
     ]

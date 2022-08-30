@@ -230,7 +230,21 @@
 <p><img src="https://pic2.zhimg.com/80/v2-19a363752b9ac44ca80824b81e86233d_1440w.jpg" alt="easenet">   </p>
 <blockquote>
 <blockquote>
-<p>然后将此代码放到你想要放的地方，比如放在博客的左侧，则打开 \themes\主题\layout\left.ejs 文件，将复制的HTML代码粘贴进去，再进行适当的位置设置让播放器更美观，其中 auto&#x3D;1 表示打开网页自动播放音乐，auto&#x3D;0 表示关闭自动播放音乐   </p>
+<p>然后将此代码放到你想要放的地方，比如放在博客的左侧，则打开 \themes\主题\layout\left.ejs 文件，将复制的HTML代码粘贴进去，再进行适当的位置设置让播放器更美观，其中 auto&#x3D;1 表示打开网页自动播放音乐，auto&#x3D;0 表示关闭自动播放音乐    </p>
+</blockquote>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><blockquote>
+<p>在layout.ejs中body标签加入以下：   </p>
+</blockquote>
+</blockquote>
+<pre><code class="html"> &lt;!--音乐--&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css&quot;&gt;
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js&quot;&gt;&lt;/script&gt;
+  &lt;div id=&quot;player&quot; class=&quot;aplayer aplayer-withlist aplayer-fixed&quot; data-id=&quot;3025663508&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-order=&quot;random&quot; data-fixed=&quot;true&quot; data-listfolded=&quot;true&quot; data-theme=&quot;#2D8CF0&quot;&gt;&lt;/div&gt;  
+</code></pre>
+<blockquote>
+<blockquote>
+<p>可以自行修改参数   </p>
 </blockquote>
 </blockquote>
 <ul>
@@ -294,7 +308,7 @@
         <script src="/js/showimg.js"></script>
         
 
-    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 
 <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
 <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 

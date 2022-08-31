@@ -201,11 +201,11 @@
 body {
     
     width: 100%;
-    background: #f6f8fa;
+    background: #ffebf5;
     color: #000000d9;
     font-family: "Poppins", "Noto Sans SC", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 17px;
+    font-weight: 600;
     scrollbar-color: #8ab5ff #e6efff;
     scrollbar-width: 8px;
     overflow-x: hidden;
@@ -610,7 +610,7 @@ pre .language {
 }
 #home-card .card-style {
     padding: 20px 0;
-    background: #fff;
+    background: rgb(221, 238, 255);
     border-radius: 10px;
     text-align: center;
     border: none;
@@ -653,7 +653,7 @@ pre .language {
 }
 #home-card .card-style .icon-links a:hover {
     color: #fff;
-    background: #66afef;
+    background: #ffffff;
 }
 #home-card .card-style .icon-links .icon-link {
     margin: 5px;

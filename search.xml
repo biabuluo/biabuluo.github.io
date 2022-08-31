@@ -1,367 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>云计算实验</title>
-    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>回到顶部功能</title>
+      <link href="/2022/08/31/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%8A%9F%E8%83%BD/"/>
+      <url>/2022/08/31/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%8A%9F%E8%83%BD/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">坏消息：新生军训要搞到中秋！！<br />好消息：这几天都下雨，反正跑不了步ψ(｀∇´)ψ </font>      </p><hr><h2 id="添加回到顶部按钮"><a href="#添加回到顶部按钮" class="headerlink" title="添加回到顶部按钮"></a>添加回到顶部按钮</h2><blockquote><p>在layout中添加：</p></blockquote><pre><code class="html">               &lt;!-- backtotop --&gt;                &lt;div id = &quot;gotop&quot;&gt;                    &lt;img src=&quot;&lt;%- rootlink %&gt;scrollup.png&quot; alt=&quot;gotop&quot;&gt;                &lt;/div&gt;                &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- rootlink %&gt;css/totop.css&quot;&gt;                &lt;script&gt;                    window.addEventListener(&quot;scroll&quot;,handle)                    function handle()&#123;                        var oTop = document.body.scrollTop||document.documentElement.scrollTop                        if(oTop&gt;=200)&#123;                            gotop.style.display = &quot;block&quot;;                        &#125;else&#123;                            gotop.style.display = &quot;none&quot;;                        &#125;                        gotop.onclick = function()&#123;                            window.scrollTo(&#123;                                top:0,                                behavior:&quot;smooth&quot;                            &#125;)                        &#125;                    &#125;                &lt;/script&gt;</code></pre><blockquote><p>在css文件夹中新建文件totop.css   </p></blockquote><pre><code class="css">#gotop&#123;    position: fixed;    display: none;    right: 30px;    bottom: 50px;&#125;/* #gotop img&#123;    width: 80px;    height: 200px;&#125; */#gotop img:hover&#123;    cursor: pointer;&#125;</code></pre><h2 id="大功告成啦！"><a href="#大功告成啦！" class="headerlink" title="大功告成啦！"></a>大功告成啦！</h2><ul><li><h2 id="图标可以在阿里矢量图库里下载！"><a href="#图标可以在阿里矢量图库里下载！" class="headerlink" title="图标可以在阿里矢量图库里下载！"></a>图标可以在<a href="https://www.iconfont.cn/">阿里矢量图库</a>里下载！</h2>我丢在这里啦！     <img src="../imgs/scrollup.png" alt="rocket" align=center /></li></ul>]]></content>
+      
+      
       <categories>
-        <category>学习</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>云计算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭建hexo博客</title>
-    <url>/2022/08/29/blog_built/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><font size=3>参考了很多资料：b站，github，别人的博客<font><br><a href="https://www.cnblogs.com/huanhao/p/hexobase.html">参考最多的博客</a><br><a href="https://argvchs.netlify.app/">我主题作者的博客</a><br><a href="https://github.com/argvchs/hexo-theme-particlex">主题获取</a></p>
-<hr>
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><ul>
-<li><h3 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h3></li>
-</ul>
-<blockquote>
-<p><a href="http://nodejs.cn/download/">node.js获取</a>   </p>
-<p><mark>记得添加环境变量再next</mark>  </p>
-</blockquote>
-<ul>
-<li><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3></li>
-</ul>
-<blockquote>
-<p><a href="https://git-scm.com/">git获取</a><br>一路next就行<br><em><strong>验证是否安装成功：</strong></em><br>验证git: 桌面右键有git bash<br><img src="https://i.loli.net/2020/02/29/s1YhxtEILOlk4Xz.png" alt="git">   </p>
-</blockquote>
-<ul>
-<li><h3 id="验证node-js-点击git-bash依次执行命令"><a href="#验证node-js-点击git-bash依次执行命令" class="headerlink" title="验证node.js:  点击git bash依次执行命令"></a>验证node.js:  点击git bash依次执行命令</h3></li>
-</ul>
-<pre><code class="bash">$ node -v
-$ npm -v
-</code></pre>
-<p><em><strong>输出版本号就算成功</strong></em>   </p>
-<ul>
-<li><h3 id="安装cnpm"><a href="#安装cnpm" class="headerlink" title="安装cnpm"></a>安装cnpm</h3></li>
-</ul>
-<blockquote>
-<p>git bash中执行：   </p>
-</blockquote>
-<pre><code class="bash">    $ npm install -g cnpm --registry=https://registry.npm.taobao.org
-</code></pre>
-<blockquote>
-<p>检查是否安装完成：</p>
-</blockquote>
-<pre><code class="bash">$ cnpm -v
-</code></pre>
-<h2 id="安装hexo并初始化"><a href="#安装hexo并初始化" class="headerlink" title="安装hexo并初始化"></a>安装hexo并初始化</h2><ul>
-<li><h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3></li>
-</ul>
-<pre><code class="bash"> $ cnpm install hexo-cli -g
-</code></pre>
-<ul>
-<li><h3 id="创建blog文件夹并在当前目录打开git-bash"><a href="#创建blog文件夹并在当前目录打开git-bash" class="headerlink" title="创建blog文件夹并在当前目录打开git bash"></a>创建blog文件夹并在当前目录打开git bash</h3></li>
-</ul>
-<blockquote>
-<p>依次执行命令：</p>
-</blockquote>
-<pre><code class="bash">$ hexo init
-$ cnpm install
-</code></pre>
-<blockquote>
-<p>这时可以在本地浏览我们的博客了</p>
-</blockquote>
-<pre><code class="bash">$ hexo s
-</code></pre>
-<p><img src="https://cdn.jsdelivr.net/gh/kjhuanhao/blogcdn/img/Snipaste_2020-02-29_09-31-47.jmi628mj35e.png" alt="blog_local">   </p>
-<h2 id="可以更换主题然后配置文件啦！"><a href="#可以更换主题然后配置文件啦！" class="headerlink" title="可以更换主题然后配置文件啦！"></a>可以更换主题然后配置文件啦！</h2><blockquote>
-<h3 id="hexo的主题地址："><a href="#hexo的主题地址：" class="headerlink" title="hexo的主题地址："></a>hexo的主题地址：</h3><p><a href="https://hexo.io/themes/">hexo</a>    </p>
-</blockquote>
-<h2 id="主题下载"><a href="#主题下载" class="headerlink" title="主题下载"></a>主题下载</h2><blockquote>
-<p>打开主题地址：点击 Clone or download<br><img src="https://cdn.jsdelivr.net/gh/kjhuanhao/blogcdn/img/Snipaste_2020-02-29_09-46-02.gnmyl5b7s2.png" alt="clone"><br>在blog文件夹中打开git bash<br>执行命令：</p>
-</blockquote>
-<pre><code class="bash">git clone 复制的地址 themes/主题名字
-</code></pre>
-<h2 id="接着可以修改站点配置文件什么的"><a href="#接着可以修改站点配置文件什么的" class="headerlink" title="接着可以修改站点配置文件什么的"></a>接着可以修改站点配置文件什么的</h2><h2 id="部署到coding-或者-github"><a href="#部署到coding-或者-github" class="headerlink" title="部署到coding 或者 github"></a>部署到coding 或者 github</h2><blockquote>
-<p>可以参考我推荐的别人的blog   </p>
-</blockquote>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 博客美化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>部署到gitee</title>
+      <link href="/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/"/>
+      <url>/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>coding对新手及其不友好，同步个仓库卡的要死！！！！<br>🤬🤡（还是校园网卡？小丑竟是我）</p><hr><p>##倒不如直接用gitee</p>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>人工智能原理</title>
-    <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+      
+        <tags>
+            
+            <tag> 博客搭建 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>前端学习路线</title>
+      <link href="/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"/>
+      <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+      
       <categories>
-        <category>学习</category>
+          
+          <category> 学习 </category>
+          
       </categories>
-      <tags>
-        <tag>人工智能原理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/08/27/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>人工智能原理</title>
+      <link href="/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/"/>
+      <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 学习 </category>
+          
       </categories>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo 博客美化</title>
-    <url>/2022/08/29/hexo-%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">新生要军训，好几天都不能跑步，崩溃了。。 </font>   </p>
-<img src=https://w.wallhaven.cc/full/72/wallhaven-72yqlv.png width = "300" height = "200" alt="我" align=center />   
-
-<ul>
-<li><p><a href="https://zhuanlan.zhihu.com/p/69211731">参考资料</a></p>
-</li>
-<li><h2 id="添加看板娘（我的是看板狗hahaha"><a href="#添加看板娘（我的是看板狗hahaha" class="headerlink" title="添加看板娘（我的是看板狗hahaha)"></a>添加看板娘（我的是看板狗hahaha)</h2></li>
-</ul>
-<blockquote>
-<p><strong>在git bash上获取live2d：</strong>   </p>
-</blockquote>
-<pre><code class="bash">$ npm install --save hexo-helper-live2d
-</code></pre>
-<blockquote>
-<p>输入以下命令，下载相应的模型，将 packagename 更换成型名称即可，更多模型选择请<a href="https://github.com/xiazeyu/live2d-widget-models">点击此处</a>，各个模型的预览请访问<a href="https://huaji8.top/post/live2d-plugin-2.0/">原作者的博客</a></p>
-</blockquote>
-<pre><code class="bash">$ npm install packagename
-</code></pre>
-<blockquote>
-<p>打开站点目录下的 _config.yml 文件，添加如下代码：</p>
-</blockquote>
-<pre><code class="yml">live2d:
-    enable: true
-    scriptFrom: local
-    model: 
-        use: live2d-widget-model-haruto #模型选择
-    display: 
-        position: right  #模型位置
-        width: 150       #模型宽度
-        height: 300      #模型高度
-    mobile: 
-        show: false      #是否在手机端显示
-</code></pre>
-<blockquote>
-<p>设置好过后我们就拥有了一个卡通人物 （我在想是否能搞个米蒂的模型呢hahahaha）</p>
-</blockquote>
-<ul>
-<li><h2 id="鼠标点击效果"><a href="#鼠标点击效果" class="headerlink" title="鼠标点击效果"></a>鼠标点击效果</h2></li>
-</ul>
-<blockquote>
-<p><strong>效果烟花爆炸：</strong><br>在 \themes\主题\source\js 目录下新建一个 fireworks.js 的文件，里面写入以下代码：</p>
-</blockquote>
-<pre><code class="js">&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;;
-</code></pre>
-<blockquote>
-<p>然后在 \themes\主题\layout\layout.ejs 文件中写入以下代码：</p>
-</blockquote>
-<pre><code class="ejs">&lt;canvas class=&quot;fireworks&quot; style=&quot;position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;&quot; &gt;&lt;/canvas&gt; 
-&lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/animejs/2.2.0/anime.min.js&quot;&gt;&lt;/script&gt; 
-&lt;script type=&quot;text/javascript&quot; src=&quot;/js/fireworks.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-<ul>
-<li><h2 id="添加背景音乐"><a href="#添加背景音乐" class="headerlink" title="添加背景音乐"></a>添加背景音乐</h2></li>
-</ul>
-<blockquote>
-<h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><blockquote>
-<p>打开网页版<a href="https://music.163.com/">网易云音乐</a>，选择你准备添加的背景音乐，点击生成外链播放器，前提是要有版权，不然是无法生成外链播放器的，复制底下的HTML代码  </p>
-</blockquote>
-</blockquote>
-<p><img src="https://pic2.zhimg.com/80/v2-19a363752b9ac44ca80824b81e86233d_1440w.jpg" alt="easenet">   </p>
-<blockquote>
-<blockquote>
-<p>然后将此代码放到你想要放的地方，比如放在博客的左侧，则打开 \themes\主题\layout\left.ejs 文件，将复制的HTML代码粘贴进去，再进行适当的位置设置让播放器更美观，其中 auto&#x3D;1 表示打开网页自动播放音乐，auto&#x3D;0 表示关闭自动播放音乐    </p>
-</blockquote>
-<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><blockquote>
-<p>在layout.ejs中body标签加入以下：   </p>
-</blockquote>
-</blockquote>
-<pre><code class="html"> &lt;!--音乐--&gt;
-  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css&quot;&gt;
-  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js&quot;&gt;&lt;/script&gt;
-  &lt;div id=&quot;player&quot; class=&quot;aplayer aplayer-withlist aplayer-fixed&quot; data-id=&quot;3025663508&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-order=&quot;random&quot; data-fixed=&quot;true&quot; data-listfolded=&quot;true&quot; data-theme=&quot;#2D8CF0&quot;&gt;&lt;/div&gt;  
-</code></pre>
-<blockquote>
-<blockquote>
-<p>可以自行修改参数   </p>
-<h2 id="重要优化"><a href="#重要优化" class="headerlink" title="重要优化"></a>重要优化</h2><p>实现aplayer嵌入效果（像我一样）    </p>
-</blockquote>
-</blockquote>
-<pre><code class="css">.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body &#123;
-    left: -66px !important
-&#125;
-
-.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover &#123;
-    left: 0 !important
-&#125;
-</code></pre>
-<blockquote>
-<blockquote>
-<p>layout.ejs文件中添加：</p>
-</blockquote>
-</blockquote>
-<pre><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/aplayer.css&quot;/&gt;
-</code></pre>
-<ul>
-<li><h2 id="流星背景特效"><a href="#流星背景特效" class="headerlink" title="流星背景特效"></a>流星背景特效</h2></li>
-</ul>
-<blockquote>
-<p>使用：</p>
-</blockquote>
-<pre><code class="layout.ejs">&lt;canvas
-    id=&quot;background&quot;
-    style=&quot;position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1&quot;
-&gt;&lt;/canvas&gt;
-&lt;script src=&quot;/js/background.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-<blockquote>
-<p>下载：<a href="https://argvchs.netlify.app/js/background.js">background.js</a></p>
-</blockquote>
-<ul>
-<li><h2 id="鼠标指针特效"><a href="#鼠标指针特效" class="headerlink" title="鼠标指针特效"></a>鼠标指针特效</h2></li>
-</ul>
-<blockquote>
-<p>使用：</p>
-</blockquote>
-<pre><code class="layout.ejs">&lt;div id=&quot;cursor&quot;&gt;&lt;/div&gt;
-&lt;script src=&quot;/css/cursor.css&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;/js/cursor.js&quot;&gt;&lt;/script&gt;
-</code></pre>
-<blockquote>
-<p>下载：</p>
-<p><a href="https://argvchs.netlify.app/assets/cursor.css">cursor.css</a><br><a href="https://argvchs.netlify.app/js/cursor.js">cursor.js</a></p>
-</blockquote>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 人工智能原理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>大数据分析学习一</title>
+      <link href="/2022/08/30/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
+      <url>/2022/08/30/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 学习 </category>
+          
       </categories>
-      <tags>
-        <tag>博客美化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端学习路线</title>
-    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+      
+        <tags>
+            
+            <tag> 大数据分析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>云计算实验</title>
+      <link href="/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/"/>
+      <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+      
       <categories>
-        <category>学习</category>
+          
+          <category> 学习 </category>
+          
       </categories>
-      <tags>
-        <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>部署到gitee</title>
-    <url>/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>coding对新手及其不友好，同步个仓库卡的要死！！！！<br>🤬🤡（还是校园网卡？小丑竟是我）</p>
-<hr>
-<p>##倒不如直接用gitee</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 云计算 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>数据库学习</title>
+      <link href="/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 学习 </category>
+          
       </categories>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大数据分析学习一</title>
-    <url>/2022/08/30/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+      
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>hexo 博客美化</title>
+      <link href="/2022/08/29/hexo-%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/"/>
+      <url>/2022/08/29/hexo-%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">新生要军训，好几天都不能跑步，崩溃了。。 </font>   </p><img src=https://w.wallhaven.cc/full/72/wallhaven-72yqlv.png width = "300" height = "200" alt="我" align=center />   <ul><li><p><a href="https://zhuanlan.zhihu.com/p/69211731">参考资料</a></p></li><li><h2 id="添加看板娘（我的是看板狗hahaha"><a href="#添加看板娘（我的是看板狗hahaha" class="headerlink" title="添加看板娘（我的是看板狗hahaha)"></a>添加看板娘（我的是看板狗hahaha)</h2></li></ul><blockquote><p><strong>在git bash上获取live2d：</strong>   </p></blockquote><pre><code class="bash">$ npm install --save hexo-helper-live2d</code></pre><blockquote><p>输入以下命令，下载相应的模型，将 packagename 更换成型名称即可，更多模型选择请<a href="https://github.com/xiazeyu/live2d-widget-models">点击此处</a>，各个模型的预览请访问<a href="https://huaji8.top/post/live2d-plugin-2.0/">原作者的博客</a></p></blockquote><pre><code class="bash">$ npm install packagename</code></pre><blockquote><p>打开站点目录下的 _config.yml 文件，添加如下代码：</p></blockquote><pre><code class="yml">live2d:    enable: true    scriptFrom: local    model:         use: live2d-widget-model-haruto #模型选择    display:         position: right  #模型位置        width: 150       #模型宽度        height: 300      #模型高度    mobile:         show: false      #是否在手机端显示</code></pre><blockquote><p>设置好过后我们就拥有了一个卡通人物 （我在想是否能搞个米蒂的模型呢hahahaha）</p></blockquote><ul><li><h2 id="鼠标点击效果"><a href="#鼠标点击效果" class="headerlink" title="鼠标点击效果"></a>鼠标点击效果</h2></li></ul><blockquote><p><strong>效果烟花爆炸：</strong><br>在 \themes\主题\source\js 目录下新建一个 fireworks.js 的文件，里面写入以下代码：</p></blockquote><pre><code class="js">&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;;</code></pre><blockquote><p>然后在 \themes\主题\layout\layout.ejs 文件中写入以下代码：</p></blockquote><pre><code class="ejs">&lt;canvas class=&quot;fireworks&quot; style=&quot;position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;&quot; &gt;&lt;/canvas&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/animejs/2.2.0/anime.min.js&quot;&gt;&lt;/script&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/js/fireworks.js&quot;&gt;&lt;/script&gt;</code></pre><ul><li><h2 id="添加背景音乐"><a href="#添加背景音乐" class="headerlink" title="添加背景音乐"></a>添加背景音乐</h2></li></ul><blockquote><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><blockquote><p>打开网页版<a href="https://music.163.com/">网易云音乐</a>，选择你准备添加的背景音乐，点击生成外链播放器，前提是要有版权，不然是无法生成外链播放器的，复制底下的HTML代码  </p></blockquote></blockquote><p><img src="https://pic2.zhimg.com/80/v2-19a363752b9ac44ca80824b81e86233d_1440w.jpg" alt="easenet">   </p><blockquote><blockquote><p>然后将此代码放到你想要放的地方，比如放在博客的左侧，则打开 \themes\主题\layout\left.ejs 文件，将复制的HTML代码粘贴进去，再进行适当的位置设置让播放器更美观，其中 auto&#x3D;1 表示打开网页自动播放音乐，auto&#x3D;0 表示关闭自动播放音乐    </p></blockquote><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><blockquote><p>在layout.ejs中body标签加入以下：   </p></blockquote></blockquote><pre><code class="html"> &lt;!--音乐--&gt;  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css&quot;&gt;  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js&quot;&gt;&lt;/script&gt;  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js&quot;&gt;&lt;/script&gt;  &lt;div id=&quot;player&quot; class=&quot;aplayer aplayer-withlist aplayer-fixed&quot; data-id=&quot;3025663508&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-order=&quot;random&quot; data-fixed=&quot;true&quot; data-listfolded=&quot;true&quot; data-theme=&quot;#2D8CF0&quot;&gt;&lt;/div&gt;  </code></pre><blockquote><blockquote><p>可以自行修改参数   </p><h2 id="重要优化"><a href="#重要优化" class="headerlink" title="重要优化"></a>重要优化</h2><p>实现aplayer嵌入效果（像我一样）    </p></blockquote></blockquote><pre><code class="css">.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body &#123;    left: -66px !important&#125;.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover &#123;    left: 0 !important&#125;</code></pre><blockquote><blockquote><p>layout.ejs文件中添加：</p></blockquote></blockquote><pre><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/aplayer.css&quot;/&gt;</code></pre><ul><li><h2 id="流星背景特效"><a href="#流星背景特效" class="headerlink" title="流星背景特效"></a>流星背景特效</h2></li></ul><blockquote><p>使用：</p></blockquote><pre><code class="layout.ejs">&lt;canvas    id=&quot;background&quot;    style=&quot;position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1&quot;&gt;&lt;/canvas&gt;&lt;script src=&quot;/js/background.js&quot;&gt;&lt;/script&gt;</code></pre><blockquote><p>下载：<a href="https://argvchs.netlify.app/js/background.js">background.js</a></p></blockquote><ul><li><h2 id="鼠标指针特效"><a href="#鼠标指针特效" class="headerlink" title="鼠标指针特效"></a>鼠标指针特效</h2></li></ul><blockquote><p>使用：</p></blockquote><pre><code class="layout.ejs">&lt;div id=&quot;cursor&quot;&gt;&lt;/div&gt;&lt;script src=&quot;/css/cursor.css&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/js/cursor.js&quot;&gt;&lt;/script&gt;</code></pre><blockquote><p>下载：</p><p><a href="https://argvchs.netlify.app/assets/cursor.css">cursor.css</a><br><a href="https://argvchs.netlify.app/js/cursor.js">cursor.js</a></p></blockquote>]]></content>
+      
+      
       <categories>
-        <category>学习</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>大数据分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>回到顶部功能</title>
-    <url>/2022/08/31/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">坏消息：新生军训要搞到中秋！！<br />好消息：这几天都下雨，反正跑不了步ψ(｀∇´)ψ </font>      </p>
-<hr>
-<h2 id="添加回到顶部按钮"><a href="#添加回到顶部按钮" class="headerlink" title="添加回到顶部按钮"></a>添加回到顶部按钮</h2><blockquote>
-<p>在layout中添加：</p>
-</blockquote>
-<pre><code class="html">               &lt;!-- backtotop --&gt;
-                &lt;div id = &quot;gotop&quot;&gt;
-                    &lt;img src=&quot;&lt;%- rootlink %&gt;scrollup.png&quot; alt=&quot;gotop&quot;&gt;
-                &lt;/div&gt;
-                &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- rootlink %&gt;css/totop.css&quot;&gt;
-                &lt;script&gt;
-                    window.addEventListener(&quot;scroll&quot;,handle)
-                    function handle()&#123;
-                        var oTop = document.body.scrollTop||document.documentElement.scrollTop
-                        if(oTop&gt;=200)&#123;
-                            gotop.style.display = &quot;block&quot;;
-                        &#125;else&#123;
-                            gotop.style.display = &quot;none&quot;;
-                        &#125;
-                        gotop.onclick = function()&#123;
-                            window.scrollTo(&#123;
-                                top:0,
-                                behavior:&quot;smooth&quot;
-                            &#125;)
-                        &#125;
-                    &#125;
-                &lt;/script&gt;
-</code></pre>
-<blockquote>
-<p>在css文件夹中新建文件totop.css   </p>
-</blockquote>
-<pre><code class="css">#gotop&#123;
-    position: fixed;
-    display: none;
-    right: 30px;
-    bottom: 50px;
-&#125;
-/* #gotop img&#123;
-    width: 80px;
-    height: 200px;
-&#125; */
-#gotop img:hover&#123;
-    cursor: pointer;
-&#125;
-</code></pre>
-<h2 id="大功告成啦！"><a href="#大功告成啦！" class="headerlink" title="大功告成啦！"></a>大功告成啦！</h2><ul>
-<li><h2 id="图标可以在阿里矢量图库里下载！"><a href="#图标可以在阿里矢量图库里下载！" class="headerlink" title="图标可以在阿里矢量图库里下载！"></a>图标可以在<a href="https://www.iconfont.cn/">阿里矢量图库</a>里下载！</h2>我丢在这里啦！     <img src="../imgs/scrollup.png" alt="rocket" align=center /></li>
-</ul>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 博客美化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>搭建hexo博客</title>
+      <link href="/2022/08/29/blog_built/"/>
+      <url>/2022/08/29/blog_built/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><font size=3>参考了很多资料：b站，github，别人的博客<font><br><a href="https://www.cnblogs.com/huanhao/p/hexobase.html">参考最多的博客</a><br><a href="https://argvchs.netlify.app/">我主题作者的博客</a><br><a href="https://github.com/argvchs/hexo-theme-particlex">主题获取</a></p><hr><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><ul><li><h3 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h3></li></ul><blockquote><p><a href="http://nodejs.cn/download/">node.js获取</a>   </p><p><mark>记得添加环境变量再next</mark>  </p></blockquote><ul><li><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3></li></ul><blockquote><p><a href="https://git-scm.com/">git获取</a><br>一路next就行<br><em><strong>验证是否安装成功：</strong></em><br>验证git: 桌面右键有git bash<br><img src="https://i.loli.net/2020/02/29/s1YhxtEILOlk4Xz.png" alt="git">   </p></blockquote><ul><li><h3 id="验证node-js-点击git-bash依次执行命令"><a href="#验证node-js-点击git-bash依次执行命令" class="headerlink" title="验证node.js:  点击git bash依次执行命令"></a>验证node.js:  点击git bash依次执行命令</h3></li></ul><pre><code class="bash">$ node -v$ npm -v</code></pre><p><em><strong>输出版本号就算成功</strong></em>   </p><ul><li><h3 id="安装cnpm"><a href="#安装cnpm" class="headerlink" title="安装cnpm"></a>安装cnpm</h3></li></ul><blockquote><p>git bash中执行：   </p></blockquote><pre><code class="bash">    $ npm install -g cnpm --registry=https://registry.npm.taobao.org</code></pre><blockquote><p>检查是否安装完成：</p></blockquote><pre><code class="bash">$ cnpm -v</code></pre><h2 id="安装hexo并初始化"><a href="#安装hexo并初始化" class="headerlink" title="安装hexo并初始化"></a>安装hexo并初始化</h2><ul><li><h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3></li></ul><pre><code class="bash"> $ cnpm install hexo-cli -g</code></pre><ul><li><h3 id="创建blog文件夹并在当前目录打开git-bash"><a href="#创建blog文件夹并在当前目录打开git-bash" class="headerlink" title="创建blog文件夹并在当前目录打开git bash"></a>创建blog文件夹并在当前目录打开git bash</h3></li></ul><blockquote><p>依次执行命令：</p></blockquote><pre><code class="bash">$ hexo init$ cnpm install</code></pre><blockquote><p>这时可以在本地浏览我们的博客了</p></blockquote><pre><code class="bash">$ hexo s</code></pre><p><img src="https://cdn.jsdelivr.net/gh/kjhuanhao/blogcdn/img/Snipaste_2020-02-29_09-31-47.jmi628mj35e.png" alt="blog_local">   </p><h2 id="可以更换主题然后配置文件啦！"><a href="#可以更换主题然后配置文件啦！" class="headerlink" title="可以更换主题然后配置文件啦！"></a>可以更换主题然后配置文件啦！</h2><blockquote><h3 id="hexo的主题地址："><a href="#hexo的主题地址：" class="headerlink" title="hexo的主题地址："></a>hexo的主题地址：</h3><p><a href="https://hexo.io/themes/">hexo</a>    </p></blockquote><h2 id="主题下载"><a href="#主题下载" class="headerlink" title="主题下载"></a>主题下载</h2><blockquote><p>打开主题地址：点击 Clone or download<br><img src="https://cdn.jsdelivr.net/gh/kjhuanhao/blogcdn/img/Snipaste_2020-02-29_09-46-02.gnmyl5b7s2.png" alt="clone"><br>在blog文件夹中打开git bash<br>执行命令：</p></blockquote><pre><code class="bash">git clone 复制的地址 themes/主题名字</code></pre><h2 id="接着可以修改站点配置文件什么的"><a href="#接着可以修改站点配置文件什么的" class="headerlink" title="接着可以修改站点配置文件什么的"></a>接着可以修改站点配置文件什么的</h2><h2 id="部署到coding-或者-github"><a href="#部署到coding-或者-github" class="headerlink" title="部署到coding 或者 github"></a>部署到coding 或者 github</h2><blockquote><p>可以参考我推荐的别人的blog   </p></blockquote>]]></content>
+      
+      
       <categories>
-        <category>生活</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>博客美化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库学习</title>
-    <url>/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      
+      
+        <tags>
+            
+            <tag> 博客搭建 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/2022/08/27/hello-world/"/>
+      <url>/2022/08/27/hello-world/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
       <categories>
-        <category>学习</category>
+          
+          <category> 生活 </category>
+          
       </categories>
-      <tags>
-        <tag>数据库</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> 博客搭建 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>

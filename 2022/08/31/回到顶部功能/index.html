@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Tags: 大数据分析 | 小宇の万事屋</title>
+        <title>回到顶部功能 | 小宇の万事屋</title>
         <meta name="author" content="阿小橙">
         <meta name="description" content="                  ————黎明卿">
         <meta name="keywords" content="好想赚大钱然后摆烂啊！">
@@ -159,122 +159,102 @@
 </nav>
                     </div>
                     <div id="main">
-                         
-<div class="categories-tags">
-    
-    <div class="all-s">
-        
-        
-        <span>
-            <a href="/tags/博客搭建/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                博客搭建
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/云计算/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                云计算
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/前端/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                前端
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/博客美化/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                博客美化
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/人工智能原理/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                人工智能原理
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/大数据分析/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                大数据分析
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/数据库/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                数据库
-            </a>
-        </span>
-        
+                        
+<div class="article">
+    <div>
+        <h1>回到顶部功能 </h1>
     </div>
-    <div id="archives">
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/8/31
+        </span>
         
-        <div class="timeline">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2022/8/30</div>
-                <a href="/2022/08/30/大数据分析/">
-                    <h3>大数据分析学习一</h3>
+        <span class="category">
+            <a href="/categories/生活/">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                </span>
+                生活
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/博客美化/" style="color: #00a596">
+                    博客美化
                 </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/学习/">
-                            <span class="icon">
-                                <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                            </span>
-                            学习
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/大数据分析/" style="color: #00bcd4">
-                                大数据分析
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
+            </span>
+            
+        </span>
         
     </div>
+    <div class="content" v-pre>
+        <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">坏消息：新生军训要搞到中秋！！<br />好消息：这几天都下雨，反正跑不了步ψ(｀∇´)ψ </font>      </p>
+<hr>
+<h2 id="添加回到顶部按钮"><a href="#添加回到顶部按钮" class="headerlink" title="添加回到顶部按钮"></a>添加回到顶部按钮</h2><blockquote>
+<p>在layout中添加：</p>
+</blockquote>
+<pre><code class="html">               &lt;!-- backtotop --&gt;
+                &lt;div id = &quot;gotop&quot;&gt;
+                    &lt;img src=&quot;&lt;%- rootlink %&gt;scrollup.png&quot; alt=&quot;gotop&quot;&gt;
+                &lt;/div&gt;
+                &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- rootlink %&gt;css/totop.css&quot;&gt;
+                &lt;script&gt;
+                    window.addEventListener(&quot;scroll&quot;,handle)
+                    function handle()&#123;
+                        var oTop = document.body.scrollTop||document.documentElement.scrollTop
+                        if(oTop&gt;=200)&#123;
+                            gotop.style.display = &quot;block&quot;;
+                        &#125;else&#123;
+                            gotop.style.display = &quot;none&quot;;
+                        &#125;
+                        gotop.onclick = function()&#123;
+                            window.scrollTo(&#123;
+                                top:0,
+                                behavior:&quot;smooth&quot;
+                            &#125;)
+                        &#125;
+                    &#125;
+                &lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>在css文件夹中新建文件totop.css   </p>
+</blockquote>
+<pre><code class="css">#gotop&#123;
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 50px;
+&#125;
+/* #gotop img&#123;
+    width: 80px;
+    height: 200px;
+&#125; */
+#gotop img:hover&#123;
+    cursor: pointer;
+&#125;
+</code></pre>
+<h2 id="大功告成啦！"><a href="#大功告成啦！" class="headerlink" title="大功告成啦！"></a>大功告成啦！</h2><ul>
+<li><h2 id="图标可以在阿里矢量图库里下载！"><a href="#图标可以在阿里矢量图库里下载！" class="headerlink" title="图标可以在阿里矢量图库里下载！"></a>图标可以在阿里矢量图库里下载！</h2>我丢在这里啦！     <img src="../imgs/scrollup.jpg" alt="rocket" align=center /></li>
+</ul>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
 </div>
                          
 <footer id="footer">
@@ -303,6 +283,24 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "https://github.com/biabuluo",
+        owner: "biabuluo",
+        admin: ["biabuluo"],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
                 <!-- backtotop -->
                 <div id = "gotop">

@@ -189,7 +189,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/博客搭建/" style="color: #00a596">
+                <a href="/tags/博客搭建/" style="color: #03a9f4">
                     博客搭建
                 </a>
             </span>
@@ -202,6 +202,12 @@
 <hr>
 <p>##倒不如直接用gitee</p>
 
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
     </div>
     
 </div>
@@ -232,6 +238,24 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "https://github.com/biabuluo",
+        owner: "biabuluo",
+        admin: ["biabuluo"],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
                 <!-- backtotop -->
                 <div id = "gotop">

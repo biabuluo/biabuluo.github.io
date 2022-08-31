@@ -189,7 +189,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/博客搭建/" style="color: #03a9f4">
+                <a href="/tags/博客搭建/" style="color: #00a596">
                     博客搭建
                 </a>
             </span>
@@ -212,6 +212,12 @@
 </code></pre>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
     </div>
     
 </div>
@@ -242,6 +248,24 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "https://github.com/biabuluo",
+        owner: "biabuluo",
+        admin: ["biabuluo"],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
                 <!-- backtotop -->
                 <div id = "gotop">

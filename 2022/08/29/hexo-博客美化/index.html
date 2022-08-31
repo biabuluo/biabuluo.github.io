@@ -189,7 +189,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/博客美化/" style="color: #03a9f4">
+                <a href="/tags/博客美化/" style="color: #00a596">
                     博客美化
                 </a>
             </span>
@@ -275,8 +275,24 @@
 <blockquote>
 <blockquote>
 <p>可以自行修改参数   </p>
+<h2 id="重要优化"><a href="#重要优化" class="headerlink" title="重要优化"></a>重要优化</h2><p>实现aplayer嵌入效果（像我一样）    </p>
 </blockquote>
 </blockquote>
+<pre><code class="css">.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body &#123;
+    left: -66px !important
+&#125;
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover &#123;
+    left: 0 !important
+&#125;
+</code></pre>
+<blockquote>
+<blockquote>
+<p>layout.ejs文件中添加：</p>
+</blockquote>
+</blockquote>
+<pre><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/aplayer.css&quot;/&gt;
+</code></pre>
 <ul>
 <li><h2 id="流星背景特效"><a href="#流星背景特效" class="headerlink" title="流星背景特效"></a>流星背景特效</h2></li>
 </ul>
@@ -309,6 +325,12 @@
 
     </div>
     
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
 </div>
                          
 <footer id="footer">
@@ -337,6 +359,24 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "https://github.com/biabuluo",
+        owner: "biabuluo",
+        admin: ["biabuluo"],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
                 <!-- backtotop -->
                 <div id = "gotop">

@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/08/27/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>搭建hexo博客</title>
     <url>/2022/08/29/blog_built/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><font size=3>参考了很多资料：b站，github，别人的博客<font><br><a href="https://www.cnblogs.com/huanhao/p/hexobase.html">参考最多的博客</a><br><a href="https://argvchs.netlify.app/">我主题作者的博客</a><br><a href="https://github.com/argvchs/hexo-theme-particlex">主题获取</a></p>
@@ -99,17 +75,6 @@ $ cnpm install
       </categories>
       <tags>
         <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>人工智能原理</title>
-    <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>人工智能原理</tag>
       </tags>
   </entry>
   <entry>
@@ -248,14 +213,59 @@ $ cnpm install
       </tags>
   </entry>
   <entry>
-    <title>前端学习路线</title>
-    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    <title>Hello World</title>
+    <url>/2022/08/27/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
       <categories>
-        <category>学习</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>前端</tag>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>互联网数据分析</title>
+    <url>/2022/09/01/%E4%BA%92%E8%81%94%E7%BD%91%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="互联网分析的基本思路"><a href="#互联网分析的基本思路" class="headerlink" title="互联网分析的基本思路"></a>互联网分析的基本思路</h1><ul>
+<li>找出问题： 描述性分析</li>
+<li>分析问题： 诊断性分析，预测性分析，仿真模拟</li>
+<li>解决问题： 数据报告+决策性分析</li>
+</ul>
+<h1 id="不同类型数据分析方法及其原理"><a href="#不同类型数据分析方法及其原理" class="headerlink" title="不同类型数据分析方法及其原理"></a>不同类型数据分析方法及其原理</h1><ul>
+<li>描述性分析：通过计算数据集中性特征和波动特征以了解数据的基本情况  <ul>
+<li>数值分析：数量，平均数，极差，标准差，方差，极值<br>  <img src="/../imgs/sjfx.png" alt="shuju">   </li>
+<li>分布规律: 均匀分布，正态分布，长尾分布    <blockquote>
+<p>利用抛骰子得到正态分布:<br>  <img src="/../imgs/sj.png" alt="shuju"><br>长尾分布:<br>  <img src="/../imgs/cw.png" alt="cw"></p>
+</blockquote>
+</li>
+<li>可视化方法：柱状图，条形图，散点图，饼状图</li>
+</ul>
+</li>
+<li>诊断性分析：深入挖掘问题根源，识别依赖关系，找到影响因子（关联分析）：<br><img src="/../imgs/glfx.png" alt="glfx">   <ul>
+<li><h2 id="皮尔逊相关系数：（非线性数据只能用非线性模型）"><a href="#皮尔逊相关系数：（非线性数据只能用非线性模型）" class="headerlink" title="皮尔逊相关系数：（非线性数据只能用非线性模型）"></a>皮尔逊相关系数：（非线性数据只能用非线性模型）</h2><img src="/../imgs/pex.png" alt="pex"></li>
+</ul>
+</li>
+<li>预测性分析：是用线性回归或逻辑回归的方法找到自变量与因变量之间的关系，并使该关系等式预测因变量的变化<br><img src="/../imgs/huigui.png" alt="huigui"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>分析基本思路和excel实践</tag>
       </tags>
   </entry>
   <entry>
@@ -263,10 +273,73 @@ $ cnpm install
     <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       <categories>
-        <category>学习</category>
+        <category>云计算</category>
       </categories>
       <tags>
-        <tag>云计算</tag>
+        <tag>实验一</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人工智能原理</title>
+    <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>人工智能</category>
+      </categories>
+      <tags>
+        <tag>人工智能原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>优劣势分析</title>
+    <url>/2022/09/01/%E4%BC%98%E5%8A%A3%E5%8A%BF%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="excel简介及优劣势分析"><a href="#excel简介及优劣势分析" class="headerlink" title="excel简介及优劣势分析"></a>excel简介及优劣势分析</h1><ul>
+<li>优势： <blockquote>
+<p>1.对单数据源（单表格）数据分析非常灵活，方便<br>2.操作简单，分析性可复制性强，对业务指导性强   </p>
+</blockquote>
+</li>
+<li>劣势：   <blockquote>
+<p>1.对多数据源（多表格）数据分析时较为麻烦，低效<br>2.对大数据量数据分析时容易卡顿，报错</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="python简介及优劣势分析"><a href="#python简介及优劣势分析" class="headerlink" title="python简介及优劣势分析"></a>python简介及优劣势分析</h1><ul>
+<li>优势：<blockquote>
+<p>1.可读性文字编写的语言之一，学习难度较小<br>2.数据可视化，数据分析工具包丰富，分析效率高</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="如何想数据分析师一样思考问题"><a href="#如何想数据分析师一样思考问题" class="headerlink" title="*如何想数据分析师一样思考问题"></a>*如何想数据分析师一样思考问题</h1>]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>大数据分析导论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端学习路线</title>
+    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>学习路线</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>部署到gitee</title>
+    <url>/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>coding对新手及其不友好，同步个仓库卡的要死！！！！<br>🤬🤡（还是校园网卡？小丑竟是我）</p>
+<hr>
+<p>##倒不如直接用gitee</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -342,18 +415,74 @@ $ cnpm install
 </li>
 <li><h1 id="the-attributes-of-data"><a href="#the-attributes-of-data" class="headerlink" title="the attributes of data"></a>the attributes of data</h1><blockquote>
 <ul>
-<li>数据变异性： 检验标准 ：标准差  极差  方差   </li>
-<li>数据规律性： 正态分布</li>
+<li>数据变异性： <ul>
+<li>检验标准 ：标准差  极差  方差</li>
+</ul>
+</li>
+<li>数据规律性： 正态分布    </li>
+<li>数据的客观性</li>
 </ul>
 </blockquote>
+</li>
+<li><h1 id="数据分析师需要具备的知识体系："><a href="#数据分析师需要具备的知识体系：" class="headerlink" title="数据分析师需要具备的知识体系："></a>数据分析师需要具备的知识体系：</h1></li>
+</ul>
+<h2 id="1-业务知识"><a href="#1-业务知识" class="headerlink" title="1.业务知识"></a>1.业务知识</h2><blockquote>
+<p>数据分析最终是为业务服务的。若脱离行业认知和公司业务背景，分析的结果只会是拖了线的风筝，没有太大价值。</p>
+<p>熟悉行业知识，了解市场环境、行业竞争、发展趋势。</p>
+<p>理解公司的商业模式，业务场景及流程。</p>
+<p>不同业务的指标体系。</p>
+</blockquote>
+<h2 id="2-分析方法"><a href="#2-分析方法" class="headerlink" title="2.分析方法"></a>2.分析方法</h2><blockquote>
+<p>掌握数据分析的基本原理与一些有效的数据分析方法，根据业务场景中分析目的不同，选择对应的分析方法。另外，统计学很重要。</p>
+</blockquote>
+<blockquote>
+<p>基本的分析方法：逻辑树分析法、对比分析法、相关分析法、漏斗分析法、综合评价分析法、结构分解法、因素分析法、RFM分析法、AARRR模型分析法等。</p>
+</blockquote>
+<blockquote>
+<p>高级的分析方法：因子分析法、主成分分析法、聚类分析法、关联规则分析法、时间序列分析法、线性回归分析法、A&#x2F;B test等。 </p>
+</blockquote>
+<h2 id="3-数据分析思维"><a href="#3-数据分析思维" class="headerlink" title="3.数据分析思维"></a>3.数据分析思维</h2><blockquote>
+<p>可以透过数据发现、拆解和解决问题。了解数据分析的流程，每个流程需要注意的事项，大数据思维等。</p>
+</blockquote>
+<blockquote>
+<p> <em>问题拆解的结构化思维</em>：MECE原则</p>
+</blockquote>
+<blockquote>
+<p><em>数据分析的流程</em> ：明确和拆解问题→确定变量和数据获取→数据探索和预处理→统计方法、模型、算法等的应用→结果分析和决策建议→结果执行、评估和反馈。</p>
+</blockquote>
+<h2 id="4-专业工具的使用"><a href="#4-专业工具的使用" class="headerlink" title="4.专业工具的使用"></a>4.专业工具的使用</h2><blockquote>
+<p>掌握数据分析相关的常用工具，熟悉基本操作及结果的解读等。</p>
+</blockquote>
+<blockquote>
+<p>常用的数据分析工具有：Excel、SQL、BI、Python、R、SPSS、SAS等。</p>
+</blockquote>
+<blockquote>
+<p>建议必学Excel和SQL，他们能解决工作中遇到的大部分问题。再根据个人需要、时间、兴趣，学习BI、Python、SPSS等分析工具   </p>
+</blockquote>
+<ul>
+<li><h1 id="数据分析的四个步骤"><a href="#数据分析的四个步骤" class="headerlink" title="数据分析的四个步骤"></a>数据分析的四个步骤</h1><ul>
+<li>数据抓取    <blockquote>
+<p>   埋点<br>   爬虫<br>   api     (通过接口直接访问数据库)   </p>
+</blockquote>
+</li>
+<li>数据质量分析   <blockquote>
+<p>   缺失值分析   （空值&#x2F;遗漏值）<br>   异常值分析    (离群点分析)  箱型图<br>   一致性分析    （矛盾&#x2F;多数据源数据）<br>   数据可视化  </p>
+</blockquote>
+</li>
+<li>描述性分析，诊断性分析….</li>
+<li>业务决策    <blockquote>
+<p>描述性分析<br>诊断性分析<br>预测性分析<br>仿真模拟</p>
+</blockquote>
+</li>
+</ul>
 </li>
 </ul>
 ]]></content>
       <categories>
-        <category>学习</category>
+        <category>大数据分析</category>
       </categories>
       <tags>
-        <tag>大数据分析</tag>
+        <tag>大数据分析导论</tag>
       </tags>
   </entry>
   <entry>
@@ -377,24 +506,35 @@ $ cnpm install
 </ul>
 ]]></content>
       <categories>
-        <category>学习</category>
+        <category>数据库</category>
       </categories>
       <tags>
-        <tag>数据库</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
-    <title>部署到gitee</title>
-    <url>/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>coding对新手及其不友好，同步个仓库卡的要死！！！！<br>🤬🤡（还是校园网卡？小丑竟是我）</p>
-<hr>
-<p>##倒不如直接用gitee</p>
+    <title>线性回归</title>
+    <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><blockquote>
+<p><img src="/../imgs/linear.png" alt="linear">   </p>
+</blockquote>
+<ul>
+<li>如何计算系数？ <blockquote>
+<p>使用最小二乘法估算系数：<br><img src="/../imgs/zuixiao.png" alt="zuixiao">   </p>
+</blockquote>
+</li>
+<li>如何评估线性回归的好与坏？   <blockquote>
+<p><img src="/../imgs/pinggu.png" alt="pinggu"><br>R^2越大线性模型就越贴切   </p>
+</blockquote>
+</li>
+<li></li>
+</ul>
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>大数据分析</category>
       </categories>
       <tags>
-        <tag>博客搭建</tag>
+        <tag>线性回归</tag>
       </tags>
   </entry>
 </search>

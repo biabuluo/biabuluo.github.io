@@ -89,10 +89,11 @@ $ cnpm install
 <li>标准差：</li>
 </ul>
 <pre><code class="excel">   = stdev.p()   
-```  ，
-- 极差：  
-```excel 
- = max()-min()  
+</code></pre>
+<ul>
+<li>极差：</li>
+</ul>
+<pre><code class="excel"> = max()-min()  
 </code></pre>
 <ul>
 <li>直方图：   <blockquote>

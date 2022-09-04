@@ -108,10 +108,41 @@ $ cnpm install
 </blockquote>
 </li>
 </ul>
-<h1 id="如何利用excel来进行诊断性分析"><a href="#如何利用excel来进行诊断性分析" class="headerlink" title="如何利用excel来进行诊断性分析"></a>如何利用excel来进行诊断性分析</h1><h2 id="关联分析："><a href="#关联分析：" class="headerlink" title="关联分析："></a>关联分析：</h2><pre><code class="excel">  = peason(...  ...)
- or = correl(... ...)  
+<h1 id="如何利用excel来进行诊断性分析"><a href="#如何利用excel来进行诊断性分析" class="headerlink" title="如何利用excel来进行诊断性分析"></a>如何利用excel来进行诊断性分析</h1><h2 id="关联分析："><a href="#关联分析：" class="headerlink" title="关联分析："></a>关联分析：</h2><pre><code class="excel">  = peason(...  ...)   //皮尔斯系数
+ or = correl(... ...)  //相关系数
 </code></pre>
-<h1 id="利用excel来进行预测性分析"><a href="#利用excel来进行预测性分析" class="headerlink" title="利用excel来进行预测性分析"></a>利用excel来进行预测性分析</h1>]]></content>
+<h1 id="利用excel来进行预测性分析"><a href="#利用excel来进行预测性分析" class="headerlink" title="利用excel来进行预测性分析"></a>利用excel来进行预测性分析</h1><h2 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h2><blockquote>
+<ul>
+<li>excel 中添加插件  </li>
+<li>“数据”-&gt;”数据分析”   </li>
+<li>解读结果</li>
+</ul>
+</blockquote>
+<h2 id="仿真模拟"><a href="#仿真模拟" class="headerlink" title="仿真模拟"></a>仿真模拟</h2><h1 id="图标类型的选择"><a href="#图标类型的选择" class="headerlink" title="图标类型的选择"></a>图标类型的选择</h1><blockquote>
+<ol>
+<li>利用柱状图比较数据大小</li>
+<li>利用散点图表示数据关系</li>
+<li>利用气泡图观察多指标间的关系 </li>
+<li>利用折线图观察时间序列数据  </li>
+<li>利用雷达图展现多维数据  </li>
+<li>利用漏斗图分析数据转化</li>
+</ol>
+</blockquote>
+<h1 id="图标优化"><a href="#图标优化" class="headerlink" title="图标优化"></a>图标优化</h1><blockquote>
+<ol>
+<li>坐标轴范围要包含数据本身  </li>
+<li>是用红色标注强调内容 </li>
+<li>刻度线数据标签等细节优化<br><img src="/../imgs/youhua.png" alt="youhua"></li>
+</ol>
+</blockquote>
+<h1 id="多维数据的筛选和应用"><a href="#多维数据的筛选和应用" class="headerlink" title="多维数据的筛选和应用"></a>多维数据的筛选和应用</h1><blockquote>
+<ul>
+<li>一维数据只有单一属性，直观简洁，信息量有限</li>
+<li>二维数据被用于比较和分析两个不同属性的关联度上  </li>
+<li>三维数据被用于分析多属性对象的，优点是信息量大，结论清晰，缺点是对于细节仍无法面面俱到</li>
+</ul>
+</blockquote>
+]]></content>
       <categories>
         <category>大数据分析</category>
       </categories>
@@ -141,6 +172,49 @@ $ cnpm install
       </categories>
       <tags>
         <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>云计算实验</title>
+    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>云计算</category>
+      </categories>
+      <tags>
+        <tag>实验一</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>互联网数据分析</title>
+    <url>/2022/09/01/%E4%BA%92%E8%81%94%E7%BD%91%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="互联网分析的基本思路"><a href="#互联网分析的基本思路" class="headerlink" title="互联网分析的基本思路"></a>互联网分析的基本思路</h1><ul>
+<li>找出问题： 描述性分析</li>
+<li>分析问题： 诊断性分析，预测性分析，仿真模拟</li>
+<li>解决问题： 数据报告+决策性分析</li>
+</ul>
+<h1 id="不同类型数据分析方法及其原理"><a href="#不同类型数据分析方法及其原理" class="headerlink" title="不同类型数据分析方法及其原理"></a>不同类型数据分析方法及其原理</h1><ul>
+<li>描述性分析：通过计算数据集中性特征和波动特征以了解数据的基本情况  <ul>
+<li>数值分析：数量，平均数，极差，标准差，方差，极值<br>  <img src="/../imgs/sjfx.png" alt="shuju">   </li>
+<li>分布规律: 均匀分布，正态分布，长尾分布    <blockquote>
+<p>利用抛骰子得到正态分布:<br>  <img src="/../imgs/sj.png" alt="shuju"><br>长尾分布:<br>  <img src="/../imgs/cw.png" alt="cw"></p>
+</blockquote>
+</li>
+<li>可视化方法：柱状图，条形图，散点图，饼状图</li>
+</ul>
+</li>
+<li>诊断性分析：深入挖掘问题根源，识别依赖关系，找到影响因子（关联分析）：<br><img src="/../imgs/glfx.png" alt="glfx">   <ul>
+<li><h2 id="皮尔逊相关系数：（非线性数据只能用非线性模型）"><a href="#皮尔逊相关系数：（非线性数据只能用非线性模型）" class="headerlink" title="皮尔逊相关系数：（非线性数据只能用非线性模型）"></a>皮尔逊相关系数：（非线性数据只能用非线性模型）</h2><img src="/../imgs/pex.png" alt="pex"></li>
+</ul>
+</li>
+<li>预测性分析：是用线性回归或逻辑回归的方法找到自变量与因变量之间的关系，并使该关系等式预测因变量的变化<br><img src="/../imgs/huigui.png" alt="huigui"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>分析基本思路和excel实践</tag>
       </tags>
   </entry>
   <entry>
@@ -279,17 +353,6 @@ $ cnpm install
       </tags>
   </entry>
   <entry>
-    <title>云计算实验</title>
-    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>云计算</category>
-      </categories>
-      <tags>
-        <tag>实验一</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>人工智能绪论</title>
     <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="the-defination-of-artificial-intelligence"><a href="#the-defination-of-artificial-intelligence" class="headerlink" title="the defination of artificial intelligence"></a>the defination of artificial intelligence</h1><blockquote>
@@ -361,49 +424,6 @@ $ cnpm install
       </tags>
   </entry>
   <entry>
-    <title>前端学习路线</title>
-    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>学习路线</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>互联网数据分析</title>
-    <url>/2022/09/01/%E4%BA%92%E8%81%94%E7%BD%91%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="互联网分析的基本思路"><a href="#互联网分析的基本思路" class="headerlink" title="互联网分析的基本思路"></a>互联网分析的基本思路</h1><ul>
-<li>找出问题： 描述性分析</li>
-<li>分析问题： 诊断性分析，预测性分析，仿真模拟</li>
-<li>解决问题： 数据报告+决策性分析</li>
-</ul>
-<h1 id="不同类型数据分析方法及其原理"><a href="#不同类型数据分析方法及其原理" class="headerlink" title="不同类型数据分析方法及其原理"></a>不同类型数据分析方法及其原理</h1><ul>
-<li>描述性分析：通过计算数据集中性特征和波动特征以了解数据的基本情况  <ul>
-<li>数值分析：数量，平均数，极差，标准差，方差，极值<br>  <img src="/../imgs/sjfx.png" alt="shuju">   </li>
-<li>分布规律: 均匀分布，正态分布，长尾分布    <blockquote>
-<p>利用抛骰子得到正态分布:<br>  <img src="/../imgs/sj.png" alt="shuju"><br>长尾分布:<br>  <img src="/../imgs/cw.png" alt="cw"></p>
-</blockquote>
-</li>
-<li>可视化方法：柱状图，条形图，散点图，饼状图</li>
-</ul>
-</li>
-<li>诊断性分析：深入挖掘问题根源，识别依赖关系，找到影响因子（关联分析）：<br><img src="/../imgs/glfx.png" alt="glfx">   <ul>
-<li><h2 id="皮尔逊相关系数：（非线性数据只能用非线性模型）"><a href="#皮尔逊相关系数：（非线性数据只能用非线性模型）" class="headerlink" title="皮尔逊相关系数：（非线性数据只能用非线性模型）"></a>皮尔逊相关系数：（非线性数据只能用非线性模型）</h2><img src="/../imgs/pex.png" alt="pex"></li>
-</ul>
-</li>
-<li>预测性分析：是用线性回归或逻辑回归的方法找到自变量与因变量之间的关系，并使该关系等式预测因变量的变化<br><img src="/../imgs/huigui.png" alt="huigui"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>大数据分析</category>
-      </categories>
-      <tags>
-        <tag>分析基本思路和excel实践</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>优劣势分析</title>
     <url>/2022/09/01/%E4%BC%98%E5%8A%A3%E5%8A%BF%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="excel简介及优劣势分析"><a href="#excel简介及优劣势分析" class="headerlink" title="excel简介及优劣势分析"></a>excel简介及优劣势分析</h1><ul>
@@ -428,6 +448,17 @@ $ cnpm install
       </categories>
       <tags>
         <tag>大数据分析导论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端学习路线</title>
+    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>学习路线</tag>
       </tags>
   </entry>
   <entry>
@@ -615,6 +646,27 @@ $ cnpm install
       </tags>
   </entry>
   <entry>
+    <title>逻辑回归</title>
+    <url>/2022/09/03/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归的本质就是由线性回归转变为非线性回归的样子：如图<br><img src="/../imgs/logi.png" alt="logi">  </p>
+<blockquote>
+<p>计算系数的方法：最大似然估计  </p>
+<blockquote>
+<ul>
+<li>概率和似然的区别：<br>概率是指已知一些概率分布参数的情况下，预测观测结果<br>似然适用于已经知道某些观测所得到的结果时，对观测结果所属的概率分布参数进行估值<br><img src="/../imgs/sir.png" alt="sir"><br><img src="/../imgs/likeli.png" alt="likeli"></li>
+</ul>
+</blockquote>
+</blockquote>
+<h1 id="仿真模拟："><a href="#仿真模拟：" class="headerlink" title="仿真模拟："></a>仿真模拟：</h1><p>类似于算法分析中的随机化算法来模拟各种条件下产生的结果   </p>
+]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>逻辑回归</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>线性回归</title>
     <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><p> <img src="/../imgs/linear.png" alt="linear">   </p>
@@ -644,27 +696,6 @@ $ cnpm install
       </categories>
       <tags>
         <tag>线性回归</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>逻辑回归</title>
-    <url>/2022/09/03/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归的本质就是由线性回归转变为非线性回归的样子：如图<br><img src="/../imgs/logi.png" alt="logi">  </p>
-<blockquote>
-<p>计算系数的方法：最大似然估计  </p>
-<blockquote>
-<ul>
-<li>概率和似然的区别：<br>概率是指已知一些概率分布参数的情况下，预测观测结果<br>似然适用于已经知道某些观测所得到的结果时，对观测结果所属的概率分布参数进行估值<br><img src="/../imgs/sir.png" alt="sir"><br><img src="/../imgs/likeli.png" alt="likeli"></li>
-</ul>
-</blockquote>
-</blockquote>
-<h1 id="仿真模拟："><a href="#仿真模拟：" class="headerlink" title="仿真模拟："></a>仿真模拟：</h1><p>类似于算法分析中的随机化算法来模拟各种条件下产生的结果   </p>
-]]></content>
-      <categories>
-        <category>大数据分析</category>
-      </categories>
-      <tags>
-        <tag>逻辑回归</tag>
       </tags>
   </entry>
 </search>

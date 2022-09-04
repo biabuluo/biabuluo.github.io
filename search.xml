@@ -78,6 +78,72 @@ $ cnpm install
       </tags>
   </entry>
   <entry>
+    <title>不同数据方法的excel实践</title>
+    <url>/2022/09/03/excel%E5%AE%9E%E8%B7%B5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="如何用excel来进行描述性分析"><a href="#如何用excel来进行描述性分析" class="headerlink" title="如何用excel来进行描述性分析"></a>如何用excel来进行描述性分析</h1><ul>
+<li>平均值：</li>
+</ul>
+<pre><code class="excel"> = average()  
+</code></pre>
+<ul>
+<li>标准差：</li>
+</ul>
+<pre><code class="excel">   = stdev.p()   
+```  ，
+- 极差：  
+```excel 
+ = max()-min()  
+</code></pre>
+<ul>
+<li>直方图：   <blockquote>
+<p><img src="/../imgs/ex.png" alt="exc"><br>click “插入” -&gt; “推荐图表”<br><img src="/../imgs/excl.png" alt="excl">  </p>
+</blockquote>
+</li>
+<li>折线图：  <blockquote>
+<p><img src="/../imgs/zhe.png" alt="zhe">  </p>
+</blockquote>
+</li>
+<li>气泡图：(xy散点图变种)：适用于三个变量   <blockquote>
+<p><img src="/../imgs/pao.png" alt="pao"></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="如何利用excel来进行诊断性分析"><a href="#如何利用excel来进行诊断性分析" class="headerlink" title="如何利用excel来进行诊断性分析"></a>如何利用excel来进行诊断性分析</h1><h2 id="关联分析："><a href="#关联分析：" class="headerlink" title="关联分析："></a>关联分析：</h2><pre><code class="excel">  = peason(...  ...)
+ or = correl(... ...)  
+</code></pre>
+<h1 id="利用excel来进行预测性分析"><a href="#利用excel来进行预测性分析" class="headerlink" title="利用excel来进行预测性分析"></a>利用excel来进行预测性分析</h1>]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>excel实践</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/08/27/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo 博客美化</title>
     <url>/2022/08/29/hexo-%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">新生要军训，好几天都不能跑步，崩溃了。。 </font>   </p>
@@ -213,27 +279,96 @@ $ cnpm install
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/08/27/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
+    <title>云计算实验</title>
+    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       <categories>
-        <category>生活</category>
+        <category>云计算</category>
       </categories>
       <tags>
-        <tag>博客搭建</tag>
+        <tag>实验一</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人工智能绪论</title>
+    <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="the-defination-of-artificial-intelligence"><a href="#the-defination-of-artificial-intelligence" class="headerlink" title="the defination of artificial intelligence"></a>the defination of artificial intelligence</h1><blockquote>
+<ul>
+<li><h2 id="intelligence-wiki"><a href="#intelligence-wiki" class="headerlink" title="intelligence:(wiki)"></a>intelligence:(wiki)</h2>能够感知和推断信息的能力，并将其作为知识而拥有，已应用于环境，或语境中合适的行为    </li>
+<li><h2 id="arttificial-intelligence"><a href="#arttificial-intelligence" class="headerlink" title="arttificial intelligence"></a>arttificial intelligence</h2>机器中的智能称为人工智能，其通常在运用程序，间或适当硬件的计算机系统中得以实现</li>
+</ul>
+</blockquote>
+<h1 id="人工智能的基础"><a href="#人工智能的基础" class="headerlink" title="人工智能的基础"></a>人工智能的基础</h1><table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数学</td>
+<td align="center">1.逻辑学 2.计算理论 3.概率论</td>
+</tr>
+<tr>
+<td align="center">经济学</td>
+<td align="center">1.博弈论 2.决策论 3.运筹学</td>
+</tr>
+<tr>
+<td align="center">神经科学</td>
+<td align="center">脑科学是主要研究内容</td>
+</tr>
+<tr>
+<td align="center">认知心理学</td>
+<td align="center">认知科学包括认知心理学</td>
+</tr>
+<tr>
+<td align="center">控制理论和控制论</td>
+<td align="center">是两个关联的交叉学科</td>
+</tr>
+</tbody></table>
+<h1 id="人工智能的判定"><a href="#人工智能的判定" class="headerlink" title="人工智能的判定"></a>人工智能的判定</h1><blockquote>
+<ul>
+<li><h2 id="图灵测试-如何研判机器是否思维"><a href="#图灵测试-如何研判机器是否思维" class="headerlink" title="图灵测试 (如何研判机器是否思维)"></a>图灵测试 (如何研判机器是否思维)</h2>_具体内容_：人类裁判同时向被测试人和机器提出一些书面问题，经过一系列测试后，如果裁判无法分辨这些回答究竟来自人类还是机器，则判断机器通过测试，并具有人类的思维能力  </li>
+<li><h2 id="图灵测试-2-0"><a href="#图灵测试-2-0" class="headerlink" title="图灵测试 2.0"></a>图灵测试 2.0</h2><table>
+<thead>
+<tr>
+<th align="center">测试方法</th>
+<th align="center">测试内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">反向图灵测试</td>
+<td align="center">1.被试者的意图是使裁判将其判定为机器 2.机器掌管测试，判断测试者是否为人类</td>
+</tr>
+<tr>
+<td align="center">学科专家图灵测试</td>
+<td align="center">测试给定领域区分机器与专家</td>
+</tr>
+<tr>
+<td align="center">总体图灵测试</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</blockquote>
+]]></content>
+      <categories>
+        <category>人工智能</category>
+      </categories>
+      <tags>
+        <tag>人工智能绪论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端学习路线</title>
+    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>学习路线</tag>
       </tags>
   </entry>
   <entry>
@@ -269,28 +404,6 @@ $ cnpm install
       </tags>
   </entry>
   <entry>
-    <title>云计算实验</title>
-    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>云计算</category>
-      </categories>
-      <tags>
-        <tag>实验一</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>人工智能原理</title>
-    <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>人工智能</category>
-      </categories>
-      <tags>
-        <tag>人工智能原理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>优劣势分析</title>
     <url>/2022/09/01/%E4%BC%98%E5%8A%A3%E5%8A%BF%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="excel简介及优劣势分析"><a href="#excel简介及优劣势分析" class="headerlink" title="excel简介及优劣势分析"></a>excel简介及优劣势分析</h1><ul>
@@ -315,17 +428,6 @@ $ cnpm install
       </categories>
       <tags>
         <tag>大数据分析导论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端学习路线</title>
-    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>学习路线</tag>
       </tags>
   </entry>
   <entry>
@@ -515,9 +617,7 @@ $ cnpm install
   <entry>
     <title>线性回归</title>
     <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><blockquote>
-<p><img src="/../imgs/linear.png" alt="linear">   </p>
-</blockquote>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><p> <img src="/../imgs/linear.png" alt="linear">   </p>
 <ul>
 <li>如何计算系数？ <blockquote>
 <p>使用最小二乘法估算系数：<br><img src="/../imgs/zuixiao.png" alt="zuixiao">   </p>
@@ -527,7 +627,16 @@ $ cnpm install
 <p><img src="/../imgs/pinggu.png" alt="pinggu"><br>R^2越大线性模型就越贴切   </p>
 </blockquote>
 </li>
-<li></li>
+<li>如何评估回归的细节:  <blockquote>
+<p>假设用python的线性回归：<br><img src="/../imgs/py_linear.png" alt="pylinear"><br>f_statistic: 自变量与因变量是否有关联（但不知道什么关联）<br>constant：常数项  （coef表示值）…<br>以下的都是系数</p>
+<ul>
+<li>得利用t值和p值来判断是否有意义：  <blockquote>
+<p>当发现t值小，p值大，则这个参数没什么意义（参考值意义低）<br>后边的数值区间为置信区间  std err为标准差</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
 </ul>
 ]]></content>
       <categories>
@@ -535,6 +644,27 @@ $ cnpm install
       </categories>
       <tags>
         <tag>线性回归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逻辑回归</title>
+    <url>/2022/09/03/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归的本质就是由线性回归转变为非线性回归的样子：如图<br><img src="/../imgs/logi.png" alt="logi">  </p>
+<blockquote>
+<p>计算系数的方法：最大似然估计  </p>
+<blockquote>
+<ul>
+<li>概率和似然的区别：<br>概率是指已知一些概率分布参数的情况下，预测观测结果<br>似然适用于已经知道某些观测所得到的结果时，对观测结果所属的概率分布参数进行估值<br><img src="/../imgs/sir.png" alt="sir"><br><img src="/../imgs/likeli.png" alt="likeli"></li>
+</ul>
+</blockquote>
+</blockquote>
+<h1 id="仿真模拟："><a href="#仿真模拟：" class="headerlink" title="仿真模拟："></a>仿真模拟：</h1><p>类似于算法分析中的随机化算法来模拟各种条件下产生的结果   </p>
+]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>逻辑回归</tag>
       </tags>
   </entry>
 </search>

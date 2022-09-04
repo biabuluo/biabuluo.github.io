@@ -17,6 +17,7 @@
         
         <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
     <meta name="generator" content="Hexo 6.2.0"></head>
+    
     <body>
         <!-- cursor -->
         <div id="cursor"></div>
@@ -198,9 +199,7 @@
         
     </div>
     <div class="content" v-pre>
-        <h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><blockquote>
-<p><img src="/../imgs/linear.png" alt="linear">   </p>
-</blockquote>
+        <h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><p> <img src="/../imgs/linear.png" alt="linear">   </p>
 <ul>
 <li>如何计算系数？ <blockquote>
 <p>使用最小二乘法估算系数：<br><img src="/../imgs/zuixiao.png" alt="zuixiao">   </p>
@@ -210,7 +209,16 @@
 <p><img src="/../imgs/pinggu.png" alt="pinggu"><br>R^2越大线性模型就越贴切   </p>
 </blockquote>
 </li>
-<li></li>
+<li>如何评估回归的细节:  <blockquote>
+<p>假设用python的线性回归：<br><img src="/../imgs/py_linear.png" alt="pylinear"><br>f_statistic: 自变量与因变量是否有关联（但不知道什么关联）<br>constant：常数项  （coef表示值）…<br>以下的都是系数</p>
+<ul>
+<li>得利用t值和p值来判断是否有意义：  <blockquote>
+<p>当发现t值小，p值大，则这个参数没什么意义（参考值意义低）<br>后边的数值区间为置信区间  std err为标准差</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
 </ul>
 
     </div>
@@ -296,11 +304,11 @@
 <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
 <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
 <script type="text/javascript" src="/js/fireworks.js"></script>
-<!-- 流星特效 -->
-<canvas
-    id="background"
-    style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"
-></canvas>
-<script src="/js/background.js"></script>
+        <!-- 流星特效 -->
+        <canvas
+        id="background"
+        style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1"
+        ></canvas>
+        <script src="/js/background.js"></script>
 
 </html>

@@ -699,4 +699,62 @@ $ cnpm install
         <tag>线性回归</tag>
       </tags>
   </entry>
+  <entry>
+    <title>pandas python编程</title>
+    <url>/2022/09/04/pandas-python%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="创建表，保存表，设置索引"><a href="#创建表，保存表，设置索引" class="headerlink" title="创建表，保存表，设置索引"></a>创建表，保存表，设置索引</h2><pre><code class="python">import pandas as pd
+df = pd.DataFrame(&#123;&#39;id&#39;:[1,2,3],&#39;name&#39;:[&#39;tim&#39;,&#39;viotor&#39;,&#39;nick&#39;]&#125;)   #创建表
+df = df.set_index(&#39;id&#39;)   #将id设置为索引
+#更改到本地
+df.set_index(&#39;id&#39;,inplace=True)
+df.to_excel(&#39;d:/code/temp/output.xlsx&#39;)   #保存到
+print(&#39;done!&#39;)
+</code></pre>
+<h2 id="读取表"><a href="#读取表" class="headerlink" title="读取表"></a>读取表</h2><pre><code class="python">#数据读取
+people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;) #读取excle文件
+#知道哪一行是index时
+people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,index_col=&#39;id&#39;) #读取excle文件
+print(people.shape)  #读取多少行多少列
+print(people.columns)  #元素名（列）
+print(people.head(3))  #读取文件前面信息（默认5行）
+print(people.tail(3)) #读取尾部
+# 当数据信息头部存在垃圾信息时(自动跳离空行)  自定义头部开始下标
+people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,header=1) #读取excle文件
+#当数据没有header时
+people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,header= None) #读取excle文件
+#设置头部信息
+people.columns=[&#39;id&#39;,&#39;type&#39;,&#39;title&#39; ]
+</code></pre>
+<h2 id="序列Series（表示表中一行或一列-只有填充进dataframe中才明确）"><a href="#序列Series（表示表中一行或一列-只有填充进dataframe中才明确）" class="headerlink" title="序列Series（表示表中一行或一列 只有填充进dataframe中才明确）"></a>序列Series（表示表中一行或一列 只有填充进dataframe中才明确）</h2><pre><code class="python">d = dict()
+s1 = pd.Series()  #生成一个序列（具有data，name，index等属性）  类比字典
+s2 = pd.Series(d)  #将字典转化为序列
+</code></pre>
+<h2 id="创建序列的另一个方法"><a href="#创建序列的另一个方法" class="headerlink" title="创建序列的另一个方法"></a>创建序列的另一个方法</h2><pre><code class="python">l1 = [100,200,300]
+l2 = [&#39;x&#39;,&#39;y&#39;,&#39;z&#39;]
+s1 = pd.Series(l1,index=l2)
+</code></pre>
+<h2 id="填充dataframe"><a href="#填充dataframe" class="headerlink" title="填充dataframe"></a>填充dataframe</h2><pre><code class="python">#序列填充dataframe
+s1 = pd.Series([1,2,3],index=[1,2,3],name = &#39;A&#39;)
+s2 = pd.Series([10,20,30],index=[1,2,3],name = &#39;B&#39;)
+s3 = pd.Series([100,200,300],index=[1,2,3],name = &#39;C&#39;)
+#以字典的方式填充入
+df = pd.DataFrame(&#123;s1.name:s1,s2.name:s2,s3.name:s3&#125;)
+</code></pre>
+<pre><code class="python">#excle的自动填充功能
+books= pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,skiprows=3,usecols=&quot;c:f&quot;,index_col=None)  #跳出空白行列
+#利用循环自动填充
+for i in books.index:
+    books[&#39;id&#39;].at[i]=i+1   #类型为浮点类型 可以在读取时添加参数：dtype=&#123;‘id’:str&#125;来解决
+
+# apply函数
+books[&#39;listprice&#39;] = books[&#39;listprice&#39;].apply(lambda x: x+2)   #可以是函数，可以是lambda表达式
+</code></pre>
+]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>pandas编程</tag>
+      </tags>
+  </entry>
 </search>

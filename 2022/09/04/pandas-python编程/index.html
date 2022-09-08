@@ -190,7 +190,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/pandas编程/" style="color: #03a9f4">
+                <a href="/tags/pandas编程/" style="color: #00bcd4">
                     pandas编程
                 </a>
             </span>
@@ -245,6 +245,91 @@ for i in books.index:
 
 # apply函数
 books[&#39;listprice&#39;] = books[&#39;listprice&#39;].apply(lambda x: x+2)   #可以是函数，可以是lambda表达式
+</code></pre>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><pre><code class="python">product.sort_values(by=[&#39;...&#39;,&#39;...&#39;],inplace = true, ascending=[false,...])   #inplace:在本表上操作  
+</code></pre>
+<h2 id="数据筛选"><a href="#数据筛选" class="headerlink" title="数据筛选"></a>数据筛选</h2><pre><code class="python">def age(a):
+    return a&gt;=18 and a&lt;30
+people = people.loc[people[&#39;age&#39;].apply(age)]
+print(people)
+</code></pre>
+<h2 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h2><ul>
+<li>利用pandas绘图：</li>
+</ul>
+<pre><code class="python">import pandas as pd
+import matplotlib.pyplot as plt
+
+exa = pd.read_excel(&#39;D:/code/temp/exa.xlsx&#39;)
+print(exa.head(1))
+
+# bar
+exa.plot.bar(x=&#39;user_id&#39;, y=&#39;click_article_id&#39;, color=&#39;pink&#39;, title=&#39;mytitle&#39;)  #利用的是pandas的绘图
+plt.tight_layout()   #紧凑布局 标签能够完全显示
+plt.show()  #显现图片
+</code></pre>
+<ul>
+<li>利用matplotlib绘图:</li>
+</ul>
+<pre><code class="python">plt.bar(exa.user_id,exa.click_article_id,color=&#39;pink&#39;)
+plt.tight_layout()   #紧凑布局 标签能够完全显示
+plt.xticks(exa.user_id,rotation=&#39;90&#39;)   #旋转x轴标签
+plt.xlabel(&#39;myxlabel&#39;) #设置x轴
+plt.ylabel(&#39;myylabel&#39;) #设置y轴
+plt.title(&#39;mytitle&#39;,fontsize=16) #设置图名  有fontweight属性=&#39;bold&#39;加粗字体
+plt.show()  #显现图片  
+</code></pre>
+<blockquote>
+<p>bar_example<br><img src="/../imgs/Figure_1.png" alt="figure">  </p>
+</blockquote>
+<ul>
+<li>优化</li>
+</ul>
+<pre><code class="python">#分组柱状图   叠加柱状图增加stacked=true参数就行  同时.barh是将figure部分旋转
+exa.plot.bar(x=&#39;user_id&#39;, y=[&#39;click_region&#39;,&#39;click_referrer_type&#39;], color=[&#39;pink&#39;,&#39;blue&#39;], title=&#39;mytitle&#39;)  #利用的是pandas的绘图
+#优化数轴
+ax = plt.gcal()
+ax.set_xticklabels(exa[&#39;user_id&#39;], rotation=45, ha=&#39;right&#39;)
+plt.tight_layout()
+#优化图像
+f = plt.gcf()
+f.subpiots_adjust(left=0.2, buttom=0.42) #左边流出20% 底下流出42%
+plt.show()
+</code></pre>
+<blockquote>
+<p>example<br><img src="/../imgs/figure_2.png" alt="figure"></p>
+</blockquote>
+<h2 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a>饼状图</h2><pre><code class="python">exa = pd.read_excel(&#39;D:/code/temp/output.xlsx&#39;)
+print(exa.head(1))
+
+#饼状图
+exa[&#39;value1&#39;].plot.pie(fontsize=8,counterclock=False)
+plt.title(&#39;mytitle&#39;,fontsize=16,fontweight=&#39;bold&#39;)
+plt.ylabel(&#39;value1&#39;)
+plt.show()
+</code></pre>
+<blockquote>
+<p>example:<br><img src="/../imgs/Figure_3.png" alt="figure">  </p>
+</blockquote>
+<h2 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h2><pre><code class="python">exa.plot(y=[&#39;value1&#39;,&#39;value2&#39;,&#39;value3&#39;,&#39;value4&#39;,&#39;value5&#39;]) #.plot.area为叠加区域图
+plt.title(&#39;mytitle&#39;,fontsize=16,fontweight=&#39;bold&#39;)
+plt.ylabel(&#39;total_value&#39;,fontsize=8,fontweight=&#39;bold&#39;)
+plt.xticks(exa.index) #修改x坐标
+plt.show()
+</code></pre>
+<blockquote>
+<p>example；<br><img src="/../imgs/Figure_4.png" alt="figure"></p>
+</blockquote>
+<h2 id="scatter散点图"><a href="#scatter散点图" class="headerlink" title="scatter散点图"></a>scatter散点图</h2><pre><code class="python">#散点图
+exa.plot.scatter(x=&#39;id&#39;,y=&#39;value1&#39;)
+plt.show()
+</code></pre>
+<p><img src="/../imgs/scatter.png" alt="scatter"></p>
+<h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><pre><code class="python">exa.value1.plot.hist(bins = 100) #默认桶很大
+plt.xticks(range(0,max(exa.value1),10),fontsize=8,rotation=90) #调整步长
+plt.show()
+</code></pre>
+<p><img src="/../imgs/hist2.png" alt="hist"></p>
+<h2 id="密度图"><a href="#密度图" class="headerlink" title="密度图"></a>密度图</h2><pre><code class="python">
 </code></pre>
 
     </div>

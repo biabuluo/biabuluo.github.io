@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Tags: 博客美化 | 小宇の万事屋</title>
+        <title>搜索问题求解 | 小宇の万事屋</title>
         <meta name="author" content="阿小橙">
         <meta name="description" content="                  ————黎明卿">
         <meta name="keywords" content="好想赚大钱然后摆烂啊！">
@@ -160,219 +160,158 @@
 </nav>
                     </div>
                     <div id="main">
-                         
-<div class="categories-tags">
+                        
+<div class="article">
+    <div>
+        <h1>搜索问题求解 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/9
+        </span>
+        
+        <span class="category">
+            <a href="/categories/人工智能原理/">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                </span>
+                人工智能原理
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/搜索问题求解/" style="color: #00bcd4">
+                    搜索问题求解
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="智力游戏问题"><a href="#智力游戏问题" class="headerlink" title="智力游戏问题"></a>智力游戏问题</h1><ul>
+<li>八数码难题（8-puzzle）   <blockquote>
+<p>有一个3*3的棋盘，九个格子摆上八个棋子，不同棋子上标的数字不同，给定初状态和末状态，求最少移动步骤数<br><img src="/../imgs/eight.png" alt="eight"></p>
+</blockquote>
+</li>
+<li>八皇后问题(eight queens puzzle)<blockquote>
+<p>8*8的国际象棋棋盘上拜访八个皇后使其不能发生相互攻击的摆法总个数</p>
+</blockquote>
+</li>
+<li>汉诺塔问题（hannoi tower）</li>
+<li>传教士和食人族问题（missionaries and cannibals problems）<blockquote>
+<p>三个传教士和三个食人族来到一条河的左岸，想度过右岸，河的左岸只有一条船(只能乘坐两个人)：当食人族的人数超过传教士，食人族就会把传教士吃掉，如何安全渡船？</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="现实世界问题"><a href="#现实世界问题" class="headerlink" title="现实世界问题"></a>现实世界问题</h1><ul>
+<li>最短路径问题  <blockquote>
+<p>求解其中给定两个之间的最短距离<br><img src="/../imgs/shortest.png" alt="shortest"></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="搜索问题要素"><a href="#搜索问题要素" class="headerlink" title="搜索问题要素"></a>搜索问题要素</h1><ul>
+<li>状态表征：<blockquote>
+<p>状态是问题在不同时期或不同条件所表现出的形态。问题提出时的状态称其为初始状态，问题达到预期结果时的状态为目标状态，其他为中间状态。<br>表征方法主要采用原子表征（不考虑状态的内部构造）<br><img src="/../imgs/atom.png" alt="atom">  </p>
+</blockquote>
+</li>
+<li>状态空间：<blockquote>
+<p>状态空间是问题在不同时期或在不同条件所表现出来的所有状态的有机组成。（可抽象为一张图或一棵树）  </p>
+</blockquote>
+</li>
+<li>形式化：<blockquote>
+<p>def1: 一个问题若可以表示为状态空间，并且初始状态和目标状态之间可能存在多条路径的话，就称其为搜索问题<br>def2: 一个搜索问题可以形式化为一个5元组，search &#x3D; (S,S0,A,Gt,c)</p>
+<blockquote>
+<p>1.S为问题空间状态集合，状态s∈S，且S不为空<br>2.s0表示初始状态<br>3.A表示动作集合，因为动作导致状态迁移，或因动作而生成后继状态<br>4.Gt是目标检测（goal test），判定给定状态是否为目标状态<br>5.c表示路径代价（path cost）</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h1 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h1><p>一个简单的搜索问题求解算法</p>
+<pre><code class="pseudocode">agent: simple-people-solving
+    imput: percept #感知
+    output: an action  #搜索得出来的动作
+    local：       #局部变量
+        seq：一个动作序列，初始化为空
+        state：一些对于当前状态的描述
+        goal：一个目标，初始化为空
+        problem：一个对问题的形式化处理
+        action：最近的action，初始化为空
     
-    <div class="all-s">
-        
-        
-        <span>
-            <a href="/tags/博客搭建/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                博客搭建
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/excel实践/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                excel实践
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/博客美化/" style="background: linear-gradient(120deg, #9abbf7 0%, #ffbbf4 100%)">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                博客美化
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/实验一/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                实验一
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/pandas编程/" style="background: #00bcd4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                pandas编程
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/大数据分析导论/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                大数据分析导论
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/分析基本思路和excel实践/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                分析基本思路和excel实践
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/人工智能绪论/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                人工智能绪论
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/学习路线/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                学习路线
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/搜索问题求解/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                搜索问题求解
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/线性回归/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                线性回归
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/mysql/" style="background: #00bcd4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                mysql
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/逻辑回归/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                逻辑回归
-            </a>
-        </span>
-        
+    state &lt;- get_current_state(state, percept) #获取当前状态
+    if seq is empty then
+        goal &lt;- formulate_goal(state) #对目标状态进行形式化处理
+        problem &lt;- formulate_goal(state, goal) #对搜索问题进行形式化
+        seq &lt;- search(problem)   #完成当前搜索任务
+        if seq = failure then
+            return null action
+    action &lt;- first(seq)
+    seq &lt;- rest(seq)
+    return action
+</code></pre>
+<h1 id="搜索问题实例化"><a href="#搜索问题实例化" class="headerlink" title="搜索问题实例化"></a>搜索问题实例化</h1><ul>
+<li><mark>八数码难题：</mark><blockquote>
+<ol>
+<li>状态s： 九个格子中八个数字棋子与空格的不同摆放</li>
+<li>初始状态s0：任意一个状态都能成为初始状态</li>
+<li>动作集合A：最简单的动作是移动空格（上下左右）</li>
+<li>目标检测Gt：检查某个状态是否与目标状态的布局相符</li>
+<li>路径代价c: 每一步代价为1</li>
+</ol>
+</blockquote>
+</li>
+<li><mark>八皇后问题：</mark><br>包含两个形式方法：</li>
+</ul>
+<ol>
+<li>增量形式化： 空状态开始，到摆满n个（常用）</li>
+<li>全态形式化： 初始随机摆放，移动皇后到不违法<blockquote>
+<ol>
+<li>状态集合：棋盘摆放1-n个皇后</li>
+<li>初始状态：棋盘上没有皇后</li>
+<li>动作集合： 每次添加一个皇后到任意一个空格且合法</li>
+<li>目标检测： 八个皇后已摆放且合法</li>
+<li>路径代价：等于添加皇后的步数</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><mark>传教士食人族问题</mark><br>只需左岸状态就可以推出右岸状态，左岸状态由三元组表示：S_left &#x3D; (missionary, cannibal, boat) boat&#x3D;1：表示船在左侧<blockquote>
+<ol>
+<li>状态集合：表示三元组的集合</li>
+<li>初始状态：s0 &#x3D; (3,3,1)</li>
+<li>动作集合；用船将传教士和食人族运过河</li>
+<li>目标检测： s &#x3D; (0,0,0)</li>
+<li>路径代价： 等于路径中的步数</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h1 id="搜索求解方式"><a href="#搜索求解方式" class="headerlink" title="搜索求解方式"></a>搜索求解方式</h1><ul>
+<li><mark>树搜索</mark>  </li>
+<li><mark>图搜索</mark></li>
+<li><mark>无信息搜索</mark></li>
+<li><mark>有信息搜索</mark></li>
+</ul>
+
     </div>
-    <div id="archives">
-        
-        <div class="timeline">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2022/8/29</div>
-                <a href="/2022/08/29/hexo-博客美化/">
-                    <h3>Hexo 博客美化</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/生活/">
-                            <span class="icon">
-                                <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                            </span>
-                            生活
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/博客美化/" style="color: #00a596">
-                                博客美化
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
         </div>
-        
-        <div class="timeline">
-            <div class="timeline-tail"></div>
-            <div class="timeline-content">
-                <div class="item-time">2022/8/31</div>
-                <a href="/2022/08/31/回到顶部功能/">
-                    <h3>回到顶部功能</h3>
-                </a>
-                <div class="info">
-                    
-                    <span class="category">
-                        <a href="/categories/生活/">
-                            <span class="icon">
-                                <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
-                            </span>
-                            生活
-                        </a>
-                    </span>
-                    
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/博客美化/" style="color: #00bcd4">
-                                博客美化
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </div>
-        </div>
-        
     </div>
+    
 </div>
                          
 <footer id="footer">
@@ -401,6 +340,24 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "https://github.com/biabuluo",
+        owner: "biabuluo",
+        admin: ["biabuluo"],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
                 <!-- backtotop -->
                 <div id = "gotop">

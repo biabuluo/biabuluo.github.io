@@ -454,7 +454,30 @@ plt.xticks(range(0,max(exa.value1),10),fontsize=8,rotation=90) #调整步长
 plt.show()
 </code></pre>
 <p><img src="/../imgs/hist2.png" alt="hist"></p>
-<h2 id="密度图"><a href="#密度图" class="headerlink" title="密度图"></a>密度图</h2><pre><code class="python">
+<h2 id="密度图"><a href="#密度图" class="headerlink" title="密度图"></a>密度图</h2><pre><code class="python">#密度图
+exa.value1.plot.kde() #kernal densitive 
+plt.xticks(range(0,max(exa.value1),10),fontsize=8,rotation=90) #调整步长
+plt.show()
+</code></pre>
+<p><img src="/../imgs/kde.png" alt="kde"></p>
+<h2 id="每两列间的相关性"><a href="#每两列间的相关性" class="headerlink" title="每两列间的相关性"></a>每两列间的相关性</h2><pre><code class="python">#元素相关性
+print(exa.corr())
+</code></pre>
+<h2 id="多表联合查询"><a href="#多表联合查询" class="headerlink" title="多表联合查询"></a>多表联合查询</h2><pre><code class="python">table = table1.marge(table2, how=&#39;left&#39;,on=&#39;id&#39;).fillna(0)   #how ... 左边元素全保留  na用0填充  或者用；left_on   right_on 的形式  再者用.join()自动联立
+table.value=table.value.astype(int)  #替换数据类型
+print(table)
+</code></pre>
+<h2 id="数据校验"><a href="#数据校验" class="headerlink" title="数据校验"></a>数据校验</h2><pre><code class="python">#数据校验
+def value_validation(row):
+    try:
+        assert 0&lt;=row.value1&lt;=50
+    except:
+        print(f&#39;#&#123;row.id&#125;\trow has an  invalid value &#123;row.value1&#125;&#39;)
+
+    # if not 0&lt;=row.value1&lt;=100:
+    #     print(...)
+
+exa.apply(value_validation,axis=1)
 </code></pre>
 ]]></content>
       <categories>

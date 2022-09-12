@@ -190,7 +190,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/pandas编程/" style="color: #ff7d73">
+                <a href="/tags/pandas编程/" style="color: #00a596">
                     pandas编程
                 </a>
             </span>
@@ -424,12 +424,18 @@ exa.drop(index = [0,1,2],inplace =True)
 test= exa.loc[exa[&#39;name&#39;]==&#39;&#39;]  #删除名字为空
 exa.drop(index=test,index,inplace=True )
 </code></pre>
-<h2 id="常见列操作"><a href="#常见列操作" class="headerlink" title="常见列操作"></a>常见列操作</h2><pre><code class="python">
-
-
-
-
-
+<h2 id="常见列操作"><a href="#常见列操作" class="headerlink" title="常见列操作"></a>常见列操作</h2><pre><code class="python">#常见列操作
+#import numpy as np
+#两张表并列放置
+test = pd.concat([exa1,exa2],axis=1)
+#追加列
+exa[&#39;..&#39;] = np.arange(0,len(exa))  #顺序填充
+#删除列
+exa.drop(colume = [&#39;&#39;],implace=True)
+#插入列
+exa.insert(1,colunm=&#39;..&#39;,value=10) #插在1号列
+#修改
+exa.rename(colunm=&#123;&#39;old&#39;:&#39;new&#39;&#125;,inplace=True)
 </code></pre>
 
     </div>

@@ -311,17 +311,6 @@ $ cnpm install
       </tags>
   </entry>
   <entry>
-    <title>云计算实验</title>
-    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>云计算</category>
-      </categories>
-      <tags>
-        <tag>实验一</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>pandas python编程</title>
     <url>/2022/09/04/pandas-python%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="创建表，保存表，设置索引"><a href="#创建表，保存表，设置索引" class="headerlink" title="创建表，保存表，设置索引"></a>创建表，保存表，设置索引</h2><pre><code class="python">import pandas as pd
@@ -479,6 +468,83 @@ def value_validation(row):
 
 exa.apply(value_validation,axis=1)
 </code></pre>
+<h2 id="统计操作"><a href="#统计操作" class="headerlink" title="统计操作"></a>统计操作</h2><pre><code class="python">#统计操作
+temp=exa[[&#39;value1&#39;,&#39;value2&#39;,&#39;value3&#39;]]  #抽取子集
+# print(temp)
+exa[&#39;row_sum&#39;] = temp.sum(axis=1)   #series类型  从左到右轴是1 从上到下轴是2 #求和
+exa[&#39;row_mean&#39;] = temp.sum(axis=1)  #求平均值
+print(exa)
+</code></pre>
+<h2 id="定位消除重复数据"><a href="#定位消除重复数据" class="headerlink" title="定位消除重复数据"></a>定位消除重复数据</h2><pre><code class="python">#定位消除重复数据
+exa.drop_duplicates(subset= [&#39;...&#39;,&#39;...&#39;], inplace=True)  #基于...来消除重复行
+#还有keep参数 =‘first’：保留一开始重复数据 =‘last’：保留最后数据
+#找到重复数据
+dupe = exa.duplicated(subset=&#39;...&#39;)  #显示重复关系
+print(dupe.any())  #是否有重复数据
+dupe = dupe[dupe==True]  #过滤后得到重复数据
+print(exa.iloc[dupe.index])   #定位重复数据
+</code></pre>
+<h2 id="旋转表格"><a href="#旋转表格" class="headerlink" title="旋转表格"></a>旋转表格</h2><pre><code class="python">#旋转数据表
+pd.option.display.max_columns = 999 #python显示更多元素
+table = exa.transpose()
+print(table)
+</code></pre>
+<h2 id="读取txt-csv-tsv文件"><a href="#读取txt-csv-tsv文件" class="headerlink" title="读取txt csv tsv文件"></a>读取txt csv tsv文件</h2><pre><code class="python">
+exa  = pd.read_csv(&#39;... .csv&#39;,index_col=&#39;..&#39;)  #读取csv文件
+exa = pd.read_csv(&#39;... .tsv&#39;,sep=&#39;\t&#39;,index_col=&#39;..&#39;)   #读取tsv文件
+exa = pd.read_csv(&#39;.... .txt&#39;,sep=&#39;|&#39;,index_col=&#39;..&#39;)  #读取txt文件
+</code></pre>
+<h2 id="透视表"><a href="#透视表" class="headerlink" title="透视表"></a>透视表</h2><pre><code class="python">#透视表 分组 聚合（数据的分类聚合）
+#方法一
+pt1=exa.pivot_table(index=&#39;...&#39;,columns=&#39;..&#39;,values=&#39;...&#39;)
+#方法二
+groups = exa.groupby([&#39;..&#39;,&#39;...&#39;])  #分组
+sum = groups[&#39;...&#39;].sum()
+count = groups[&#39;..&#39;].count()
+pt2 = pd.DataFrame(&#123;&#39;...&#39;&#125;)    #新建一个表
+</code></pre>
+<h2 id="线性回归预测"><a href="#线性回归预测" class="headerlink" title="线性回归预测"></a>线性回归预测</h2><pre><code class="python">#线性回归 数据预测
+# from scipy.stats import linregress
+slope,intercept,r,p,std_err = linregress(exa.index,exa.value1) #斜率，截距...
+exp = exa.index*slope+intercept  #期望
+
+
+plt.scatter(exa.index,exa.value1)
+plt.plot(exa.index,exp, color=&#39;red&#39;)
+plt.title(f&quot;y=&#123;slope&#125;*x+&#123;intercept&#125;&quot;)
+plt.xticks(exa.index,rotation = 90)
+plt.tight_layout()
+plt.show()  
+</code></pre>
+<h2 id="常见行操作"><a href="#常见行操作" class="headerlink" title="常见行操作"></a>常见行操作</h2><pre><code class="python">#行操作集锦
+#追加表
+exa = exa1.append(exa2).reset_index(drop = True) #将原来的index放弃
+#追加行
+test = pd.Series(&#123;&#39;..&#39;:&#39;..&#39;&#125;)
+exa.append(test,ignore_index =True )
+#更改行
+exa.at[19,&#39;name&#39;] = &#39;...&#39;
+#替换行
+test = pd.Series(&#123;...&#125;)
+exa.iloc[19] = test
+#插入  到20
+test = pd.Series(&#123;&#39;...&#39;&#125;)
+part1 = exa[:20]
+part2 = exa[20:]
+exa = part1.append(test,ignore_index=True).append(part2).reset_index(drop=True)
+#删除
+exa.drop(index = [0,1,2],inplace =True)
+#有条件删除
+test= exa.loc[exa[&#39;name&#39;]==&#39;&#39;]  #删除名字为空
+exa.drop(index=test,index,inplace=True )
+</code></pre>
+<h2 id="常见列操作"><a href="#常见列操作" class="headerlink" title="常见列操作"></a>常见列操作</h2><pre><code class="python">
+
+
+
+
+
+</code></pre>
 ]]></content>
       <categories>
         <category>大数据分析</category>
@@ -488,62 +554,14 @@ exa.apply(value_validation,axis=1)
       </tags>
   </entry>
   <entry>
-    <title>优劣势分析</title>
-    <url>/2022/09/01/%E4%BC%98%E5%8A%A3%E5%8A%BF%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="excel简介及优劣势分析"><a href="#excel简介及优劣势分析" class="headerlink" title="excel简介及优劣势分析"></a>excel简介及优劣势分析</h1><ul>
-<li>优势： <blockquote>
-<p>1.对单数据源（单表格）数据分析非常灵活，方便<br>2.操作简单，分析性可复制性强，对业务指导性强   </p>
-</blockquote>
-</li>
-<li>劣势：   <blockquote>
-<p>1.对多数据源（多表格）数据分析时较为麻烦，低效<br>2.对大数据量数据分析时容易卡顿，报错</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="python简介及优劣势分析"><a href="#python简介及优劣势分析" class="headerlink" title="python简介及优劣势分析"></a>python简介及优劣势分析</h1><ul>
-<li>优势：<blockquote>
-<p>1.可读性文字编写的语言之一，学习难度较小<br>2.数据可视化，数据分析工具包丰富，分析效率高</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="如何想数据分析师一样思考问题"><a href="#如何想数据分析师一样思考问题" class="headerlink" title="*如何想数据分析师一样思考问题"></a>*如何想数据分析师一样思考问题</h1>]]></content>
+    <title>云计算实验</title>
+    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       <categories>
-        <category>大数据分析</category>
+        <category>云计算</category>
       </categories>
       <tags>
-        <tag>大数据分析导论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>互联网数据分析</title>
-    <url>/2022/09/01/%E4%BA%92%E8%81%94%E7%BD%91%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="互联网分析的基本思路"><a href="#互联网分析的基本思路" class="headerlink" title="互联网分析的基本思路"></a>互联网分析的基本思路</h1><ul>
-<li>找出问题： 描述性分析</li>
-<li>分析问题： 诊断性分析，预测性分析，仿真模拟</li>
-<li>解决问题： 数据报告+决策性分析</li>
-</ul>
-<h1 id="不同类型数据分析方法及其原理"><a href="#不同类型数据分析方法及其原理" class="headerlink" title="不同类型数据分析方法及其原理"></a>不同类型数据分析方法及其原理</h1><ul>
-<li>描述性分析：通过计算数据集中性特征和波动特征以了解数据的基本情况  <ul>
-<li>数值分析：数量，平均数，极差，标准差，方差，极值<br>  <img src="/../imgs/sjfx.png" alt="shuju">   </li>
-<li>分布规律: 均匀分布，正态分布，长尾分布    <blockquote>
-<p>利用抛骰子得到正态分布:<br>  <img src="/../imgs/sj.png" alt="shuju"><br>长尾分布:<br>  <img src="/../imgs/cw.png" alt="cw"></p>
-</blockquote>
-</li>
-<li>可视化方法：柱状图，条形图，散点图，饼状图</li>
-</ul>
-</li>
-<li>诊断性分析：深入挖掘问题根源，识别依赖关系，找到影响因子（关联分析）：<br><img src="/../imgs/glfx.png" alt="glfx">   <ul>
-<li><h2 id="皮尔逊相关系数：（非线性数据只能用非线性模型）"><a href="#皮尔逊相关系数：（非线性数据只能用非线性模型）" class="headerlink" title="皮尔逊相关系数：（非线性数据只能用非线性模型）"></a>皮尔逊相关系数：（非线性数据只能用非线性模型）</h2><img src="/../imgs/pex.png" alt="pex"></li>
-</ul>
-</li>
-<li>预测性分析：是用线性回归或逻辑回归的方法找到自变量与因变量之间的关系，并使该关系等式预测因变量的变化<br><img src="/../imgs/huigui.png" alt="huigui"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>大数据分析</category>
-      </categories>
-      <tags>
-        <tag>分析基本思路和excel实践</tag>
+        <tag>实验一</tag>
       </tags>
   </entry>
   <entry>
@@ -641,6 +659,49 @@ exa.apply(value_validation,axis=1)
       </tags>
   </entry>
   <entry>
+    <title>互联网数据分析</title>
+    <url>/2022/09/01/%E4%BA%92%E8%81%94%E7%BD%91%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="互联网分析的基本思路"><a href="#互联网分析的基本思路" class="headerlink" title="互联网分析的基本思路"></a>互联网分析的基本思路</h1><ul>
+<li>找出问题： 描述性分析</li>
+<li>分析问题： 诊断性分析，预测性分析，仿真模拟</li>
+<li>解决问题： 数据报告+决策性分析</li>
+</ul>
+<h1 id="不同类型数据分析方法及其原理"><a href="#不同类型数据分析方法及其原理" class="headerlink" title="不同类型数据分析方法及其原理"></a>不同类型数据分析方法及其原理</h1><ul>
+<li>描述性分析：通过计算数据集中性特征和波动特征以了解数据的基本情况  <ul>
+<li>数值分析：数量，平均数，极差，标准差，方差，极值<br>  <img src="/../imgs/sjfx.png" alt="shuju">   </li>
+<li>分布规律: 均匀分布，正态分布，长尾分布    <blockquote>
+<p>利用抛骰子得到正态分布:<br>  <img src="/../imgs/sj.png" alt="shuju"><br>长尾分布:<br>  <img src="/../imgs/cw.png" alt="cw"></p>
+</blockquote>
+</li>
+<li>可视化方法：柱状图，条形图，散点图，饼状图</li>
+</ul>
+</li>
+<li>诊断性分析：深入挖掘问题根源，识别依赖关系，找到影响因子（关联分析）：<br><img src="/../imgs/glfx.png" alt="glfx">   <ul>
+<li><h2 id="皮尔逊相关系数：（非线性数据只能用非线性模型）"><a href="#皮尔逊相关系数：（非线性数据只能用非线性模型）" class="headerlink" title="皮尔逊相关系数：（非线性数据只能用非线性模型）"></a>皮尔逊相关系数：（非线性数据只能用非线性模型）</h2><img src="/../imgs/pex.png" alt="pex"></li>
+</ul>
+</li>
+<li>预测性分析：是用线性回归或逻辑回归的方法找到自变量与因变量之间的关系，并使该关系等式预测因变量的变化<br><img src="/../imgs/huigui.png" alt="huigui"></li>
+</ul>
+]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>分析基本思路和excel实践</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端学习路线</title>
+    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>学习路线</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>部署到gitee</title>
     <url>/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>coding对新手及其不友好，同步个仓库卡的要死！！！！<br>🤬🤡（还是校园网卡？小丑竟是我）</p>
@@ -655,14 +716,30 @@ exa.apply(value_validation,axis=1)
       </tags>
   </entry>
   <entry>
-    <title>前端学习路线</title>
-    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+    <title>优劣势分析</title>
+    <url>/2022/09/01/%E4%BC%98%E5%8A%A3%E5%8A%BF%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="excel简介及优劣势分析"><a href="#excel简介及优劣势分析" class="headerlink" title="excel简介及优劣势分析"></a>excel简介及优劣势分析</h1><ul>
+<li>优势： <blockquote>
+<p>1.对单数据源（单表格）数据分析非常灵活，方便<br>2.操作简单，分析性可复制性强，对业务指导性强   </p>
+</blockquote>
+</li>
+<li>劣势：   <blockquote>
+<p>1.对多数据源（多表格）数据分析时较为麻烦，低效<br>2.对大数据量数据分析时容易卡顿，报错</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="python简介及优劣势分析"><a href="#python简介及优劣势分析" class="headerlink" title="python简介及优劣势分析"></a>python简介及优劣势分析</h1><ul>
+<li>优势：<blockquote>
+<p>1.可读性文字编写的语言之一，学习难度较小<br>2.数据可视化，数据分析工具包丰富，分析效率高</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="如何想数据分析师一样思考问题"><a href="#如何想数据分析师一样思考问题" class="headerlink" title="*如何想数据分析师一样思考问题"></a>*如何想数据分析师一样思考问题</h1>]]></content>
       <categories>
-        <category>前端</category>
+        <category>大数据分析</category>
       </categories>
       <tags>
-        <tag>学习路线</tag>
+        <tag>大数据分析导论</tag>
       </tags>
   </entry>
   <entry>
@@ -806,6 +883,33 @@ exa.apply(value_validation,axis=1)
       </categories>
       <tags>
         <tag>大数据分析导论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql</title>
+    <url>/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><font size=7>MySQL  安装教程</font><br>-mysql官网   </p>
+<blockquote>
+<p><a href="https://www.mysql.com/">click here</a>    </p>
+</blockquote>
+<ul>
+<li><p>点击download<br><img src="/../imgs/download.png" alt="picture">   </p>
+</li>
+<li><p>划到下边找到community<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193150.png" alt="picture"> </p>
+</li>
+<li><p>找到mysql community server 点击它  </p>
+</li>
+<li><p>点击install for windows<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193948.png" alt="catch">   </p>
+</li>
+<li><p>然后下载第一个(期间点击no,thanks,不然的话就要注册帐号了)  完成后运行文件<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20195231.png" alt="catch"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -953,33 +1057,6 @@ exa.apply(value_validation,axis=1)
       </categories>
       <tags>
         <tag>线性回归</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql</title>
-    <url>/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><font size=7>MySQL  安装教程</font><br>-mysql官网   </p>
-<blockquote>
-<p><a href="https://www.mysql.com/">click here</a>    </p>
-</blockquote>
-<ul>
-<li><p>点击download<br><img src="/../imgs/download.png" alt="picture">   </p>
-</li>
-<li><p>划到下边找到community<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193150.png" alt="picture"> </p>
-</li>
-<li><p>找到mysql community server 点击它  </p>
-</li>
-<li><p>点击install for windows<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193948.png" alt="catch">   </p>
-</li>
-<li><p>然后下载第一个(期间点击no,thanks,不然的话就要注册帐号了)  完成后运行文件<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20195231.png" alt="catch"></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据库</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>

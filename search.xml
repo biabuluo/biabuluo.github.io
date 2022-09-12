@@ -1,432 +1,1163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search> 
-  
-  
-    
-    <entry>
-      <title>搜索问题求解</title>
-      <link href="/2022/09/09/%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3/"/>
-      <url>/2022/09/09/%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="智力游戏问题"><a href="#智力游戏问题" class="headerlink" title="智力游戏问题"></a>智力游戏问题</h1><ul><li>八数码难题（8-puzzle）   <blockquote><p>有一个3*3的棋盘，九个格子摆上八个棋子，不同棋子上标的数字不同，给定初状态和末状态，求最少移动步骤数<br><img src="/../imgs/eight.png" alt="eight"></p></blockquote></li><li>八皇后问题(eight queens puzzle)<blockquote><p>8*8的国际象棋棋盘上拜访八个皇后使其不能发生相互攻击的摆法总个数</p></blockquote></li><li>汉诺塔问题（hannoi tower）</li><li>传教士和食人族问题（missionaries and cannibals problems）<blockquote><p>三个传教士和三个食人族来到一条河的左岸，想度过右岸，河的左岸只有一条船(只能乘坐两个人)：当食人族的人数超过传教士，食人族就会把传教士吃掉，如何安全渡船？</p></blockquote></li></ul><h1 id="现实世界问题"><a href="#现实世界问题" class="headerlink" title="现实世界问题"></a>现实世界问题</h1><ul><li>最短路径问题  <blockquote><p>求解其中给定两个之间的最短距离<br><img src="/../imgs/shortest.png" alt="shortest"></p></blockquote></li></ul><h1 id="搜索问题要素"><a href="#搜索问题要素" class="headerlink" title="搜索问题要素"></a>搜索问题要素</h1><ul><li>状态表征：<blockquote><p>状态是问题在不同时期或不同条件所表现出的形态。问题提出时的状态称其为初始状态，问题达到预期结果时的状态为目标状态，其他为中间状态。<br>表征方法主要采用原子表征（不考虑状态的内部构造）<br><img src="/../imgs/atom.png" alt="atom">  </p></blockquote></li><li>状态空间：<blockquote><p>状态空间是问题在不同时期或在不同条件所表现出来的所有状态的有机组成。（可抽象为一张图或一棵树）  </p></blockquote></li><li>形式化：<blockquote><p>def1: 一个问题若可以表示为状态空间，并且初始状态和目标状态之间可能存在多条路径的话，就称其为搜索问题<br>def2: 一个搜索问题可以形式化为一个5元组，search &#x3D; (S,S0,A,Gt,c)</p><blockquote><p>1.S为问题空间状态集合，状态s∈S，且S不为空<br>2.s0表示初始状态<br>3.A表示动作集合，因为动作导致状态迁移，或因动作而生成后继状态<br>4.Gt是目标检测（goal test），判定给定状态是否为目标状态<br>5.c表示路径代价（path cost）</p></blockquote></blockquote></li></ul><h1 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h1><p>一个简单的搜索问题求解算法</p><pre><code class="pseudocode">agent: simple-people-solving    imput: percept #感知    output: an action  #搜索得出来的动作    local：       #局部变量        seq：一个动作序列，初始化为空        state：一些对于当前状态的描述        goal：一个目标，初始化为空        problem：一个对问题的形式化处理        action：最近的action，初始化为空        state &lt;- get_current_state(state, percept) #获取当前状态    if seq is empty then        goal &lt;- formulate_goal(state) #对目标状态进行形式化处理        problem &lt;- formulate_goal(state, goal) #对搜索问题进行形式化        seq &lt;- search(problem)   #完成当前搜索任务        if seq = failure then            return null action    action &lt;- first(seq)    seq &lt;- rest(seq)    return action</code></pre><h1 id="搜索问题实例化"><a href="#搜索问题实例化" class="headerlink" title="搜索问题实例化"></a>搜索问题实例化</h1><ul><li><mark>八数码难题：</mark><blockquote><ol><li>状态s： 九个格子中八个数字棋子与空格的不同摆放</li><li>初始状态s0：任意一个状态都能成为初始状态</li><li>动作集合A：最简单的动作是移动空格（上下左右）</li><li>目标检测Gt：检查某个状态是否与目标状态的布局相符</li><li>路径代价c: 每一步代价为1</li></ol></blockquote></li><li><mark>八皇后问题：</mark><br>包含两个形式方法：</li></ul><ol><li>增量形式化： 空状态开始，到摆满n个（常用）</li><li>全态形式化： 初始随机摆放，移动皇后到不违法<blockquote><ol><li>状态集合：棋盘摆放1-n个皇后</li><li>初始状态：棋盘上没有皇后</li><li>动作集合： 每次添加一个皇后到任意一个空格且合法</li><li>目标检测： 八个皇后已摆放且合法</li><li>路径代价：等于添加皇后的步数</li></ol></blockquote></li></ol><ul><li><mark>传教士食人族问题</mark><br>只需左岸状态就可以推出右岸状态，左岸状态由三元组表示：S_left &#x3D; (missionary, cannibal, boat) boat&#x3D;1：表示船在左侧<blockquote><ol><li>状态集合：表示三元组的集合</li><li>初始状态：s0 &#x3D; (3,3,1)</li><li>动作集合；用船将传教士和食人族运过河</li><li>目标检测： s &#x3D; (0,0,0)</li><li>路径代价： 等于路径中的步数</li></ol></blockquote></li></ul><h1 id="搜索求解方式"><a href="#搜索求解方式" class="headerlink" title="搜索求解方式"></a>搜索求解方式</h1><ul><li><mark>树搜索</mark>  </li><li><mark>图搜索</mark></li><li><mark>无信息搜索</mark></li><li><mark>有信息搜索</mark></li></ul>]]></content>
-      
-      
+<search>
+  <entry>
+    <title>搭建hexo博客</title>
+    <url>/2022/08/29/blog_built/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><font size=3>参考了很多资料：b站，github，别人的博客<font><br><a href="https://www.cnblogs.com/huanhao/p/hexobase.html">参考最多的博客</a><br><a href="https://argvchs.netlify.app/">我主题作者的博客</a><br><a href="https://github.com/argvchs/hexo-theme-particlex">主题获取</a></p>
+<hr>
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><ul>
+<li><h3 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h3></li>
+</ul>
+<blockquote>
+<p><a href="http://nodejs.cn/download/">node.js获取</a>   </p>
+<p><mark>记得添加环境变量再next</mark>  </p>
+</blockquote>
+<ul>
+<li><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3></li>
+</ul>
+<blockquote>
+<p><a href="https://git-scm.com/">git获取</a><br>一路next就行<br><em><strong>验证是否安装成功：</strong></em><br>验证git: 桌面右键有git bash<br><img src="https://i.loli.net/2020/02/29/s1YhxtEILOlk4Xz.png" alt="git">   </p>
+</blockquote>
+<ul>
+<li><h3 id="验证node-js-点击git-bash依次执行命令"><a href="#验证node-js-点击git-bash依次执行命令" class="headerlink" title="验证node.js:  点击git bash依次执行命令"></a>验证node.js:  点击git bash依次执行命令</h3></li>
+</ul>
+<pre><code class="bash">$ node -v
+$ npm -v
+</code></pre>
+<p><em><strong>输出版本号就算成功</strong></em>   </p>
+<ul>
+<li><h3 id="安装cnpm"><a href="#安装cnpm" class="headerlink" title="安装cnpm"></a>安装cnpm</h3></li>
+</ul>
+<blockquote>
+<p>git bash中执行：   </p>
+</blockquote>
+<pre><code class="bash">    $ npm install -g cnpm --registry=https://registry.npm.taobao.org
+</code></pre>
+<blockquote>
+<p>检查是否安装完成：</p>
+</blockquote>
+<pre><code class="bash">$ cnpm -v
+</code></pre>
+<h2 id="安装hexo并初始化"><a href="#安装hexo并初始化" class="headerlink" title="安装hexo并初始化"></a>安装hexo并初始化</h2><ul>
+<li><h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3></li>
+</ul>
+<pre><code class="bash"> $ cnpm install hexo-cli -g
+</code></pre>
+<ul>
+<li><h3 id="创建blog文件夹并在当前目录打开git-bash"><a href="#创建blog文件夹并在当前目录打开git-bash" class="headerlink" title="创建blog文件夹并在当前目录打开git bash"></a>创建blog文件夹并在当前目录打开git bash</h3></li>
+</ul>
+<blockquote>
+<p>依次执行命令：</p>
+</blockquote>
+<pre><code class="bash">$ hexo init
+$ cnpm install
+</code></pre>
+<blockquote>
+<p>这时可以在本地浏览我们的博客了</p>
+</blockquote>
+<pre><code class="bash">$ hexo s
+</code></pre>
+<p><img src="https://cdn.jsdelivr.net/gh/kjhuanhao/blogcdn/img/Snipaste_2020-02-29_09-31-47.jmi628mj35e.png" alt="blog_local">   </p>
+<h2 id="可以更换主题然后配置文件啦！"><a href="#可以更换主题然后配置文件啦！" class="headerlink" title="可以更换主题然后配置文件啦！"></a>可以更换主题然后配置文件啦！</h2><blockquote>
+<h3 id="hexo的主题地址："><a href="#hexo的主题地址：" class="headerlink" title="hexo的主题地址："></a>hexo的主题地址：</h3><p><a href="https://hexo.io/themes/">hexo</a>    </p>
+</blockquote>
+<h2 id="主题下载"><a href="#主题下载" class="headerlink" title="主题下载"></a>主题下载</h2><blockquote>
+<p>打开主题地址：点击 Clone or download<br><img src="https://cdn.jsdelivr.net/gh/kjhuanhao/blogcdn/img/Snipaste_2020-02-29_09-46-02.gnmyl5b7s2.png" alt="clone"><br>在blog文件夹中打开git bash<br>执行命令：</p>
+</blockquote>
+<pre><code class="bash">git clone 复制的地址 themes/主题名字
+</code></pre>
+<h2 id="接着可以修改站点配置文件什么的"><a href="#接着可以修改站点配置文件什么的" class="headerlink" title="接着可以修改站点配置文件什么的"></a>接着可以修改站点配置文件什么的</h2><h2 id="部署到coding-或者-github"><a href="#部署到coding-或者-github" class="headerlink" title="部署到coding 或者 github"></a>部署到coding 或者 github</h2><blockquote>
+<p>可以参考我推荐的别人的blog   </p>
+</blockquote>
+]]></content>
       <categories>
-          
-          <category> 人工智能原理 </category>
-          
+        <category>生活</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 搜索问题求解 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>pandas python编程</title>
-      <link href="/2022/09/04/pandas-python%E7%BC%96%E7%A8%8B/"/>
-      <url>/2022/09/04/pandas-python%E7%BC%96%E7%A8%8B/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="创建表，保存表，设置索引"><a href="#创建表，保存表，设置索引" class="headerlink" title="创建表，保存表，设置索引"></a>创建表，保存表，设置索引</h2><pre><code class="python">import pandas as pddf = pd.DataFrame(&#123;&#39;id&#39;:[1,2,3],&#39;name&#39;:[&#39;tim&#39;,&#39;viotor&#39;,&#39;nick&#39;]&#125;)   #创建表df = df.set_index(&#39;id&#39;)   #将id设置为索引#更改到本地df.set_index(&#39;id&#39;,inplace=True)df.to_excel(&#39;d:/code/temp/output.xlsx&#39;)   #保存到print(&#39;done!&#39;)</code></pre><h2 id="读取表"><a href="#读取表" class="headerlink" title="读取表"></a>读取表</h2><pre><code class="python">#数据读取people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;) #读取excle文件#知道哪一行是index时people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,index_col=&#39;id&#39;) #读取excle文件print(people.shape)  #读取多少行多少列print(people.columns)  #元素名（列）print(people.head(3))  #读取文件前面信息（默认5行）print(people.tail(3)) #读取尾部# 当数据信息头部存在垃圾信息时(自动跳离空行)  自定义头部开始下标people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,header=1) #读取excle文件#当数据没有header时people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,header= None) #读取excle文件#设置头部信息people.columns=[&#39;id&#39;,&#39;type&#39;,&#39;title&#39; ]</code></pre><h2 id="序列Series（表示表中一行或一列-只有填充进dataframe中才明确）"><a href="#序列Series（表示表中一行或一列-只有填充进dataframe中才明确）" class="headerlink" title="序列Series（表示表中一行或一列 只有填充进dataframe中才明确）"></a>序列Series（表示表中一行或一列 只有填充进dataframe中才明确）</h2><pre><code class="python">d = dict()s1 = pd.Series()  #生成一个序列（具有data，name，index等属性）  类比字典s2 = pd.Series(d)  #将字典转化为序列</code></pre><h2 id="创建序列的另一个方法"><a href="#创建序列的另一个方法" class="headerlink" title="创建序列的另一个方法"></a>创建序列的另一个方法</h2><pre><code class="python">l1 = [100,200,300]l2 = [&#39;x&#39;,&#39;y&#39;,&#39;z&#39;]s1 = pd.Series(l1,index=l2)</code></pre><h2 id="填充dataframe"><a href="#填充dataframe" class="headerlink" title="填充dataframe"></a>填充dataframe</h2><pre><code class="python">#序列填充dataframes1 = pd.Series([1,2,3],index=[1,2,3],name = &#39;A&#39;)s2 = pd.Series([10,20,30],index=[1,2,3],name = &#39;B&#39;)s3 = pd.Series([100,200,300],index=[1,2,3],name = &#39;C&#39;)#以字典的方式填充入df = pd.DataFrame(&#123;s1.name:s1,s2.name:s2,s3.name:s3&#125;)</code></pre><pre><code class="python">#excle的自动填充功能books= pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,skiprows=3,usecols=&quot;c:f&quot;,index_col=None)  #跳出空白行列#利用循环自动填充for i in books.index:    books[&#39;id&#39;].at[i]=i+1   #类型为浮点类型 可以在读取时添加参数：dtype=&#123;‘id’:str&#125;来解决# apply函数books[&#39;listprice&#39;] = books[&#39;listprice&#39;].apply(lambda x: x+2)   #可以是函数，可以是lambda表达式</code></pre><h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><pre><code class="python">product.sort_values(by=[&#39;...&#39;,&#39;...&#39;],inplace = true, ascending=[false,...])   #inplace:在本表上操作  </code></pre><h2 id="数据筛选"><a href="#数据筛选" class="headerlink" title="数据筛选"></a>数据筛选</h2><pre><code class="python">def age(a):    return a&gt;=18 and a&lt;30people = people.loc[people[&#39;age&#39;].apply(age)]print(people)</code></pre><h2 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h2><ul><li>利用pandas绘图：</li></ul><pre><code class="python">import pandas as pdimport matplotlib.pyplot as pltexa = pd.read_excel(&#39;D:/code/temp/exa.xlsx&#39;)print(exa.head(1))# barexa.plot.bar(x=&#39;user_id&#39;, y=&#39;click_article_id&#39;, color=&#39;pink&#39;, title=&#39;mytitle&#39;)  #利用的是pandas的绘图plt.tight_layout()   #紧凑布局 标签能够完全显示plt.show()  #显现图片</code></pre><ul><li>利用matplotlib绘图:</li></ul><pre><code class="python">plt.bar(exa.user_id,exa.click_article_id,color=&#39;pink&#39;)plt.tight_layout()   #紧凑布局 标签能够完全显示plt.xticks(exa.user_id,rotation=&#39;90&#39;)   #旋转x轴标签plt.xlabel(&#39;myxlabel&#39;) #设置x轴plt.ylabel(&#39;myylabel&#39;) #设置y轴plt.title(&#39;mytitle&#39;,fontsize=16) #设置图名  有fontweight属性=&#39;bold&#39;加粗字体plt.show()  #显现图片  </code></pre><blockquote><p>bar_example<br><img src="/../imgs/Figure_1.png" alt="figure">  </p></blockquote><ul><li>优化</li></ul><pre><code class="python">#分组柱状图   叠加柱状图增加stacked=true参数就行  同时.barh是将figure部分旋转exa.plot.bar(x=&#39;user_id&#39;, y=[&#39;click_region&#39;,&#39;click_referrer_type&#39;], color=[&#39;pink&#39;,&#39;blue&#39;], title=&#39;mytitle&#39;)  #利用的是pandas的绘图#优化数轴ax = plt.gcal()ax.set_xticklabels(exa[&#39;user_id&#39;], rotation=45, ha=&#39;right&#39;)plt.tight_layout()#优化图像f = plt.gcf()f.subpiots_adjust(left=0.2, buttom=0.42) #左边流出20% 底下流出42%plt.show()</code></pre><blockquote><p>example<br><img src="/../imgs/figure_2.png" alt="figure"></p></blockquote><h2 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a>饼状图</h2><pre><code class="python">exa = pd.read_excel(&#39;D:/code/temp/output.xlsx&#39;)print(exa.head(1))#饼状图exa[&#39;value1&#39;].plot.pie(fontsize=8,counterclock=False)plt.title(&#39;mytitle&#39;,fontsize=16,fontweight=&#39;bold&#39;)plt.ylabel(&#39;value1&#39;)plt.show()</code></pre><blockquote><p>example:<br><img src="/../imgs/Figure_3.png" alt="figure">  </p></blockquote><h2 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h2><pre><code class="python">exa.plot(y=[&#39;value1&#39;,&#39;value2&#39;,&#39;value3&#39;,&#39;value4&#39;,&#39;value5&#39;]) #.plot.area为叠加区域图plt.title(&#39;mytitle&#39;,fontsize=16,fontweight=&#39;bold&#39;)plt.ylabel(&#39;total_value&#39;,fontsize=8,fontweight=&#39;bold&#39;)plt.xticks(exa.index) #修改x坐标plt.show()</code></pre><blockquote><p>example；<br><img src="/../imgs/Figure_4.png" alt="figure"></p></blockquote><h2 id="scatter散点图"><a href="#scatter散点图" class="headerlink" title="scatter散点图"></a>scatter散点图</h2><pre><code class="python">#散点图exa.plot.scatter(x=&#39;id&#39;,y=&#39;value1&#39;)plt.show()</code></pre><p><img src="/../imgs/scatter.png" alt="scatter"></p><h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><pre><code class="python">exa.value1.plot.hist(bins = 100) #默认桶很大plt.xticks(range(0,max(exa.value1),10),fontsize=8,rotation=90) #调整步长plt.show()</code></pre><p><img src="/../imgs/hist2.png" alt="hist"></p><h2 id="密度图"><a href="#密度图" class="headerlink" title="密度图"></a>密度图</h2><pre><code class="python">#密度图exa.value1.plot.kde() #kernal densitive plt.xticks(range(0,max(exa.value1),10),fontsize=8,rotation=90) #调整步长plt.show()</code></pre><p><img src="/../imgs/kde.png" alt="kde"></p><h2 id="每两列间的相关性"><a href="#每两列间的相关性" class="headerlink" title="每两列间的相关性"></a>每两列间的相关性</h2><pre><code class="python">#元素相关性print(exa.corr())</code></pre><h2 id="多表联合查询"><a href="#多表联合查询" class="headerlink" title="多表联合查询"></a>多表联合查询</h2><pre><code class="python">table = table1.marge(table2, how=&#39;left&#39;,on=&#39;id&#39;).fillna(0)   #how ... 左边元素全保留  na用0填充  或者用；left_on   right_on 的形式  再者用.join()自动联立table.value=table.value.astype(int)  #替换数据类型print(table)</code></pre><h2 id="数据校验"><a href="#数据校验" class="headerlink" title="数据校验"></a>数据校验</h2><pre><code class="python">#数据校验def value_validation(row):    try:        assert 0&lt;=row.value1&lt;=50    except:        print(f&#39;#&#123;row.id&#125;\trow has an  invalid value &#123;row.value1&#125;&#39;)    # if not 0&lt;=row.value1&lt;=100:    #     print(...)exa.apply(value_validation,axis=1)</code></pre><h2 id="统计操作"><a href="#统计操作" class="headerlink" title="统计操作"></a>统计操作</h2><pre><code class="python">#统计操作temp=exa[[&#39;value1&#39;,&#39;value2&#39;,&#39;value3&#39;]]  #抽取子集# print(temp)exa[&#39;row_sum&#39;] = temp.sum(axis=1)   #series类型  从左到右轴是1 从上到下轴是2 #求和exa[&#39;row_mean&#39;] = temp.sum(axis=1)  #求平均值print(exa)</code></pre><h2 id="定位消除重复数据"><a href="#定位消除重复数据" class="headerlink" title="定位消除重复数据"></a>定位消除重复数据</h2><pre><code class="python">#定位消除重复数据exa.drop_duplicates(subset= [&#39;...&#39;,&#39;...&#39;], inplace=True)  #基于...来消除重复行#还有keep参数 =‘first’：保留一开始重复数据 =‘last’：保留最后数据#找到重复数据dupe = exa.duplicated(subset=&#39;...&#39;)  #显示重复关系print(dupe.any())  #是否有重复数据dupe = dupe[dupe==True]  #过滤后得到重复数据print(exa.iloc[dupe.index])   #定位重复数据</code></pre><h2 id="旋转表格"><a href="#旋转表格" class="headerlink" title="旋转表格"></a>旋转表格</h2><pre><code class="python">#旋转数据表pd.option.display.max_columns = 999 #python显示更多元素table = exa.transpose()print(table)</code></pre><h2 id="读取txt-csv-tsv文件"><a href="#读取txt-csv-tsv文件" class="headerlink" title="读取txt csv tsv文件"></a>读取txt csv tsv文件</h2><pre><code class="python">exa  = pd.read_csv(&#39;... .csv&#39;,index_col=&#39;..&#39;)  #读取csv文件exa = pd.read_csv(&#39;... .tsv&#39;,sep=&#39;\t&#39;,index_col=&#39;..&#39;)   #读取tsv文件exa = pd.read_csv(&#39;.... .txt&#39;,sep=&#39;|&#39;,index_col=&#39;..&#39;)  #读取txt文件</code></pre><h2 id="透视表"><a href="#透视表" class="headerlink" title="透视表"></a>透视表</h2><pre><code class="python">#透视表 分组 聚合（数据的分类聚合）#方法一pt1=exa.pivot_table(index=&#39;...&#39;,columns=&#39;..&#39;,values=&#39;...&#39;)#方法二groups = exa.groupby([&#39;..&#39;,&#39;...&#39;])  #分组sum = groups[&#39;...&#39;].sum()count = groups[&#39;..&#39;].count()pt2 = pd.DataFrame(&#123;&#39;...&#39;&#125;)    #新建一个表</code></pre><h2 id="线性回归预测"><a href="#线性回归预测" class="headerlink" title="线性回归预测"></a>线性回归预测</h2><pre><code class="python">#线性回归 数据预测# from scipy.stats import linregressslope,intercept,r,p,std_err = linregress(exa.index,exa.value1) #斜率，截距...exp = exa.index*slope+intercept  #期望plt.scatter(exa.index,exa.value1)plt.plot(exa.index,exp, color=&#39;red&#39;)plt.title(f&quot;y=&#123;slope&#125;*x+&#123;intercept&#125;&quot;)plt.xticks(exa.index,rotation = 90)plt.tight_layout()plt.show()  </code></pre><h2 id="常见行操作"><a href="#常见行操作" class="headerlink" title="常见行操作"></a>常见行操作</h2><pre><code class="python">#行操作集锦#追加表exa = exa1.append(exa2).reset_index(drop = True) #将原来的index放弃#追加行test = pd.Series(&#123;&#39;..&#39;:&#39;..&#39;&#125;)exa.append(test,ignore_index =True )#更改行exa.at[19,&#39;name&#39;] = &#39;...&#39;#替换行test = pd.Series(&#123;...&#125;)exa.iloc[19] = test#插入  到20test = pd.Series(&#123;&#39;...&#39;&#125;)part1 = exa[:20]part2 = exa[20:]exa = part1.append(test,ignore_index=True).append(part2).reset_index(drop=True)#删除exa.drop(index = [0,1,2],inplace =True)#有条件删除test= exa.loc[exa[&#39;name&#39;]==&#39;&#39;]  #删除名字为空exa.drop(index=test,index,inplace=True )</code></pre><h2 id="常见列操作"><a href="#常见列操作" class="headerlink" title="常见列操作"></a>常见列操作</h2><pre><code class="python">#常见列操作#import numpy as np#两张表并列放置test = pd.concat([exa1,exa2],axis=1)#追加列exa[&#39;..&#39;] = np.arange(0,len(exa))  #顺序填充#删除列exa.drop(colume = [&#39;&#39;],implace=True)#插入列exa.insert(1,colunm=&#39;..&#39;,value=10) #插在1号列#修改exa.rename(colunm=&#123;&#39;old&#39;:&#39;new&#39;&#125;,inplace=True)</code></pre>]]></content>
-      
-      
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>不同数据方法的excel实践</title>
+    <url>/2022/09/03/excel%E5%AE%9E%E8%B7%B5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="如何用excel来进行描述性分析"><a href="#如何用excel来进行描述性分析" class="headerlink" title="如何用excel来进行描述性分析"></a>如何用excel来进行描述性分析</h1><ul>
+<li>平均值：</li>
+</ul>
+<pre><code class="excel"> = average()  
+</code></pre>
+<ul>
+<li>标准差：</li>
+</ul>
+<pre><code class="excel">   = stdev.p()   
+</code></pre>
+<ul>
+<li>极差：</li>
+</ul>
+<pre><code class="excel"> = max()-min()  
+</code></pre>
+<ul>
+<li>直方图：   <blockquote>
+<p><img src="/../imgs/ex.png" alt="exc"><br>click “插入” -&gt; “推荐图表”<br><img src="/../imgs/excl.png" alt="excl">  </p>
+</blockquote>
+</li>
+<li>折线图：  <blockquote>
+<p><img src="/../imgs/zhe.png" alt="zhe">  </p>
+</blockquote>
+</li>
+<li>气泡图：(xy散点图变种)：适用于三个变量   <blockquote>
+<p><img src="/../imgs/pao.png" alt="pao"></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="如何利用excel来进行诊断性分析"><a href="#如何利用excel来进行诊断性分析" class="headerlink" title="如何利用excel来进行诊断性分析"></a>如何利用excel来进行诊断性分析</h1><h2 id="关联分析："><a href="#关联分析：" class="headerlink" title="关联分析："></a>关联分析：</h2><pre><code class="excel">  = peason(...  ...)   //皮尔斯系数
+ or = correl(... ...)  //相关系数
+</code></pre>
+<h1 id="利用excel来进行预测性分析"><a href="#利用excel来进行预测性分析" class="headerlink" title="利用excel来进行预测性分析"></a>利用excel来进行预测性分析</h1><h2 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h2><blockquote>
+<ul>
+<li>excel 中添加插件  </li>
+<li>“数据”-&gt;”数据分析”   </li>
+<li>解读结果</li>
+</ul>
+</blockquote>
+<h2 id="仿真模拟"><a href="#仿真模拟" class="headerlink" title="仿真模拟"></a>仿真模拟</h2><h1 id="图标类型的选择"><a href="#图标类型的选择" class="headerlink" title="图标类型的选择"></a>图标类型的选择</h1><blockquote>
+<ol>
+<li>利用柱状图比较数据大小</li>
+<li>利用散点图表示数据关系</li>
+<li>利用气泡图观察多指标间的关系 </li>
+<li>利用折线图观察时间序列数据  </li>
+<li>利用雷达图展现多维数据  </li>
+<li>利用漏斗图分析数据转化</li>
+</ol>
+</blockquote>
+<h1 id="图标优化"><a href="#图标优化" class="headerlink" title="图标优化"></a>图标优化</h1><blockquote>
+<ol>
+<li>坐标轴范围要包含数据本身  </li>
+<li>是用红色标注强调内容 </li>
+<li>刻度线数据标签等细节优化<br><img src="/../imgs/youhua.png" alt="youhua"></li>
+</ol>
+</blockquote>
+<h1 id="多维数据的筛选和应用"><a href="#多维数据的筛选和应用" class="headerlink" title="多维数据的筛选和应用"></a>多维数据的筛选和应用</h1><blockquote>
+<ul>
+<li>一维数据只有单一属性，直观简洁，信息量有限</li>
+<li>二维数据被用于比较和分析两个不同属性的关联度上  </li>
+<li>三维数据被用于分析多属性对象的，优点是信息量大，结论清晰，缺点是对于细节仍无法面面俱到</li>
+</ul>
+</blockquote>
+]]></content>
       <categories>
-          
-          <category> 大数据分析 </category>
-          
+        <category>大数据分析</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> pandas编程 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>不同数据方法的excel实践</title>
-      <link href="/2022/09/03/excel%E5%AE%9E%E8%B7%B5/"/>
-      <url>/2022/09/03/excel%E5%AE%9E%E8%B7%B5/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="如何用excel来进行描述性分析"><a href="#如何用excel来进行描述性分析" class="headerlink" title="如何用excel来进行描述性分析"></a>如何用excel来进行描述性分析</h1><ul><li>平均值：</li></ul><pre><code class="excel"> = average()  </code></pre><ul><li>标准差：</li></ul><pre><code class="excel">   = stdev.p()   </code></pre><ul><li>极差：</li></ul><pre><code class="excel"> = max()-min()  </code></pre><ul><li>直方图：   <blockquote><p><img src="/../imgs/ex.png" alt="exc"><br>click “插入” -&gt; “推荐图表”<br><img src="/../imgs/excl.png" alt="excl">  </p></blockquote></li><li>折线图：  <blockquote><p><img src="/../imgs/zhe.png" alt="zhe">  </p></blockquote></li><li>气泡图：(xy散点图变种)：适用于三个变量   <blockquote><p><img src="/../imgs/pao.png" alt="pao"></p></blockquote></li></ul><h1 id="如何利用excel来进行诊断性分析"><a href="#如何利用excel来进行诊断性分析" class="headerlink" title="如何利用excel来进行诊断性分析"></a>如何利用excel来进行诊断性分析</h1><h2 id="关联分析："><a href="#关联分析：" class="headerlink" title="关联分析："></a>关联分析：</h2><pre><code class="excel">  = peason(...  ...)   //皮尔斯系数 or = correl(... ...)  //相关系数</code></pre><h1 id="利用excel来进行预测性分析"><a href="#利用excel来进行预测性分析" class="headerlink" title="利用excel来进行预测性分析"></a>利用excel来进行预测性分析</h1><h2 id="回归"><a href="#回归" class="headerlink" title="回归"></a>回归</h2><blockquote><ul><li>excel 中添加插件  </li><li>“数据”-&gt;”数据分析”   </li><li>解读结果</li></ul></blockquote><h2 id="仿真模拟"><a href="#仿真模拟" class="headerlink" title="仿真模拟"></a>仿真模拟</h2><h1 id="图标类型的选择"><a href="#图标类型的选择" class="headerlink" title="图标类型的选择"></a>图标类型的选择</h1><blockquote><ol><li>利用柱状图比较数据大小</li><li>利用散点图表示数据关系</li><li>利用气泡图观察多指标间的关系 </li><li>利用折线图观察时间序列数据  </li><li>利用雷达图展现多维数据  </li><li>利用漏斗图分析数据转化</li></ol></blockquote><h1 id="图标优化"><a href="#图标优化" class="headerlink" title="图标优化"></a>图标优化</h1><blockquote><ol><li>坐标轴范围要包含数据本身  </li><li>是用红色标注强调内容 </li><li>刻度线数据标签等细节优化<br><img src="/../imgs/youhua.png" alt="youhua"></li></ol></blockquote><h1 id="多维数据的筛选和应用"><a href="#多维数据的筛选和应用" class="headerlink" title="多维数据的筛选和应用"></a>多维数据的筛选和应用</h1><blockquote><ul><li>一维数据只有单一属性，直观简洁，信息量有限</li><li>二维数据被用于比较和分析两个不同属性的关联度上  </li><li>三维数据被用于分析多属性对象的，优点是信息量大，结论清晰，缺点是对于细节仍无法面面俱到</li></ul></blockquote>]]></content>
-      
-      
+      <tags>
+        <tag>excel实践</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/08/27/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
       <categories>
-          
-          <category> 大数据分析 </category>
-          
+        <category>生活</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> excel实践 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>逻辑回归</title>
-      <link href="/2022/09/03/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/"/>
-      <url>/2022/09/03/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归的本质就是由线性回归转变为非线性回归的样子：如图<br><img src="/../imgs/logi.png" alt="logi">  </p><blockquote><p>计算系数的方法：最大似然估计  </p><blockquote><ul><li>概率和似然的区别：<br>概率是指已知一些概率分布参数的情况下，预测观测结果<br>似然适用于已经知道某些观测所得到的结果时，对观测结果所属的概率分布参数进行估值<br><img src="/../imgs/sir.png" alt="sir"><br><img src="/../imgs/likeli.png" alt="likeli"></li></ul></blockquote></blockquote><h1 id="仿真模拟："><a href="#仿真模拟：" class="headerlink" title="仿真模拟："></a>仿真模拟：</h1><p>类似于算法分析中的随机化算法来模拟各种条件下产生的结果   </p>]]></content>
-      
-      
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo 博客美化</title>
+    <url>/2022/08/29/hexo-%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">新生要军训，好几天都不能跑步，崩溃了。。 </font>   </p>
+<img src=https://w.wallhaven.cc/full/72/wallhaven-72yqlv.png width = "300" height = "200" alt="我" align=center />   
+
+<ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/69211731">参考资料</a></p>
+</li>
+<li><h2 id="添加看板娘（我的是看板狗hahaha"><a href="#添加看板娘（我的是看板狗hahaha" class="headerlink" title="添加看板娘（我的是看板狗hahaha)"></a>添加看板娘（我的是看板狗hahaha)</h2></li>
+</ul>
+<blockquote>
+<p><strong>在git bash上获取live2d：</strong>   </p>
+</blockquote>
+<pre><code class="bash">$ npm install --save hexo-helper-live2d
+</code></pre>
+<blockquote>
+<p>输入以下命令，下载相应的模型，将 packagename 更换成型名称即可，更多模型选择请<a href="https://github.com/xiazeyu/live2d-widget-models">点击此处</a>，各个模型的预览请访问<a href="https://huaji8.top/post/live2d-plugin-2.0/">原作者的博客</a></p>
+</blockquote>
+<pre><code class="bash">$ npm install packagename
+</code></pre>
+<blockquote>
+<p>打开站点目录下的 _config.yml 文件，添加如下代码：</p>
+</blockquote>
+<pre><code class="yml">live2d:
+    enable: true
+    scriptFrom: local
+    model: 
+        use: live2d-widget-model-haruto #模型选择
+    display: 
+        position: right  #模型位置
+        width: 150       #模型宽度
+        height: 300      #模型高度
+    mobile: 
+        show: false      #是否在手机端显示
+</code></pre>
+<blockquote>
+<p>设置好过后我们就拥有了一个卡通人物 （我在想是否能搞个米蒂的模型呢hahahaha）</p>
+</blockquote>
+<ul>
+<li><h2 id="鼠标点击效果"><a href="#鼠标点击效果" class="headerlink" title="鼠标点击效果"></a>鼠标点击效果</h2></li>
+</ul>
+<blockquote>
+<p><strong>效果烟花爆炸：</strong><br>在 \themes\主题\source\js 目录下新建一个 fireworks.js 的文件，里面写入以下代码：</p>
+</blockquote>
+<pre><code class="js">&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;;
+</code></pre>
+<blockquote>
+<p>然后在 \themes\主题\layout\layout.ejs 文件中写入以下代码：</p>
+</blockquote>
+<pre><code class="ejs">&lt;canvas class=&quot;fireworks&quot; style=&quot;position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;&quot; &gt;&lt;/canvas&gt; 
+&lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/animejs/2.2.0/anime.min.js&quot;&gt;&lt;/script&gt; 
+&lt;script type=&quot;text/javascript&quot; src=&quot;/js/fireworks.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<ul>
+<li><h2 id="添加背景音乐"><a href="#添加背景音乐" class="headerlink" title="添加背景音乐"></a>添加背景音乐</h2></li>
+</ul>
+<blockquote>
+<h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><blockquote>
+<p>打开网页版<a href="https://music.163.com/">网易云音乐</a>，选择你准备添加的背景音乐，点击生成外链播放器，前提是要有版权，不然是无法生成外链播放器的，复制底下的HTML代码  </p>
+</blockquote>
+</blockquote>
+<p><img src="https://pic2.zhimg.com/80/v2-19a363752b9ac44ca80824b81e86233d_1440w.jpg" alt="easenet">   </p>
+<blockquote>
+<blockquote>
+<p>然后将此代码放到你想要放的地方，比如放在博客的左侧，则打开 \themes\主题\layout\left.ejs 文件，将复制的HTML代码粘贴进去，再进行适当的位置设置让播放器更美观，其中 auto&#x3D;1 表示打开网页自动播放音乐，auto&#x3D;0 表示关闭自动播放音乐    </p>
+</blockquote>
+<h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><blockquote>
+<p>在layout.ejs中body标签加入以下：   </p>
+</blockquote>
+</blockquote>
+<pre><code class="html"> &lt;!--音乐--&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css&quot;&gt;
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js&quot;&gt;&lt;/script&gt;
+  &lt;div id=&quot;player&quot; class=&quot;aplayer aplayer-withlist aplayer-fixed&quot; data-id=&quot;3025663508&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-order=&quot;random&quot; data-fixed=&quot;true&quot; data-listfolded=&quot;true&quot; data-theme=&quot;#2D8CF0&quot;&gt;&lt;/div&gt;  
+</code></pre>
+<blockquote>
+<blockquote>
+<p>可以自行修改参数   </p>
+<h2 id="重要优化"><a href="#重要优化" class="headerlink" title="重要优化"></a>重要优化</h2><p>实现aplayer嵌入效果（像我一样）    </p>
+</blockquote>
+</blockquote>
+<pre><code class="css">.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body &#123;
+    left: -66px !important
+&#125;
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover &#123;
+    left: 0 !important
+&#125;
+</code></pre>
+<blockquote>
+<blockquote>
+<p>layout.ejs文件中添加：</p>
+</blockquote>
+</blockquote>
+<pre><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/aplayer.css&quot;/&gt;
+</code></pre>
+<ul>
+<li><h2 id="流星背景特效"><a href="#流星背景特效" class="headerlink" title="流星背景特效"></a>流星背景特效</h2></li>
+</ul>
+<blockquote>
+<p>使用：</p>
+</blockquote>
+<pre><code class="layout.ejs">&lt;canvas
+    id=&quot;background&quot;
+    style=&quot;position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1&quot;
+&gt;&lt;/canvas&gt;
+&lt;script src=&quot;/js/background.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>下载：<a href="https://argvchs.netlify.app/js/background.js">background.js</a></p>
+</blockquote>
+<ul>
+<li><h2 id="鼠标指针特效"><a href="#鼠标指针特效" class="headerlink" title="鼠标指针特效"></a>鼠标指针特效</h2></li>
+</ul>
+<blockquote>
+<p>使用：</p>
+</blockquote>
+<pre><code class="layout.ejs">&lt;div id=&quot;cursor&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;/css/cursor.css&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;/js/cursor.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>下载：</p>
+<p><a href="https://argvchs.netlify.app/assets/cursor.css">cursor.css</a><br><a href="https://argvchs.netlify.app/js/cursor.js">cursor.js</a></p>
+</blockquote>
+]]></content>
       <categories>
-          
-          <category> 大数据分析 </category>
-          
+        <category>生活</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 逻辑回归 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>线性回归</title>
-      <link href="/2022/09/01/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"/>
-      <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><p> <img src="/../imgs/linear.png" alt="linear">   </p><ul><li>如何计算系数？ <blockquote><p>使用最小二乘法估算系数：<br><img src="/../imgs/zuixiao.png" alt="zuixiao">   </p></blockquote></li><li>如何评估线性回归的好与坏？   <blockquote><p><img src="/../imgs/pinggu.png" alt="pinggu"><br>R^2越大线性模型就越贴切   </p></blockquote></li><li>如何评估回归的细节:  <blockquote><p>假设用python的线性回归：<br><img src="/../imgs/py_linear.png" alt="pylinear"><br>f_statistic: 自变量与因变量是否有关联（但不知道什么关联）<br>constant：常数项  （coef表示值）…<br>以下的都是系数</p><ul><li>得利用t值和p值来判断是否有意义：  <blockquote><p>当发现t值小，p值大，则这个参数没什么意义（参考值意义低）<br>后边的数值区间为置信区间  std err为标准差</p></blockquote></li></ul></blockquote></li></ul>]]></content>
-      
-      
+      <tags>
+        <tag>博客美化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pandas python编程</title>
+    <url>/2022/09/04/pandas-python%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="创建表，保存表，设置索引"><a href="#创建表，保存表，设置索引" class="headerlink" title="创建表，保存表，设置索引"></a>创建表，保存表，设置索引</h2><pre><code class="python">import pandas as pd
+df = pd.DataFrame(&#123;&#39;id&#39;:[1,2,3],&#39;name&#39;:[&#39;tim&#39;,&#39;viotor&#39;,&#39;nick&#39;]&#125;)   #创建表
+df = df.set_index(&#39;id&#39;)   #将id设置为索引
+#更改到本地
+df.set_index(&#39;id&#39;,inplace=True)
+df.to_excel(&#39;d:/code/temp/output.xlsx&#39;)   #保存到
+print(&#39;done!&#39;)
+</code></pre>
+<h2 id="读取表"><a href="#读取表" class="headerlink" title="读取表"></a>读取表</h2><pre><code class="python">#数据读取
+people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;) #读取excle文件
+#知道哪一行是index时
+people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,index_col=&#39;id&#39;) #读取excle文件
+print(people.shape)  #读取多少行多少列
+print(people.columns)  #元素名（列）
+print(people.head(3))  #读取文件前面信息（默认5行）
+print(people.tail(3)) #读取尾部
+# 当数据信息头部存在垃圾信息时(自动跳离空行)  自定义头部开始下标
+people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,header=1) #读取excle文件
+#当数据没有header时
+people =pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,header= None) #读取excle文件
+#设置头部信息
+people.columns=[&#39;id&#39;,&#39;type&#39;,&#39;title&#39; ]
+</code></pre>
+<h2 id="序列Series（表示表中一行或一列-只有填充进dataframe中才明确）"><a href="#序列Series（表示表中一行或一列-只有填充进dataframe中才明确）" class="headerlink" title="序列Series（表示表中一行或一列 只有填充进dataframe中才明确）"></a>序列Series（表示表中一行或一列 只有填充进dataframe中才明确）</h2><pre><code class="python">d = dict()
+s1 = pd.Series()  #生成一个序列（具有data，name，index等属性）  类比字典
+s2 = pd.Series(d)  #将字典转化为序列
+</code></pre>
+<h2 id="创建序列的另一个方法"><a href="#创建序列的另一个方法" class="headerlink" title="创建序列的另一个方法"></a>创建序列的另一个方法</h2><pre><code class="python">l1 = [100,200,300]
+l2 = [&#39;x&#39;,&#39;y&#39;,&#39;z&#39;]
+s1 = pd.Series(l1,index=l2)
+</code></pre>
+<h2 id="填充dataframe"><a href="#填充dataframe" class="headerlink" title="填充dataframe"></a>填充dataframe</h2><pre><code class="python">#序列填充dataframe
+s1 = pd.Series([1,2,3],index=[1,2,3],name = &#39;A&#39;)
+s2 = pd.Series([10,20,30],index=[1,2,3],name = &#39;B&#39;)
+s3 = pd.Series([100,200,300],index=[1,2,3],name = &#39;C&#39;)
+#以字典的方式填充入
+df = pd.DataFrame(&#123;s1.name:s1,s2.name:s2,s3.name:s3&#125;)
+</code></pre>
+<pre><code class="python">#excle的自动填充功能
+books= pd.read_excel(&#39;d:/code/temp/output.xlsx&#39;,skiprows=3,usecols=&quot;c:f&quot;,index_col=None)  #跳出空白行列
+#利用循环自动填充
+for i in books.index:
+    books[&#39;id&#39;].at[i]=i+1   #类型为浮点类型 可以在读取时添加参数：dtype=&#123;‘id’:str&#125;来解决
+
+# apply函数
+books[&#39;listprice&#39;] = books[&#39;listprice&#39;].apply(lambda x: x+2)   #可以是函数，可以是lambda表达式
+</code></pre>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><pre><code class="python">product.sort_values(by=[&#39;...&#39;,&#39;...&#39;],inplace = true, ascending=[false,...])   #inplace:在本表上操作  
+</code></pre>
+<h2 id="数据筛选"><a href="#数据筛选" class="headerlink" title="数据筛选"></a>数据筛选</h2><pre><code class="python">def age(a):
+    return a&gt;=18 and a&lt;30
+people = people.loc[people[&#39;age&#39;].apply(age)]
+print(people)
+</code></pre>
+<h2 id="柱状图"><a href="#柱状图" class="headerlink" title="柱状图"></a>柱状图</h2><ul>
+<li>利用pandas绘图：</li>
+</ul>
+<pre><code class="python">import pandas as pd
+import matplotlib.pyplot as plt
+
+exa = pd.read_excel(&#39;D:/code/temp/exa.xlsx&#39;)
+print(exa.head(1))
+
+# bar
+exa.plot.bar(x=&#39;user_id&#39;, y=&#39;click_article_id&#39;, color=&#39;pink&#39;, title=&#39;mytitle&#39;)  #利用的是pandas的绘图
+plt.tight_layout()   #紧凑布局 标签能够完全显示
+plt.show()  #显现图片
+</code></pre>
+<ul>
+<li>利用matplotlib绘图:</li>
+</ul>
+<pre><code class="python">plt.bar(exa.user_id,exa.click_article_id,color=&#39;pink&#39;)
+plt.tight_layout()   #紧凑布局 标签能够完全显示
+plt.xticks(exa.user_id,rotation=&#39;90&#39;)   #旋转x轴标签
+plt.xlabel(&#39;myxlabel&#39;) #设置x轴
+plt.ylabel(&#39;myylabel&#39;) #设置y轴
+plt.title(&#39;mytitle&#39;,fontsize=16) #设置图名  有fontweight属性=&#39;bold&#39;加粗字体
+plt.show()  #显现图片  
+</code></pre>
+<blockquote>
+<p>bar_example<br><img src="/../imgs/Figure_1.png" alt="figure">  </p>
+</blockquote>
+<ul>
+<li>优化</li>
+</ul>
+<pre><code class="python">#分组柱状图   叠加柱状图增加stacked=true参数就行  同时.barh是将figure部分旋转
+exa.plot.bar(x=&#39;user_id&#39;, y=[&#39;click_region&#39;,&#39;click_referrer_type&#39;], color=[&#39;pink&#39;,&#39;blue&#39;], title=&#39;mytitle&#39;)  #利用的是pandas的绘图
+#优化数轴
+ax = plt.gcal()
+ax.set_xticklabels(exa[&#39;user_id&#39;], rotation=45, ha=&#39;right&#39;)
+plt.tight_layout()
+#优化图像
+f = plt.gcf()
+f.subpiots_adjust(left=0.2, buttom=0.42) #左边流出20% 底下流出42%
+plt.show()
+</code></pre>
+<blockquote>
+<p>example<br><img src="/../imgs/figure_2.png" alt="figure"></p>
+</blockquote>
+<h2 id="饼状图"><a href="#饼状图" class="headerlink" title="饼状图"></a>饼状图</h2><pre><code class="python">exa = pd.read_excel(&#39;D:/code/temp/output.xlsx&#39;)
+print(exa.head(1))
+
+#饼状图
+exa[&#39;value1&#39;].plot.pie(fontsize=8,counterclock=False)
+plt.title(&#39;mytitle&#39;,fontsize=16,fontweight=&#39;bold&#39;)
+plt.ylabel(&#39;value1&#39;)
+plt.show()
+</code></pre>
+<blockquote>
+<p>example:<br><img src="/../imgs/Figure_3.png" alt="figure">  </p>
+</blockquote>
+<h2 id="折线图"><a href="#折线图" class="headerlink" title="折线图"></a>折线图</h2><pre><code class="python">exa.plot(y=[&#39;value1&#39;,&#39;value2&#39;,&#39;value3&#39;,&#39;value4&#39;,&#39;value5&#39;]) #.plot.area为叠加区域图
+plt.title(&#39;mytitle&#39;,fontsize=16,fontweight=&#39;bold&#39;)
+plt.ylabel(&#39;total_value&#39;,fontsize=8,fontweight=&#39;bold&#39;)
+plt.xticks(exa.index) #修改x坐标
+plt.show()
+</code></pre>
+<blockquote>
+<p>example；<br><img src="/../imgs/Figure_4.png" alt="figure"></p>
+</blockquote>
+<h2 id="scatter散点图"><a href="#scatter散点图" class="headerlink" title="scatter散点图"></a>scatter散点图</h2><pre><code class="python">#散点图
+exa.plot.scatter(x=&#39;id&#39;,y=&#39;value1&#39;)
+plt.show()
+</code></pre>
+<p><img src="/../imgs/scatter.png" alt="scatter"></p>
+<h2 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h2><pre><code class="python">exa.value1.plot.hist(bins = 100) #默认桶很大
+plt.xticks(range(0,max(exa.value1),10),fontsize=8,rotation=90) #调整步长
+plt.show()
+</code></pre>
+<p><img src="/../imgs/hist2.png" alt="hist"></p>
+<h2 id="密度图"><a href="#密度图" class="headerlink" title="密度图"></a>密度图</h2><pre><code class="python">#密度图
+exa.value1.plot.kde() #kernal densitive 
+plt.xticks(range(0,max(exa.value1),10),fontsize=8,rotation=90) #调整步长
+plt.show()
+</code></pre>
+<p><img src="/../imgs/kde.png" alt="kde"></p>
+<h2 id="每两列间的相关性"><a href="#每两列间的相关性" class="headerlink" title="每两列间的相关性"></a>每两列间的相关性</h2><pre><code class="python">#元素相关性
+print(exa.corr())
+</code></pre>
+<h2 id="多表联合查询"><a href="#多表联合查询" class="headerlink" title="多表联合查询"></a>多表联合查询</h2><pre><code class="python">table = table1.marge(table2, how=&#39;left&#39;,on=&#39;id&#39;).fillna(0)   #how ... 左边元素全保留  na用0填充  或者用；left_on   right_on 的形式  再者用.join()自动联立
+table.value=table.value.astype(int)  #替换数据类型
+print(table)
+</code></pre>
+<h2 id="数据校验"><a href="#数据校验" class="headerlink" title="数据校验"></a>数据校验</h2><pre><code class="python">#数据校验
+def value_validation(row):
+    try:
+        assert 0&lt;=row.value1&lt;=50
+    except:
+        print(f&#39;#&#123;row.id&#125;\trow has an  invalid value &#123;row.value1&#125;&#39;)
+
+    # if not 0&lt;=row.value1&lt;=100:
+    #     print(...)
+
+exa.apply(value_validation,axis=1)
+</code></pre>
+<h2 id="统计操作"><a href="#统计操作" class="headerlink" title="统计操作"></a>统计操作</h2><pre><code class="python">#统计操作
+temp=exa[[&#39;value1&#39;,&#39;value2&#39;,&#39;value3&#39;]]  #抽取子集
+# print(temp)
+exa[&#39;row_sum&#39;] = temp.sum(axis=1)   #series类型  从左到右轴是1 从上到下轴是2 #求和
+exa[&#39;row_mean&#39;] = temp.sum(axis=1)  #求平均值
+print(exa)
+</code></pre>
+<h2 id="定位消除重复数据"><a href="#定位消除重复数据" class="headerlink" title="定位消除重复数据"></a>定位消除重复数据</h2><pre><code class="python">#定位消除重复数据
+exa.drop_duplicates(subset= [&#39;...&#39;,&#39;...&#39;], inplace=True)  #基于...来消除重复行
+#还有keep参数 =‘first’：保留一开始重复数据 =‘last’：保留最后数据
+#找到重复数据
+dupe = exa.duplicated(subset=&#39;...&#39;)  #显示重复关系
+print(dupe.any())  #是否有重复数据
+dupe = dupe[dupe==True]  #过滤后得到重复数据
+print(exa.iloc[dupe.index])   #定位重复数据
+</code></pre>
+<h2 id="旋转表格"><a href="#旋转表格" class="headerlink" title="旋转表格"></a>旋转表格</h2><pre><code class="python">#旋转数据表
+pd.option.display.max_columns = 999 #python显示更多元素
+table = exa.transpose()
+print(table)
+</code></pre>
+<h2 id="读取txt-csv-tsv文件"><a href="#读取txt-csv-tsv文件" class="headerlink" title="读取txt csv tsv文件"></a>读取txt csv tsv文件</h2><pre><code class="python">
+exa  = pd.read_csv(&#39;... .csv&#39;,index_col=&#39;..&#39;)  #读取csv文件
+exa = pd.read_csv(&#39;... .tsv&#39;,sep=&#39;\t&#39;,index_col=&#39;..&#39;)   #读取tsv文件
+exa = pd.read_csv(&#39;.... .txt&#39;,sep=&#39;|&#39;,index_col=&#39;..&#39;)  #读取txt文件
+</code></pre>
+<h2 id="透视表"><a href="#透视表" class="headerlink" title="透视表"></a>透视表</h2><pre><code class="python">#透视表 分组 聚合（数据的分类聚合）
+#方法一
+pt1=exa.pivot_table(index=&#39;...&#39;,columns=&#39;..&#39;,values=&#39;...&#39;)
+#方法二
+groups = exa.groupby([&#39;..&#39;,&#39;...&#39;])  #分组
+sum = groups[&#39;...&#39;].sum()
+count = groups[&#39;..&#39;].count()
+pt2 = pd.DataFrame(&#123;&#39;...&#39;&#125;)    #新建一个表
+</code></pre>
+<h2 id="线性回归预测"><a href="#线性回归预测" class="headerlink" title="线性回归预测"></a>线性回归预测</h2><pre><code class="python">#线性回归 数据预测
+# from scipy.stats import linregress
+slope,intercept,r,p,std_err = linregress(exa.index,exa.value1) #斜率，截距...
+exp = exa.index*slope+intercept  #期望
+
+
+plt.scatter(exa.index,exa.value1)
+plt.plot(exa.index,exp, color=&#39;red&#39;)
+plt.title(f&quot;y=&#123;slope&#125;*x+&#123;intercept&#125;&quot;)
+plt.xticks(exa.index,rotation = 90)
+plt.tight_layout()
+plt.show()  
+</code></pre>
+<h2 id="常见行操作"><a href="#常见行操作" class="headerlink" title="常见行操作"></a>常见行操作</h2><pre><code class="python">#行操作集锦
+#追加表
+exa = exa1.append(exa2).reset_index(drop = True) #将原来的index放弃
+#追加行
+test = pd.Series(&#123;&#39;..&#39;:&#39;..&#39;&#125;)
+exa.append(test,ignore_index =True )
+#更改行
+exa.at[19,&#39;name&#39;] = &#39;...&#39;
+#替换行
+test = pd.Series(&#123;...&#125;)
+exa.iloc[19] = test
+#插入  到20
+test = pd.Series(&#123;&#39;...&#39;&#125;)
+part1 = exa[:20]
+part2 = exa[20:]
+exa = part1.append(test,ignore_index=True).append(part2).reset_index(drop=True)
+#删除
+exa.drop(index = [0,1,2],inplace =True)
+#有条件删除
+test= exa.loc[exa[&#39;name&#39;]==&#39;&#39;]  #删除名字为空
+exa.drop(index=test,index,inplace=True )
+</code></pre>
+<h2 id="常见列操作"><a href="#常见列操作" class="headerlink" title="常见列操作"></a>常见列操作</h2><pre><code class="python">#常见列操作
+#import numpy as np
+#两张表并列放置
+test = pd.concat([exa1,exa2],axis=1)
+#追加列
+exa[&#39;..&#39;] = np.arange(0,len(exa))  #顺序填充
+#删除列
+exa.drop(colume = [&#39;&#39;],implace=True)
+#插入列
+exa.insert(1,colunm=&#39;..&#39;,value=10) #插在1号列
+#修改
+exa.rename(colunm=&#123;&#39;old&#39;:&#39;new&#39;&#125;,inplace=True)
+</code></pre>
+]]></content>
       <categories>
-          
-          <category> 大数据分析 </category>
-          
+        <category>大数据分析</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 线性回归 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>互联网数据分析</title>
-      <link href="/2022/09/01/%E4%BA%92%E8%81%94%E7%BD%91%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-      <url>/2022/09/01/%E4%BA%92%E8%81%94%E7%BD%91%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="互联网分析的基本思路"><a href="#互联网分析的基本思路" class="headerlink" title="互联网分析的基本思路"></a>互联网分析的基本思路</h1><ul><li>找出问题： 描述性分析</li><li>分析问题： 诊断性分析，预测性分析，仿真模拟</li><li>解决问题： 数据报告+决策性分析</li></ul><h1 id="不同类型数据分析方法及其原理"><a href="#不同类型数据分析方法及其原理" class="headerlink" title="不同类型数据分析方法及其原理"></a>不同类型数据分析方法及其原理</h1><ul><li>描述性分析：通过计算数据集中性特征和波动特征以了解数据的基本情况  <ul><li>数值分析：数量，平均数，极差，标准差，方差，极值<br>  <img src="/../imgs/sjfx.png" alt="shuju">   </li><li>分布规律: 均匀分布，正态分布，长尾分布    <blockquote><p>利用抛骰子得到正态分布:<br>  <img src="/../imgs/sj.png" alt="shuju"><br>长尾分布:<br>  <img src="/../imgs/cw.png" alt="cw"></p></blockquote></li><li>可视化方法：柱状图，条形图，散点图，饼状图</li></ul></li><li>诊断性分析：深入挖掘问题根源，识别依赖关系，找到影响因子（关联分析）：<br><img src="/../imgs/glfx.png" alt="glfx">   <ul><li><h2 id="皮尔逊相关系数：（非线性数据只能用非线性模型）"><a href="#皮尔逊相关系数：（非线性数据只能用非线性模型）" class="headerlink" title="皮尔逊相关系数：（非线性数据只能用非线性模型）"></a>皮尔逊相关系数：（非线性数据只能用非线性模型）</h2><img src="/../imgs/pex.png" alt="pex"></li></ul></li><li>预测性分析：是用线性回归或逻辑回归的方法找到自变量与因变量之间的关系，并使该关系等式预测因变量的变化<br><img src="/../imgs/huigui.png" alt="huigui"></li></ul>]]></content>
-      
-      
+      <tags>
+        <tag>pandas编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>云计算实验</title>
+    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       <categories>
-          
-          <category> 大数据分析 </category>
-          
+        <category>云计算</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 分析基本思路和excel实践 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>优劣势分析</title>
-      <link href="/2022/09/01/%E4%BC%98%E5%8A%A3%E5%8A%BF%E5%88%86%E6%9E%90/"/>
-      <url>/2022/09/01/%E4%BC%98%E5%8A%A3%E5%8A%BF%E5%88%86%E6%9E%90/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="excel简介及优劣势分析"><a href="#excel简介及优劣势分析" class="headerlink" title="excel简介及优劣势分析"></a>excel简介及优劣势分析</h1><ul><li>优势： <blockquote><p>1.对单数据源（单表格）数据分析非常灵活，方便<br>2.操作简单，分析性可复制性强，对业务指导性强   </p></blockquote></li><li>劣势：   <blockquote><p>1.对多数据源（多表格）数据分析时较为麻烦，低效<br>2.对大数据量数据分析时容易卡顿，报错</p></blockquote></li></ul><h1 id="python简介及优劣势分析"><a href="#python简介及优劣势分析" class="headerlink" title="python简介及优劣势分析"></a>python简介及优劣势分析</h1><ul><li>优势：<blockquote><p>1.可读性文字编写的语言之一，学习难度较小<br>2.数据可视化，数据分析工具包丰富，分析效率高</p></blockquote></li></ul><h1 id="如何想数据分析师一样思考问题"><a href="#如何想数据分析师一样思考问题" class="headerlink" title="*如何想数据分析师一样思考问题"></a>*如何想数据分析师一样思考问题</h1>]]></content>
-      
-      
+      <tags>
+        <tag>实验一</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>人工智能绪论</title>
+    <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="the-defination-of-artificial-intelligence"><a href="#the-defination-of-artificial-intelligence" class="headerlink" title="the defination of artificial intelligence"></a>the defination of artificial intelligence</h1><blockquote>
+<ul>
+<li><h2 id="intelligence-wiki"><a href="#intelligence-wiki" class="headerlink" title="intelligence:(wiki)"></a>intelligence:(wiki)</h2>能够感知和推断信息的能力，并将其作为知识而拥有，已应用于环境，或语境中合适的行为    </li>
+<li><h2 id="arttificial-intelligence"><a href="#arttificial-intelligence" class="headerlink" title="arttificial intelligence"></a>arttificial intelligence</h2>机器中的智能称为人工智能，其通常在运用程序，间或适当硬件的计算机系统中得以实现</li>
+</ul>
+</blockquote>
+<h1 id="人工智能的基础"><a href="#人工智能的基础" class="headerlink" title="人工智能的基础"></a>人工智能的基础</h1><table>
+<thead>
+<tr>
+<th align="center">学科</th>
+<th align="center">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">数学</td>
+<td align="center">1.逻辑学 2.计算理论 3.概率论</td>
+</tr>
+<tr>
+<td align="center">经济学</td>
+<td align="center">1.博弈论 2.决策论 3.运筹学</td>
+</tr>
+<tr>
+<td align="center">神经科学</td>
+<td align="center">脑科学是主要研究内容</td>
+</tr>
+<tr>
+<td align="center">认知心理学</td>
+<td align="center">认知科学包括认知心理学</td>
+</tr>
+<tr>
+<td align="center">控制理论和控制论</td>
+<td align="center">是两个关联的交叉学科</td>
+</tr>
+</tbody></table>
+<h1 id="人工智能的判定"><a href="#人工智能的判定" class="headerlink" title="人工智能的判定"></a>人工智能的判定</h1><blockquote>
+<ul>
+<li><h2 id="图灵测试-如何研判机器是否思维"><a href="#图灵测试-如何研判机器是否思维" class="headerlink" title="图灵测试 (如何研判机器是否思维)"></a>图灵测试 (如何研判机器是否思维)</h2>_具体内容_：人类裁判同时向被测试人和机器提出一些书面问题，经过一系列测试后，如果裁判无法分辨这些回答究竟来自人类还是机器，则判断机器通过测试，并具有人类的思维能力  </li>
+<li><h2 id="图灵测试-2-0"><a href="#图灵测试-2-0" class="headerlink" title="图灵测试 2.0"></a>图灵测试 2.0</h2><table>
+<thead>
+<tr>
+<th align="center">测试方法</th>
+<th align="center">测试内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">反向图灵测试</td>
+<td align="center">1.被试者的意图是使裁判将其判定为机器 2.机器掌管测试，判断测试者是否为人类</td>
+</tr>
+<tr>
+<td align="center">学科专家图灵测试</td>
+<td align="center">测试给定领域区分机器与专家</td>
+</tr>
+<tr>
+<td align="center">总体图灵测试</td>
+<td align="center">略</td>
+</tr>
+<tr>
+<td align="center">最低智能信号测试</td>
+<td align="center">略</td>
+</tr>
+<tr>
+<td align="center">艾伯特测试</td>
+<td align="center">略</td>
+</tr>
+<tr>
+<td align="center">视觉图灵测试</td>
+<td align="center">略</td>
+</tr>
+<tr>
+<td align="center">维诺格拉德测试</td>
+<td align="center">略</td>
+</tr>
+<tr>
+<td align="center">中文房间</td>
+<td align="center">略</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</blockquote>
+<h1 id="人工智能体系论"><a href="#人工智能体系论" class="headerlink" title="人工智能体系论"></a>人工智能体系论</h1><blockquote>
+<p>略</p>
+</blockquote>
+]]></content>
       <categories>
-          
-          <category> 大数据分析 </category>
-          
+        <category>人工智能</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 大数据分析导论 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>回到顶部功能</title>
-      <link href="/2022/08/31/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%8A%9F%E8%83%BD/"/>
-      <url>/2022/08/31/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%8A%9F%E8%83%BD/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">坏消息：新生军训要搞到中秋！！<br />好消息：这几天都下雨，反正跑不了步ψ(｀∇´)ψ </font>      </p><hr><h2 id="添加回到顶部按钮"><a href="#添加回到顶部按钮" class="headerlink" title="添加回到顶部按钮"></a>添加回到顶部按钮</h2><blockquote><p>在layout中添加：</p></blockquote><pre><code class="html">               &lt;!-- backtotop --&gt;                &lt;div id = &quot;gotop&quot;&gt;                    &lt;img src=&quot;&lt;%- rootlink %&gt;scrollup.png&quot; alt=&quot;gotop&quot;&gt;                &lt;/div&gt;                &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- rootlink %&gt;css/totop.css&quot;&gt;                &lt;script&gt;                    window.addEventListener(&quot;scroll&quot;,handle)                    function handle()&#123;                        var oTop = document.body.scrollTop||document.documentElement.scrollTop                        if(oTop&gt;=200)&#123;                            gotop.style.display = &quot;block&quot;;                        &#125;else&#123;                            gotop.style.display = &quot;none&quot;;                        &#125;                        gotop.onclick = function()&#123;                            window.scrollTo(&#123;                                top:0,                                behavior:&quot;smooth&quot;                            &#125;)                        &#125;                    &#125;                &lt;/script&gt;</code></pre><blockquote><p>在css文件夹中新建文件totop.css   </p></blockquote><pre><code class="css">#gotop&#123;    position: fixed;    display: none;    right: 30px;    bottom: 50px;&#125;/* #gotop img&#123;    width: 80px;    height: 200px;&#125; */#gotop img:hover&#123;    cursor: pointer;&#125;</code></pre><h2 id="大功告成啦！"><a href="#大功告成啦！" class="headerlink" title="大功告成啦！"></a>大功告成啦！</h2><ul><li><h2 id="图标可以在阿里矢量图库里下载！"><a href="#图标可以在阿里矢量图库里下载！" class="headerlink" title="图标可以在阿里矢量图库里下载！"></a>图标可以在<a href="https://www.iconfont.cn/">阿里矢量图库</a>里下载！</h2>我丢在这里啦！<br><img src="/../imgs/scrollup.png" alt="picture"></li></ul>]]></content>
-      
-      
+      <tags>
+        <tag>人工智能绪论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>互联网数据分析</title>
+    <url>/2022/09/01/%E4%BA%92%E8%81%94%E7%BD%91%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="互联网分析的基本思路"><a href="#互联网分析的基本思路" class="headerlink" title="互联网分析的基本思路"></a>互联网分析的基本思路</h1><ul>
+<li>找出问题： 描述性分析</li>
+<li>分析问题： 诊断性分析，预测性分析，仿真模拟</li>
+<li>解决问题： 数据报告+决策性分析</li>
+</ul>
+<h1 id="不同类型数据分析方法及其原理"><a href="#不同类型数据分析方法及其原理" class="headerlink" title="不同类型数据分析方法及其原理"></a>不同类型数据分析方法及其原理</h1><ul>
+<li>描述性分析：通过计算数据集中性特征和波动特征以了解数据的基本情况  <ul>
+<li>数值分析：数量，平均数，极差，标准差，方差，极值<br>  <img src="/../imgs/sjfx.png" alt="shuju">   </li>
+<li>分布规律: 均匀分布，正态分布，长尾分布    <blockquote>
+<p>利用抛骰子得到正态分布:<br>  <img src="/../imgs/sj.png" alt="shuju"><br>长尾分布:<br>  <img src="/../imgs/cw.png" alt="cw"></p>
+</blockquote>
+</li>
+<li>可视化方法：柱状图，条形图，散点图，饼状图</li>
+</ul>
+</li>
+<li>诊断性分析：深入挖掘问题根源，识别依赖关系，找到影响因子（关联分析）：<br><img src="/../imgs/glfx.png" alt="glfx">   <ul>
+<li><h2 id="皮尔逊相关系数：（非线性数据只能用非线性模型）"><a href="#皮尔逊相关系数：（非线性数据只能用非线性模型）" class="headerlink" title="皮尔逊相关系数：（非线性数据只能用非线性模型）"></a>皮尔逊相关系数：（非线性数据只能用非线性模型）</h2><img src="/../imgs/pex.png" alt="pex"></li>
+</ul>
+</li>
+<li>预测性分析：是用线性回归或逻辑回归的方法找到自变量与因变量之间的关系，并使该关系等式预测因变量的变化<br><img src="/../imgs/huigui.png" alt="huigui"></li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> 生活 </category>
-          
+        <category>大数据分析</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 博客美化 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>部署到gitee</title>
-      <link href="/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/"/>
-      <url>/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>coding对新手及其不友好，同步个仓库卡的要死！！！！<br>🤬🤡（还是校园网卡？小丑竟是我）</p><hr><p>##倒不如直接用gitee</p>]]></content>
-      
-      
+      <tags>
+        <tag>分析基本思路和excel实践</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端学习路线</title>
+    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
       <categories>
-          
-          <category> 生活 </category>
-          
+        <category>前端</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 博客搭建 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>前端学习路线</title>
-      <link href="/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/"/>
-      <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-      
+      <tags>
+        <tag>学习路线</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>部署到gitee</title>
+    <url>/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>coding对新手及其不友好，同步个仓库卡的要死！！！！<br>🤬🤡（还是校园网卡？小丑竟是我）</p>
+<hr>
+<p>##倒不如直接用gitee</p>
+]]></content>
       <categories>
-          
-          <category> 前端 </category>
-          
+        <category>生活</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 学习路线 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>人工智能绪论</title>
-      <link href="/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/"/>
-      <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="the-defination-of-artificial-intelligence"><a href="#the-defination-of-artificial-intelligence" class="headerlink" title="the defination of artificial intelligence"></a>the defination of artificial intelligence</h1><blockquote><ul><li><h2 id="intelligence-wiki"><a href="#intelligence-wiki" class="headerlink" title="intelligence:(wiki)"></a>intelligence:(wiki)</h2>能够感知和推断信息的能力，并将其作为知识而拥有，已应用于环境，或语境中合适的行为    </li><li><h2 id="arttificial-intelligence"><a href="#arttificial-intelligence" class="headerlink" title="arttificial intelligence"></a>arttificial intelligence</h2>机器中的智能称为人工智能，其通常在运用程序，间或适当硬件的计算机系统中得以实现</li></ul></blockquote><h1 id="人工智能的基础"><a href="#人工智能的基础" class="headerlink" title="人工智能的基础"></a>人工智能的基础</h1><table><thead><tr><th align="center">学科</th><th align="center">内容</th></tr></thead><tbody><tr><td align="center">数学</td><td align="center">1.逻辑学 2.计算理论 3.概率论</td></tr><tr><td align="center">经济学</td><td align="center">1.博弈论 2.决策论 3.运筹学</td></tr><tr><td align="center">神经科学</td><td align="center">脑科学是主要研究内容</td></tr><tr><td align="center">认知心理学</td><td align="center">认知科学包括认知心理学</td></tr><tr><td align="center">控制理论和控制论</td><td align="center">是两个关联的交叉学科</td></tr></tbody></table><h1 id="人工智能的判定"><a href="#人工智能的判定" class="headerlink" title="人工智能的判定"></a>人工智能的判定</h1><blockquote><ul><li><h2 id="图灵测试-如何研判机器是否思维"><a href="#图灵测试-如何研判机器是否思维" class="headerlink" title="图灵测试 (如何研判机器是否思维)"></a>图灵测试 (如何研判机器是否思维)</h2>_具体内容_：人类裁判同时向被测试人和机器提出一些书面问题，经过一系列测试后，如果裁判无法分辨这些回答究竟来自人类还是机器，则判断机器通过测试，并具有人类的思维能力  </li><li><h2 id="图灵测试-2-0"><a href="#图灵测试-2-0" class="headerlink" title="图灵测试 2.0"></a>图灵测试 2.0</h2><table><thead><tr><th align="center">测试方法</th><th align="center">测试内容</th></tr></thead><tbody><tr><td align="center">反向图灵测试</td><td align="center">1.被试者的意图是使裁判将其判定为机器 2.机器掌管测试，判断测试者是否为人类</td></tr><tr><td align="center">学科专家图灵测试</td><td align="center">测试给定领域区分机器与专家</td></tr><tr><td align="center">总体图灵测试</td><td align="center">略</td></tr><tr><td align="center">最低智能信号测试</td><td align="center">略</td></tr><tr><td align="center">艾伯特测试</td><td align="center">略</td></tr><tr><td align="center">视觉图灵测试</td><td align="center">略</td></tr><tr><td align="center">维诺格拉德测试</td><td align="center">略</td></tr><tr><td align="center">中文房间</td><td align="center">略</td></tr></tbody></table></li></ul></blockquote><h1 id="人工智能体系论"><a href="#人工智能体系论" class="headerlink" title="人工智能体系论"></a>人工智能体系论</h1><blockquote><p>略</p></blockquote>]]></content>
-      
-      
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>优劣势分析</title>
+    <url>/2022/09/01/%E4%BC%98%E5%8A%A3%E5%8A%BF%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="excel简介及优劣势分析"><a href="#excel简介及优劣势分析" class="headerlink" title="excel简介及优劣势分析"></a>excel简介及优劣势分析</h1><ul>
+<li>优势： <blockquote>
+<p>1.对单数据源（单表格）数据分析非常灵活，方便<br>2.操作简单，分析性可复制性强，对业务指导性强   </p>
+</blockquote>
+</li>
+<li>劣势：   <blockquote>
+<p>1.对多数据源（多表格）数据分析时较为麻烦，低效<br>2.对大数据量数据分析时容易卡顿，报错</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="python简介及优劣势分析"><a href="#python简介及优劣势分析" class="headerlink" title="python简介及优劣势分析"></a>python简介及优劣势分析</h1><ul>
+<li>优势：<blockquote>
+<p>1.可读性文字编写的语言之一，学习难度较小<br>2.数据可视化，数据分析工具包丰富，分析效率高</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="如何想数据分析师一样思考问题"><a href="#如何想数据分析师一样思考问题" class="headerlink" title="*如何想数据分析师一样思考问题"></a>*如何想数据分析师一样思考问题</h1>]]></content>
       <categories>
-          
-          <category> 人工智能 </category>
-          
+        <category>大数据分析</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 人工智能绪论 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>what is data?</title>
-      <link href="/2022/08/30/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/"/>
-      <url>/2022/08/30/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul><li><h1 id="what-is-data"><a href="#what-is-data" class="headerlink" title="what is data?"></a>what is data?</h1><blockquote><p>未经处理的原始记录 ：商品数据，用户数据…   </p></blockquote></li><li><h1 id="what-can-data-do"><a href="#what-can-data-do" class="headerlink" title="what can data do?"></a>what can data do?</h1><blockquote><p>描述性分析，用户价值分析，用户分类分析    </p></blockquote></li><li><h1 id="the-attributes-of-data"><a href="#the-attributes-of-data" class="headerlink" title="the attributes of data"></a>the attributes of data</h1><blockquote><ul><li>数据变异性： <ul><li>检验标准 ：标准差  极差  方差</li></ul></li><li>数据规律性： 正态分布    </li><li>数据的客观性</li></ul></blockquote></li><li><h1 id="数据分析师需要具备的知识体系："><a href="#数据分析师需要具备的知识体系：" class="headerlink" title="数据分析师需要具备的知识体系："></a>数据分析师需要具备的知识体系：</h1></li></ul><h2 id="1-业务知识"><a href="#1-业务知识" class="headerlink" title="1.业务知识"></a>1.业务知识</h2><blockquote><p>数据分析最终是为业务服务的。若脱离行业认知和公司业务背景，分析的结果只会是拖了线的风筝，没有太大价值。</p><p>熟悉行业知识，了解市场环境、行业竞争、发展趋势。</p><p>理解公司的商业模式，业务场景及流程。</p><p>不同业务的指标体系。</p></blockquote><h2 id="2-分析方法"><a href="#2-分析方法" class="headerlink" title="2.分析方法"></a>2.分析方法</h2><blockquote><p>掌握数据分析的基本原理与一些有效的数据分析方法，根据业务场景中分析目的不同，选择对应的分析方法。另外，统计学很重要。</p></blockquote><blockquote><p>基本的分析方法：逻辑树分析法、对比分析法、相关分析法、漏斗分析法、综合评价分析法、结构分解法、因素分析法、RFM分析法、AARRR模型分析法等。</p></blockquote><blockquote><p>高级的分析方法：因子分析法、主成分分析法、聚类分析法、关联规则分析法、时间序列分析法、线性回归分析法、A&#x2F;B test等。 </p></blockquote><h2 id="3-数据分析思维"><a href="#3-数据分析思维" class="headerlink" title="3.数据分析思维"></a>3.数据分析思维</h2><blockquote><p>可以透过数据发现、拆解和解决问题。了解数据分析的流程，每个流程需要注意的事项，大数据思维等。</p></blockquote><blockquote><p> <em>问题拆解的结构化思维</em>：MECE原则</p></blockquote><blockquote><p><em>数据分析的流程</em> ：明确和拆解问题→确定变量和数据获取→数据探索和预处理→统计方法、模型、算法等的应用→结果分析和决策建议→结果执行、评估和反馈。</p></blockquote><h2 id="4-专业工具的使用"><a href="#4-专业工具的使用" class="headerlink" title="4.专业工具的使用"></a>4.专业工具的使用</h2><blockquote><p>掌握数据分析相关的常用工具，熟悉基本操作及结果的解读等。</p></blockquote><blockquote><p>常用的数据分析工具有：Excel、SQL、BI、Python、R、SPSS、SAS等。</p></blockquote><blockquote><p>建议必学Excel和SQL，他们能解决工作中遇到的大部分问题。再根据个人需要、时间、兴趣，学习BI、Python、SPSS等分析工具   </p></blockquote><ul><li><h1 id="数据分析的四个步骤"><a href="#数据分析的四个步骤" class="headerlink" title="数据分析的四个步骤"></a>数据分析的四个步骤</h1><ul><li>数据抓取    <blockquote><p>   埋点<br>   爬虫<br>   api     (通过接口直接访问数据库)   </p></blockquote></li><li>数据质量分析   <blockquote><p>   缺失值分析   （空值&#x2F;遗漏值）<br>   异常值分析    (离群点分析)  箱型图<br>   一致性分析    （矛盾&#x2F;多数据源数据）<br>   数据可视化  </p></blockquote></li><li>描述性分析，诊断性分析….</li><li>业务决策    <blockquote><p>描述性分析<br>诊断性分析<br>预测性分析<br>仿真模拟</p></blockquote></li></ul></li></ul>]]></content>
-      
-      
+      <tags>
+        <tag>大数据分析导论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>回到顶部功能</title>
+    <url>/2022/08/31/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">坏消息：新生军训要搞到中秋！！<br />好消息：这几天都下雨，反正跑不了步ψ(｀∇´)ψ </font>      </p>
+<hr>
+<h2 id="添加回到顶部按钮"><a href="#添加回到顶部按钮" class="headerlink" title="添加回到顶部按钮"></a>添加回到顶部按钮</h2><blockquote>
+<p>在layout中添加：</p>
+</blockquote>
+<pre><code class="html">               &lt;!-- backtotop --&gt;
+                &lt;div id = &quot;gotop&quot;&gt;
+                    &lt;img src=&quot;&lt;%- rootlink %&gt;scrollup.png&quot; alt=&quot;gotop&quot;&gt;
+                &lt;/div&gt;
+                &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- rootlink %&gt;css/totop.css&quot;&gt;
+                &lt;script&gt;
+                    window.addEventListener(&quot;scroll&quot;,handle)
+                    function handle()&#123;
+                        var oTop = document.body.scrollTop||document.documentElement.scrollTop
+                        if(oTop&gt;=200)&#123;
+                            gotop.style.display = &quot;block&quot;;
+                        &#125;else&#123;
+                            gotop.style.display = &quot;none&quot;;
+                        &#125;
+                        gotop.onclick = function()&#123;
+                            window.scrollTo(&#123;
+                                top:0,
+                                behavior:&quot;smooth&quot;
+                            &#125;)
+                        &#125;
+                    &#125;
+                &lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>在css文件夹中新建文件totop.css   </p>
+</blockquote>
+<pre><code class="css">#gotop&#123;
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 50px;
+&#125;
+/* #gotop img&#123;
+    width: 80px;
+    height: 200px;
+&#125; */
+#gotop img:hover&#123;
+    cursor: pointer;
+&#125;
+</code></pre>
+<h2 id="大功告成啦！"><a href="#大功告成啦！" class="headerlink" title="大功告成啦！"></a>大功告成啦！</h2><ul>
+<li><h2 id="图标可以在阿里矢量图库里下载！"><a href="#图标可以在阿里矢量图库里下载！" class="headerlink" title="图标可以在阿里矢量图库里下载！"></a>图标可以在<a href="https://www.iconfont.cn/">阿里矢量图库</a>里下载！</h2>我丢在这里啦！<br><img src="/../imgs/scrollup.png" alt="picture"></li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> 大数据分析 </category>
-          
+        <category>生活</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 大数据分析导论 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>云计算实验</title>
-      <link href="/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/"/>
-      <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      
-      
+      <tags>
+        <tag>博客美化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>what is data?</title>
+    <url>/2022/08/30/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><ul>
+<li><h1 id="what-is-data"><a href="#what-is-data" class="headerlink" title="what is data?"></a>what is data?</h1><blockquote>
+<p>未经处理的原始记录 ：商品数据，用户数据…   </p>
+</blockquote>
+</li>
+<li><h1 id="what-can-data-do"><a href="#what-can-data-do" class="headerlink" title="what can data do?"></a>what can data do?</h1><blockquote>
+<p>描述性分析，用户价值分析，用户分类分析    </p>
+</blockquote>
+</li>
+<li><h1 id="the-attributes-of-data"><a href="#the-attributes-of-data" class="headerlink" title="the attributes of data"></a>the attributes of data</h1><blockquote>
+<ul>
+<li>数据变异性： <ul>
+<li>检验标准 ：标准差  极差  方差</li>
+</ul>
+</li>
+<li>数据规律性： 正态分布    </li>
+<li>数据的客观性</li>
+</ul>
+</blockquote>
+</li>
+<li><h1 id="数据分析师需要具备的知识体系："><a href="#数据分析师需要具备的知识体系：" class="headerlink" title="数据分析师需要具备的知识体系："></a>数据分析师需要具备的知识体系：</h1></li>
+</ul>
+<h2 id="1-业务知识"><a href="#1-业务知识" class="headerlink" title="1.业务知识"></a>1.业务知识</h2><blockquote>
+<p>数据分析最终是为业务服务的。若脱离行业认知和公司业务背景，分析的结果只会是拖了线的风筝，没有太大价值。</p>
+<p>熟悉行业知识，了解市场环境、行业竞争、发展趋势。</p>
+<p>理解公司的商业模式，业务场景及流程。</p>
+<p>不同业务的指标体系。</p>
+</blockquote>
+<h2 id="2-分析方法"><a href="#2-分析方法" class="headerlink" title="2.分析方法"></a>2.分析方法</h2><blockquote>
+<p>掌握数据分析的基本原理与一些有效的数据分析方法，根据业务场景中分析目的不同，选择对应的分析方法。另外，统计学很重要。</p>
+</blockquote>
+<blockquote>
+<p>基本的分析方法：逻辑树分析法、对比分析法、相关分析法、漏斗分析法、综合评价分析法、结构分解法、因素分析法、RFM分析法、AARRR模型分析法等。</p>
+</blockquote>
+<blockquote>
+<p>高级的分析方法：因子分析法、主成分分析法、聚类分析法、关联规则分析法、时间序列分析法、线性回归分析法、A&#x2F;B test等。 </p>
+</blockquote>
+<h2 id="3-数据分析思维"><a href="#3-数据分析思维" class="headerlink" title="3.数据分析思维"></a>3.数据分析思维</h2><blockquote>
+<p>可以透过数据发现、拆解和解决问题。了解数据分析的流程，每个流程需要注意的事项，大数据思维等。</p>
+</blockquote>
+<blockquote>
+<p> <em>问题拆解的结构化思维</em>：MECE原则</p>
+</blockquote>
+<blockquote>
+<p><em>数据分析的流程</em> ：明确和拆解问题→确定变量和数据获取→数据探索和预处理→统计方法、模型、算法等的应用→结果分析和决策建议→结果执行、评估和反馈。</p>
+</blockquote>
+<h2 id="4-专业工具的使用"><a href="#4-专业工具的使用" class="headerlink" title="4.专业工具的使用"></a>4.专业工具的使用</h2><blockquote>
+<p>掌握数据分析相关的常用工具，熟悉基本操作及结果的解读等。</p>
+</blockquote>
+<blockquote>
+<p>常用的数据分析工具有：Excel、SQL、BI、Python、R、SPSS、SAS等。</p>
+</blockquote>
+<blockquote>
+<p>建议必学Excel和SQL，他们能解决工作中遇到的大部分问题。再根据个人需要、时间、兴趣，学习BI、Python、SPSS等分析工具   </p>
+</blockquote>
+<ul>
+<li><h1 id="数据分析的四个步骤"><a href="#数据分析的四个步骤" class="headerlink" title="数据分析的四个步骤"></a>数据分析的四个步骤</h1><ul>
+<li>数据抓取    <blockquote>
+<p>   埋点<br>   爬虫<br>   api     (通过接口直接访问数据库)   </p>
+</blockquote>
+</li>
+<li>数据质量分析   <blockquote>
+<p>   缺失值分析   （空值&#x2F;遗漏值）<br>   异常值分析    (离群点分析)  箱型图<br>   一致性分析    （矛盾&#x2F;多数据源数据）<br>   数据可视化  </p>
+</blockquote>
+</li>
+<li>描述性分析，诊断性分析….</li>
+<li>业务决策    <blockquote>
+<p>描述性分析<br>诊断性分析<br>预测性分析<br>仿真模拟</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> 云计算 </category>
-          
+        <category>大数据分析</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 实验一 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>mysql</title>
-      <link href="/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/"/>
-      <url>/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><font size=7>MySQL  安装教程</font><br>-mysql官网   </p><blockquote><p><a href="https://www.mysql.com/">click here</a>    </p></blockquote><ul><li><p>点击download<br><img src="/../imgs/download.png" alt="picture">   </p></li><li><p>划到下边找到community<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193150.png" alt="picture"> </p></li><li><p>找到mysql community server 点击它  </p></li><li><p>点击install for windows<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193948.png" alt="catch">   </p></li><li><p>然后下载第一个(期间点击no,thanks,不然的话就要注册帐号了)  完成后运行文件<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20195231.png" alt="catch"></p></li></ul>]]></content>
-      
-      
+      <tags>
+        <tag>大数据分析导论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql</title>
+    <url>/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><font size=7>MySQL  安装教程</font><br>-mysql官网   </p>
+<blockquote>
+<p><a href="https://www.mysql.com/">click here</a>    </p>
+</blockquote>
+<ul>
+<li><p>点击download<br><img src="/../imgs/download.png" alt="picture">   </p>
+</li>
+<li><p>划到下边找到community<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193150.png" alt="picture"> </p>
+</li>
+<li><p>找到mysql community server 点击它  </p>
+</li>
+<li><p>点击install for windows<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193948.png" alt="catch">   </p>
+</li>
+<li><p>然后下载第一个(期间点击no,thanks,不然的话就要注册帐号了)  完成后运行文件<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20195231.png" alt="catch"></p>
+</li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> 数据库 </category>
-          
+        <category>数据库</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> mysql </tag>
-            
-        </tags>
-      
-    </entry>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搜索问题求解</title>
+    <url>/2022/09/09/%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98%E6%B1%82%E8%A7%A3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="智力游戏问题"><a href="#智力游戏问题" class="headerlink" title="智力游戏问题"></a>智力游戏问题</h1><ul>
+<li>八数码难题（8-puzzle）   <blockquote>
+<p>有一个3*3的棋盘，九个格子摆上八个棋子，不同棋子上标的数字不同，给定初状态和末状态，求最少移动步骤数<br><img src="/../imgs/eight.png" alt="eight"></p>
+</blockquote>
+</li>
+<li>八皇后问题(eight queens puzzle)<blockquote>
+<p>8*8的国际象棋棋盘上拜访八个皇后使其不能发生相互攻击的摆法总个数</p>
+</blockquote>
+</li>
+<li>汉诺塔问题（hannoi tower）</li>
+<li>传教士和食人族问题（missionaries and cannibals problems）<blockquote>
+<p>三个传教士和三个食人族来到一条河的左岸，想度过右岸，河的左岸只有一条船(只能乘坐两个人)：当食人族的人数超过传教士，食人族就会把传教士吃掉，如何安全渡船？</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="现实世界问题"><a href="#现实世界问题" class="headerlink" title="现实世界问题"></a>现实世界问题</h1><ul>
+<li>最短路径问题  <blockquote>
+<p>求解其中给定两个之间的最短距离<br><img src="/../imgs/shortest.png" alt="shortest"></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="搜索问题要素"><a href="#搜索问题要素" class="headerlink" title="搜索问题要素"></a>搜索问题要素</h1><ul>
+<li>状态表征：<blockquote>
+<p>状态是问题在不同时期或不同条件所表现出的形态。问题提出时的状态称其为初始状态，问题达到预期结果时的状态为目标状态，其他为中间状态。<br>表征方法主要采用原子表征（不考虑状态的内部构造）<br><img src="/../imgs/atom.png" alt="atom">  </p>
+</blockquote>
+</li>
+<li>状态空间：<blockquote>
+<p>状态空间是问题在不同时期或在不同条件所表现出来的所有状态的有机组成。（可抽象为一张图或一棵树）  </p>
+</blockquote>
+</li>
+<li>形式化：<blockquote>
+<p>def1: 一个问题若可以表示为状态空间，并且初始状态和目标状态之间可能存在多条路径的话，就称其为搜索问题<br>def2: 一个搜索问题可以形式化为一个5元组，search &#x3D; (S,S0,A,Gt,c)</p>
+<blockquote>
+<p>1.S为问题空间状态集合，状态s∈S，且S不为空<br>2.s0表示初始状态<br>3.A表示动作集合，因为动作导致状态迁移，或因动作而生成后继状态<br>4.Gt是目标检测（goal test），判定给定状态是否为目标状态<br>5.c表示路径代价（path cost）</p>
+</blockquote>
+</blockquote>
+</li>
+</ul>
+<h1 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h1><p>一个简单的搜索问题求解算法</p>
+<pre><code class="pseudocode">agent: simple-people-solving
+    imput: percept #感知
+    output: an action  #搜索得出来的动作
+    local：       #局部变量
+        seq：一个动作序列，初始化为空
+        state：一些对于当前状态的描述
+        goal：一个目标，初始化为空
+        problem：一个对问题的形式化处理
+        action：最近的action，初始化为空
     
-    
-    
-    <entry>
-      <title>hexo 博客美化</title>
-      <link href="/2022/08/29/hexo-%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/"/>
-      <url>/2022/08/29/hexo-%E5%8D%9A%E5%AE%A2%E7%BE%8E%E5%8C%96/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">新生要军训，好几天都不能跑步，崩溃了。。 </font>   </p><img src=https://w.wallhaven.cc/full/72/wallhaven-72yqlv.png width = "300" height = "200" alt="我" align=center />   <ul><li><p><a href="https://zhuanlan.zhihu.com/p/69211731">参考资料</a></p></li><li><h2 id="添加看板娘（我的是看板狗hahaha"><a href="#添加看板娘（我的是看板狗hahaha" class="headerlink" title="添加看板娘（我的是看板狗hahaha)"></a>添加看板娘（我的是看板狗hahaha)</h2></li></ul><blockquote><p><strong>在git bash上获取live2d：</strong>   </p></blockquote><pre><code class="bash">$ npm install --save hexo-helper-live2d</code></pre><blockquote><p>输入以下命令，下载相应的模型，将 packagename 更换成型名称即可，更多模型选择请<a href="https://github.com/xiazeyu/live2d-widget-models">点击此处</a>，各个模型的预览请访问<a href="https://huaji8.top/post/live2d-plugin-2.0/">原作者的博客</a></p></blockquote><pre><code class="bash">$ npm install packagename</code></pre><blockquote><p>打开站点目录下的 _config.yml 文件，添加如下代码：</p></blockquote><pre><code class="yml">live2d:    enable: true    scriptFrom: local    model:         use: live2d-widget-model-haruto #模型选择    display:         position: right  #模型位置        width: 150       #模型宽度        height: 300      #模型高度    mobile:         show: false      #是否在手机端显示</code></pre><blockquote><p>设置好过后我们就拥有了一个卡通人物 （我在想是否能搞个米蒂的模型呢hahahaha）</p></blockquote><ul><li><h2 id="鼠标点击效果"><a href="#鼠标点击效果" class="headerlink" title="鼠标点击效果"></a>鼠标点击效果</h2></li></ul><blockquote><p><strong>效果烟花爆炸：</strong><br>在 \themes\主题\source\js 目录下新建一个 fireworks.js 的文件，里面写入以下代码：</p></blockquote><pre><code class="js">&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;&quot;use strict&quot;;function updateCoords(e)&#123;pointerX=(e.clientX||e.touches[0].clientX)-canvasEl.getBoundingClientRect().left,pointerY=e.clientY||e.touches[0].clientY-canvasEl.getBoundingClientRect().top&#125;function setParticuleDirection(e)&#123;var t=anime.random(0,360)*Math.PI/180,a=anime.random(50,180),n=[-1,1][anime.random(0,1)]*a;return&#123;x:e.x+n*Math.cos(t),y:e.y+n*Math.sin(t)&#125;&#125;function createParticule(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=colors[anime.random(0,colors.length-1)],a.radius=anime.random(16,32),a.endPos=setParticuleDirection(a),a.draw=function()&#123;ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.fillStyle=a.color,ctx.fill()&#125;,a&#125;function createCircle(e,t)&#123;var a=&#123;&#125;;return a.x=e,a.y=t,a.color=&quot;#F00&quot;,a.radius=0.1,a.alpha=0.5,a.lineWidth=6,a.draw=function()&#123;ctx.globalAlpha=a.alpha,ctx.beginPath(),ctx.arc(a.x,a.y,a.radius,0,2*Math.PI,!0),ctx.lineWidth=a.lineWidth,ctx.strokeStyle=a.color,ctx.stroke(),ctx.globalAlpha=1&#125;,a&#125;function renderParticule(e)&#123;for(var t=0;t&lt;e.animatables.length;t++)&#123;e.animatables[t].target.draw()&#125;&#125;function animateParticules(e,t)&#123;for(var a=createCircle(e,t),n=[],i=0;i&lt;numberOfParticules;i++)&#123;n.push(createParticule(e,t))&#125;anime.timeline().add(&#123;targets:n,x:function(e)&#123;return e.endPos.x&#125;,y:function(e)&#123;return e.endPos.y&#125;,radius:0.1,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule&#125;).add(&#123;targets:a,radius:anime.random(80,160),lineWidth:0,alpha:&#123;value:0,easing:&quot;linear&quot;,duration:anime.random(600,800)&#125;,duration:anime.random(1200,1800),easing:&quot;easeOutExpo&quot;,update:renderParticule,offset:0&#125;)&#125;function debounce(e,t)&#123;var a;return function()&#123;var n=this,i=arguments;clearTimeout(a),a=setTimeout(function()&#123;e.apply(n,i)&#125;,t)&#125;&#125;var canvasEl=document.querySelector(&quot;.fireworks&quot;);if(canvasEl)&#123;var ctx=canvasEl.getContext(&quot;2d&quot;),numberOfParticules=30,pointerX=0,pointerY=0,tap=&quot;mousedown&quot;,colors=[&quot;#FF1461&quot;,&quot;#18FF92&quot;,&quot;#5A87FF&quot;,&quot;#FBF38C&quot;],setCanvasSize=debounce(function()&#123;canvasEl.width=2*window.innerWidth,canvasEl.height=2*window.innerHeight,canvasEl.style.width=window.innerWidth+&quot;px&quot;,canvasEl.style.height=window.innerHeight+&quot;px&quot;,canvasEl.getContext(&quot;2d&quot;).scale(2,2)&#125;,500),render=anime(&#123;duration:1/0,update:function()&#123;ctx.clearRect(0,0,canvasEl.width,canvasEl.height)&#125;&#125;);document.addEventListener(tap,function(e)&#123;&quot;sidebar&quot;!==e.target.id&amp;&amp;&quot;toggle-sidebar&quot;!==e.target.id&amp;&amp;&quot;A&quot;!==e.target.nodeName&amp;&amp;&quot;IMG&quot;!==e.target.nodeName&amp;&amp;(render.play(),updateCoords(e),animateParticules(pointerX,pointerY))&#125;,!1),setCanvasSize(),window.addEventListener(&quot;resize&quot;,setCanvasSize,!1)&#125;;</code></pre><blockquote><p>然后在 \themes\主题\layout\layout.ejs 文件中写入以下代码：</p></blockquote><pre><code class="ejs">&lt;canvas class=&quot;fireworks&quot; style=&quot;position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;&quot; &gt;&lt;/canvas&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.bootcss.com/animejs/2.2.0/anime.min.js&quot;&gt;&lt;/script&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/js/fireworks.js&quot;&gt;&lt;/script&gt;</code></pre><ul><li><h2 id="添加背景音乐"><a href="#添加背景音乐" class="headerlink" title="添加背景音乐"></a>添加背景音乐</h2></li></ul><blockquote><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><blockquote><p>打开网页版<a href="https://music.163.com/">网易云音乐</a>，选择你准备添加的背景音乐，点击生成外链播放器，前提是要有版权，不然是无法生成外链播放器的，复制底下的HTML代码  </p></blockquote></blockquote><p><img src="https://pic2.zhimg.com/80/v2-19a363752b9ac44ca80824b81e86233d_1440w.jpg" alt="easenet">   </p><blockquote><blockquote><p>然后将此代码放到你想要放的地方，比如放在博客的左侧，则打开 \themes\主题\layout\left.ejs 文件，将复制的HTML代码粘贴进去，再进行适当的位置设置让播放器更美观，其中 auto&#x3D;1 表示打开网页自动播放音乐，auto&#x3D;0 表示关闭自动播放音乐    </p></blockquote><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><blockquote><p>在layout.ejs中body标签加入以下：   </p></blockquote></blockquote><pre><code class="html"> &lt;!--音乐--&gt;  &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css&quot;&gt;  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js&quot;&gt;&lt;/script&gt;  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js&quot;&gt;&lt;/script&gt;  &lt;div id=&quot;player&quot; class=&quot;aplayer aplayer-withlist aplayer-fixed&quot; data-id=&quot;3025663508&quot; data-server=&quot;netease&quot; data-type=&quot;playlist&quot; data-order=&quot;random&quot; data-fixed=&quot;true&quot; data-listfolded=&quot;true&quot; data-theme=&quot;#2D8CF0&quot;&gt;&lt;/div&gt;  </code></pre><blockquote><blockquote><p>可以自行修改参数   </p><h2 id="重要优化"><a href="#重要优化" class="headerlink" title="重要优化"></a>重要优化</h2><p>实现aplayer嵌入效果（像我一样）    </p></blockquote></blockquote><pre><code class="css">.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body &#123;    left: -66px !important&#125;.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover &#123;    left: 0 !important&#125;</code></pre><blockquote><blockquote><p>layout.ejs文件中添加：</p></blockquote></blockquote><pre><code class="html">&lt;link rel=&quot;stylesheet&quot; href=&quot;/css/aplayer.css&quot;/&gt;</code></pre><ul><li><h2 id="流星背景特效"><a href="#流星背景特效" class="headerlink" title="流星背景特效"></a>流星背景特效</h2></li></ul><blockquote><p>使用：</p></blockquote><pre><code class="layout.ejs">&lt;canvas    id=&quot;background&quot;    style=&quot;position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:-1&quot;&gt;&lt;/canvas&gt;&lt;script src=&quot;/js/background.js&quot;&gt;&lt;/script&gt;</code></pre><blockquote><p>下载：<a href="https://argvchs.netlify.app/js/background.js">background.js</a></p></blockquote><ul><li><h2 id="鼠标指针特效"><a href="#鼠标指针特效" class="headerlink" title="鼠标指针特效"></a>鼠标指针特效</h2></li></ul><blockquote><p>使用：</p></blockquote><pre><code class="layout.ejs">&lt;div id=&quot;cursor&quot;&gt;&lt;/div&gt;&lt;script src=&quot;/css/cursor.css&quot;&gt;&lt;/script&gt;&lt;script src=&quot;/js/cursor.js&quot;&gt;&lt;/script&gt;</code></pre><blockquote><p>下载：</p><p><a href="https://argvchs.netlify.app/assets/cursor.css">cursor.css</a><br><a href="https://argvchs.netlify.app/js/cursor.js">cursor.js</a></p></blockquote>]]></content>
-      
-      
+    state &lt;- get_current_state(state, percept) #获取当前状态
+    if seq is empty then
+        goal &lt;- formulate_goal(state) #对目标状态进行形式化处理
+        problem &lt;- formulate_goal(state, goal) #对搜索问题进行形式化
+        seq &lt;- search(problem)   #完成当前搜索任务
+        if seq = failure then
+            return null action
+    action &lt;- first(seq)
+    seq &lt;- rest(seq)
+    return action
+</code></pre>
+<h1 id="搜索问题实例化"><a href="#搜索问题实例化" class="headerlink" title="搜索问题实例化"></a>搜索问题实例化</h1><ul>
+<li><mark>八数码难题：</mark><blockquote>
+<ol>
+<li>状态s： 九个格子中八个数字棋子与空格的不同摆放</li>
+<li>初始状态s0：任意一个状态都能成为初始状态</li>
+<li>动作集合A：最简单的动作是移动空格（上下左右）</li>
+<li>目标检测Gt：检查某个状态是否与目标状态的布局相符</li>
+<li>路径代价c: 每一步代价为1</li>
+</ol>
+</blockquote>
+</li>
+<li><mark>八皇后问题：</mark><br>包含两个形式方法：</li>
+</ul>
+<ol>
+<li>增量形式化： 空状态开始，到摆满n个（常用）</li>
+<li>全态形式化： 初始随机摆放，移动皇后到不违法<blockquote>
+<ol>
+<li>状态集合：棋盘摆放1-n个皇后</li>
+<li>初始状态：棋盘上没有皇后</li>
+<li>动作集合： 每次添加一个皇后到任意一个空格且合法</li>
+<li>目标检测： 八个皇后已摆放且合法</li>
+<li>路径代价：等于添加皇后的步数</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><mark>传教士食人族问题</mark><br>只需左岸状态就可以推出右岸状态，左岸状态由三元组表示：S_left &#x3D; (missionary, cannibal, boat) boat&#x3D;1：表示船在左侧<blockquote>
+<ol>
+<li>状态集合：表示三元组的集合</li>
+<li>初始状态：s0 &#x3D; (3,3,1)</li>
+<li>动作集合；用船将传教士和食人族运过河</li>
+<li>目标检测： s &#x3D; (0,0,0)</li>
+<li>路径代价： 等于路径中的步数</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h1 id="搜索求解方式"><a href="#搜索求解方式" class="headerlink" title="搜索求解方式"></a>搜索求解方式</h1><ul>
+<li><mark>树搜索</mark>  </li>
+<li><mark>图搜索</mark></li>
+<li><mark>无信息搜索</mark></li>
+<li><mark>有信息搜索</mark></li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> 生活 </category>
-          
+        <category>人工智能原理</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 博客美化 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>搭建hexo博客</title>
-      <link href="/2022/08/29/blog_built/"/>
-      <url>/2022/08/29/blog_built/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><font size=3>参考了很多资料：b站，github，别人的博客<font><br><a href="https://www.cnblogs.com/huanhao/p/hexobase.html">参考最多的博客</a><br><a href="https://argvchs.netlify.app/">我主题作者的博客</a><br><a href="https://github.com/argvchs/hexo-theme-particlex">主题获取</a></p><hr><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><ul><li><h3 id="node-js"><a href="#node-js" class="headerlink" title="node.js"></a>node.js</h3></li></ul><blockquote><p><a href="http://nodejs.cn/download/">node.js获取</a>   </p><p><mark>记得添加环境变量再next</mark>  </p></blockquote><ul><li><h3 id="git"><a href="#git" class="headerlink" title="git"></a>git</h3></li></ul><blockquote><p><a href="https://git-scm.com/">git获取</a><br>一路next就行<br><em><strong>验证是否安装成功：</strong></em><br>验证git: 桌面右键有git bash<br><img src="https://i.loli.net/2020/02/29/s1YhxtEILOlk4Xz.png" alt="git">   </p></blockquote><ul><li><h3 id="验证node-js-点击git-bash依次执行命令"><a href="#验证node-js-点击git-bash依次执行命令" class="headerlink" title="验证node.js:  点击git bash依次执行命令"></a>验证node.js:  点击git bash依次执行命令</h3></li></ul><pre><code class="bash">$ node -v$ npm -v</code></pre><p><em><strong>输出版本号就算成功</strong></em>   </p><ul><li><h3 id="安装cnpm"><a href="#安装cnpm" class="headerlink" title="安装cnpm"></a>安装cnpm</h3></li></ul><blockquote><p>git bash中执行：   </p></blockquote><pre><code class="bash">    $ npm install -g cnpm --registry=https://registry.npm.taobao.org</code></pre><blockquote><p>检查是否安装完成：</p></blockquote><pre><code class="bash">$ cnpm -v</code></pre><h2 id="安装hexo并初始化"><a href="#安装hexo并初始化" class="headerlink" title="安装hexo并初始化"></a>安装hexo并初始化</h2><ul><li><h3 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h3></li></ul><pre><code class="bash"> $ cnpm install hexo-cli -g</code></pre><ul><li><h3 id="创建blog文件夹并在当前目录打开git-bash"><a href="#创建blog文件夹并在当前目录打开git-bash" class="headerlink" title="创建blog文件夹并在当前目录打开git bash"></a>创建blog文件夹并在当前目录打开git bash</h3></li></ul><blockquote><p>依次执行命令：</p></blockquote><pre><code class="bash">$ hexo init$ cnpm install</code></pre><blockquote><p>这时可以在本地浏览我们的博客了</p></blockquote><pre><code class="bash">$ hexo s</code></pre><p><img src="https://cdn.jsdelivr.net/gh/kjhuanhao/blogcdn/img/Snipaste_2020-02-29_09-31-47.jmi628mj35e.png" alt="blog_local">   </p><h2 id="可以更换主题然后配置文件啦！"><a href="#可以更换主题然后配置文件啦！" class="headerlink" title="可以更换主题然后配置文件啦！"></a>可以更换主题然后配置文件啦！</h2><blockquote><h3 id="hexo的主题地址："><a href="#hexo的主题地址：" class="headerlink" title="hexo的主题地址："></a>hexo的主题地址：</h3><p><a href="https://hexo.io/themes/">hexo</a>    </p></blockquote><h2 id="主题下载"><a href="#主题下载" class="headerlink" title="主题下载"></a>主题下载</h2><blockquote><p>打开主题地址：点击 Clone or download<br><img src="https://cdn.jsdelivr.net/gh/kjhuanhao/blogcdn/img/Snipaste_2020-02-29_09-46-02.gnmyl5b7s2.png" alt="clone"><br>在blog文件夹中打开git bash<br>执行命令：</p></blockquote><pre><code class="bash">git clone 复制的地址 themes/主题名字</code></pre><h2 id="接着可以修改站点配置文件什么的"><a href="#接着可以修改站点配置文件什么的" class="headerlink" title="接着可以修改站点配置文件什么的"></a>接着可以修改站点配置文件什么的</h2><h2 id="部署到coding-或者-github"><a href="#部署到coding-或者-github" class="headerlink" title="部署到coding 或者 github"></a>部署到coding 或者 github</h2><blockquote><p>可以参考我推荐的别人的blog   </p></blockquote>]]></content>
-      
-      
+      <tags>
+        <tag>搜索问题求解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>线性回归</title>
+    <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><p> <img src="/../imgs/linear.png" alt="linear">   </p>
+<ul>
+<li>如何计算系数？ <blockquote>
+<p>使用最小二乘法估算系数：<br><img src="/../imgs/zuixiao.png" alt="zuixiao">   </p>
+</blockquote>
+</li>
+<li>如何评估线性回归的好与坏？   <blockquote>
+<p><img src="/../imgs/pinggu.png" alt="pinggu"><br>R^2越大线性模型就越贴切   </p>
+</blockquote>
+</li>
+<li>如何评估回归的细节:  <blockquote>
+<p>假设用python的线性回归：<br><img src="/../imgs/py_linear.png" alt="pylinear"><br>f_statistic: 自变量与因变量是否有关联（但不知道什么关联）<br>constant：常数项  （coef表示值）…<br>以下的都是系数</p>
+<ul>
+<li>得利用t值和p值来判断是否有意义：  <blockquote>
+<p>当发现t值小，p值大，则这个参数没什么意义（参考值意义低）<br>后边的数值区间为置信区间  std err为标准差</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+]]></content>
       <categories>
-          
-          <category> 生活 </category>
-          
+        <category>大数据分析</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 博客搭建 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2022/08/27/hello-world/"/>
-      <url>/2022/08/27/hello-world/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
-      
+      <tags>
+        <tag>线性回归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逻辑回归</title>
+    <url>/2022/09/03/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归的本质就是由线性回归转变为非线性回归的样子：如图<br><img src="/../imgs/logi.png" alt="logi">  </p>
+<blockquote>
+<p>计算系数的方法：最大似然估计  </p>
+<blockquote>
+<ul>
+<li>概率和似然的区别：<br>概率是指已知一些概率分布参数的情况下，预测观测结果<br>似然适用于已经知道某些观测所得到的结果时，对观测结果所属的概率分布参数进行估值<br><img src="/../imgs/sir.png" alt="sir"><br><img src="/../imgs/likeli.png" alt="likeli"></li>
+</ul>
+</blockquote>
+</blockquote>
+<h1 id="仿真模拟："><a href="#仿真模拟：" class="headerlink" title="仿真模拟："></a>仿真模拟：</h1><p>类似于算法分析中的随机化算法来模拟各种条件下产生的结果   </p>
+]]></content>
       <categories>
-          
-          <category> 生活 </category>
-          
+        <category>大数据分析</category>
       </categories>
-      
-      
-        <tags>
-            
-            <tag> 博客搭建 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-  
-  
+      <tags>
+        <tag>逻辑回归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据建模准备</title>
+    <url>/2022/09/12/%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-理解数据和业务"><a href="#1-理解数据和业务" class="headerlink" title="1.理解数据和业务"></a>1.理解数据和业务</h2><h2 id="2-准备数据"><a href="#2-准备数据" class="headerlink" title="2.准备数据"></a>2.准备数据</h2><h2 id="3-数据建模"><a href="#3-数据建模" class="headerlink" title="3.数据建模"></a>3.数据建模</h2><ul>
+<li><h2 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h2><blockquote>
+<p>分类是有监督的学习过程<br>首先要有一批已经有标签结果的数据<br> 如果缺少已知信息</p>
+<ul>
+<li>考虑其他方法，如聚类 </li>
+<li>考虑处理数据：人工标注<br>分类问题包括：</li>
+<li>二分类：是或否</li>
+<li>多分类</li>
+<li>多标签分类<br>解决方法：knn，决策树，随机森林，svm</li>
+</ul>
+</blockquote>
+</li>
+<li><h2 id="聚类问题"><a href="#聚类问题" class="headerlink" title="聚类问题"></a>聚类问题</h2><blockquote>
+<p>就是把一个数据集划分成多个组，以便针对特定用户群体去开发一些特定功能（无监督的）<br>使得组内数据高度集中，和其他组的数据之间尽量远离</p>
+<ul>
+<li>互斥：小组与小组之间没有交集</li>
+<li>相交：一条数据即可能存在a组也可能存在b组</li>
+<li>层次： 一个大组还可以细分为若干个小组</li>
+<li>模糊： 一个用户并不绝对属于某个小组，只能由概率表示和小组间的关系</li>
+</ul>
+<hr>
+<ul>
+<li>基于划分的聚类，通常用于互斥的小组</li>
+<li>基于密度的聚类，可以用于解决数据形状不均匀的情况</li>
+<li>基于层级的聚类，适用于需要对数据细分的情况： 自顶向下，全部数据从一个组开始分裂；自底向上，最开始每一条数据都是一个组，开始合并直到满足要求</li>
+<li>基于模型分类：高斯分布，正态分布</li>
+</ul>
+</blockquote>
+</li>
+<li><h2 id="回归问题-regression"><a href="#回归问题-regression" class="headerlink" title="回归问题   regression"></a>回归问题   regression</h2><img src="/../imgs/datamol.png" alt="problem">  </li>
+<li><h2 id="关联问题"><a href="#关联问题" class="headerlink" title="关联问题"></a>关联问题</h2><blockquote>
+<p>关联分析是无监督学习，目标是挖掘隐藏在数据中的关联模式并加以利用<br>在已有的数据中寻找数据的相关关系，以期望能够使用这些规则去提升效率和业绩<br>商品销售分析，相关推荐系统分析，用户行为分析</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="模型集成-合并多个模型来提升效果"><a href="#模型集成-合并多个模型来提升效果" class="headerlink" title="模型集成 合并多个模型来提升效果"></a>模型集成 合并多个模型来提升效果</h3><ol>
+<li>bagging 装袋法<br><img src="/../imgs/bagging.png" alt="bagging"></li>
+<li>boosting<br><img src="/../imgs/boosting.png" alt="boosting"></li>
+<li>stacking</li>
+</ol>
+<h2 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h2><p>是对模型进行多种维度的评估，来确认模型是否可以放到先上去使用  </p>
+<ul>
+<li>评估指标<br><mark>混淆矩阵与准确率指标</mark><br>example：对小猪图片的辨别（二分类模型）<br><img src="/../imgs/distin.png" alt="distinct"><br>包含数值：</li>
+<li>真阳性</li>
+<li>真阴性</li>
+<li>假阳性</li>
+<li>假阴性<br><img src="/../imgs/flag.png" alt="flag"><br><img src="/../imgs/dis.png" alt="flag"><br><img src="/../imgs/matrix.png" alt="ma">  由这两个值得出roc曲线和auc值图(纵轴：真正例率)<br><img src="/../imgs/roc.png" alt="roc"><br>当roc曲线接近对角线时模型很不稳定<br>业务抽样评估可以减弱这种情况  </li>
+<li>泛化能力评估  <blockquote>
+<ul>
+<li>overfitting<br>模型在训练集上表现良好，在测试集或者验证集上表现不佳</li>
+<li>underfitting<br>在测试集，训练集都是不好</li>
+</ul>
+</blockquote>
+</li>
+<li>模型速度 ： 处理数据的开销和时间</li>
+<li>鲁棒性：在错误数据或者异常数据，数据缺失时，模型是否可以给出正确结果，会不会崩溃 </li>
+<li>可解释性</li>
+</ul>
+<h2 id="评估数据的处理"><a href="#评估数据的处理" class="headerlink" title="评估数据的处理"></a>评估数据的处理</h2><ul>
+<li>随机抽样： 把数据共分成训练集和测试集，使用测试集对模型进行测试，得到准确率指标  </li>
+<li>随机多次抽样：在随机抽样的基础上，进行n次随机抽样，得到n组测试集，使得这n组的平均值作为最终结果</li>
+</ul>
+<h2 id="模型应用"><a href="#模型应用" class="headerlink" title="模型应用"></a>模型应用</h2>]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>数据建模绪论</tag>
+      </tags>
+  </entry>
 </search>

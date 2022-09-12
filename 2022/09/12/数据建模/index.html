@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>Tags | 小宇の万事屋</title>
+        <title>数据建模准备 | 小宇の万事屋</title>
         <meta name="author" content="阿小橙">
         <meta name="description" content="                  ————黎明卿">
         <meta name="keywords" content="好想赚大钱然后摆烂啊！">
@@ -160,155 +160,117 @@
 </nav>
                     </div>
                     <div id="main">
-                         
-<div class="categories-tags">
+                        
+<div class="article">
+    <div>
+        <h1>数据建模准备 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2022/9/12
+        </span>
+        
+        <span class="category">
+            <a href="/categories/大数据分析/">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                </span>
+                大数据分析
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/数据建模绪论/" style="color: #00a596">
+                    数据建模绪论
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <h2 id="1-理解数据和业务"><a href="#1-理解数据和业务" class="headerlink" title="1.理解数据和业务"></a>1.理解数据和业务</h2><h2 id="2-准备数据"><a href="#2-准备数据" class="headerlink" title="2.准备数据"></a>2.准备数据</h2><h2 id="3-数据建模"><a href="#3-数据建模" class="headerlink" title="3.数据建模"></a>3.数据建模</h2><ul>
+<li><h2 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h2><blockquote>
+<p>分类是有监督的学习过程<br>首先要有一批已经有标签结果的数据<br> 如果缺少已知信息</p>
+<ul>
+<li>考虑其他方法，如聚类 </li>
+<li>考虑处理数据：人工标注<br>分类问题包括：</li>
+<li>二分类：是或否</li>
+<li>多分类</li>
+<li>多标签分类<br>解决方法：knn，决策树，随机森林，svm</li>
+</ul>
+</blockquote>
+</li>
+<li><h2 id="聚类问题"><a href="#聚类问题" class="headerlink" title="聚类问题"></a>聚类问题</h2><blockquote>
+<p>就是把一个数据集划分成多个组，以便针对特定用户群体去开发一些特定功能（无监督的）<br>使得组内数据高度集中，和其他组的数据之间尽量远离</p>
+<ul>
+<li>互斥：小组与小组之间没有交集</li>
+<li>相交：一条数据即可能存在a组也可能存在b组</li>
+<li>层次： 一个大组还可以细分为若干个小组</li>
+<li>模糊： 一个用户并不绝对属于某个小组，只能由概率表示和小组间的关系</li>
+</ul>
+<hr>
+<ul>
+<li>基于划分的聚类，通常用于互斥的小组</li>
+<li>基于密度的聚类，可以用于解决数据形状不均匀的情况</li>
+<li>基于层级的聚类，适用于需要对数据细分的情况： 自顶向下，全部数据从一个组开始分裂；自底向上，最开始每一条数据都是一个组，开始合并直到满足要求</li>
+<li>基于模型分类：高斯分布，正态分布</li>
+</ul>
+</blockquote>
+</li>
+<li><h2 id="回归问题-regression"><a href="#回归问题-regression" class="headerlink" title="回归问题   regression"></a>回归问题   regression</h2><img src="/../imgs/datamol.png" alt="problem">  </li>
+<li><h2 id="关联问题"><a href="#关联问题" class="headerlink" title="关联问题"></a>关联问题</h2><blockquote>
+<p>关联分析是无监督学习，目标是挖掘隐藏在数据中的关联模式并加以利用<br>在已有的数据中寻找数据的相关关系，以期望能够使用这些规则去提升效率和业绩<br>商品销售分析，相关推荐系统分析，用户行为分析</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="模型集成-合并多个模型来提升效果"><a href="#模型集成-合并多个模型来提升效果" class="headerlink" title="模型集成 合并多个模型来提升效果"></a>模型集成 合并多个模型来提升效果</h3><ol>
+<li>bagging 装袋法<br><img src="/../imgs/bagging.png" alt="bagging"></li>
+<li>boosting<br><img src="/../imgs/boosting.png" alt="boosting"></li>
+<li>stacking</li>
+</ol>
+<h2 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h2><p>是对模型进行多种维度的评估，来确认模型是否可以放到先上去使用  </p>
+<ul>
+<li>评估指标<br><mark>混淆矩阵与准确率指标</mark><br>example：对小猪图片的辨别（二分类模型）<br><img src="/../imgs/distin.png" alt="distinct"><br>包含数值：</li>
+<li>真阳性</li>
+<li>真阴性</li>
+<li>假阳性</li>
+<li>假阴性<br><img src="/../imgs/flag.png" alt="flag"><br><img src="/../imgs/dis.png" alt="flag"><br><img src="/../imgs/matrix.png" alt="ma">  由这两个值得出roc曲线和auc值图(纵轴：真正例率)<br><img src="/../imgs/roc.png" alt="roc"><br>当roc曲线接近对角线时模型很不稳定<br>业务抽样评估可以减弱这种情况  </li>
+<li>泛化能力评估  <blockquote>
+<ul>
+<li>overfitting<br>模型在训练集上表现良好，在测试集或者验证集上表现不佳</li>
+<li>underfitting<br>在测试集，训练集都是不好</li>
+</ul>
+</blockquote>
+</li>
+<li>模型速度 ： 处理数据的开销和时间</li>
+<li>鲁棒性：在错误数据或者异常数据，数据缺失时，模型是否可以给出正确结果，会不会崩溃 </li>
+<li>可解释性</li>
+</ul>
+<h2 id="评估数据的处理"><a href="#评估数据的处理" class="headerlink" title="评估数据的处理"></a>评估数据的处理</h2><ul>
+<li>随机抽样： 把数据共分成训练集和测试集，使用测试集对模型进行测试，得到准确率指标  </li>
+<li>随机多次抽样：在随机抽样的基础上，进行n次随机抽样，得到n组测试集，使得这n组的平均值作为最终结果</li>
+</ul>
+<h2 id="模型应用"><a href="#模型应用" class="headerlink" title="模型应用"></a>模型应用</h2>
+    </div>
     
-    <div class="all-s">
-        
-        
-        <span>
-            <a href="/tags/博客搭建/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                博客搭建
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/excel实践/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                excel实践
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/博客美化/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                博客美化
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/pandas编程/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                pandas编程
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/实验一/" style="background: #00bcd4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                实验一
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/人工智能绪论/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                人工智能绪论
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/分析基本思路和excel实践/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                分析基本思路和excel实践
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/学习路线/" style="background: #ffa2c4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                学习路线
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/大数据分析导论/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                大数据分析导论
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/mysql/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                mysql
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/搜索问题求解/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                搜索问题求解
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/线性回归/" style="background: #00a596">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                线性回归
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/逻辑回归/" style="background: #03a9f4">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                逻辑回归
-            </a>
-        </span>
-        
-        
-        <span>
-            <a href="/tags/数据建模绪论/" style="background: #ff7d73">
-                <span class="icon">
-                    <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
-                </span>
-                数据建模绪论
-            </a>
-        </span>
-        
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
     </div>
-    <div id="archives">
-        
-    </div>
+    
 </div>
                          
 <footer id="footer">
@@ -337,6 +299,24 @@
         <script src="/js/particlex.js"></script>
         <script src="/js/showimg.js"></script>
         
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "https://github.com/biabuluo",
+        owner: "biabuluo",
+        admin: ["biabuluo"],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
 
                 <!-- backtotop -->
                 <div id = "gotop">

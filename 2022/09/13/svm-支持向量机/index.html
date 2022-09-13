@@ -190,14 +190,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/分类问题/" style="color: #ff7d73">
+                <a href="/tags/分类问题/" style="color: #03a9f4">
                     分类问题
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/svm支持向量机/" style="color: #03a9f4">
+                <a href="/tags/svm支持向量机/" style="color: #00a596">
                     svm支持向量机
                 </a>
             </span>
@@ -214,6 +214,54 @@
 <li>找到正确斜率的那条线</li>
 <li>确认马路宽度，得到最优解，马路的中轴线</li>
 </ol>
+<h2 id="超平面"><a href="#超平面" class="headerlink" title="超平面"></a>超平面</h2><blockquote>
+<p>超平面是维度大于三维时仍然满足把空间分为两部分且是两个点距离相同的点的轨迹，自由度比空间维度小1</p>
+</blockquote>
+<h2 id="支持向量"><a href="#支持向量" class="headerlink" title="支持向量"></a>支持向量</h2><blockquote>
+<p>红豆和绿豆中距离这条线最近的几个样本点<br>这些点到这条线距离称为间隔<br>在决定最佳超平面时只有支持向量起作用</p>
+</blockquote>
+<h2 id="不清晰边界"><a href="#不清晰边界" class="headerlink" title="不清晰边界"></a>不清晰边界</h2><blockquote>
+<p>由硬间隔到软间隔：在间隔区域允许出现一定数量的样本</p>
+</blockquote>
+<h2 id="处理线性可分"><a href="#处理线性可分" class="headerlink" title="处理线性可分"></a>处理线性可分</h2><blockquote>
+<p> 将不可划分的样本映射到高维空间中<br> 运用核函数进行上述操作：</p>
+<ol>
+<li>线性核函数</li>
+<li>多项式核函数</li>
+<li>高斯核函数</li>
+</ol>
+</blockquote>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><blockquote>
+<p>有严格的数学理论支持，可解释性强<br>鲁棒性好（样本发生变化对模型没什么影响）</p>
+</blockquote>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><blockquote>
+<p>训练所需要资源很大<br>只能处理二分类问题<br>预测时间与支持向量个数成正比</p>
+</blockquote>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><pre><code class="python">from sklearn import datasets
+from sklearn import svm
+import numpy as np
+
+np.random.seed(0)
+iris = datasets.load_iris()
+iris_x = iris.data
+iris_y = iris.target
+indices = np.random.permutation(len(iris_x))   #打乱
+iris_x_train = iris_x[indices[:-10]]
+iris_y_train = iris_y[indices[:-10]]     #训练集
+iris_x_test = iris_x[indices[-10:]]
+iris_y_test = iris_y[indices[-10:]]       #测试集
+
+#使用线性核svc是分类向量机的意思，另外svr是回归支持向量机
+clf = svm.SVC(kernel = &#39;linear&#39;)
+clf.fit(iris_x_train,iris_y_train)  #学习
+
+#预测
+iris_y_predict = clf.predict(iris_x_test)
+score = clf.score(iris_x_test,iris_y_test,sample_weight=None)
+print(&#39;iris_y_predict = &#39;,iris_y_predict)
+print(&#39;iris_y_test = &#39;, iris_y_test)
+print(&#39;Accuracy: &#39;, score)
+</code></pre>
 
     </div>
     

@@ -190,14 +190,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/分类问题/" style="color: #00a596">
+                <a href="/tags/分类问题/" style="color: #03a9f4">
                     分类问题
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/朴素贝叶斯/" style="color: #ff7d73">
+                <a href="/tags/朴素贝叶斯/" style="color: #00bcd4">
                     朴素贝叶斯
                 </a>
             </span>
@@ -236,10 +236,6 @@ iris_y_test = iris_y[indices[-10:]]       #测试集
 
 clf = GaussianNB()    #朴素贝叶斯分类器
 clf.fit(iris_x_train,iris_y_train)
-
-iris_y_predict = clf.predict(iris_x_test)
-
-score = clf.score(iris_x_test,iris_y_test,sample_weight=None)
 
 #预测
 iris_y_predict = clf.predict(iris_x_test)

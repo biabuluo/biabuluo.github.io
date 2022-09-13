@@ -78,6 +78,30 @@ $ cnpm install
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/2022/08/27/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
+</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>博客搭建</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>不同数据方法的excel实践</title>
     <url>/2022/09/03/excel%E5%AE%9E%E8%B7%B5/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="如何用excel来进行描述性分析"><a href="#如何用excel来进行描述性分析" class="headerlink" title="如何用excel来进行描述性分析"></a>如何用excel来进行描述性分析</h1><ul>
@@ -149,30 +173,6 @@ $ cnpm install
       </categories>
       <tags>
         <tag>excel实践</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2022/08/27/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -308,6 +308,88 @@ $ cnpm install
       </categories>
       <tags>
         <tag>博客美化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>knn算法</title>
+    <url>/2022/09/12/knn%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="KNN算法——k-nearestneighbor"><a href="#KNN算法——k-nearestneighbor" class="headerlink" title="KNN算法——k-nearestneighbor"></a>KNN算法——k-nearestneighbor</h1><h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><blockquote>
+<p>找到k个与新数据最近的样本，取样本中最多的一个类别作为新数据的类别  </p>
+</blockquote>
+<h2 id="对于距离"><a href="#对于距离" class="headerlink" title="对于距离"></a>对于距离</h2><ul>
+<li>欧式距离：两点之间连线</li>
+</ul>
+<h2 id="算法优点"><a href="#算法优点" class="headerlink" title="算法优点"></a>算法优点</h2><ul>
+<li>简单容易实现  </li>
+<li>对于边界不规则的数据效果最好   （对比于线性划分）</li>
+</ul>
+<h2 id="算法缺点"><a href="#算法缺点" class="headerlink" title="算法缺点"></a>算法缺点</h2><ul>
+<li>只适用于小数据集   </li>
+<li>数据不平衡   </li>
+<li>必须进行数据标准化 </li>
+<li>不适用于特征维度太多的数据</li>
+</ul>
+<h2 id="k值选取"><a href="#k值选取" class="headerlink" title="k值选取"></a>k值选取</h2><ul>
+<li>k越小容易过拟合  </li>
+<li>k越大容易欠拟合   </li>
+<li>合适的k值凭借经验和效果尝试</li>
+</ul>
+<h1 id="利用鸢尾花数据作为例子"><a href="#利用鸢尾花数据作为例子" class="headerlink" title="利用鸢尾花数据作为例子"></a>利用鸢尾花数据作为例子</h1><h2 id="导入所需要的依赖库"><a href="#导入所需要的依赖库" class="headerlink" title="导入所需要的依赖库"></a>导入所需要的依赖库</h2><pre><code class="python">#导入所需要依赖库
+from sklearn import datasets #sklearn的数据集
+from sklearn.neighbors import KNeighborsClassifier  #sklearn模块的knn类
+import numpy as np #矩阵运算库numpy
+#设置随机种子 可以保证我们每次产生的随机数是一样的
+np.random.seed(0)
+</code></pre>
+<h2 id="定义数据"><a href="#定义数据" class="headerlink" title="定义数据"></a>定义数据</h2><pre><code class="python">#关于鸢尾花的数据集
+iris = datasets.load_iris() #获取鸢尾花数据集
+iris_x = iris.data #数据部分
+iris_y = iris.target #类别部分
+</code></pre>
+<h2 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h2><pre><code class="python">#从150条数据中选择140条作为训练集，10条作为测试集。permutation接受一个数作为参数（这里为数据集长度150），产生一个0-149的乱序一维数组
+randomarr = np.random.permutation(len(iris_x))
+iris_x_train = iris_x[randomarr[:-10]] #训练集数据
+iris_y_train = iris_y[randomarr[:-10]] #训练集标签
+iris_x_test = iris_x[randomarr[-10:]] #测试集数据
+iris_y_test = iris_y[randomarr[-10:]] #测试集标签
+</code></pre>
+<h2 id="定义knn分类器类并调用方法进行学习"><a href="#定义knn分类器类并调用方法进行学习" class="headerlink" title="定义knn分类器类并调用方法进行学习"></a>定义knn分类器类并调用方法进行学习</h2><pre><code class="python">#定义一个knn分类器对象
+knn = KNeighborsClassifier()
+#调用该对象的训练方法，接受两个参数 ：训练数据集及其类别标签
+knn.fit(iris_x_train,iris_y_train)
+#调用预测方法，主要接受一个参数：测试数据集
+iris_y_predict = knn.predict(iris_x_test)
+</code></pre>
+<h2 id="计算测试样本概率值"><a href="#计算测试样本概率值" class="headerlink" title="计算测试样本概率值"></a>计算测试样本概率值</h2><pre><code class="python">#计算测试样本预测的概率值 这里我们没有用概率值，但是实际工作中可能会参考概率值来进行最后结果的筛选
+# ，而不是直接使用给出的预测标签
+probility = knn.predict_proba(iris_x_test)
+</code></pre>
+<h2 id="k-x3D-5，对测试集测试输出结果"><a href="#k-x3D-5，对测试集测试输出结果" class="headerlink" title="k&#x3D;5，对测试集测试输出结果"></a>k&#x3D;5，对测试集测试输出结果</h2><pre><code class="python">#计算与最后一个测试样本距离最近的五个点，返回的是这些样本的序号组成的数组
+neihborpoint = knn.kneighbors([iris_x_test[-1]],5)
+
+#调用该对象的打分方法，计算出准确率
+score = knn.score(iris_x_test,iris_y_test,sample_weight = None)
+
+#输出测试结果
+print(&#39;iris_y_predict=&#39;)
+print(iris_y_predict)
+
+#输出正确结果来比对
+print(&#39;iris_y_test = &#39;)
+print(iris_y_test)
+
+#输出准确率
+print(&#39;accuracy:&#39;,score)
+</code></pre>
+<hr>
+<h1 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h1><p><img src="/../imgs/result.png" alt="res"></p>
+]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>KNN算法</tag>
+        <tag>分类问题</tag>
       </tags>
   </entry>
   <entry>
@@ -697,31 +779,6 @@ exa.rename(colunm=&#123;&#39;old&#39;:&#39;new&#39;&#125;,inplace=True)
       </tags>
   </entry>
   <entry>
-    <title>前端学习路线</title>
-    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>学习路线</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>部署到gitee</title>
-    <url>/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>coding对新手及其不友好，同步个仓库卡的要死！！！！<br>🤬🤡（还是校园网卡？小丑竟是我）</p>
-<hr>
-<p>##倒不如直接用gitee</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>博客搭建</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>优劣势分析</title>
     <url>/2022/09/01/%E4%BC%98%E5%8A%A3%E5%8A%BF%E5%88%86%E6%9E%90/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="excel简介及优劣势分析"><a href="#excel简介及优劣势分析" class="headerlink" title="excel简介及优劣势分析"></a>excel简介及优劣势分析</h1><ul>
@@ -749,62 +806,100 @@ exa.rename(colunm=&#123;&#39;old&#39;:&#39;new&#39;&#125;,inplace=True)
       </tags>
   </entry>
   <entry>
-    <title>回到顶部功能</title>
-    <url>/2022/08/31/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%8A%9F%E8%83%BD/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">坏消息：新生军训要搞到中秋！！<br />好消息：这几天都下雨，反正跑不了步ψ(｀∇´)ψ </font>      </p>
-<hr>
-<h2 id="添加回到顶部按钮"><a href="#添加回到顶部按钮" class="headerlink" title="添加回到顶部按钮"></a>添加回到顶部按钮</h2><blockquote>
-<p>在layout中添加：</p>
+    <title>决策树</title>
+    <url>/2022/09/13/%E5%86%B3%E7%AD%96%E6%A0%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><h2 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h2><blockquote>
+<p>在已知条件中，选取一个条件作为树根，然后再看是否还需要其他判断条件，若需要，则继续构建一个分支来判断第二个条件，以此类推 。 最终形成的树，所有叶子节点都是要输出的类别信息，所有非叶子节点都是特征信息    </p>
 </blockquote>
-<pre><code class="html">               &lt;!-- backtotop --&gt;
-                &lt;div id = &quot;gotop&quot;&gt;
-                    &lt;img src=&quot;&lt;%- rootlink %&gt;scrollup.png&quot; alt=&quot;gotop&quot;&gt;
-                &lt;/div&gt;
-                &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- rootlink %&gt;css/totop.css&quot;&gt;
-                &lt;script&gt;
-                    window.addEventListener(&quot;scroll&quot;,handle)
-                    function handle()&#123;
-                        var oTop = document.body.scrollTop||document.documentElement.scrollTop
-                        if(oTop&gt;=200)&#123;
-                            gotop.style.display = &quot;block&quot;;
-                        &#125;else&#123;
-                            gotop.style.display = &quot;none&quot;;
-                        &#125;
-                        gotop.onclick = function()&#123;
-                            window.scrollTo(&#123;
-                                top:0,
-                                behavior:&quot;smooth&quot;
-                            &#125;)
-                        &#125;
-                    &#125;
-                &lt;/script&gt;
-</code></pre>
-<blockquote>
-<p>在css文件夹中新建文件totop.css   </p>
-</blockquote>
-<pre><code class="css">#gotop&#123;
-    position: fixed;
-    display: none;
-    right: 30px;
-    bottom: 50px;
-&#125;
-/* #gotop img&#123;
-    width: 80px;
-    height: 200px;
-&#125; */
-#gotop img:hover&#123;
-    cursor: pointer;
-&#125;
-</code></pre>
-<h2 id="大功告成啦！"><a href="#大功告成啦！" class="headerlink" title="大功告成啦！"></a>大功告成啦！</h2><ul>
-<li><h2 id="图标可以在阿里矢量图库里下载！"><a href="#图标可以在阿里矢量图库里下载！" class="headerlink" title="图标可以在阿里矢量图库里下载！"></a>图标可以在<a href="https://www.iconfont.cn/">阿里矢量图库</a>里下载！</h2>我丢在这里啦！<br><img src="/../imgs/scrollup.png" alt="picture"></li>
+<p><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%20tree.png" alt="tree">  </p>
+<h2 id="如何选择特征作为节点？"><a href="#如何选择特征作为节点？" class="headerlink" title="如何选择特征作为节点？"></a>如何选择特征作为节点？</h2><blockquote>
+<p>决策树算法法使用<mark>信息增益</mark>来衡量特征之间重要性</p>
+<ul>
+<li>理想情况：每个叶子节点都是一个纯粹的分类  </li>
+<li>实际情况：采用贪心来寻找一个最近的最优解</li>
 </ul>
+</blockquote>
+<h2 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h2><blockquote>
+<ul>
+<li>非常直观，可解释性强  </li>
+<li>预测速度比较快：树 </li>
+<li>可以处理离散值</li>
+</ul>
+</blockquote>
+<h2 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h2><blockquote>
+<ul>
+<li>容易过拟合</li>
+<li>需要处理样本不均衡问题</li>
+<li>样本变化会引发树结构巨变</li>
+</ul>
+</blockquote>
+<h2 id="关于剪枝"><a href="#关于剪枝" class="headerlink" title="关于剪枝"></a>关于剪枝</h2><blockquote>
+<ul>
+<li>预剪枝：在树构建之初就设定一个阈值，当分裂节点熵阈值小于设定值时就不再进行分裂</li>
+<li>后剪枝：在树构建以后根据设定来判断是否要合并一些中间节点，是叶子节点来代替</li>
+</ul>
+</blockquote>
+<h2 id="决策树："><a href="#决策树：" class="headerlink" title="决策树："></a>决策树：</h2><h3 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h3><pre><code class="python">
+from sklearn import datasets
+from sklearn.tree import DecisionTreeClassifier  #引入决策树算法包
+import numpy as np
+</code></pre>
+<h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><pre><code class="python">np.random.seed(0)
+iris = datasets.load_iris()
+iris_x = iris.data
+iris_y = iris.target
+indices = np.random.permutation(len(iris_x))   #打乱
+iris_x_train = iris_x[indices[:-10]]
+iris_y_train = iris_y[indices[:-10]]     #训练集
+iris_x_test = iris_x[indices[-10:]]
+iris_y_test = iris_y[indices[-10:]]       #测试集
+</code></pre>
+<h3 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h3><pre><code class="python">
+  #设置树的最大深度
+clf = DecisionTreeClassifier(max_depth = 4)
+clf.fit(iris_x_train,iris_y_train)         #模型训练
+</code></pre>
+<h3 id="决策树可视化"><a href="#决策树可视化" class="headerlink" title="决策树可视化"></a>决策树可视化</h3><pre><code class="python">#引入画图相关包 决策树可视化
+from IPython.display import  Image
+from sklearn import tree
+import pydotplus    #程序化生成流程图的简单语言
+#可视化
+dot_data = tree.export_graphviz(clf,out_file=None,\
+                                feature_names=iris.feature_names,\
+                                class_names = iris.target_names,\
+                                filled = True,\
+                                rounded = True,\
+                                special_characters= True)
+graph = pydotplus.graph_from_dot_data(dot_data)
+# graph = graphviz.Source(dot_data)
+# print(graph)
+Image(graph.create_png())  #输出图：判定条件，gini系数，样本数量，类别
+</code></pre>
+<h3 id="结果显示"><a href="#结果显示" class="headerlink" title="结果显示"></a>结果显示</h3><pre><code class="python">#预测
+iris_y_predict = clf.predict(iris_x_test)
+score = clf.score(iris_x_test,iris_y_test,sample_weight=None)
+print(&#39;iris_y_predict = &#39;,iris_y_predict)
+print(&#39;iris_y_test = &#39;, iris_y_test)
+print(&#39;Accuracy: &#39;, score)
+</code></pre>
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>大数据分析</category>
       </categories>
       <tags>
-        <tag>博客美化</tag>
+        <tag>分类问题</tag>
+        <tag>决策树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>前端学习路线</title>
+    <url>/2022/08/30/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>学习路线</tag>
       </tags>
   </entry>
   <entry>
@@ -892,30 +987,62 @@ exa.rename(colunm=&#123;&#39;old&#39;:&#39;new&#39;&#125;,inplace=True)
       </tags>
   </entry>
   <entry>
-    <title>mysql</title>
-    <url>/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><font size=7>MySQL  安装教程</font><br>-mysql官网   </p>
-<blockquote>
-<p><a href="https://www.mysql.com/">click here</a>    </p>
+    <title>回到顶部功能</title>
+    <url>/2022/08/31/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%8A%9F%E8%83%BD/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p><font face="GB18030 Bitmap">坏消息：新生军训要搞到中秋！！<br />好消息：这几天都下雨，反正跑不了步ψ(｀∇´)ψ </font>      </p>
+<hr>
+<h2 id="添加回到顶部按钮"><a href="#添加回到顶部按钮" class="headerlink" title="添加回到顶部按钮"></a>添加回到顶部按钮</h2><blockquote>
+<p>在layout中添加：</p>
 </blockquote>
-<ul>
-<li><p>点击download<br><img src="/../imgs/download.png" alt="picture">   </p>
-</li>
-<li><p>划到下边找到community<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193150.png" alt="picture"> </p>
-</li>
-<li><p>找到mysql community server 点击它  </p>
-</li>
-<li><p>点击install for windows<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193948.png" alt="catch">   </p>
-</li>
-<li><p>然后下载第一个(期间点击no,thanks,不然的话就要注册帐号了)  完成后运行文件<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20195231.png" alt="catch"></p>
-</li>
+<pre><code class="html">               &lt;!-- backtotop --&gt;
+                &lt;div id = &quot;gotop&quot;&gt;
+                    &lt;img src=&quot;&lt;%- rootlink %&gt;scrollup.png&quot; alt=&quot;gotop&quot;&gt;
+                &lt;/div&gt;
+                &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;%- rootlink %&gt;css/totop.css&quot;&gt;
+                &lt;script&gt;
+                    window.addEventListener(&quot;scroll&quot;,handle)
+                    function handle()&#123;
+                        var oTop = document.body.scrollTop||document.documentElement.scrollTop
+                        if(oTop&gt;=200)&#123;
+                            gotop.style.display = &quot;block&quot;;
+                        &#125;else&#123;
+                            gotop.style.display = &quot;none&quot;;
+                        &#125;
+                        gotop.onclick = function()&#123;
+                            window.scrollTo(&#123;
+                                top:0,
+                                behavior:&quot;smooth&quot;
+                            &#125;)
+                        &#125;
+                    &#125;
+                &lt;/script&gt;
+</code></pre>
+<blockquote>
+<p>在css文件夹中新建文件totop.css   </p>
+</blockquote>
+<pre><code class="css">#gotop&#123;
+    position: fixed;
+    display: none;
+    right: 30px;
+    bottom: 50px;
+&#125;
+/* #gotop img&#123;
+    width: 80px;
+    height: 200px;
+&#125; */
+#gotop img:hover&#123;
+    cursor: pointer;
+&#125;
+</code></pre>
+<h2 id="大功告成啦！"><a href="#大功告成啦！" class="headerlink" title="大功告成啦！"></a>大功告成啦！</h2><ul>
+<li><h2 id="图标可以在阿里矢量图库里下载！"><a href="#图标可以在阿里矢量图库里下载！" class="headerlink" title="图标可以在阿里矢量图库里下载！"></a>图标可以在<a href="https://www.iconfont.cn/">阿里矢量图库</a>里下载！</h2>我丢在这里啦！<br><img src="/../imgs/scrollup.png" alt="picture"></li>
 </ul>
 ]]></content>
       <categories>
-        <category>数据库</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>mysql</tag>
+        <tag>博客美化</tag>
       </tags>
   </entry>
   <entry>
@@ -1034,56 +1161,44 @@ exa.rename(colunm=&#123;&#39;old&#39;:&#39;new&#39;&#125;,inplace=True)
       </tags>
   </entry>
   <entry>
-    <title>线性回归</title>
-    <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><p> <img src="/../imgs/linear.png" alt="linear">   </p>
-<ul>
-<li>如何计算系数？ <blockquote>
-<p>使用最小二乘法估算系数：<br><img src="/../imgs/zuixiao.png" alt="zuixiao">   </p>
-</blockquote>
-</li>
-<li>如何评估线性回归的好与坏？   <blockquote>
-<p><img src="/../imgs/pinggu.png" alt="pinggu"><br>R^2越大线性模型就越贴切   </p>
-</blockquote>
-</li>
-<li>如何评估回归的细节:  <blockquote>
-<p>假设用python的线性回归：<br><img src="/../imgs/py_linear.png" alt="pylinear"><br>f_statistic: 自变量与因变量是否有关联（但不知道什么关联）<br>constant：常数项  （coef表示值）…<br>以下的都是系数</p>
-<ul>
-<li>得利用t值和p值来判断是否有意义：  <blockquote>
-<p>当发现t值小，p值大，则这个参数没什么意义（参考值意义低）<br>后边的数值区间为置信区间  std err为标准差</p>
-</blockquote>
-</li>
-</ul>
-</blockquote>
-</li>
-</ul>
+    <title>部署到gitee</title>
+    <url>/2022/08/30/%E5%90%8C%E6%97%B6%E9%83%A8%E7%BD%B2%E5%88%B0coding/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>coding对新手及其不友好，同步个仓库卡的要死！！！！<br>🤬🤡（还是校园网卡？小丑竟是我）</p>
+<hr>
+<p>##倒不如直接用gitee</p>
 ]]></content>
       <categories>
-        <category>大数据分析</category>
+        <category>生活</category>
       </categories>
       <tags>
-        <tag>线性回归</tag>
+        <tag>博客搭建</tag>
       </tags>
   </entry>
   <entry>
-    <title>逻辑回归</title>
-    <url>/2022/09/03/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归的本质就是由线性回归转变为非线性回归的样子：如图<br><img src="/../imgs/logi.png" alt="logi">  </p>
+    <title>mysql</title>
+    <url>/2022/08/30/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><font size=7>MySQL  安装教程</font><br>-mysql官网   </p>
 <blockquote>
-<p>计算系数的方法：最大似然估计  </p>
-<blockquote>
+<p><a href="https://www.mysql.com/">click here</a>    </p>
+</blockquote>
 <ul>
-<li>概率和似然的区别：<br>概率是指已知一些概率分布参数的情况下，预测观测结果<br>似然适用于已经知道某些观测所得到的结果时，对观测结果所属的概率分布参数进行估值<br><img src="/../imgs/sir.png" alt="sir"><br><img src="/../imgs/likeli.png" alt="likeli"></li>
+<li><p>点击download<br><img src="/../imgs/download.png" alt="picture">   </p>
+</li>
+<li><p>划到下边找到community<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193150.png" alt="picture"> </p>
+</li>
+<li><p>找到mysql community server 点击它  </p>
+</li>
+<li><p>点击install for windows<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20193948.png" alt="catch">   </p>
+</li>
+<li><p>然后下载第一个(期间点击no,thanks,不然的话就要注册帐号了)  完成后运行文件<br><img src="/../imgs/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202022-08-31%20195231.png" alt="catch"></p>
+</li>
 </ul>
-</blockquote>
-</blockquote>
-<h1 id="仿真模拟："><a href="#仿真模拟：" class="headerlink" title="仿真模拟："></a>仿真模拟：</h1><p>类似于算法分析中的随机化算法来模拟各种条件下产生的结果   </p>
 ]]></content>
       <categories>
-        <category>大数据分析</category>
+        <category>数据库</category>
       </categories>
       <tags>
-        <tag>逻辑回归</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -1161,85 +1276,56 @@ exa.rename(colunm=&#123;&#39;old&#39;:&#39;new&#39;&#125;,inplace=True)
       </tags>
   </entry>
   <entry>
-    <title>knn算法</title>
-    <url>/2022/09/12/knn%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="KNN算法——k-nearestneighbor"><a href="#KNN算法——k-nearestneighbor" class="headerlink" title="KNN算法——k-nearestneighbor"></a>KNN算法——k-nearestneighbor</h1><h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><blockquote>
-<p>找到k个与新数据最近的样本，取样本中最多的一个类别作为新数据的类别  </p>
+    <title>线性回归</title>
+    <url>/2022/09/01/%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="简单线性回归"><a href="#简单线性回归" class="headerlink" title="简单线性回归"></a>简单线性回归</h1><p> <img src="/../imgs/linear.png" alt="linear">   </p>
+<ul>
+<li>如何计算系数？ <blockquote>
+<p>使用最小二乘法估算系数：<br><img src="/../imgs/zuixiao.png" alt="zuixiao">   </p>
 </blockquote>
-<h2 id="对于距离"><a href="#对于距离" class="headerlink" title="对于距离"></a>对于距离</h2><ul>
-<li>欧式距离：两点之间连线</li>
+</li>
+<li>如何评估线性回归的好与坏？   <blockquote>
+<p><img src="/../imgs/pinggu.png" alt="pinggu"><br>R^2越大线性模型就越贴切   </p>
+</blockquote>
+</li>
+<li>如何评估回归的细节:  <blockquote>
+<p>假设用python的线性回归：<br><img src="/../imgs/py_linear.png" alt="pylinear"><br>f_statistic: 自变量与因变量是否有关联（但不知道什么关联）<br>constant：常数项  （coef表示值）…<br>以下的都是系数</p>
+<ul>
+<li>得利用t值和p值来判断是否有意义：  <blockquote>
+<p>当发现t值小，p值大，则这个参数没什么意义（参考值意义低）<br>后边的数值区间为置信区间  std err为标准差</p>
+</blockquote>
+</li>
 </ul>
-<h2 id="算法优点"><a href="#算法优点" class="headerlink" title="算法优点"></a>算法优点</h2><ul>
-<li>简单容易实现  </li>
-<li>对于边界不规则的数据效果最好   （对比于线性划分）</li>
+</blockquote>
+</li>
 </ul>
-<h2 id="算法缺点"><a href="#算法缺点" class="headerlink" title="算法缺点"></a>算法缺点</h2><ul>
-<li>只适用于小数据集   </li>
-<li>数据不平衡   </li>
-<li>必须进行数据标准化 </li>
-<li>不适用于特征维度太多的数据</li>
-</ul>
-<h2 id="k值选取"><a href="#k值选取" class="headerlink" title="k值选取"></a>k值选取</h2><ul>
-<li>k越小容易过拟合  </li>
-<li>k越大容易欠拟合   </li>
-<li>合适的k值凭借经验和效果尝试</li>
-</ul>
-<h1 id="利用鸢尾花数据作为例子"><a href="#利用鸢尾花数据作为例子" class="headerlink" title="利用鸢尾花数据作为例子"></a>利用鸢尾花数据作为例子</h1><h2 id="导入所需要的依赖库"><a href="#导入所需要的依赖库" class="headerlink" title="导入所需要的依赖库"></a>导入所需要的依赖库</h2><pre><code class="python">#导入所需要依赖库
-from sklearn import datasets #sklearn的数据集
-from sklearn.neighbors import KNeighborsClassifier  #sklearn模块的knn类
-import numpy as np #矩阵运算库numpy
-#设置随机种子 可以保证我们每次产生的随机数是一样的
-np.random.seed(0)
-</code></pre>
-<h2 id="定义数据"><a href="#定义数据" class="headerlink" title="定义数据"></a>定义数据</h2><pre><code class="python">#关于鸢尾花的数据集
-iris = datasets.load_iris() #获取鸢尾花数据集
-iris_x = iris.data #数据部分
-iris_y = iris.target #类别部分
-</code></pre>
-<h2 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h2><pre><code class="python">#从150条数据中选择140条作为训练集，10条作为测试集。permutation接受一个数作为参数（这里为数据集长度150），产生一个0-149的乱序一维数组
-randomarr = np.random.permutation(len(iris_x))
-iris_x_train = iris_x[randomarr[:-10]] #训练集数据
-iris_y_train = iris_y[randomarr[:-10]] #训练集标签
-iris_x_test = iris_x[randomarr[-10:]] #测试集数据
-iris_y_test = iris_y[randomarr[-10:]] #测试集标签
-</code></pre>
-<h2 id="定义knn分类器类并调用方法进行学习"><a href="#定义knn分类器类并调用方法进行学习" class="headerlink" title="定义knn分类器类并调用方法进行学习"></a>定义knn分类器类并调用方法进行学习</h2><pre><code class="python">#定义一个knn分类器对象
-knn = KNeighborsClassifier()
-#调用该对象的训练方法，接受两个参数 ：训练数据集及其类别标签
-knn.fit(iris_x_train,iris_y_train)
-#调用预测方法，主要接受一个参数：测试数据集
-iris_y_predict = knn.predict(iris_x_test)
-</code></pre>
-<h2 id="计算测试样本概率值"><a href="#计算测试样本概率值" class="headerlink" title="计算测试样本概率值"></a>计算测试样本概率值</h2><pre><code class="python">#计算测试样本预测的概率值 这里我们没有用概率值，但是实际工作中可能会参考概率值来进行最后结果的筛选
-# ，而不是直接使用给出的预测标签
-probility = knn.predict_proba(iris_x_test)
-</code></pre>
-<h2 id="k-x3D-5，对测试集测试输出结果"><a href="#k-x3D-5，对测试集测试输出结果" class="headerlink" title="k&#x3D;5，对测试集测试输出结果"></a>k&#x3D;5，对测试集测试输出结果</h2><pre><code class="python">#计算与最后一个测试样本距离最近的五个点，返回的是这些样本的序号组成的数组
-neihborpoint = knn.kneighbors([iris_x_test[-1]],5)
-
-#调用该对象的打分方法，计算出准确率
-score = knn.score(iris_x_test,iris_y_test,sample_weight = None)
-
-#输出测试结果
-print(&#39;iris_y_predict=&#39;)
-print(iris_y_predict)
-
-#输出正确结果来比对
-print(&#39;iris_y_test = &#39;)
-print(iris_y_test)
-
-#输出准确率
-print(&#39;accuracy:&#39;,score)
-</code></pre>
-<hr>
-<h1 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h1><p><img src="/../imgs/result.png" alt="res"></p>
 ]]></content>
       <categories>
         <category>大数据分析</category>
       </categories>
       <tags>
-        <tag>KNN算法</tag>
-        <tag>分类问题</tag>
+        <tag>线性回归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逻辑回归</title>
+    <url>/2022/09/03/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h1><p>逻辑回归的本质就是由线性回归转变为非线性回归的样子：如图<br><img src="/../imgs/logi.png" alt="logi">  </p>
+<blockquote>
+<p>计算系数的方法：最大似然估计  </p>
+<blockquote>
+<ul>
+<li>概率和似然的区别：<br>概率是指已知一些概率分布参数的情况下，预测观测结果<br>似然适用于已经知道某些观测所得到的结果时，对观测结果所属的概率分布参数进行估值<br><img src="/../imgs/sir.png" alt="sir"><br><img src="/../imgs/likeli.png" alt="likeli"></li>
+</ul>
+</blockquote>
+</blockquote>
+<h1 id="仿真模拟："><a href="#仿真模拟：" class="headerlink" title="仿真模拟："></a>仿真模拟：</h1><p>类似于算法分析中的随机化算法来模拟各种条件下产生的结果   </p>
+]]></content>
+      <categories>
+        <category>大数据分析</category>
+      </categories>
+      <tags>
+        <tag>逻辑回归</tag>
       </tags>
   </entry>
 </search>

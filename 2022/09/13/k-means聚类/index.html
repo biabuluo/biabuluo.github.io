@@ -190,14 +190,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/k-means/" style="color: #03a9f4">
+                <a href="/tags/k-means/" style="color: #ffa2c4">
                     k-means
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/聚类问题/" style="color: #00a596">
+                <a href="/tags/聚类问题/" style="color: #00bcd4">
                     聚类问题
                 </a>
             </span>
@@ -206,15 +206,82 @@
         
     </div>
     <div class="content" v-pre>
-        <h2 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h2><blockquote>
-<p>假设数据总共有m条，，计划分为3个类别</p>
+        <h2 id="算法原理（基于划分的方法）"><a href="#算法原理（基于划分的方法）" class="headerlink" title="算法原理（基于划分的方法）"></a>算法原理（基于划分的方法）</h2><blockquote>
+<p>假设数据总共有m条，计划分为3个类别</p>
 <ul>
 <li>先随机在这个空间中选取三个点，称为中心点</li>
 <li>计算所有的点到三个点的距离，这里的距离计算使用的是欧氏距离（每个点都选最近的为中心点）</li>
 <li>使用每个数据计算出这些数据的一个均值，使用这个均值作为下一个迭代的中心</li>
 </ul>
 </blockquote>
-<h2 id="如何确定k值？"><a href="#如何确定k值？" class="headerlink" title="如何确定k值？"></a>如何确定k值？</h2>
+<h2 id="如何确定k值？"><a href="#如何确定k值？" class="headerlink" title="如何确定k值？"></a>如何确定k值？</h2><blockquote>
+<p>手肘法：循环尝试k值，计算在不同k值情况下，所有数据的损失即用每一个数据点到中心点的距离和计算平均距离<br><img src="/../imgs/shouz.png" alt="shouz"><br>拐点即为k值：只适用于k不这么大时</p>
+</blockquote>
+<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><blockquote>
+<ul>
+<li>简洁明了：计算复杂度低</li>
+<li>收敛速度较快</li>
+</ul>
+</blockquote>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><blockquote>
+<ul>
+<li>结果不稳定</li>
+<li>无法解决样本不均衡问题</li>
+<li>容易收敛到局部最优点</li>
+<li>受噪声影响较大</li>
+</ul>
+</blockquote>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><pre><code class="python">from sklearn import datasets
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+&quot;&quot;&quot;画出聚类的图像
+labels：聚类后的label，从0开始的数字
+cents；质心坐标
+n_cluster:聚类后簇的数量
+color：每一簇的颜色
+&quot;&quot;&quot;
+
+def draw_result(train_x, labels, cents, title):
+    n_clusters = np.unique(labels).shape[0]
+    color = [&quot;red&quot;, &quot;orange&quot;, &quot;yellow&quot;]
+    plt.figure()
+    plt.title(title)
+    for i in range(n_clusters):
+        current_data = train_x[labels == i]
+        plt.scatter(current_data[:, 0], current_data[:, 1], c=color[i])
+        #使用蓝色星形表示中心点位置
+        plt.scatter(cents[i, 0], cents[i, 1], c=&quot;blue&quot;, marker=&#39;*&#39;, s=100)
+    return plt
+
+if __name__ == &#39;__main__&#39;:
+    iris = datasets.load_iris()
+    iris_x = iris.data
+    # 设定聚类数目是三
+    clf = KMeans(n_clusters=3, max_iter=10, n_init=10,\
+                  init=&quot;k-means++&quot;,algorithm=&quot;full&quot;,\
+                  tol=1e-4, random_state=1)  #n_jobs = -1 :启用计算机全部线程
+    clf.fit(iris_x)
+    print(&quot;SSE=&#123;0&#125;&quot;.format(clf.inertia_))
+    draw_result(iris_x, clf.labels_, clf.cluster_centers_, &quot;kmeans&quot;).show()
+
+
+    #sse是误差平方和，这个值越接近0说明效果越好
+
+</code></pre>
+<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><ul>
+<li>K-means++<blockquote>
+<p>在初始点选取中进行了优化。从已有的数据中随机进行多次选取k个中心点，每次都计算这一次选中的中心点的距离，然后取一组最大的作为初始化中心点</p>
+</blockquote>
+</li>
+<li>mini batch K-means<blockquote>
+<p>在数据量大时，运算会变得十分缓慢，在迭代时，每个集合中只选取部分点进行计算</p>
+</blockquote>
+</li>
+</ul>
+
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">

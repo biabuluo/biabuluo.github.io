@@ -241,6 +241,9 @@
 <li>如果样本集的密度不平均，聚类间距差相差很大时，聚类质量较差</li>
 </ul>
 </blockquote>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>&#96;&#96;&#96;python<br>import numpy as np<br>from sklearn import  datasets<br>import pandas as pd<br>import matplotlib.pyplot as plt<br>from sklearn.cluster import dbscan</p>
+<h1 id="生成500个点，噪声为0-1"><a href="#生成500个点，噪声为0-1" class="headerlink" title="生成500个点，噪声为0.1"></a>生成500个点，噪声为0.1</h1><p>X,_ &#x3D; datasets.make_moons(500, noise&#x3D;0.1, random_state&#x3D;1)<br>df &#x3D; pd.DataFrame(X,columns&#x3D;[‘x’,’y’])<br>print(df)<br>df.plot.scatter(‘x’,’y’,s&#x3D;200, alpha &#x3D; 0.5, c&#x3D;”green”,<br>                title &#x3D; ‘dataset by DBscan’)<br>plt.show()</p>
+<h1 id="eps时领域半径，min-sample为最小样本量"><a href="#eps时领域半径，min-sample为最小样本量" class="headerlink" title="eps时领域半径，min_sample为最小样本量"></a>eps时领域半径，min_sample为最小样本量</h1><p>core_samples,cluster_ids &#x3D; dbscan(X, eps&#x3D;0.2, min_samples&#x3D;20)<br>#cluster_ids中-1表示对应点为噪声<br>df &#x3D; pd.DataFrame(np.c_[X,cluster_ids], columns&#x3D;[‘x’,’y’,’cluster_id’])<br>df[‘cluster_id’] &#x3D; df[‘cluster_id’].astype(‘i2’)<br>#绘制结果图像<br>df.plot.scatter(‘x’,’y’,s&#x3D;200,<br>                c&#x3D;list(df[‘cluster_id’]),cmap&#x3D;’Reds’,<br>                colorbar &#x3D; False,alpha&#x3D;0.6,<br>                title&#x3D;’DBSCAN cluster result’)<br>plt.show()</p>
 
     </div>
     

@@ -642,17 +642,6 @@ exa.rename(colunm=&#123;&#39;old&#39;:&#39;new&#39;&#125;,inplace=True)
       </tags>
   </entry>
   <entry>
-    <title>云计算实验</title>
-    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-      <categories>
-        <category>云计算</category>
-      </categories>
-      <tags>
-        <tag>实验一</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>人工智能绪论</title>
     <url>/2022/08/30/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="the-defination-of-artificial-intelligence"><a href="#the-defination-of-artificial-intelligence" class="headerlink" title="the defination of artificial intelligence"></a>the defination of artificial intelligence</h1><blockquote>
@@ -1919,6 +1908,46 @@ print(test_df)
       <tags>
         <tag>线性回归</tag>
         <tag>逻辑回归</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hadoop集群搭建</title>
+    <url>/2022/08/30/%E4%BA%91%E8%AE%A1%E7%AE%97%E5%AE%9E%E9%AA%8C1/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="什么是hadoop？"><a href="#什么是hadoop？" class="headerlink" title="什么是hadoop？"></a>什么是hadoop？</h1>]]></content>
+      <categories>
+        <category>云计算实验</category>
+      </categories>
+      <tags>
+        <tag>Hadoop集群搭建</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web测试从零开始</title>
+    <url>/2022/10/02/web%E6%B5%8B%E8%AF%95%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="web测试内容"><a href="#web测试内容" class="headerlink" title="web测试内容"></a>web测试内容</h1><h2 id="测试内容"><a href="#测试内容" class="headerlink" title="测试内容"></a>测试内容</h2><ul>
+<li>功能测试</li>
+<li>性能测试</li>
+</ul>
+<h2 id="下载工具"><a href="#下载工具" class="headerlink" title="下载工具"></a>下载工具</h2><ul>
+<li>功能测试：<ul>
+<li><a href="http://www.mooctest.net/tools/">eclipse及慕测插件</a><br>  <a href="https://blog.csdn.net/weixin_44743543/article/details/105592513">参考文档</a></li>
+<li><a href="https://blog.csdn.net/godot06/article/details/104378253">java环境</a></li>
+<li>chromedriver环境（代码控制浏览器）</li>
+<li>selenium （jar包，从java官网下载）</li>
+</ul>
+</li>
+<li>性能测试：<ul>
+<li>JMeter客户端（用来模拟多用户）</li>
+<li>Badboy客户端  （用来生成用户行为）</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>web测试</category>
+      </categories>
+      <tags>
+        <tag>web应用测试</tag>
       </tags>
   </entry>
 </search>

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>K-Means聚类 | 小宇の万事屋</title>
+        <title>Web应用测试——功能测试 | 小宇の万事屋</title>
         <meta name="author" content="阿小橙">
         <meta name="description" content="                  ————黎明卿">
         <meta name="keywords" content="好想赚大钱然后摆烂啊！">
@@ -163,22 +163,22 @@
                         
 <div class="article">
     <div>
-        <h1>K-Means聚类 </h1>
+        <h1>Web应用测试——功能测试 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/9/13
+            2022/10/4
         </span>
         
         <span class="category">
-            <a href="/categories/大数据分析/">
+            <a href="/categories/web测试/">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
                 </span>
-                大数据分析
+                web测试
             </a>
         </span>
         
@@ -190,15 +190,15 @@
             
             <span class="tag">
                 
-                <a href="/tags/k-means/" style="color: #ff7d73">
-                    k-means
+                <a href="/tags/web应用测试/" style="color: #ffa2c4">
+                    web应用测试
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/聚类问题/" style="color: #00a596">
-                    聚类问题
+                <a href="/tags/web功能测试/" style="color: #ffa2c4">
+                    web功能测试
                 </a>
             </span>
             
@@ -206,80 +206,27 @@
         
     </div>
     <div class="content" v-pre>
-        <h2 id="算法原理（基于划分的方法）"><a href="#算法原理（基于划分的方法）" class="headerlink" title="算法原理（基于划分的方法）"></a>算法原理（基于划分的方法）</h2><blockquote>
-<p>假设数据总共有m条，计划分为3个类别</p>
-<ul>
-<li>先随机在这个空间中选取三个点，称为中心点</li>
-<li>计算所有的点到三个点的距离，这里的距离计算使用的是欧氏距离（每个点都选最近的为中心点）</li>
-<li>使用每个数据计算出这些数据的一个均值，使用这个均值作为下一个迭代的中心</li>
+        <h1 id="功能测试（functional-testing）"><a href="#功能测试（functional-testing）" class="headerlink" title="功能测试（functional testing）"></a>功能测试（functional testing）</h1><blockquote>
+<p>根据产品特性和设计需求，验证一个产品的特性和行为是否满足设计需求</p>
+</blockquote>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
+<li>更具需求文档细分功能点</li>
+<li>根据功能点来派生测试需求</li>
+<li>根据测试需求设计功能测试用例</li>
+<li>逐项执行功能测试用例验证产品</li>
 </ul>
-</blockquote>
-<h2 id="如何确定k值？"><a href="#如何确定k值？" class="headerlink" title="如何确定k值？"></a>如何确定k值？</h2><blockquote>
-<p>手肘法：循环尝试k值，计算在不同k值情况下，所有数据的损失即用每一个数据点到中心点的距离和计算平均距离<br><img src="/../imgs/shouz.png" alt="shouz"><br>拐点即为k值：只适用于k不这么大时</p>
-</blockquote>
-<h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><blockquote>
-<ul>
-<li>简洁明了：计算复杂度低</li>
-<li>收敛速度较快</li>
+<h2 id="相关的测试类型"><a href="#相关的测试类型" class="headerlink" title="相关的测试类型"></a>相关的测试类型</h2><ul>
+<li>正确性<ul>
+<li>产品功能是否与需求和设计文档一致</li>
 </ul>
-</blockquote>
-<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><blockquote>
-<ul>
-<li>结果不稳定</li>
-<li>无法解决样本不均衡问题</li>
-<li>容易收敛到局部最优点</li>
-<li>受噪声影响较大</li>
-</ul>
-</blockquote>
-<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><pre><code class="python">from sklearn import datasets
-
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-
-&quot;&quot;&quot;画出聚类的图像
-labels：聚类后的label，从0开始的数字
-cents；质心坐标
-n_cluster:聚类后簇的数量
-color：每一簇的颜色
-&quot;&quot;&quot;
-
-def draw_result(train_x, labels, cents, title):
-    n_clusters = np.unique(labels).shape[0]
-    color = [&quot;red&quot;, &quot;orange&quot;, &quot;yellow&quot;]
-    plt.figure()
-    plt.title(title)
-    for i in range(n_clusters):
-        current_data = train_x[labels == i]
-        plt.scatter(current_data[:, 0], current_data[:, 1], c=color[i])
-        #使用蓝色星形表示中心点位置
-        plt.scatter(cents[i, 0], cents[i, 1], c=&quot;blue&quot;, marker=&#39;*&#39;, s=100)
-    return plt
-
-if __name__ == &#39;__main__&#39;:
-    iris = datasets.load_iris()
-    iris_x = iris.data
-    # 设定聚类数目是三
-    clf = KMeans(n_clusters=3, max_iter=10, n_init=10,\
-                  init=&quot;k-means++&quot;,algorithm=&quot;full&quot;,\
-                  tol=1e-4, random_state=1)  #n_jobs = -1 :启用计算机全部线程
-    clf.fit(iris_x)
-    print(&quot;SSE=&#123;0&#125;&quot;.format(clf.inertia_))
-    draw_result(iris_x, clf.labels_, clf.cluster_centers_, &quot;kmeans&quot;).show()
-
-
-    #sse是误差平方和，这个值越接近0说明效果越好
-
-</code></pre>
-<p><img src="/../imgs/kmeans.png" alt="kmeans"></p>
-<h2 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h2><ul>
-<li>K-means++<blockquote>
-<p>在初始点选取中进行了优化。从已有的数据中随机进行多次选取k个中心点，每次都计算这一次选中的中心点的距离，然后取一组最大的作为初始化中心点</p>
-</blockquote>
 </li>
-<li>mini batch K-means<blockquote>
-<p>在数据量大时，运算会变得十分缓慢，在迭代时，每个集合中只选取部分点进行计算</p>
-</blockquote>
+<li>可靠性<ul>
+<li>用户交互是否引发软件崩溃和其他异常</li>
+</ul>
+</li>
+<li>易用性<ul>
+<li>软件产品完成特定任务的难易程度</li>
+</ul>
 </li>
 </ul>
 

@@ -1933,12 +1933,113 @@ print(test_df)
 <li><a href="http://www.mooctest.net/tools/">eclipse及慕测插件</a><br>  <a href="https://blog.csdn.net/weixin_44743543/article/details/105592513">参考文档</a></li>
 <li><a href="https://blog.csdn.net/godot06/article/details/104378253">java环境</a></li>
 <li>chromedriver环境（代码控制浏览器）</li>
-<li>selenium （jar包，从java官网下载）</li>
+<li>selenium （jar包，从java官网下载）<br>  <a href="https://blog.csdn.net/Kennen0_0/article/details/117790767">参考文档</a></li>
 </ul>
 </li>
 <li>性能测试：<ul>
 <li>JMeter客户端（用来模拟多用户）</li>
 <li>Badboy客户端  （用来生成用户行为）</li>
+</ul>
+</li>
+</ul>
+<h2 id="selenium功能测试具体流程"><a href="#selenium功能测试具体流程" class="headerlink" title="selenium功能测试具体流程"></a>selenium功能测试具体流程</h2><blockquote>
+<p><a href="https://blog.csdn.net/Kennen0_0/article/details/117791843?spm=1001.2014.3001.5502">参考文档</a></p>
+</blockquote>
+<h2 id="selenium功能测试得分技巧"><a href="#selenium功能测试得分技巧" class="headerlink" title="selenium功能测试得分技巧"></a>selenium功能测试得分技巧</h2><ul>
+<li>webdriver API的使用<br>对浏览器的控制是Selenium的一个重要应用，可以对使浏览器最大化，并指定浏览器的url访问网页地址。</li>
+</ul>
+<pre><code class="java"> // 浏览器打开指定网址。
+ driver.get(&quot;https://www.baidu.com&quot;);
+ // 浏览器最大化。
+ driver.manage().window().maximize();
+ // 浏览器关闭
+ driver.close();
+</code></pre>
+<ul>
+<li><p>java selenium的三种等待方式</p>
+<ul>
+<li>强制等待<br> 这种叫强制等待，不管浏览器是否加载完了，程序都得等待3秒，3秒一到，继续执行下面的代码，作为调试很有用，有时候也可以在代码里这样等待，不过不建议总用这种等待方式，太死板，严重影响程序执行速度。<br>注意：使用强制等待要在test方法中抛出中断异常 throws InterruptedException</li>
+</ul>
+<pre><code class="java">Thread.sleep(3000)  // 强制等待3秒再执行下一步
+</code></pre>
+<ul>
+<li>隐形等待<br> 一般在打开浏览器之前设置，隐性等待对整个driver的周期都起作用，会对所有页面元素等待时间操作有效，所以只要设置一次即可，不要把隐性等待当成了sleep在用，走哪儿都来一下。<br> 隐形等待是设置了一个最长等待时间，如果在规定时间内网页加载完成，则执行下一步，否则一直等到时间截止，然后执行下一步。<br> 注意这里有一个弊端，那就是程序会一直等待整个页面加载完成，也就是一般情况下你看到浏览器标签栏那个小圈不再转，才会执行下一步，<br> 但有时候页面想要的元素早就在加载完成了，但是因为个别js之类的东西特别慢，我仍得等到页面全部完成才能执行下一步，但我想等我要的元素出来之后就下一步怎么办？<br> 有办法，这就要看selenium提供的另一种等待方式——显性等待wait了。</li>
+</ul>
+<pre><code class="java">driver.manage().timeouts().implicitlyWai(timeout, TimeUnit.SECONDS);
+</code></pre>
+<ul>
+<li>显性等待<br> WebDriverWait，配合该类的unti方法，就能够根据判断条件而进行灵活地等待了。这个的功能是：程序每隔xx秒看一眼，如果条件成立了，则执行下一步，否则继续等待，直到超过设置的最长时间，然后抛出TimeoutException。</li>
+</ul>
+<pre><code class="java">//设置显示等待
+WebDriverWait wait = new WebDriverWait(driver, 3);
+WebElement driver = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(&quot;sb_form_q&quot;)));
+driver .sendKeys(&quot;abc&quot;);
+</code></pre>
+</li>
+</ul>
+<h2 id="元素定位的方法"><a href="#元素定位的方法" class="headerlink" title="元素定位的方法"></a>元素定位的方法</h2><p>使用Selenium对Web应用进行功能测试，最重要的就是定位到目标元素，然后才能测试其是否满足功能需求。我们可以通过浏览器的自带的开发者调试工具，来获取网页元素的属性。</p>
+<ul>
+<li>id<br>通过元素的id属性来定位元素</li>
+</ul>
+<pre><code class="java">WebElement kwElement = driver.findElement(By.id(&quot;sb_form_q&quot;));
+           kwElement.clear();
+           kwElement.sendKeys(&quot;CSDN&quot;);
+           driver.findElement(By.id(&quot;sb_go_par&quot;)).click();
+</code></pre>
+<ul>
+<li>name<br>通过元素的name属性来定位元素</li>
+</ul>
+<pre><code class="java">WebElement kwElement = driver.findElement(By.name(&quot;q&quot;));
+</code></pre>
+<ul>
+<li>classname,tag,css selector</li>
+</ul>
+<pre><code class="java">driver.findElement(By.className(&quot;b_searchbox&quot;));
+driver.findElement(By.tagName(&quot;input&quot;));
+driver.findElement(By.cssSelector(&quot;#sb_form_q&quot;));
+</code></pre>
+<ul>
+<li>linktext</li>
+</ul>
+<pre><code class="html">&lt;a href=&quot;www.baidu.com&quot;&gt;
+   &lt;span class=&quot;label&quot;&gt;百度一下，你就知道&lt;/span&gt;
+&lt;/a&gt;
+</code></pre>
+<p>linkText，通过完整的链接文字去查找元素；partialLinkText，通过部分链接文字去查找元素。<br>以上面的例子为例，这个在页面上展示的就是一个超链接，我们可以通过超链接的全部或者部分文字来定位元素。</p>
+<pre><code class="java">driver.findElement(By.linkText(&quot;百度一下，你就知道&quot;));
+driver.findElement(By.partialLinkText(&quot;百度一下&quot;));
+</code></pre>
+]]></content>
+      <categories>
+        <category>web测试</category>
+      </categories>
+      <tags>
+        <tag>web应用测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>web应用测试——功能测试</title>
+    <url>/2022/10/04/web%E5%BA%94%E7%94%A8%E6%B5%8B%E8%AF%95%E2%80%94%E2%80%94%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="功能测试（functional-testing）"><a href="#功能测试（functional-testing）" class="headerlink" title="功能测试（functional testing）"></a>功能测试（functional testing）</h1><blockquote>
+<p>根据产品特性和设计需求，验证一个产品的特性和行为是否满足设计需求</p>
+</blockquote>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
+<li>更具需求文档细分功能点</li>
+<li>根据功能点来派生测试需求</li>
+<li>根据测试需求设计功能测试用例</li>
+<li>逐项执行功能测试用例验证产品</li>
+</ul>
+<h2 id="相关的测试类型"><a href="#相关的测试类型" class="headerlink" title="相关的测试类型"></a>相关的测试类型</h2><ul>
+<li>正确性<ul>
+<li>产品功能是否与需求和设计文档一致</li>
+</ul>
+</li>
+<li>可靠性<ul>
+<li>用户交互是否引发软件崩溃和其他异常</li>
+</ul>
+</li>
+<li>易用性<ul>
+<li>软件产品完成特定任务的难易程度</li>
 </ul>
 </li>
 </ul>
@@ -1948,6 +2049,7 @@ print(test_df)
       </categories>
       <tags>
         <tag>web应用测试</tag>
+        <tag>web功能测试</tag>
       </tags>
   </entry>
 </search>

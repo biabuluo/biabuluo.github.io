@@ -190,7 +190,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/web应用测试/" style="color: #00a596">
+                <a href="/tags/web应用测试/" style="color: #ffa2c4">
                     web应用测试
                 </a>
             </span>
@@ -283,6 +283,152 @@ driver.findElement(By.cssSelector(&quot;#sb_form_q&quot;));
 <p>linkText，通过完整的链接文字去查找元素；partialLinkText，通过部分链接文字去查找元素。<br>以上面的例子为例，这个在页面上展示的就是一个超链接，我们可以通过超链接的全部或者部分文字来定位元素。</p>
 <pre><code class="java">driver.findElement(By.linkText(&quot;百度一下，你就知道&quot;));
 driver.findElement(By.partialLinkText(&quot;百度一下&quot;));
+</code></pre>
+<ul>
+<li>xpath<br>XPath 是一门在 XML 文档中查找信息的语言。XPath 可用来在 XML 文档中对元素和属性进行遍历。<br>*** 在查找元素的各种方法中更推荐通过元素的Xpath来定位元素 ***</li>
+</ul>
+<pre><code class="java">driver.findElement(By.xpath(&quot;....&quot;));
+</code></pre>
+<ul>
+<li>切换frame<br>在有些时候，一个页面会嵌套多个frame，这时候如果想要定位某一个frame中的元素，就需要切换到目标元素所在的frame中去，定位操作完成之后，返回默认文档。</li>
+</ul>
+<pre><code class="java">//根据id找到frame元素(上面几种定位方式都可以)，然后切换过去。
+WebElement frameElement = driver.findElement(By.id(&quot;frame_id&quot;));
+driver.switchTo().frame(frameElement);
+//在frameElement中测试完对应的功能后需要切换回原来的frame以进行进一步的测试
+driver.switchTo().defaultContent();
+</code></pre>
+<ul>
+<li>切换handle<br>测试可能会在不同的网页窗口句柄中进行，这时候就需要在不同的句柄中进行切换，方法如下</li>
+</ul>
+<pre><code class="java">//两种方法都可以
+//第一种方法
+List&lt;String&gt; lt1 = new ArrayList&lt;String&gt;(driver.getWindowHandles());
+driver.switchTo().window(lt1.get(1));
+//第二种方法
+Set&lt;String&gt; handles = driver.getWindowHandles();
+int i = 0;
+System.out.println(handles.size());
+for (String handle : handles) &#123;	
+    if (i==0) &#123;	
+        driver.switchTo().window(handle);
+        &#125;else &#123;
+            i++;
+        &#125;
+&#125;
+</code></pre>
+<ul>
+<li>鼠标键盘事件操作<br>在Web测试中，常见的鼠标操作有：单击、双击、右击、拖拽、悬浮等操作，这些方法封装在了Actions类中。方法有：</li>
+<li>① contextClick();&#x2F;&#x2F;右击</li>
+<li>② doubleClick();&#x2F;&#x2F;双击</li>
+<li>③ dragAndDrop(source, target);&#x2F;&#x2F;拖拽</li>
+<li>④ moveToElement();&#x2F;&#x2F; 悬浮在某一元素上</li>
+</ul>
+<pre><code class="java">//构造Actions类，使用该类进行鼠标的各种操作
+Actions actions = new Actions(driver);
+//鼠标右击
+actions.contextClick(kwElement).perform();
+//鼠标双击
+actions.doubleClick().perform();
+//鼠标悬浮在某一元素上
+actions.moveToElement(kwElement).perform();
+</code></pre>
+<p>键盘的一些操作主要就是输入键盘上的有特殊功能的字符，比如回车键，删除键等以达到相应地目的。<br>键符封装在了Keys类中，主要有：删除、空格、制表、回车等。使用组合键Ctrl+a和Ctrl+c等还可以实现全选和复制等功能。   </p>
+<pre><code class="java">//删除
+kwElement.sendKeys(Keys.BACK_SPACE);
+//空格
+kwElement.sendKeys(Keys.SPACE);
+//回车
+kwElement.sendKeys(Keys.ENTER);
+//选择
+kwElement.sendKeys(Keys.CONTROL,&quot;a&quot;);
+//复制
+kwElement.sendKeys(Keys.CONTROL,&quot;c&quot;);
+</code></pre>
+<hr>
+<h1 id="个人心得"><a href="#个人心得" class="headerlink" title="个人心得"></a>个人心得</h1><h2 id="头文件引用"><a href="#头文件引用" class="headerlink" title="头文件引用"></a>头文件引用</h2><pre><code class="java">import java.util.Iterator;
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
+import com.sun.org.apache.xerces.internal.impl.xpath.XPath;
+
+import sun.security.util.Length;
+</code></pre>
+<h2 id="函数封装"><a href="#函数封装" class="headerlink" title="函数封装"></a>函数封装</h2><pre><code class="java">//判断元素是否存在
+    public static boolean ifElementExist(WebDriver driver, By by) &#123;
+        boolean flag = true;
+        try &#123;
+            driver.findElement(by);
+        &#125;catch(Exception e)&#123;
+            flag = false;
+        &#125;
+        return flag;
+    &#125;   
+//网页句柄转化为list逆序
+    public static String[] setArray(Set&lt;String&gt; h) 
+    &#123;
+       Iterator&lt;String&gt; iter = h.iterator(); 
+       String[] b = new String[20]; 
+       for(int i=h.size()-1; i&gt;=0; i--) &#123;
+           b[i] = iter.next().toString();
+       &#125;
+       return b;
+    &#125;  
+//点击函数封装xpath
+    public static void xpathClick(WebDriver driver,String a) throws InterruptedException
+    &#123;
+       driver.findElement(By.xpath(a)).click();
+       Thread.sleep(1000);
+    &#125;
+//传值函数封装
+    public static void xpathSendkey(WebDriver driver,String a,String b) throws InterruptedException
+    &#123;
+       driver.findElement(By.xpath(a)).sendKeys(b);
+       Thread.sleep(1000);
+    &#125;
+</code></pre>
+<h2 id="测试函数抛出异常"><a href="#测试函数抛出异常" class="headerlink" title="测试函数抛出异常"></a>测试函数抛出异常</h2><pre><code class="java">public static void test(WebDriver driver, Actions action) throws InterruptedException
+</code></pre>
+<h2 id="网页全屏"><a href="#网页全屏" class="headerlink" title="网页全屏"></a>网页全屏</h2><pre><code class="java">driver.get(&quot;https://y.qq.com/&quot;);
+driver.manage().window().maximize(); //将浏览器最大化
+</code></pre>
+<h2 id="鼠标移动动作"><a href="#鼠标移动动作" class="headerlink" title="鼠标移动动作"></a>鼠标移动动作</h2><pre><code class="java">//主函数定义
+Actions action =new Actions(driver);
+//......
+//测试函数中使用
+WebElement e = driver.findElement(By.xpath(&quot;//*[@id=\&quot;content\&quot;]/div[2]/div[2]&quot;));
+action.moveToElement(e).perform();
+</code></pre>
+<h2 id="页面切换"><a href="#页面切换" class="headerlink" title="页面切换"></a>页面切换</h2><pre><code class="java">Set&lt;String&gt; h = driver.getWindowHandles();//获得所有窗口,返回的set容器里面是倒序的窗口
+String[] b = setArray(h);//按顺序排列窗口，放入数组
+driver.switchTo().window(b[0]);
+Thread.sleep(2000);
+</code></pre>
+<h2 id="页面关闭"><a href="#页面关闭" class="headerlink" title="页面关闭"></a>页面关闭</h2><pre><code class="java">driver.close();//当前句柄窗口
+</code></pre>
+<h2 id="模拟键盘操作"><a href="#模拟键盘操作" class="headerlink" title="模拟键盘操作"></a>模拟键盘操作</h2><pre><code class="java">action.sendKeys(Keys.BACK_SPACE).perform();
+//webdriver 的Keys()类提供键盘上所有按键的操作
+from selenium.webdriver.common.keys import Keys
+//在使用键盘按键方法前需要先导入keys 类包。
+//下面经常使用到的键盘操作：
+send_keys(Keys.BACK_SPACE) #删除键（BackSpace）
+send_keys(Keys.SPACE) #空格键(Space)
+send_keys(Keys.TAB) #制表键(Tab)
+send_keys(Keys.ESCAPE) #回退键（Esc）
+send_keys(Keys.ENTER) #回车键（Enter）
+send_keys(Keys.CONTROL,&#39;a&#39;) #全选（Ctrl+A）
+send_keys(Keys.CONTROL,&#39;c&#39;) #复制（Ctrl+C）
+</code></pre>
+<h2 id="网页下滑操作"><a href="#网页下滑操作" class="headerlink" title="网页下滑操作"></a>网页下滑操作</h2><pre><code class="java">((JavascriptExecutor)driver).executeScript(&quot;window.scrollTo(0, 100);&quot;);
 </code></pre>
 
     </div>

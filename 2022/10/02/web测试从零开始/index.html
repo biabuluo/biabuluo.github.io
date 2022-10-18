@@ -190,7 +190,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/web应用测试/" style="color: #ffa2c4">
+                <a href="/tags/web应用测试/" style="color: #00bcd4">
                     web应用测试
                 </a>
             </span>
@@ -430,6 +430,17 @@ send_keys(Keys.CONTROL,&#39;c&#39;) #复制（Ctrl+C）
 </code></pre>
 <h2 id="网页下滑操作"><a href="#网页下滑操作" class="headerlink" title="网页下滑操作"></a>网页下滑操作</h2><pre><code class="java">((JavascriptExecutor)driver).executeScript(&quot;window.scrollTo(0, 100);&quot;);
 </code></pre>
+<hr>
+<h1 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h1><ul>
+<li>使用badboy按需求文档录制脚本</li>
+<li>导出jmeter文件</li>
+<li>在jmeter中导入文件命名线程组<br><img src="/../imgs/jmeter1.png" alt="jmeter"></li>
+<li>按要求配置并发用户和合适的ramp up period，线程组执行时间<br><img src="/../imgs/jmeter2.png" alt="jmeter"></li>
+<li>记得调节启动延迟<br><img src="/../imgs/jmeter3.png" alt="jmeter"></li>
+<li>参数化：csv数据文件配置<br>记得将csv文件放在jmeter文件同一个目录下<br><img src="/../imgs/jmeter4.png" alt="jmeter"><br>配置值<br><img src="/../imgs/jmeter5.png" alt="jmeter"></li>
+<li>关键搜索处添加事务<br><img src="/../imgs/jmeter6.png" alt="jmeter">   </li>
+<li>添加集合点<br><img src="/../imgs/jmeter7.png" alt="jmeter"></li>
+</ul>
 
     </div>
     

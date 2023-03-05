@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>Java查漏补缺1 | 小宇の万事屋</title>
+        <meta name="author" content="阿小橙">
+        <meta name="description" content="                  ————黎明卿">
+        <meta name="keywords" content="好想赚大钱然后摆烂啊！">
+        <link rel="icon" href="https://avatars.githubusercontent.com/u/101565351?s=400&u=604f299e774fa27d00960a7476088c37fb45448e&v=4">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    
+    <body>
+        <!-- cursor -->
+        <div id="cursor"></div>
+<script src="/css/cursor.css"></script>
+<script src="/js/cursor.js"></script>
+         <!-- 音乐 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="7361775742" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#cbcdcd" data-autoplay="true"></div>
+  <!-- 隐藏aplayer -->
+  <link rel="stylesheet" href="/css/aplayer.css"/>
+
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><h3 style="word-break:keep-all">飞船空间曲翘中🚀</h3><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">小宇の万事屋</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/search.xml">
+            <i class="fa-solid fa-magnifying-glass-location fa-fw"></i>
+            <span>&ensp;search</span>
+        </a>
+        
+        <a href="/bangumis/index.html">
+            <i class="fa-brands fa-bilibili fa-fw"></i>
+            <span>&ensp;bilibili</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;小宇の万事屋</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/search.xml">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-magnifying-glass-location fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">search</div>
+                </div>
+            </a>
+            
+            <a href="/bangumis/index.html">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-brands fa-bilibili fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">bilibili</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>Java查漏补缺1 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/3/3
+        </span>
+        
+        <span class="category">
+            <a href="/categories/后端学习/">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                </span>
+                后端学习
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/java/" style="color: #00bcd4">
+                    java
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="object：建立编程思想"><a href="#object：建立编程思想" class="headerlink" title="object：建立编程思想"></a>object：建立编程思想</h1><h2 id="Java概述"><a href="#Java概述" class="headerlink" title="Java概述"></a>Java概述</h2><ul>
+<li>面向对象的，解释性的，跨平台的</li>
+<li>强类型机制，异常处理，垃圾自动回收 保证了Java的健壮性</li>
+</ul>
+<hr>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li>变量表示内存中的一个存储区域</li>
+<li>该区域有自己的名称：变量名和类型：数据类型</li>
+<li>变量必须先声明后使用，即有顺序</li>
+<li>在同一个作用域范围内不能重名</li>
+<li>变量 &#x3D; 变量名 + 值 + 数据类型<br><strong>+的使用:</strong></li>
+<li>左右两边是数值型-&gt;加法运算</li>
+<li>左右两方一方为字符串时-&gt;拼接运算<br><strong>数据类型：</strong><table>
+<thead>
+<tr>
+<th>基本数据类型</th>
+<th>引用数据类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数值型（整形，浮点型），字符型，bool型</td>
+<td>类（class）接口（interface）数组</td>
+</tr>
+<tr>
+<td><strong>自动类型转黄</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li>精度小类型自动转换为精度大类型：<blockquote>
+<p>char-&gt; int-&gt; long-&gt; float-&gt; double<br>byte-&gt; short-&gt; int-&gt; long-&gt; float-&gt; double  :<del>float a &#x3D; int + 1.1</del> 因为1.1为double 1.1f是float </p>
+</blockquote>
+</li>
+<li>自动提升原则：类型自动提升为操作数中最大类型：byte short char 三者可以计算 首先转化为int类型<br><strong>基本数据类型与string的转换</strong><blockquote>
+<p>基本类型-&gt;string：string str &#x3D; 基本类型+””;<br>string -&gt; 基本类型： Integer.perseInt(“…”);</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><table>
+<thead>
+<tr>
+<th>运算符介绍</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>算术运算符</td>
+<td>+-*&#x2F;%…</td>
+</tr>
+<tr>
+<td>关系运算符</td>
+<td>(结果：boolean) &#x3D;&#x3D; !&#x3D; &lt; &gt; …</td>
+</tr>
+<tr>
+<td>逻辑运算符</td>
+<td>&amp;&amp;</td>
+</tr>
+<tr>
+<td>赋值运算符</td>
+<td>+&#x3D; -&#x3D; &#x3D; …</td>
+</tr>
+<tr>
+<td>三元运算符</td>
+<td>…?…:…</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>键盘输入语句</strong><br>导入该类的包<br>创建该类的对象<br>调用功能</p>
+</blockquote>
+<pre><code class="java">import java.util.Scanner;
+....
+Scanner scanner = new Scanner(System.in);
+String str = scanner.next();//.nextInt, .nextDouble
+</code></pre>
+<blockquote>
+<p>进制：<br>二进制：0b开头 八进制:数字0开头 十六进制：0x开头<br>位运算：&gt;&gt; , &lt;&lt; , &gt;&gt;&gt;(算术)</p>
+</blockquote>
+<hr>
+<h2 id="控制结构"><a href="#控制结构" class="headerlink" title="控制结构"></a>控制结构</h2><table>
+<thead>
+<tr>
+<th>控制结构</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>顺序结构</td>
+<td></td>
+</tr>
+<tr>
+<td>分支控制</td>
+<td>if, else, switch</td>
+</tr>
+<tr>
+<td>循环控制</td>
+<td>for， while， dowhile，多重循环</td>
+</tr>
+<tr>
+<td></td>
+<td>break, continue, return</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>switch基本语法</p>
+</blockquote>
+<pre><code class="java">switch(表达式)&#123;
+    case 常量1:...；break;
+    case 常量2:...；break;
+    default: ... 语句块；break;
+&#125;
+</code></pre>
+<hr>
+<h2 id="数组排序和查找"><a href="#数组排序和查找" class="headerlink" title="数组排序和查找"></a>数组排序和查找</h2><blockquote>
+<p><strong>数组</strong><br>定义一个数组：double[] name &#x3D; {…}<br>动态初始化： 1.int a[] &#x3D; new int[5];   2.double name[]; &#x2F;&#x2F;声明，不分配空间 … name &#x3D; new double[5];<br>静态初始化： int a[] &#x3D; {…};<br>注意事项：数组创建后，如果没有赋值，有默认值：<br>int-&gt;0；short&#x2F;byte&#x2F;long-&gt;0; float&#x2F;double-&gt;0.0; char-&gt;\u0000;boolean-&gt;false; String-&gt;null<br>数组属于引用类型，数组型数据是对象</p>
+</blockquote>
+<p><strong>数组赋值机制</strong></p>
+<blockquote>
+<p>基本数据类型赋值：互不影响（值拷贝）<br>数组在默认情况下是引用传递，赋值是地址 （引用传递）  </p>
+</blockquote>
+<ul>
+<li>数组拷贝：<blockquote>
+<p>int[] arr1 &#x3D; {….}; int[] arr2 &#x3D; new int[arr1.length]; 再遍历赋值</p>
+</blockquote>
+</li>
+<li>多维数组<blockquote>
+<p>动态初始化： int[][] name &#x3D; new int[…][…];(也可以先声明，再new！)</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="面向对象（中级）"><a href="#面向对象（中级）" class="headerlink" title="面向对象（中级）"></a>面向对象（中级）</h2><ul>
+<li>对象内存布局：(以cat为例)<blockquote>
+<p><img src="/../imgs/object.png" alt="memory"></p>
+</blockquote>
+</li>
+<li>成员方法<blockquote>
+<p>访问修饰符：public,protected, private</p>
+</blockquote>
+</li>
+<li>重载<blockquote>
+<p>类中允许同名方法存在，但要求形参列表不一致，返回类型：无要求</p>
+</blockquote>
+</li>
+<li>可变参数<blockquote>
+<p>java允许将同一个类中多个同名同功能但参数个数不同的方法，封装成一个方法</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="java">public int sum(int ... a)&#123;
+    ....;//可以把a当成数组：a.length
+    //实参可以是数组
+    //- [#]可变参数可以和普通参数一起放在列表中，但要保证可变参数放在最后
+    //- [#]一个形参列表中只能出现一个可变参数
+&#125;
+</code></pre>
+<ul>
+<li>构造器<blockquote>
+<p>构造器修饰符可以默认<br>构造器没有返回值<br>方法名和类名字必须一样<br>参数列表和成员方法一样的规则<br>构造器的调用由系统完成(自动调用)<br>系统会自动定义一个构造器，除非程序员定义了自己的构造器</p>
+</blockquote>
+</li>
+<li>对象创建流程分析<blockquote>
+<p>1.变量的默认初始化<br>2.类定义的初始化<br>3.构造器的初始化</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="面向对象（中级）-1"><a href="#面向对象（中级）-1" class="headerlink" title="面向对象（中级）"></a>面向对象（中级）</h2><h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><ul>
+<li>IDEA<blockquote>
+<p>删除当前行：ctrl+d<br>补全代码：alt+&#x2F;<br>添加注释：ctrl+&#x2F;</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><blockquote>
+<p>作用：<br>1.区分相同名字的类<br>2.类多时，可以很好的管理类<br>3.控制访问范围</p>
+</blockquote>
+<pre><code class="java">package com.hello  //后面是包名
+</code></pre>
+<blockquote>
+<p>命名规范：<br>com.公司名.项目名.业务模块名<br>java常用的包：</p>
+</blockquote>
+<pre><code class="java">java.lang.* //默认引入
+java.util.* //系统提供的工具包
+java.net.* //网络包 网络开发
+java.awt.* //java界面开发，Gui
+</code></pre>
+<blockquote>
+<p>引入包</p>
+</blockquote>
+<pre><code class="java">import ...
+</code></pre>
+<h3 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h3><ul>
+<li>public :公开级别</li>
+<li>protected：对子类和同一个包中公开</li>
+<li>默认级别（没有修饰符）：同一个包的类公开</li>
+<li>private：只有类本身可以访问，不对外公开</li>
+</ul>
+<h3 id="封装（面向对象三大特征之一encapsulation）"><a href="#封装（面向对象三大特征之一encapsulation）" class="headerlink" title="封装（面向对象三大特征之一encapsulation）"></a>封装（面向对象三大特征之一encapsulation）</h3><p>就是把抽象出的数据[属性]和对数据的操作[方法]封装在一起，数据被保护在内部，程序在其它部分只有通过被授权的操作[方法]，才能对数据进行操作。</p>
+<h3 id="继承（面向对象三大特征之一extends）"><a href="#继承（面向对象三大特征之一extends）" class="headerlink" title="继承（面向对象三大特征之一extends）"></a>继承（面向对象三大特征之一extends）</h3><blockquote>
+<p>解决代码复用</p>
+</blockquote>
+<ul>
+<li>基本语法</li>
+</ul>
+<pre><code class="java">class Son extends Father&#123;
+    ...;
+    // 子类拥有父类定义的属性方法
+&#125;
+</code></pre>
+<ul>
+<li>子类继承了所有属性和方法，但是私有属性不能在子类直接访问，要通过公共方法去访问</li>
+<li>子类必须调用父类的构造器，完成父类的初始化</li>
+<li>子类默认调用父类无参构造函数，否则要用super调用指定的父类构造函数</li>
+<li>super&#x2F;this 使用时需要放在构造函数第一行，因此构造器中不能同时存在super和this关键字</li>
+<li>java所有类都是object类的子类</li>
+<li>java 只支持单继承</li>
+</ul>
+<h3 id="多态（面向对象三大特征之一）"><a href="#多态（面向对象三大特征之一）" class="headerlink" title="多态（面向对象三大特征之一）"></a>多态（面向对象三大特征之一）</h3><p>方法或对象具有多种形态</p>
+<ul>
+<li>方法的多态：重写和重载</li>
+<li>对象的多态：用父类的引用指向子类对象</li>
+<li>属性没有重写之说，直接看编译类型（注意编译类型和运行类型（实际类型）instanceof 判断的是运行类型）</li>
+</ul>
+<h4 id="向上转型"><a href="#向上转型" class="headerlink" title="向上转型"></a>向上转型</h4><ul>
+<li>可以调用父类的所有成员，不能调用子类的特有成员</li>
+</ul>
+<h4 id="向下转型"><a href="#向下转型" class="headerlink" title="向下转型"></a>向下转型</h4><ul>
+<li>只能强转父类的引用，不能强转父类对象</li>
+</ul>
+<h3 id="Super"><a href="#Super" class="headerlink" title="Super"></a>Super</h3><ul>
+<li>代表父类的引用，用于访问父类的属性和方法，构造器</li>
+<li>访问父类属性，方法，但不能访问private</li>
+<li>super访问遵循就近原则</li>
+</ul>
+<h3 id="overwrite"><a href="#overwrite" class="headerlink" title="overwrite"></a>overwrite</h3><p>就是子类有一个方法，和父类的某个方法的名称，返回类型，参数一样，那么我们就说子类的这个方法覆盖了父类的方法。</p>
+<h3 id="java动态绑定机制"><a href="#java动态绑定机制" class="headerlink" title="java动态绑定机制"></a>java动态绑定机制</h3><ul>
+<li>当调用对象方法时，该方法会和该对象的内存地址&#x2F;运行类型绑定</li>
+<li>调用属性时，没有动态绑定机制，哪里声明，哪里使用</li>
+</ul>
+<h3 id="Object类详解"><a href="#Object类详解" class="headerlink" title="Object类详解"></a>Object类详解</h3><ul>
+<li>equals(object obj)<ul>
+<li>&#x3D;&#x3D; <blockquote>
+<p>1.判断基本类型，判断值是否相等<br>2.判断引用类型，判断地址是否相等</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="java">public boolean equals(Object obj)&#123;
+    if(this == obj)&#123;
+        return true;     //判断是否为同一对象
+    &#125;
+    if(obj instanceof Person)&#123; //判断是否为该类型
+        Person p = (Person)obj; //向下转型
+        return ...==... ;
+    &#125;
+    return false;
+&#125;
+</code></pre>
+</li>
+<li>finalize()<ul>
+<li>当垃圾回收器确定不存在该对象的不同引用时，被调用</li>
+<li>垃圾回收机制的主动调用：system.gc()(因为不能时时监控)</li>
+</ul>
+</li>
+<li>getClass()</li>
+<li>hashCode()<ul>
+<li>返回哈希值，为了提高哈希表的性能</li>
+<li>哈希值主要根据地址号来重写，不能完全等价于地址</li>
+</ul>
+</li>
+<li>toString()<ul>
+<li>默认返回：全类名+@+哈希值的十六进制</li>
+</ul>
+</li>
+</ul>
+<h3 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a>断点调试</h3><p>略</p>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2023 小宇の万事屋
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @阿小橙
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "https://github.com/biabuluo",
+        owner: "biabuluo",
+        admin: ["biabuluo"],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+                <!-- backtotop -->
+                <div id = "gotop">
+                    <img src="/scrollup.png" alt="gotop">
+                </div>
+                <link rel="stylesheet" href="/css/totop.css">
+                <script>
+                    window.addEventListener("scroll",handle)
+                    function handle(){
+                        var oTop = document.body.scrollTop||document.documentElement.scrollTop
+                        if(oTop>=200){
+                            gotop.style.display = "block";
+                        }else{
+                            gotop.style.display = "none";
+                        }
+                        gotop.onclick = function(){
+                            window.scrollTo({
+                                top:0,
+                                behavior:"smooth"
+                            })
+                        }
+                    }
+                </script>
+        
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+        <!-- 流星特效 -->
+        <canvas
+        id="background"
+        style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999"
+        ></canvas>
+        <script src="/js/background.js"></script>
+
+</html>

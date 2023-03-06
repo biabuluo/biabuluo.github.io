@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>搜索问题求解 | 小宇の万事屋</title>
+        <title>Java查漏补缺2 | 小宇の万事屋</title>
         <meta name="author" content="阿小橙">
         <meta name="description" content="                  ————黎明卿">
         <meta name="keywords" content="好想赚大钱然后摆烂啊！">
@@ -163,22 +163,22 @@
                         
 <div class="article">
     <div>
-        <h1>搜索问题求解 </h1>
+        <h1>Java查漏补缺2 </h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
             </span>
-            2022/9/9
+            2023/3/5
         </span>
         
         <span class="category">
-            <a href="/categories/人工智能原理/">
+            <a href="/categories/后端学习/">
                 <span class="icon">
                     <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
                 </span>
-                人工智能原理
+                后端学习
             </a>
         </span>
         
@@ -190,8 +190,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/搜索问题求解/" style="color: #ff7d73">
-                    搜索问题求解
+                <a href="/tags/java/" style="color: #ff7d73">
+                    java
                 </a>
             </span>
             
@@ -199,111 +199,160 @@
         
     </div>
     <div class="content" v-pre>
-        <h1 id="智力游戏问题"><a href="#智力游戏问题" class="headerlink" title="智力游戏问题"></a>智力游戏问题</h1><ul>
-<li>八数码难题（8-puzzle）   <blockquote>
-<p>有一个3*3的棋盘，九个格子摆上八个棋子，不同棋子上标的数字不同，给定初状态和末状态，求最少移动步骤数<br><img src="/../imgs/eight.png" alt="eight"></p>
-</blockquote>
-</li>
-<li>八皇后问题(eight queens puzzle)<blockquote>
-<p>8*8的国际象棋棋盘上拜访八个皇后使其不能发生相互攻击的摆法总个数</p>
-</blockquote>
-</li>
-<li>汉诺塔问题（hannoi tower）</li>
-<li>传教士和食人族问题（missionaries and cannibals problems）<blockquote>
-<p>三个传教士和三个食人族来到一条河的左岸，想度过右岸，河的左岸只有一条船(只能乘坐两个人)：当食人族的人数超过传教士，食人族就会把传教士吃掉，如何安全渡船？</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="现实世界问题"><a href="#现实世界问题" class="headerlink" title="现实世界问题"></a>现实世界问题</h1><ul>
-<li>最短路径问题  <blockquote>
-<p>求解其中给定两个之间的最短距离<br><img src="/../imgs/shortest.png" alt="shortest"></p>
-</blockquote>
-</li>
-</ul>
-<h1 id="搜索问题要素"><a href="#搜索问题要素" class="headerlink" title="搜索问题要素"></a>搜索问题要素</h1><ul>
-<li>状态表征：<blockquote>
-<p>状态是问题在不同时期或不同条件所表现出的形态。问题提出时的状态称其为初始状态，问题达到预期结果时的状态为目标状态，其他为中间状态。<br>表征方法主要采用原子表征（不考虑状态的内部构造）<br><img src="/../imgs/atom.png" alt="atom">  </p>
-</blockquote>
-</li>
-<li>状态空间：<blockquote>
-<p>状态空间是问题在不同时期或在不同条件所表现出来的所有状态的有机组成。（可抽象为一张图或一棵树）  </p>
-</blockquote>
-</li>
-<li>形式化：<blockquote>
-<p>def1: 一个问题若可以表示为状态空间，并且初始状态和目标状态之间可能存在多条路径的话，就称其为搜索问题<br>def2: 一个搜索问题可以形式化为一个5元组，search &#x3D; (S,S0,A,Gt,c)</p>
-<blockquote>
-<p>1.S为问题空间状态集合，状态s∈S，且S不为空<br>2.s0表示初始状态<br>3.A表示动作集合，因为动作导致状态迁移，或因动作而生成后继状态<br>4.Gt是目标检测（goal test），判定给定状态是否为目标状态<br>5.c表示路径代价（path cost）</p>
-</blockquote>
-</blockquote>
-</li>
-</ul>
-<h1 id="求解方法"><a href="#求解方法" class="headerlink" title="求解方法"></a>求解方法</h1><p>一个简单的搜索问题求解算法</p>
-<pre><code class="pseudocode">agent: simple-people-solving
-    imput: percept #感知
-    output: an action  #搜索得出来的动作
-    local：       #局部变量
-        seq：一个动作序列，初始化为空
-        state：一些对于当前状态的描述
-        goal：一个目标，初始化为空
-        problem：一个对问题的形式化处理
-        action：最近的action，初始化为空
-    
-    state &lt;- get_current_state(state, percept) #获取当前状态
-    if seq is empty then
-        goal &lt;- formulate_goal(state) #对目标状态进行形式化处理
-        problem &lt;- formulate_goal(state, goal) #对搜索问题进行形式化
-        seq &lt;- search(problem)   #完成当前搜索任务
-        if seq = failure then
-            return null action
-    action &lt;- first(seq)
-    seq &lt;- rest(seq)
-    return action
+        <h1 id="类变量和类方法"><a href="#类变量和类方法" class="headerlink" title="类变量和类方法"></a>类变量和类方法</h1><pre><code class="java">class classname&#123;
+    public static int count = 0;
+    ...
+&#125;
 </code></pre>
-<h1 id="搜索问题实例化"><a href="#搜索问题实例化" class="headerlink" title="搜索问题实例化"></a>搜索问题实例化</h1><ul>
-<li><mark>八数码难题：</mark><blockquote>
-<ol>
-<li>状态s： 九个格子中八个数字棋子与空格的不同摆放</li>
-<li>初始状态s0：任意一个状态都能成为初始状态</li>
-<li>动作集合A：最简单的动作是移动空格（上下左右）</li>
-<li>目标检测Gt：检查某个状态是否与目标状态的布局相符</li>
-<li>路径代价c: 每一步代价为1</li>
-</ol>
-</blockquote>
-</li>
-<li><mark>八皇后问题：</mark><br>包含两个形式方法：</li>
-</ul>
-<ol>
-<li>增量形式化： 空状态开始，到摆满n个（常用）</li>
-<li>全态形式化： 初始随机摆放，移动皇后到不违法<blockquote>
-<ol>
-<li>状态集合：棋盘摆放1-n个皇后</li>
-<li>初始状态：棋盘上没有皇后</li>
-<li>动作集合： 每次添加一个皇后到任意一个空格且合法</li>
-<li>目标检测： 八个皇后已摆放且合法</li>
-<li>路径代价：等于添加皇后的步数</li>
-</ol>
-</blockquote>
-</li>
-</ol>
 <ul>
-<li><mark>传教士食人族问题</mark><br>只需左岸状态就可以推出右岸状态，左岸状态由三元组表示：S_left &#x3D; (missionary, cannibal, boat) boat&#x3D;1：表示船在左侧<blockquote>
+<li>被所有类对象共享</li>
+<li>类方法：<blockquote>
+<p>访问修饰符 static 数据返回类型 方法名(){}</p>
+</blockquote>
+</li>
+<li>类方法和普通方法都是随着类的加载而加载，将结构信息存储在方法区中</li>
+</ul>
+<h1 id="理解main方法语法-static"><a href="#理解main方法语法-static" class="headerlink" title="理解main方法语法 static"></a>理解main方法语法 static</h1><ul>
+<li>java 虚拟机需要调用类的main方法，所以该方法的访问权限必须是public</li>
+<li>java虚拟机在执行main()方法时不必创建对象，所以该方法必须是static</li>
+<li>该方法接受String类型的数组参数，该数组中保存执行java命令时传递给所运行的类的参数<blockquote>
+<p><img src="/../imgs/main.png" alt="main"></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h1><ul>
+<li>又称初始化块，属于类中的成员，将逻辑语句封装在方法中，通过{}包围起来</li>
+<li>没有方法名，返回值，参数，只有方法体，不能通过对象显示调用，而是加载类时，创建类时隐式调用<blockquote>
+<p>[修饰符]{  &#x2F;&#x2F;要么是static 要么不写<br>  代码<br>};&#x2F;&#x2F;可以省略</p>
+</blockquote>
+</li>
+<li>相当于另一种形式的构造器（对构造器的补充机制），可以做初始化操作</li>
+<li>static代码块也叫静态代码块，作用就是对类进行初始化，而且随着类的加载而进行，并且只执行一次，如果是普通代码块，每创建一个对象就执行一次</li>
+</ul>
+<h2 id="创建一个对象时，类的调用顺序是："><a href="#创建一个对象时，类的调用顺序是：" class="headerlink" title="创建一个对象时，类的调用顺序是："></a>创建一个对象时，类的调用顺序是：</h2><ol>
+<li>调用静态代码块+静态属性初始化（同级按照定义顺序调用）</li>
+<li>普通代码块+普通属性初始化</li>
+<li>调用构造方法</li>
+</ol>
+<h2 id="在继承关系中调用顺序是："><a href="#在继承关系中调用顺序是：" class="headerlink" title="在继承关系中调用顺序是："></a>在继承关系中调用顺序是：</h2><ol>
+<li>父类的静态代码块和静态属性</li>
+<li>子类的静态代码块和静态属性</li>
+<li>父类普通代码块和普通属性初始化</li>
+<li>父亲的构造方法</li>
+<li>子类的普通代码块和普通属性初始化</li>
+<li>子类的构造方法</li>
+</ol>
+<h1 id="单例设计模式"><a href="#单例设计模式" class="headerlink" title="单例设计模式"></a>单例设计模式</h1><ul>
+<li>就是在软件运行过程中，采取一定办法保证在整个软件系统中，对某个类只能存在一个对象实例，并且该类只提供一个取得其对象实例的方法<br>饿汉式：（创建了对象没有使用，会造成浪费）<blockquote>
 <ol>
-<li>状态集合：表示三元组的集合</li>
-<li>初始状态：s0 &#x3D; (3,3,1)</li>
-<li>动作集合；用船将传教士和食人族运过河</li>
-<li>目标检测： s &#x3D; (0,0,0)</li>
-<li>路径代价： 等于路径中的步数</li>
+<li>构造器私有化：防止用户new</li>
+<li>类的内部创建对象 </li>
+<li>向外暴漏一个静态公共方法 getInstance<br>懒汉式：</li>
+<li>构造器私有化</li>
+<li>定义一个static静态属性对象（没有new！！！）</li>
+<li>提供一个public static 方法 new，可以返回一个对象</li>
 </ol>
 </blockquote>
 </li>
 </ul>
-<h1 id="搜索求解方式"><a href="#搜索求解方式" class="headerlink" title="搜索求解方式"></a>搜索求解方式</h1><ul>
-<li><mark>树搜索</mark>  </li>
-<li><mark>图搜索</mark></li>
-<li><mark>无信息搜索</mark></li>
-<li><mark>有信息搜索</mark></li>
+<h1 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h1><ol>
+<li>当不希望类被继承时，可以用final修饰</li>
+<li>当不希望父类的某个方法被子类覆盖&#x2F;重写时，可以使用final关键字修饰</li>
+<li>当不希望某个属性的值被修改，可以用final修饰（又称常量，必须赋初值：1.定义时2.构造器中（非static修饰）3.初始化块中）</li>
+<li>当不希望某个局部变量被修改，可以使用final修饰</li>
+<li>final不能修饰构造器</li>
+<li>包装类（Integer&#x2F;String&#x2F;…）都是被final修饰</li>
+</ol>
+<h1 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h1><p>当父类一些方法不能确定时，可以用abstract关键字来修饰该方法，这个方法就是抽象方法，用abstract来修饰该类就是抽象类</p>
+<ul>
+<li>抽象类可以有任意成员</li>
+<li>抽象犯法不能有主体，即不能实现</li>
+<li>如果一个类继承了抽象类，则它必须实现抽象方法，否则自己也为抽象类</li>
 </ul>
+<h1 id="模板设计模式"><a href="#模板设计模式" class="headerlink" title="模板设计模式"></a>模板设计模式</h1><p>利用抽象类整合复用代码，调用抽象方法，抽象方法由子类实现</p>
+<h1 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h1><p>接口就是给出一些没有实现的方法，封装到一起，到某个类要使用的时候，再更具体情况把这些方法写出来。</p>
+<pre><code class="java">interface 接口名&#123;
+    //属性
+    //方法
+&#125;
 
+class 类名 implements 接口&#123;
+    //自己属性
+    //自己方法
+    //必须实现的接口方法
+&#125;
+</code></pre>
+<ul>
+<li>接口不能被实例化</li>
+<li>接口所有方法是public方法，接口中抽象方法，可以不用abstract</li>
+<li>一个普通类实现接口，就必须将该接口的所有方法都实现（抽象类例外）</li>
+<li>一个类同时可以实现多个接口</li>
+<li>接口中的属性，只能是public static final</li>
+<li>一个接口不能继承其它类，但是可以继承多个接口</li>
+</ul>
+<h1 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h1><p>一个类的内部完整的嵌套了另一个类的结构，被嵌套的类的结构被称为内部类<br>最大特点就是：可以直接访问私有属性，并且可以体现类与类之间的包含关系</p>
+<ul>
+<li>定义在外部类局部位置上的（比如说方法）<ul>
+<li>局部内部类（有类名）<blockquote>
+<p>可以直接访问外部类的所有成员<br>不能添加访问修饰符<br>作用域仅仅在于定义它的方法或者代码块中</p>
+</blockquote>
+</li>
+<li>匿名内部类（无类名）</li>
+<li>是类同时也是对象</li>
+</ul>
+<pre><code class="java">类名 对象名 = new 类或接口(参数列表)&#123;
+    类体;
+&#125;;
+</code></pre>
+</li>
+<li>定义在外部类的成员位置上：<ul>
+<li>成员内部类（没用static修饰）<blockquote>
+<p>外部其它类调用内部类： 外部类.内部类 类名 &#x3D; 外部类.new 内部类();</p>
+</blockquote>
+</li>
+<li>静态内部类（使用static修饰）<ul>
+<li>可以访问外部类的所有静态成员，包含私有，但不能直接访问非静态成员</li>
+<li>外部类访问静态内部类：创建内部类对象访问</li>
+<li>外部其他类访问内部静态类</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="枚举和注解"><a href="#枚举和注解" class="headerlink" title="枚举和注解"></a>枚举和注解</h1><ul>
+<li>自定义类实现枚举<blockquote>
+<p>将构造器私有化，同时在类中定义public static final 类对象（对象名一般大写）</p>
+</blockquote>
+</li>
+<li>enum关键字实现枚举<ul>
+<li>继承Enum类</li>
+<li>.name()： 输出对象名(枚举对象名)</li>
+<li>.ordinal()：输出枚举对象的次序，从0开始</li>
+<li>.values()：输出含有定义的所有枚举对象，数组</li>
+</ul>
+</li>
+</ul>
+<pre><code class="java">enum 枚举类名&#123;
+    常量名1（一般大写）(实参列表), 常量2...;//最前面,且都是静态对象
+    ...
+    形参...;
+&#125;
+</code></pre>
+<ul>
+<li>JDK内置的基本注解类型</li>
+<li>元注解：对注解进行注解</li>
+</ul>
+<hr>
+<h1 id="Exception"><a href="#Exception" class="headerlink" title="Exception"></a>Exception</h1><ul>
+<li>异常概念</li>
+<li>异常体系图</li>
+<li>常见的异常</li>
+<li>异常处理</li>
+<li>自定义异常</li>
+<li>throw和throws的对比</li>
+</ul>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">

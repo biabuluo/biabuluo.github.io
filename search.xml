@@ -2638,7 +2638,336 @@ class 类名 implements 接口&#123;
 <li>自定义异常</li>
 <li>throw和throws的对比</li>
 </ul>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+<h1 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h1><ul>
+<li><p>compareTo():比较对象编号的差</p>
+</li>
+<li><p>valueOf():<br>将字符串转换成枚举对象，要求字符串必须为已有的常量名，否则报异常。<br>1.使用enum关键字，就不能继承其它类了，因为enum会隐式继承Enum<br>2.枚举类和普通类一样，可以实现接口</p>
+</li>
+</ul>
+<h1 id="Annotation"><a href="#Annotation" class="headerlink" title="Annotation"></a>Annotation</h1><p>注解也被称为元数据，用于修饰包，类，属性，方法，构造器，局部变量等数据信息</p>
+<ul>
+<li>三个基本annotation:</li>
+</ul>
+<ol>
+<li>@Override:<br>限定某个方法，是重写父类方法，该注解只能用于方法</li>
+<li>@Deprecated:<br>用于表示某个程序元素已经过时</li>
+<li>@SuppressWarnings(“all”):<br>抑制编译器警告</li>
+</ol>
+<h1 id="元注解（了解，看得懂源码）"><a href="#元注解（了解，看得懂源码）" class="headerlink" title="元注解（了解，看得懂源码）"></a>元注解（了解，看得懂源码）</h1><ol>
+<li>@Retention<br>指定注解作用范围：SOURCE，CLASS，RUNTIME</li>
+<li>@Doucumented<br>指定注解是否会在javadoc体现</li>
+<li>@Inherited<br>子类会继承父类注解</li>
+<li>@Target<br>修饰注解的注解，叫元注解</li>
+</ol>
+<h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><table>
+<thead>
+<tr>
+<th>五大运行时异常</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.NullPointerException</td>
+<td>空指针异常</td>
+</tr>
+<tr>
+<td>2.ArithmetricException</td>
+<td>数学运算异常</td>
+</tr>
+<tr>
+<td>3.ArrayIndexOutOfBiundsException</td>
+<td>数组下标越界异常</td>
+</tr>
+<tr>
+<td>4.ClassCastException</td>
+<td>类型转换异常</td>
+</tr>
+<tr>
+<td>5.NumberFormatException</td>
+<td>数字格式不正确异常</td>
+</tr>
+</tbody></table>
+<ul>
+<li>异常处理的两种机制<br>1.try-catch-finally<br>2.throws将异常抛出<br>throws后边的异常类型可以是方法中产生的一场类型，也可以是它的父类<br>子类重写父类方法时，子类重写的方法抛出的异常要么和父类一致，要么是子类异常</li>
+</ul>
+<pre><code class="java">public void method() throws Exception&#123;
+
+&#125;
+</code></pre>
+<ul>
+<li>自定义异常<br>例如年龄抛出异常：</li>
+</ul>
+<pre><code class="java">...
+public static void main(String[] args)&#123;
+    int age = 80;
+    if( !(age &gt;= 18 &amp;&amp; age &lt;= 120))&#123;
+        throw new AgeException(&quot;年龄错误！&quot;);
+    &#125;
+&#125;
+
+//自定义一个异常
+class AgeException extends RuntimeException&#123;
+    // 自定义构造器
+    public AgeException(String message)&#123;
+        super(message);
+    &#125;
+&#125;
+</code></pre>
+<hr>
+<h1 id="常用类"><a href="#常用类" class="headerlink" title="常用类"></a>常用类</h1><h2 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h2><table>
+<thead>
+<tr>
+<th>基本数据类型</th>
+<th>包装类</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boolean</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>char</td>
+<td>Character</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Short</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>float</td>
+<td>Float</td>
+</tr>
+<tr>
+<td>double</td>
+<td>Double</td>
+</tr>
+</tbody></table>
+<ul>
+<li>包装和拆箱<ul>
+<li>在jdk5前要手动包装拆箱</li>
+</ul>
+<pre><code class="java">int i =10;
+Integer i1 = new Integer(i);
+Integer i2 = Interger.valueOf(i); //注意该函数在-127~128中不是new出来的
+//拆
+Integer j = new Integer(99);
+int j1 = j.intValue();
+</code></pre>
+</li>
+<li>包装类型和String类型相互转换</li>
+</ul>
+<pre><code class="java">Integer i =10;
+//1
+String s1 = i.tpString();
+//2
+String s2 = String.valueOf(i);
+//3
+String s3 = i + &quot;&quot;;
+//1
+Integer j = new Integer(s1);
+//2
+Integer j1 = Integer.valueOf(s2);
+</code></pre>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><pre><code class="java">String s = &quot;....&quot;；
+String s2 = new String(&quot;...&quot;); //会在堆里边创建value（常量池的地址）
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>String常用方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>equals</td>
+<td>区分大小写是否相等</td>
+</tr>
+<tr>
+<td>equalsIgnoreCase</td>
+<td>忽略大小写</td>
+</tr>
+<tr>
+<td>length</td>
+<td>字符长度</td>
+</tr>
+<tr>
+<td>indexof</td>
+<td>获取字符第一次出现的索引（0开始）</td>
+</tr>
+<tr>
+<td>lastIndexOf</td>
+<td>最后一次</td>
+</tr>
+<tr>
+<td>substring</td>
+<td>截取字符串（左闭右开区间）</td>
+</tr>
+<tr>
+<td>trim</td>
+<td>去除前后空格</td>
+</tr>
+<tr>
+<td>charAt</td>
+<td>获取某个索引位置的字符串</td>
+</tr>
+<tr>
+<td>toUpperCase</td>
+<td>大写</td>
+</tr>
+<tr>
+<td>toLowerCase</td>
+<td>小写</td>
+</tr>
+<tr>
+<td>concat</td>
+<td>拼接字符串</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>替换字符串，返回一个替换的结果</td>
+</tr>
+<tr>
+<td>split</td>
+<td>将字符串分割，‘\’要转义</td>
+</tr>
+<tr>
+<td>compareTo</td>
+<td></td>
+</tr>
+<tr>
+<td>toCharArray</td>
+<td>转为字符数组</td>
+</tr>
+<tr>
+<td>format</td>
+<td>就像c里的printf</td>
+</tr>
+</tbody></table>
+<h2 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h2><ul>
+<li>StringBuffer是一个容器</li>
+<li>存放在堆中，是个final类</li>
+<li>字符串的更新不用每次更新地址</li>
+</ul>
+<pre><code class="java">StringBuffer stringbuffer = new StringBuffer(&quot;...&quot;);//空参数时是空的16个位置的char数组
+</code></pre>
+<ul>
+<li>String同StringBuffer之间的相互转换</li>
+</ul>
+<pre><code class="java">//String -&gt; StringBuffer
+String s = &quot;hello&quot;;
+//1
+StringBuffer b1 = new StringBuffer(s);
+//2
+b1.append(s);
+//StringBuffer -&gt; String
+//1
+String s2 = b1.toString();
+//2
+String s3 = new String(b1);
+</code></pre>
+<ul>
+<li>StringBuffer方法<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>append</td>
+<td>增</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删（左闭右开）</td>
+</tr>
+<tr>
+<td>replace</td>
+<td>改（左闭右开）</td>
+</tr>
+<tr>
+<td>indexOf</td>
+<td>查：第一次出现的索引，找不到-1</td>
+</tr>
+<tr>
+<td>insert</td>
+<td>插，原来索引的字符串后移</td>
+</tr>
+<tr>
+<td>length</td>
+<td>获取长度</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h2><ul>
+<li>不是线程安全的（单线程快）</li>
+<li>用作StringBuffer的建议替换</li>
+</ul>
+<h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><ul>
+<li>均为静态方法<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>abs</td>
+<td>绝对值</td>
+</tr>
+<tr>
+<td>pow</td>
+<td>求幂</td>
+</tr>
+<tr>
+<td>ceil</td>
+<td>向上取整</td>
+</tr>
+<tr>
+<td>floor</td>
+<td>向下取整</td>
+</tr>
+<tr>
+<td>round</td>
+<td>四舍五入</td>
+</tr>
+<tr>
+<td>sqrt</td>
+<td>求开方</td>
+</tr>
+<tr>
+<td>random</td>
+<td>求随机数：返回[0,1)(返回任意两个数间的：[a,a+rondom*(b-a)])</td>
+</tr>
+<tr>
+<td>max</td>
+<td>求最大值</td>
+</tr>
+<tr>
+<td>min</td>
+<td>求最小值</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="Date-Calender-LocalDate"><a href="#Date-Calender-LocalDate" class="headerlink" title="Date,Calender, LocalDate"></a>Date,Calender, LocalDate</h2><h2 id="system"><a href="#system" class="headerlink" title="system"></a>system</h2><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><h2 id="BigInteger-BigDecimal"><a href="#BigInteger-BigDecimal" class="headerlink" title="BigInteger BigDecimal"></a>BigInteger BigDecimal</h2><hr>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><hr>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><hr>
+<h1 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h1><hr>
+<h1 id="流"><a href="#流" class="headerlink" title="流"></a>流</h1>]]></content>
       <categories>
         <category>后端学习</category>
       </categories>

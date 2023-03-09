@@ -677,11 +677,400 @@ String s3 = new String(b1);
 </tbody></table>
 </li>
 </ul>
-<h2 id="Date-Calender-LocalDate"><a href="#Date-Calender-LocalDate" class="headerlink" title="Date,Calender, LocalDate"></a>Date,Calender, LocalDate</h2><h2 id="system"><a href="#system" class="headerlink" title="system"></a>system</h2><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><h2 id="BigInteger-BigDecimal"><a href="#BigInteger-BigDecimal" class="headerlink" title="BigInteger BigDecimal"></a>BigInteger BigDecimal</h2><hr>
-<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><hr>
-<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><hr>
-<h1 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h1><hr>
-<h1 id="流"><a href="#流" class="headerlink" title="流"></a>流</h1>
+<h2 id="Date-Calender-LocalDate"><a href="#Date-Calender-LocalDate" class="headerlink" title="Date,Calender, LocalDate"></a>Date,Calender, LocalDate</h2><ul>
+<li>有三代日期类</li>
+</ul>
+<h3 id="Date：精确到毫秒，代表特定瞬间-SimpleDateFormat配套使用"><a href="#Date：精确到毫秒，代表特定瞬间-SimpleDateFormat配套使用" class="headerlink" title="Date：精确到毫秒，代表特定瞬间+SimpleDateFormat配套使用"></a>Date：精确到毫秒，代表特定瞬间+SimpleDateFormat配套使用</h3><pre><code class="java">Date d1 = new Date();
+SimpleDateFormat sdf = new SimpleDateFormat(&quot;YYYY年MM月DD日 hh:mm:ss E&quot;);
+String format = sdf.format(d1);
+</code></pre>
+<h3 id="Calender"><a href="#Calender" class="headerlink" title="Calender"></a>Calender</h3><ul>
+<li>是一个抽象类，并且构造器是private</li>
+<li>可以通过getInstance()来获取实例</li>
+<li>没有相应的格式化</li>
+</ul>
+<pre><code class="java">Calender c = Calender.getInstance();
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>~</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>c.get(Calender.MONTH)+1</td>
+<td>月从0开始</td>
+</tr>
+<tr>
+<td>c.get(Calender.HOUR)</td>
+<td></td>
+</tr>
+<tr>
+<td>c.get(Calender.YEAR)</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="LocalDate"><a href="#LocalDate" class="headerlink" title="LocalDate"></a>LocalDate</h3><ul>
+<li>常见类  可以对时间加减<table>
+<thead>
+<tr>
+<th>常见类</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LocalDate</td>
+<td>只包含日期</td>
+</tr>
+<tr>
+<td>LocalTime</td>
+<td>只包含时间</td>
+</tr>
+<tr>
+<td>LocalDateTime</td>
+<td>包含时间日期</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<pre><code class="java">LocalDateTime ldt = LocalDateTime.now();
+ldt.getYear();
+</code></pre>
+<h2 id="System"><a href="#System" class="headerlink" title="System"></a>System</h2><table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>exit()</td>
+<td>退出当前程序(0表示正常状态)</td>
+</tr>
+<tr>
+<td>currentTimeMillens()</td>
+<td>返回当前相对于1970-1-1的毫秒数</td>
+</tr>
+<tr>
+<td>gc()</td>
+<td>运行垃圾回收机制</td>
+</tr>
+</tbody></table>
+<h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><table>
+<thead>
+<tr>
+<th>常见方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.toString()</td>
+<td>返回数组字符串形式</td>
+</tr>
+<tr>
+<td>.sort()</td>
+<td>自然排序或者自定义排序</td>
+</tr>
+<tr>
+<td>.binarySearch()</td>
+<td>二分查找，必须先排序(不存在返回-（应该存在的位置+1）)</td>
+</tr>
+<tr>
+<td>.copyOf()</td>
+<td>数组元素复制</td>
+</tr>
+<tr>
+<td>.equals()</td>
+<td>比较是否相等</td>
+</tr>
+<tr>
+<td>.asList()</td>
+<td>将一组值转换为list</td>
+</tr>
+</tbody></table>
+<ul>
+<li>定制排序器</li>
+</ul>
+<pre><code class="java">Array.sort(arr, new Comparator()&#123;
+    @Override 
+    public int compare(Object o1, Object o2)&#123;
+        return o1-o2;
+    &#125;
+&#125;);
+</code></pre>
+<h2 id="BigInteger-BigDecimal"><a href="#BigInteger-BigDecimal" class="headerlink" title="BigInteger BigDecimal"></a>BigInteger BigDecimal</h2><ul>
+<li>BigInteger适合保存比较大的整形</li>
+<li>BigDecimal适合保存精度更高的浮点型（小数）</li>
+</ul>
+<pre><code class="java">BigInteger bigInteger = new BigInteger(&quot;99999999999999999&quot;);
+</code></pre>
+<hr>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><h2 id="集合框架体系"><a href="#集合框架体系" class="headerlink" title="集合框架体系"></a>集合框架体系</h2><ul>
+<li>Collection(实现单列集合)<ul>
+<li>List<ul>
+<li>ArrayList(类)（线程不安全，基本和Vector一样）</li>
+<li>LinkedList(类)（双向链表）（线程不安全）</li>
+<li>Vector(类)（多线程安全）</li>
+</ul>
+</li>
+<li>Set<ul>
+<li>HashSet(类)（底层其实是hashmap）</li>
+<li>TreeSet(类)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Map（实现双列集合）<ul>
+<li>HashTable(类)<ul>
+<li>Properties(类)</li>
+</ul>
+</li>
+<li>HashMap(类)(线程不安全)<ul>
+<li>LinkedHashMap(类)</li>
+</ul>
+</li>
+<li>TreeMap(类)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><table>
+<thead>
+<tr>
+<th>Collection接口常用方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.add()</td>
+<td>添加单个元素</td>
+</tr>
+<tr>
+<td>.remove()</td>
+<td>删除指定元素(可以下标和元素)</td>
+</tr>
+<tr>
+<td>.contains()</td>
+<td>查找指定元素是否存在</td>
+</tr>
+<tr>
+<td>.size()</td>
+<td>获取元素个数</td>
+</tr>
+<tr>
+<td>.isEmpty()</td>
+<td>判断是否为空</td>
+</tr>
+<tr>
+<td>.clear()</td>
+<td>清空</td>
+</tr>
+<tr>
+<td>.addAll()</td>
+<td>添加多个元素，参数是一个集合</td>
+</tr>
+<tr>
+<td>.containsAll()</td>
+<td>查找多个元素是否都存在</td>
+</tr>
+<tr>
+<td>.removeAll()</td>
+<td>删除多个元素</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Collection的遍历方式-使用Iterator（迭代器）</li>
+</ul>
+<pre><code class="java">//返回迭代器
+Iterator iterator = arraylist.iterator();
+while(iterator.hasNext())&#123; //遍历
+    ....iterator.next();//返回object类型
+&#125;  
+</code></pre>
+<ul>
+<li>集合增强for</li>
+</ul>
+<pre><code class="java">for(Object ob: list)&#123;   //底层依然是迭代器
+    ...;
+&#125;
+</code></pre>
+<h3 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h3><ul>
+<li>List接口中的元素有序，且可重复</li>
+<li>支持索引（0开始） <table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>add(index, object)</td>
+<td>向指定位置添加元素</td>
+</tr>
+<tr>
+<td>get(index)</td>
+<td>获取指定位置元素Object</td>
+</tr>
+<tr>
+<td>remove(index)</td>
+<td>移除指定位置元素</td>
+</tr>
+<tr>
+<td>set(index, object)</td>
+<td>设置指定位置元素</td>
+</tr>
+<tr>
+<td>subList（index, index）</td>
+<td>返回子集合（闭区间）</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h3 id="Set接口"><a href="#Set接口" class="headerlink" title="Set接口"></a>Set接口</h3><ul>
+<li>无序</li>
+<li>不允许重复元素（最多包含一个null）</li>
+<li>不能通过索引进行遍历</li>
+</ul>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><ul>
+<li>保存具有映射关系的数据Key-Value</li>
+<li>key不允许重复，value允许重复</li>
+<li>String常用来作为key</li>
+<li>重复会替换原来的值</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Map常用方法</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>put</td>
+<td>添加</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>删除by键</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取by键</td>
+</tr>
+<tr>
+<td>size</td>
+<td>元素个数</td>
+</tr>
+<tr>
+<td>isEmpty</td>
+<td>判断个数是否为0</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>清除</td>
+</tr>
+<tr>
+<td>containsKey</td>
+<td>查找键</td>
+</tr>
+<tr>
+<td>keySet</td>
+<td>获取所有键</td>
+</tr>
+<tr>
+<td>entrySet</td>
+<td>获取所有关系</td>
+</tr>
+<tr>
+<td>values</td>
+<td>获取所有值</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Map遍历方法</li>
+</ul>
+<ol>
+<li>keySet()取出所有的键，根据键来取出值</li>
+<li>通过entrySet来获取K-V：</li>
+</ol>
+<pre><code class="java">Set entrySet = mymap.entrySet();
+for(Object entry: entrySet)&#123;
+    Map.Entry m = (Map.Entry) entry;
+    ...  .getKey()/.getValue();
+&#125;
+</code></pre>
+<h2 id="Collections-工具类"><a href="#Collections-工具类" class="headerlink" title="Collections(工具类)"></a>Collections(工具类)</h2><ul>
+<li>Collections是一个操作Set，List，Map等集合的工具类</li>
+<li>Collections提供了一系列静态方法对集合元素进行排序，查询和修改</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>排序操作</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>reverse()</td>
+<td>反转</td>
+</tr>
+<tr>
+<td>shuffle()</td>
+<td>对list集合进行随机排序</td>
+</tr>
+<tr>
+<td>sort(list, [comparatot])</td>
+<td>根据指定的Comparator产生的顺序对List集合元素进行排序</td>
+</tr>
+<tr>
+<td>swap(list, int, int)</td>
+<td>将指定list集合中的i元素和j元素进行交换</td>
+</tr>
+<tr>
+<td>max(list, comparator)</td>
+<td>最大元素</td>
+</tr>
+<tr>
+<td>min(list, comparator)</td>
+<td>最小元素</td>
+</tr>
+<tr>
+<td>frequency(list, object)</td>
+<td>返回指定元素的出现次序</td>
+</tr>
+<tr>
+<td>replaceAll(list, oldobject, newobject)</td>
+<td></td>
+</tr>
+<tr>
+<td>copy(dest, src)</td>
+<td>复制</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>可以在类声明时通过一个标识表示类中的某个属性的类型，或者是某个方法的返回值类型，或者参数类型</p>
+<h2 id="泛型语法"><a href="#泛型语法" class="headerlink" title="泛型语法"></a>泛型语法</h2><h2 id="自定义泛型"><a href="#自定义泛型" class="headerlink" title="自定义泛型"></a>自定义泛型</h2><pre><code class="java">class classname&lt;T&gt;&#123;
+    ...;
+&#125;
+</code></pre>
+<ul>
+<li>普通成员可以使用泛型</li>
+<li>使用泛型的数组不能初始化</li>
+<li>静态方法中不能使用类的泛型</li>
+<li>泛型类的实例是在创建对象时确定的</li>
+<li>默认object</li>
+</ul>
+<h3 id="泛型类"><a href="#泛型类" class="headerlink" title="泛型类"></a>泛型类</h3><h3 id="泛型接口"><a href="#泛型接口" class="headerlink" title="泛型接口"></a>泛型接口</h3><ul>
+<li>泛型接口的类型，在继承接口或者实现接口时确定</li>
+</ul>
+<h3 id="泛型方法"><a href="#泛型方法" class="headerlink" title="泛型方法"></a>泛型方法</h3><pre><code class="java">public &lt;T, R&gt; void fly(T t, R r)&#123;
+    //泛型方法
+&#125;
+</code></pre>
+<ul>
+<li>当泛型方法被调用时，类型会确定</li>
+</ul>
+<h2 id="泛型继承-通配符"><a href="#泛型继承-通配符" class="headerlink" title="泛型继承+通配符"></a>泛型继承+通配符</h2><hr>
+
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">

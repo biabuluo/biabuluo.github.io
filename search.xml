@@ -3364,4 +3364,292 @@ for(Object entry: entrySet)&#123;
         <tag>java</tag>
       </tags>
   </entry>
+  <entry>
+    <title>JDBC</title>
+    <url>/2023/03/09/JDBC/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><ul>
+<li>java和数据库必要的纽带</li>
+<li>数据库框架底层原理（mybatis…）</li>
+<li>api使用路线：<img src="/../imgs/api%E2%80%94%E2%80%94jdbc.png" alt="api"></li>
+</ul>
+<h1 id="JDBC概念理解"><a href="#JDBC概念理解" class="headerlink" title="JDBC概念理解"></a>JDBC概念理解</h1><ul>
+<li>JAVA Database Connectivity - java连接数据库技术<br><img src="/../imgs/JDBC.png" alt="JDBC"></li>
+</ul>
+<ol>
+<li>java.sql.* JDBC接口 对象 &#x3D; 第三方实现类实例</li>
+<li>对象.JDBC标准方法()</li>
+</ol>
+<h1 id="核心api使用"><a href="#核心api使用" class="headerlink" title="核心api使用"></a>核心api使用</h1><ul>
+<li>引入mysql-jdbc驱动jar</li>
+<li>jdbc基本使用步骤（最好向外抛出异常SQLException）<ul>
+<li>注册驱动<blockquote>
+<p>对依赖的jar包进行安装</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="java">    DriverManager.registerDriver(new Driver());//8.0版本要带cj的
+</code></pre>
+<ul>
+<li>获取链接<blockquote>
+<p>连接数据库的基本信息：ip地址，端口号，账号，密码，连接数据库的名称</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="java">Connection connection= DriverManager.getConnection(url= &quot;jdbc:数据库厂商://ip地址:port/数据库名&quot;, username, password);
+</code></pre>
+<ul>
+<li>创建发送sql语句对象</li>
+</ul>
+<pre><code class="java">//创建statement
+Statement statement = connection.createStatement();
+</code></pre>
+<ul>
+<li>发送sql语句，并获取返回结果</li>
+</ul>
+<pre><code class="java">String sql = &quot;select * from t_user;&quot;;
+ResultSet result = statement.executeQuery(sql);
+</code></pre>
+<ul>
+<li>结果集解析</li>
+</ul>
+<pre><code class="java">while(resultSet.next())&#123; //是否有下一行数据
+    .....   .getInt(columnLabel);
+&#125;
+</code></pre>
+<ul>
+<li>资源关闭</li>
+</ul>
+<pre><code class="java">resultSet.close();
+statement.close();
+connection.close();
+</code></pre>
+</li>
+</ul>
+<h1 id="优化提升"><a href="#优化提升" class="headerlink" title="优化提升"></a>优化提升</h1><ol>
+<li>对于注册驱动时的代码优化</li>
+</ol>
+<pre><code class="java">    DriverManager.registerDriver(new Driver());//8.0版本要带cj的
+</code></pre>
+<p>问题：在new driver里面和register里面同时定义了驱动，造成浪费</p>
+<ul>
+<li>直接new Driver()不够灵活：如果说要更改不同数据库的话</li>
+<li>最好方案：反射</li>
+</ul>
+<pre><code class="java">Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;); //可以使用配置文件
+</code></pre>
+<ol start="2">
+<li>获取连接</li>
+</ol>
+<ul>
+<li>两个参数的getConnection(url, properties)</li>
+</ul>
+<pre><code class="java">Properties info = new Properties();
+info.put(&quot;uesr&quot;, &quot;...&quot;);
+info.put(&quot;pwd&quot;,&quot;...&quot;);
+</code></pre>
+<ul>
+<li>一个参数<blockquote>
+<p>url &#x3D; “jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;dbname?username&#x3D;…&amp;password&#x3D;…”;</p>
+</blockquote>
+</li>
+</ul>
+<ol start="3">
+<li>发送sql语句<table>
+<thead>
+<tr>
+<th>SQL分类语句</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DDL</td>
+<td>容器创建，修改，删除</td>
+</tr>
+<tr>
+<td>DML</td>
+<td>插入修改删除</td>
+</tr>
+<tr>
+<td>DQL</td>
+<td>查询</td>
+</tr>
+<tr>
+<td>DCL</td>
+<td>权限控制</td>
+</tr>
+<tr>
+<td>TPL</td>
+<td>事务控制语言</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<ul>
+<li>DML返回影响的行数（int）：比如删除一个数据-&gt;return 1</li>
+</ul>
+<h1 id="preparedStatement优化"><a href="#preparedStatement优化" class="headerlink" title="preparedStatement优化"></a>preparedStatement优化</h1><ul>
+<li>原来的Statement方法存在问题：</li>
+</ul>
+<ol>
+<li>sql语句拼接麻烦</li>
+<li>只能拼接字符串类型，其它数据库类型无法处理</li>
+<li>可能发生注入攻击：动态值充当sql语句结构</li>
+</ol>
+]]></content>
+      <categories>
+        <category>后端学习</category>
+      </categories>
+      <tags>
+        <tag>java高级</tag>
+        <tag>JDBC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTML5学习笔记</title>
+    <url>/2023/03/14/HTML5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="HTML文档结构"><a href="#HTML文档结构" class="headerlink" title="HTML文档结构"></a>HTML文档结构</h1><blockquote>
+<p>HTML文档由两部分组成：<br>头部head：可以定义标题，样式<br>主体body标记中可以定义段落，标题字，超链接，脚本，表格，表单…</p>
+</blockquote>
+<pre><code class="html5">&lt;html&gt;
+    文档以&lt;html&gt;标记开始，以&lt;/html&gt;标记开始结束。
+    所有html代码都位于这两个标记之间。
+    每个html文档都是应该有且只有一个html，head，body元素
+&lt;/html&gt;
+</code></pre>
+<h2 id="头部head"><a href="#头部head" class="headerlink" title="头部head"></a>头部head</h2><p>head标记组成：（head标记所包含信息一般不会显示在网页上）</p>
+<ul>
+<li>页面标题标记<title></title></li>
+<li>元信息标记<mate><ul>
+<li>name属性&amp;content属性:描述网页</li>
+<li>http-equiv属性 &amp; content属性：提供http响应头报文</li>
+</ul>
+</li>
+<li>样式标记<style></style></li>
+<li>标本标记</li>
+<li>链接标记</li>
+</ul>
+<pre><code class="html5">&lt;head&gt;
+    &lt;title&gt;这是标题&lt;/title&gt;
+    &lt;mate name=&quot;&quot; content=&quot;&quot;&gt;
+    &lt;mate http-equiv=&quot;&quot; content=&quot;&quot;&gt;
+&lt;/head&gt;
+</code></pre>
+<h2 id="主体body"><a href="#主体body" class="headerlink" title="主体body"></a>主体body</h2><ul>
+<li>body属性可以改变页面的显示结果</li>
+<li>topmargin, leftmargin,text, bgcolor, background, link, alink, vlink</li>
+</ul>
+<pre><code class="html5">&lt;body text = &quot;&quot;, bgcolor = &quot;&quot;&gt;    
+&lt;/body&gt;
+</code></pre>
+<h2 id="html基本语法"><a href="#html基本语法" class="headerlink" title="html基本语法"></a>html基本语法</h2><p>标记类型通常分为单个标记和成对标记</p>
+<ul>
+<li>单标记</li>
+</ul>
+<pre><code class="html5">&lt;br&gt;或者&lt;br/&gt;:表示换行
+&lt;hr&gt;或者&lt;hr/&gt;:表示水平分割线
+&lt;link&gt;:表示链接标记
+</code></pre>
+<ul>
+<li>双标记</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>html5</tag>
+        <tag>前端学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java究极篇</title>
+    <url>/2023/03/15/java%E7%A9%B6%E6%9E%81%E7%AF%87/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="java反射"><a href="#java反射" class="headerlink" title="java反射"></a>java反射</h1><p>通过外部文件配置，再不修改源码情况下来控制程序，也符合设计模式的ocp原则<br>（开闭原则：不修改源码，拓展功能）</p>
+<h2 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h2><pre><code class="java">//加载类
+Class cls = Class.forName(classfullpath);
+//通过cls得到你加载的类的对象实例
+Object o = cls.newInstance();
+//通过cls得到你加载的类的方法对象
+Method method1 = cls.getMethod(methodName);
+//通过method1调用方法：即通过方法对象实现调用方法
+method1.invoke(o);   //方法.invoke(对象)
+field.get(o);       //属性 私有属性不能获取
+</code></pre>
+<ul>
+<li>反射机制允许程序在执行过程中借助ReflectionAPI取得任何类的内部信息，并能操作对象的属性方法。</li>
+<li>在设计模式和框架底层都会用到</li>
+<li>加载完类后在堆中就产生一个Class类型的对象，这个对象包含类的完整信息结构</li>
+<li>这个对象就像一面镜子，透过这个镜子看到类的结构，所以称之为反射</li>
+</ul>
+<h2 id="Class类"><a href="#Class类" class="headerlink" title="Class类"></a>Class类</h2><ul>
+<li>Class也是类，因此也继承Object类</li>
+<li>Class类对象不是new出来的，而是系统创建的</li>
+<li>对于某个类，在内存中只会加载一份(存放在堆中)<br>获取类的六个阶段：</li>
+<li>已知类的全名，可以通过Class.forname()来获取（多用于配置文件）</li>
+<li>已知具体类，通过类名.class()获取（多用于参数传递：比如通过反射得到构造器）</li>
+<li>已知某个类的实例：Class clazz &#x3D; 对象.getClass()</li>
+<li>通过类加载器</li>
+</ul>
+<pre><code class="java">//获得类加载器
+ClassLoader classLoader = car.getClass().getClassLoader();
+//获得对象
+Class cls = classLoader.loadClass(classAllPath);
+</code></pre>
+<ul>
+<li>基本数据类型 Class cls &#x3D; 基本数据类型.class</li>
+<li>Class cls &#x3D; 包装类.TYPE（在java底层包装类型和基本类型会自动装箱拆箱）</li>
+</ul>
+<h2 id="类加载"><a href="#类加载" class="headerlink" title="类加载"></a>类加载</h2><p><img src="/../imgs/threephase.png" alt="class"></p>
+<ul>
+<li>静态加载: 编译时加载相关的类，如果没有则报错，依赖性太强</li>
+<li>动态加载：运行时加载需要的类，如果运行时不用该类，则不报错，降低了依赖性<br><img src="/../imgs/Classload.png" alt="load"></li>
+<li>验证阶段：目的是为了确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害JVM自身安全<br>文件格式验证，元数据验证，字节码验证和符号引用验证</li>
+<li>准备阶段：非静态变量在准备阶段不会分配内存；静态变量会分配内存，默认初始化；常量直接赋值不变</li>
+<li>解析阶段：虚拟机将常量池符号引用替换为直接引用（内存地址）</li>
+<li>初始化阶段: 真正执行java程序代码，自动收集所有静态变量的赋值动作和静态代码中的语句，并进行合并。</li>
+</ul>
+<h2 id="反射获取类的结构信息"><a href="#反射获取类的结构信息" class="headerlink" title="反射获取类的结构信息"></a>反射获取类的结构信息</h2><h3 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h3><p>哪些类型有Class对象</p>
+<ul>
+<li>外部类，内部成员类，静态内部类，局部内部类，匿名内部类</li>
+<li>interface: 接口</li>
+<li>数组</li>
+</ul>
+<pre><code class="java">Class&lt;Integer[]&gt; cls = Integer[].class;
+</code></pre>
+<ul>
+<li>annotation: 注解  </li>
+<li>基本数据类型</li>
+<li>void</li>
+</ul>
+<h3 id="Field"><a href="#Field" class="headerlink" title="Field"></a>Field</h3><h3 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h3><h3 id="Constructor"><a href="#Constructor" class="headerlink" title="Constructor"></a>Constructor</h3><h3 id="访问属性"><a href="#访问属性" class="headerlink" title="访问属性"></a>访问属性</h3><h3 id="访问方法"><a href="#访问方法" class="headerlink" title="访问方法"></a>访问方法</h3><h2 id="反射相关类"><a href="#反射相关类" class="headerlink" title="反射相关类"></a>反射相关类</h2><h2 id="反射相关性能优化"><a href="#反射相关性能优化" class="headerlink" title="反射相关性能优化"></a>反射相关性能优化</h2><ul>
+<li>使用反射基本是解释执行，对执行速度有影响<br>解决办法:</li>
+<li>关闭访问检查：<blockquote>
+<p>Method Field constructor 对象都有setAccessible()方法<br>setAccessible作用是启动和禁用访问安全检查开关<br>参数值为true表示反射的对象在使用时取消访问检查，提高反射效率</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Class类常用方法"><a href="#Class类常用方法" class="headerlink" title="Class类常用方法"></a>Class类常用方法</h2><p>Class类常用方法：<br><img src="/../imgs/Class%E7%B1%BB.png" alt="method"></p>
+<h1 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h1><h1 id="线程控制"><a href="#线程控制" class="headerlink" title="线程控制"></a>线程控制</h1><h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1>]]></content>
+      <categories>
+        <category>后端学习</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JAVA实训</title>
+    <url>/2023/07/05/JAVA%E5%AE%9E%E8%AE%AD/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="今日知识"><a href="#今日知识" class="headerlink" title="今日知识"></a>今日知识</h1><ul>
+<li>jdk安装配置</li>
+</ul>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+      <categories>
+        <category>后端学习</category>
+      </categories>
+      <tags>
+        <tag>java实训</tag>
+        <tag>DAY1</tag>
+      </tags>
+  </entry>
 </search>

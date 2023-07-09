@@ -1,0 +1,1018 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+        <title>JAVA实训02 | 小宇の万事屋</title>
+        <meta name="author" content="阿小橙">
+        <meta name="description" content="                  ————黎明卿">
+        <meta name="keywords" content="好想赚大钱然后摆烂啊！">
+        <link rel="icon" href="https://avatars.githubusercontent.com/u/101565351?s=400&u=604f299e774fa27d00960a7476088c37fb45448e&v=4">
+        <script src="https://cdn.staticfile.org/instant.page/5.1.0/instantpage.min.js" type="module"></script>
+        <script src="https://cdn.staticfile.org/font-awesome/6.1.1/js/all.min.js"></script>
+        
+        <link rel="stylesheet" href="/css/fonts.min.css">
+        <link rel="stylesheet" href="/css/particlex.css">
+        
+        <script src="https://cdn.staticfile.org/vue/3.2.33/vue.global.prod.min.js"></script>
+    <meta name="generator" content="Hexo 6.2.0"></head>
+    
+    <body>
+        <!-- cursor -->
+        <div id="cursor"></div>
+<script src="/css/cursor.css"></script>
+<script src="/js/cursor.js"></script>
+         <!-- 音乐 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+  <div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="7361775742" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="#cbcdcd" data-autoplay="true"></div>
+  <!-- 隐藏aplayer -->
+  <link rel="stylesheet" href="/css/aplayer.css"/>
+
+        <div id="loading" style="height:100vh;width:100vw;position:fixed;display:flex;z-index:200;justify-content:space-between;background:#fff;transition:opacity 0.3s ease-out"><div style="position:fixed;height:100vh;width:100vw;display:flex;justify-content:center;align-items:center"><div id="loadcontent" style="width:50vmin;height:50vmin;padding:50px;border-radius:50%;display:flex;justify-content:center;align-items:center;border:solid 10px #a3ddfb;text-align:center"><div><h2>LOADING...</h2><h3 style="word-break:keep-all">飞船空间曲翘中🚀</h3><div><img alt="loading" src="/loading.gif"></div></div></div></div></div>
+        <div id="layout">
+            <i data-fa-symbol="calendar-solid" class="fa-solid fa-calendar fa-fw"></i>
+            <i data-fa-symbol="bookmark-solid" class="fa-solid fa-bookmark fa-fw"></i>
+            <i data-fa-symbol="tags-solid" class="fa-solid fa-tags fa-fw"></i>
+            <transition name="into">
+                <div v-show="show_page" style="display: -not-none">
+                    <div id="menu_show">
+                         
+<nav id="menu">
+    <div class="desktop-menu">
+        <a href="/">
+            <span class="title">小宇の万事屋</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;about</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;tags</span>
+        </a>
+        
+        <a href="/search.xml">
+            <i class="fa-solid fa-magnifying-glass-location fa-fw"></i>
+            <span>&ensp;search</span>
+        </a>
+        
+        <a href="/bangumis/index.html">
+            <i class="fa-brands fa-bilibili fa-fw"></i>
+            <span>&ensp;bilibili</span>
+        </a>
+        
+    </div>
+    <div :class="'phone-menu ' + menu_show" id="phone-menu">
+        <div class="curtain" @click="menu_show = !menu_show" v-show="menu_show"></div>
+        <div :class="'title'" @click="menu_show = !menu_show">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;小宇の万事屋</span>
+        </div>
+        <transition name="slide">
+        <div class="items" v-show="menu_show">
+            
+            <a href="/">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-house fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">home</div>
+                </div>
+            </a>
+            
+            <a href="/about">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-id-card fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">about</div>
+                </div>
+            </a>
+            
+            <a href="/archives">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-box-archive fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">archives</div>
+                </div>
+            </a>
+            
+            <a href="/categories">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-bookmark fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">categories</div>
+                </div>
+            </a>
+            
+            <a href="/tags">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-tags fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">tags</div>
+                </div>
+            </a>
+            
+            <a href="/search.xml">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-solid fa-magnifying-glass-location fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">search</div>
+                </div>
+            </a>
+            
+            <a href="/bangumis/index.html">
+                <div class="item">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i class="fa-brands fa-bilibili fa-fw"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">bilibili</div>
+                </div>
+            </a>
+            
+        </div>
+        </transition>
+    </div>
+</nav>
+                    </div>
+                    <div id="main">
+                        
+<div class="article">
+    <div>
+        <h1>JAVA实训02 </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#calendar-solid"></use></svg>
+            </span>
+            2023/7/6
+        </span>
+        
+        <span class="category">
+            <a href="/categories/后端学习/">
+                <span class="icon">
+                    <svg class="fa-icon"><use xlink:href="#bookmark-solid"></use></svg>
+                </span>
+                后端学习
+            </a>
+        </span>
+        
+        
+        <span class="tags">
+            <span class="icon">
+                <svg class="fa-icon"><use xlink:href="#tags-solid"></use></svg>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/java实训/" style="color: #ff7d73">
+                    java实训
+                </a>
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/DAY2/" style="color: #00bcd4">
+                    DAY2
+                </a>
+            </span>
+            
+        </span>
+        
+    </div>
+    <div class="content" v-pre>
+        <h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><pre><code class="java">package com.neu.server.manager;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class ServerManager &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        //Server
+            //开发步骤
+               //创建ServerSocket 并绑定监听端口
+               //等待客户端连接【accept】
+               //获取到和客户端通信的Socket对象
+        
+        ServerSocket serverSocket=null;
+        try &#123;
+            serverSocket = new ServerSocket(8080);
+            
+            //等待客户端连接【阻塞】
+            System.out.println(&quot;等待客户端连接&quot;);
+            Socket socket = serverSocket.accept();
+            
+            InputStream inputStream = socket.getInputStream();
+            
+            OutputStream outputStream = socket.getOutputStream();
+            //转换流
+            //InputStreamReader reader = new InputStreamReader(inputStream);
+            //OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+            
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+            
+            //请求 request
+            //响应 response
+            
+            //读取一行,然后响应给客户端
+            
+            String content = bufferedReader.readLine();//\r\n
+            
+            //bufferedWriter.write(content+&quot;\r\n&quot;);
+            bufferedWriter.write(content);
+            //响应换行标示
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(serverSocket!=null)&#123;
+                try &#123;
+                    serverSocket.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><pre><code class="java">public class ChatView extends JFrame implements ActionListener&#123;
+    
+    //布局管理器
+        //含义:控制组件该如何摆放
+        //常见
+           //边界布局管理器
+                //含义:JFrame默认的布局管理器,分成上北下南左西右东中间是center区域
+           //流式布局管理器
+           //网格布局管理器
+           //卡片布局管理器
+           //....
+
+    private JPanel bottomJPanel;
+    private JTextField contentJTextField;
+    private JButton sendJButton;
+    
+    private JTextArea chatLog;
+    
+    //图形界面
+       //步骤
+          //extends JFrame [窗口]
+          //设置
+              //设置标题、大小、位置、是否可见、、关闭的默认行为、内容
+    
+    
+    private Socket socket;
+    private BufferedWriter bufferedWriter;
+    
+    public ChatView()&#123;
+        setTitle(&quot;聊天界面&quot;);
+        setBounds(0, 0, 400, 300);
+        
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        chatLog = new JTextArea(10, 20);
+        chatLog.setEditable(false);
+         
+        
+        bottomJPanel = new JPanel();  //面板默认的布局管理器是流式布局
+        
+        contentJTextField = new JTextField(20);
+        sendJButton = new JButton(&quot;发送&quot;);
+        //绑定点击事件
+        sendJButton.addActionListener(this);//ActionListener
+        
+        bottomJPanel.add(contentJTextField);
+        bottomJPanel.add(sendJButton);
+        
+        
+        setLayout(new BorderLayout());
+        
+        add(bottomJPanel,  BorderLayout.SOUTH);
+        add(chatLog,  BorderLayout.CENTER);
+        
+        setVisible(true);
+        
+        //连接服务器
+        try &#123;
+            socket = new Socket(&quot;127.0.0.1&quot;,8080);
+            
+            OutputStream outputStream = socket.getOutputStream();
+            bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+            
+            //输入流
+            InputStream inputStream = socket.getInputStream();
+            
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String responseContent = bufferedReader.readLine();
+            
+            chatLog.append(responseContent+&quot;\r\n&quot;);
+        &#125; catch (UnknownHostException e) &#123;
+            e.printStackTrace();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+    
+    public static void main(String[] args) &#123;
+        
+        ChatView chatView = new ChatView();
+        
+    &#125;
+
+    @Override
+    public void actionPerformed(ActionEvent event) &#123;
+        //事件源【事件在哪个组件发送】
+        Object source =  event.getSource();
+        if(source==sendJButton)&#123;
+            //获取输入的内容
+            String content = contentJTextField.getText();
+            
+            //发送出去
+            //bufferedWriter.write(content+&quot;\r\n&quot;);
+            try &#123;
+                bufferedWriter.write(content);
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
+<li><p>进程</p>
+<blockquote>
+<p>含义:一个正在运行的软件【程序】</p>
+</blockquote>
+</li>
+<li><p>线程</p>
+<ul>
+<li>一个进程至少要有一个线程</li>
+<li>任务分支索引</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ul>
+<li>耗时的操作</li>
+<li>网络通信</li>
+<li>多线程文件下载</li>
+</ul>
+<h2 id="创建线程的方式"><a href="#创建线程的方式" class="headerlink" title="创建线程的方式"></a>创建线程的方式</h2><ul>
+<li>extends Thread</li>
+<li>implement Runnable</li>
+</ul>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><ul>
+<li><p>getId</p>
+</li>
+<li><p>getName</p>
+</li>
+<li><p>Thread.currentThread</p>
+</li>
+<li><p>Thread.sleep</p>
+</li>
+<li><p>run</p>
+<blockquote>
+<p>设置线程的任务</p>
+</blockquote>
+</li>
+<li><p>start</p>
+<blockquote>
+<p>启动线程</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="案例一"><a href="#案例一" class="headerlink" title="案例一"></a>案例一</h2><pre><code class="java">public class _01Thread &#123;
+    //进程
+       //含义:一个正在运行的软件【程序】
+    //线程
+       //含义:任务分支【索引】
+       //注意点
+          //一个进程至少要求有一个线程
+    
+    //常用的api
+       //Thread.currentThread 获取当前线程对象
+       //getName
+       //getId
+    
+    //方式
+       //extends Thread
+            //重写run方法【含义:指定线程的任务】
+            //创建线程对象
+            //调用线程对象.start() 【含义:启动】
+       //implements Runnable
+    
+    public static void main(String[] args) &#123;
+        
+        /*
+        Thread thread = Thread.currentThread();
+        System.out.println(thread.getId());
+        System.out.println(thread.getName());
+        System.out.println(thread);
+        */
+        
+        //创建线程对象
+        Thread leftThread = new LeftThread();
+        leftThread.start();
+        
+        Thread rightThread = new RightThread();
+        rightThread.start();
+        
+        System.out.println(&quot;main&quot;);
+    &#125;
+&#125;
+
+class LeftThread extends Thread&#123;
+    @Override
+    public void run() &#123;
+     System.out.println(&quot;画圆&quot;);
+    &#125;
+&#125;
+
+class RightThread extends Thread&#123;
+    @Override
+    public void run() &#123;
+        System.out.println(&quot;画正方形&quot;);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例二"><a href="#案例二" class="headerlink" title="案例二"></a>案例二</h2><pre><code class="java">public class _02Thread &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        Runnable draw = new Draw();
+        Thread thread = new Thread(draw);
+        
+        thread.start();
+        
+        
+        for(int i=0;i&lt;10;i++)&#123;
+            System.out.println(&quot;maini=&quot;+i);
+        &#125;
+    &#125;
+
+&#125;
+
+class Draw implements Runnable&#123;
+    
+
+    /**
+     * 指定任务
+     */
+    @Override
+    public void run() &#123;
+        
+        int count = 10;
+        for(int i=0;i&lt;count;i++)&#123;
+            System.out.println(&quot;子线程i=&quot;+i);
+        &#125;
+        
+    &#125;
+&#125;
+</code></pre>
+<h2 id="扩展知识"><a href="#扩展知识" class="headerlink" title="扩展知识"></a>扩展知识</h2><ul>
+<li>线程安全</li>
+<li>线程池</li>
+</ul>
+<h1 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h1><h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><p>servlet的容器</p>
+<blockquote>
+<p>servlet是用来处理请求产生响应的java类</p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>解压</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
+<li>CATALINA_HOME&#x3D;解压目录</li>
+<li>PATH&#x3D;;%CATALINA_HOME%\bin;</li>
+</ul>
+<h2 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h2><ul>
+<li>启动<ul>
+<li>cmd下面输入startup.bat</li>
+<li>bin目录下面直接双击startup.bat</li>
+</ul>
+</li>
+<li>关闭<ul>
+<li>直接关闭窗口</li>
+<li>cmd下面输入shutdown.bat</li>
+<li>bin目录下面直接双击shutdown.bat</li>
+</ul>
+</li>
+</ul>
+<h2 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h2><p><a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a></p>
+<h1 id="关联tomcat"><a href="#关联tomcat" class="headerlink" title="关联tomcat"></a>关联tomcat</h1><ul>
+<li><p>步骤一</p>
+<p> <img src="/../imgs/1688624168623.png" alt="1688624168623"></p>
+</li>
+<li><p>步骤二</p>
+<p> <img src="/../imgs/1688624207305.png" alt="1688624207305"></p>
+</li>
+<li><p>步骤三</p>
+<p> <img src="/../imgs/1688624247344.png" alt="1688624247344"></p>
+</li>
+<li><p>步骤四</p>
+<p> <img src="/../imgs/1688624305169.png" alt="1688624305169"></p>
+</li>
+<li><p>步骤五</p>
+<p><img src="/../imgs/1688624498609.png" alt="1688624498609"></p>
+</li>
+</ul>
+<h1 id="创建web项目"><a href="#创建web项目" class="headerlink" title="创建web项目"></a>创建web项目</h1><ul>
+<li><p>步骤一</p>
+<p> <img src="/../imgs/1688624733856.png" alt="1688624733856"></p>
+</li>
+<li><p>步骤二</p>
+<p> <img src="/../imgs/1688624781275.png" alt="1688624781275"></p>
+</li>
+<li><p>步骤三</p>
+<p> <img src="/../imgs/1688624879727.png" alt="1688624879727"></p>
+</li>
+</ul>
+<h1 id="web项目结构"><a href="#web项目结构" class="headerlink" title="web项目结构"></a>web项目结构</h1><p> <img src="/../imgs/1688640797040.png" alt="1688640797040"></p>
+<h1 id="部署web项目"><a href="#部署web项目" class="headerlink" title="部署web项目"></a>部署web项目</h1><ul>
+<li><p>步骤一</p>
+<p> <img src="/../imgs/1688625085552.png" alt="1688625085552"></p>
+</li>
+<li><p>步骤二</p>
+<p> <img src="/../imgs/1688625132678.png" alt="1688625132678"></p>
+</li>
+<li><p>步骤三</p>
+<p> <img src="/../imgs/1688625196674.png" alt="1688625196674"></p>
+</li>
+</ul>
+<h1 id="servlet"><a href="#servlet" class="headerlink" title="servlet"></a>servlet</h1><h2 id="含义-1"><a href="#含义-1" class="headerlink" title="含义"></a>含义</h2><p>用来处理请求产生响应的tomcat提供的java类</p>
+<h2 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h2><ul>
+<li><p>extends HttpServlet</p>
+</li>
+<li><p>重写doGet或doPost方法</p>
+</li>
+<li><p>配置</p>
+<ul>
+<li><p>基于注解配置</p>
+<blockquote>
+<p>语法:@WebServlet(“&#x2F;请求路径”)</p>
+</blockquote>
+</li>
+<li><p>基于web.xml配置</p>
+<blockquote>
+<p>TODO</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>index.html</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method=&quot;post&quot; action=&quot;/WebDay01/hello&quot;&gt;
+      &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;br/&gt;
+  
+      &lt;input type=&quot;password&quot; name=&quot;pwd&quot;&gt;&lt;br/&gt;
+      
+      &lt;input type=&quot;submit&quot; value=&quot;登录&quot;&gt;&lt;br/&gt;
+  &lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>HelloServlet.java</p>
+<pre><code class="java">@WebServlet(&quot;/hello&quot;)
+public class HelloServlet extends HttpServlet&#123;
+    
+    //Servlet
+        //含义:用来处理请求产生响应的java类
+        //开发步骤
+            //extends HttpServlet
+            //重写doGet || doPost
+            //配置
+                //web.xml
+                //注解方式
+                    //@WebServlet
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+
+        String content = &quot;hello java&quot;;
+        resp.getOutputStream().write(content.getBytes());
+    
+    &#125;
+    
+    /**
+     * 处理post请求的 
+     */
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+        
+        //请求
+           //含义:包含请求的全部信息
+           //组成[了解]
+                //请求行
+                     //请求路径、请求协议和版本、请求的方式
+                //请求头
+                     //含义:用来描述请求的额外信息
+                     //getHeader
+                //请求体
+                     //用来携带请求参数的,
+                     //get请求没有请求体,他的参数拼接在url后面
+                     //post请求有请求体
+        
+        String url = req.getRequestURL().toString();
+        System.out.println(&quot;url=&quot;+url);
+        
+        String protocol = req.getProtocol();
+        System.out.println(&quot;protocol=&quot;+protocol);
+        
+        String method = req.getMethod();
+        System.out.println(&quot;method=&quot;+method);
+         
+        //获取请求参数
+        String name = req.getParameter(&quot;name&quot;);
+        String pwd = req.getParameter(&quot;pwd&quot;);
+        
+        //响应[不能同时使用,否则会报错]
+           //方式一:resp.getOutputStream();  //字节流,文件下载
+           //方式二:PrintWriter printWriter = resp.getWriter();//字符流,响应文本
+           
+        PrintWriter printWriter = resp.getWriter();
+        printWriter.print(&quot;name=&quot;+name);
+        printWriter.print(&quot;pwd=&quot;+pwd);
+    &#125;
+&#125;
+</code></pre>
+<h1 id="示意图一"><a href="#示意图一" class="headerlink" title="示意图一"></a>示意图一</h1><p> <img src="/../imgs/1688629881569.png" alt="1688629881569"></p>
+<h1 id="示意图二"><a href="#示意图二" class="headerlink" title="示意图二"></a>示意图二</h1><p> <img src="/../imgs/1688629915781.png" alt="1688629915781"></p>
+<h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><h2 id="含义-2"><a href="#含义-2" class="headerlink" title="含义"></a>含义</h2><p>java提供的一套用于操作数据库的规范,不同的数据库厂商实现该规范并打成一个jar包【即:数据库驱动】</p>
+<h2 id="开发步骤-1"><a href="#开发步骤-1" class="headerlink" title="开发步骤"></a>开发步骤</h2><ul>
+<li><p>导入驱动包</p>
+</li>
+<li><p>编写代码</p>
+<ul>
+<li><p>注册驱动</p>
+<blockquote>
+<p>Class.forName(“com.mysql.cj.jdbc.Driver”);</p>
+</blockquote>
+</li>
+<li><p>获取连接对象</p>
+<blockquote>
+<p>Connection conn &#x3D; DriverManager.getConnection(“jdbc:mysql:&#x2F;&#x2F;主机:端口&#x2F;数据库名”,”账号”,”密码”);</p>
+</blockquote>
+</li>
+<li><p>获取操作数据库对象</p>
+<blockquote>
+<p>PreparedStatment preparedStatment &#x3D; conn.prepareStatment(“sql语句”);</p>
+<p>设置占位符参数</p>
+<p>preparedStatment.setXX(第几个占位符参数,从1开始,参数值);、</p>
+</blockquote>
+</li>
+<li><p>释放资源</p>
+<blockquote>
+<p>ResultSet、PreparedStament、Connection对象的close方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="注册功能"><a href="#注册功能" class="headerlink" title="注册功能"></a>注册功能</h1><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><pre><code class="sql">SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pwd` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_user
+-- ----------------------------
+
+SET FOREIGN_KEY_CHECKS = 1;
+</code></pre>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>&#x2F;WebContent&#x2F;register.html</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method=&quot;post&quot; action=&quot;/WebDay01/register&quot;&gt;
+      &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;br/&gt;
+  
+      &lt;input type=&quot;password&quot; name=&quot;pwd&quot;&gt;&lt;br/&gt;
+      
+      &lt;input type=&quot;submit&quot; value=&quot;注册&quot;&gt;&lt;br/&gt;
+  &lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>RegisterController.java</p>
+<pre><code class="java">public class RegisterServlet extends HttpServlet&#123;
+    
+    //注册
+        //注解
+        //web.xml 【WEB-INF/web.xml】 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+
+        //获取请求参数
+        String name = req.getParameter(&quot;name&quot;);
+        String pwd = req.getParameter(&quot;pwd&quot;);
+        
+        
+        UserService userService = new UserServiceImpl();
+        int result = userService.add(name, pwd);
+        if(result==1)&#123;
+            resp.getWriter().print(&quot;success&quot;);
+        &#125;else&#123;
+            resp.getWriter().print(&quot;failure&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>UserService.java</p>
+<pre><code class="java">public interface UserService &#123;
+
+    int add(String name,String pwd);
+&#125;
+</code></pre>
+<p>UserServiceImpl.java</p>
+<pre><code class="java">public class UserServiceImpl implements UserService&#123;
+
+    /**
+     * 添加用户
+     * @return 返回添加成功的记录
+     */
+    @Override
+    public int add(String name, String pwd) &#123;
+        //调用dao
+        
+        UserDao userDao = new UserDaoImpl();
+        return userDao.add(name, pwd);
+    &#125;
+&#125;
+</code></pre>
+<p>UserDao.java</p>
+<pre><code class="java">public interface UserDao &#123;
+   int add(String name,String pwd);
+&#125;
+</code></pre>
+<p>UserDaoImpl.java</p>
+<pre><code class="java">public class UserDaoImpl implements UserDao&#123;
+
+    @Override
+    public int add(String name, String pwd) &#123;
+     
+        //操作数据库
+        Connection conn = JDBCUtil.getConn();
+        
+        String sql = &quot;insert into t_user(name,pwd) values(?,?)&quot;;
+        
+        //操作数据库对象【执行sql语句】
+        PreparedStatement preparedStatement=null;
+        try &#123;
+            preparedStatement = conn.prepareStatement(sql);
+            //设置占位符参数值
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, pwd);
+            
+            //发送【执行】sql语句,返回的是所影响的记录数
+            return preparedStatement.executeUpdate();
+        &#125; catch (SQLException e) &#123;
+            e.printStackTrace();
+            return -1;
+        &#125;finally &#123;
+            JDBCUtil.close(null, preparedStatement, conn);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>JDBCUtil.java</p>
+<pre><code class="java">public class JDBCUtil &#123;
+
+    // 注册驱动
+       // 一次就好
+     
+    //静态代码块,这里面的代码只会执行一次
+    static &#123;
+        try &#123;
+            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);
+        &#125; catch (ClassNotFoundException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+
+    /**
+     * 获取连接对象
+     * 
+     * @return
+     */
+    public static Connection getConn() &#123;
+        try &#123;
+            return DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jida&quot;, &quot;root&quot;, &quot;sdcx123456,&quot;);
+        &#125; catch (SQLException e) &#123;
+            e.printStackTrace();
+            return null;
+        &#125;
+    &#125;
+
+    
+    /**
+     * 释放资源
+     * @param resultSet
+     * @param preparedStatement
+     * @param conn
+     */
+    public static void close(ResultSet resultSet, PreparedStatement preparedStatement, Connection conn) &#123;
+        try &#123;
+            if (resultSet != null) &#123;
+                resultSet.close();
+            &#125;
+            if (preparedStatement != null) &#123;
+                preparedStatement.close();
+            &#125;
+            if (conn != null) &#123;
+                conn.close();
+            &#125;
+        &#125; catch (SQLException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>web.xml</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+&lt;web-app xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;
+  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot;
+  version=&quot;3.1&quot;
+  metadata-complete=&quot;false&quot;&gt;
+  
+  &lt;!-- serlvet --&gt;
+  &lt;servlet&gt;
+     &lt;servlet-name&gt;registerServlet&lt;/servlet-name&gt;
+     &lt;!-- 全限定名,按ctrl + 鼠标左键检查 --&gt;
+     &lt;servlet-class&gt;com.neu.day01.servet.RegisterServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;registerServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/register&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;
+</code></pre>
+<h1 id="maven安装和配置"><a href="#maven安装和配置" class="headerlink" title="maven安装和配置"></a>maven安装和配置</h1><p>TODO</p>
+<h1 id="常见坐标"><a href="#常见坐标" class="headerlink" title="常见坐标"></a>常见坐标</h1><pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;version&gt;8.0.28&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;4.0.1&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h1 id="框架简介"><a href="#框架简介" class="headerlink" title="框架简介"></a>框架简介</h1><p>TODO</p>
+
+    </div>
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">
+    <div id="comment">
+        <div id="gitalk-container">
+        </div>
+    </div>
+    
+</div>
+                         
+<footer id="footer">
+    <div class="footer-wrap">
+        <div>
+            © 2022 - 2023 小宇の万事屋
+            <span class="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            @阿小橙
+        </div>
+        <div></div>
+        <div>Based on the <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo Engine</a> & <a
+                target="_blank" rel="noopener" href="https://github.com/argvchs/hexo-theme-particlex">ParticleX Theme</a></div>
+        
+    </div>
+</footer>
+                    </div>
+                </div>
+            </transition>
+            <div id="img_show">
+                <img id="img_content" alt="img_show">
+            </div>
+        </div>
+        <script src="https://cdn.staticfile.org/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="/js/particlex.js"></script>
+        <script src="/js/showimg.js"></script>
+        
+<script src="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.js"></script>
+<script>
+    var clientID = "", clientSecret = "";
+    
+    const gitalk = new Gitalk({
+        clientID: clientID,
+        clientSecret: clientSecret,
+        repo: "https://github.com/biabuluo",
+        owner: "biabuluo",
+        admin: ["biabuluo"],
+        language: "zh-CN",
+        id: location.pathname,
+        distractionFreeMode: false,
+        
+    })
+    gitalk.render("gitalk-container")
+</script>
+
+
+                <!-- backtotop -->
+                <div id = "gotop">
+                    <img src="/scrollup.png" alt="gotop">
+                </div>
+                <link rel="stylesheet" href="/css/totop.css">
+                <script>
+                    window.addEventListener("scroll",handle)
+                    function handle(){
+                        var oTop = document.body.scrollTop||document.documentElement.scrollTop
+                        if(oTop>=200){
+                            gotop.style.display = "block";
+                        }else{
+                            gotop.style.display = "none";
+                        }
+                        gotop.onclick = function(){
+                            window.scrollTo({
+                                top:0,
+                                behavior:"smooth"
+                            })
+                        }
+                    }
+                </script>
+        
+    <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":150,"height":300},"mobile":{"show":true},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+
+<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+<script type="text/javascript" src="/js/fireworks.js"></script>
+        <!-- 流星特效 -->
+        <canvas
+        id="background"
+        style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999"
+        ></canvas>
+        <script src="/js/background.js"></script>
+
+</html>

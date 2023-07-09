@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-        <title>JAVA实训 | 小宇の万事屋</title>
+        <title>JAVA实训01 | 小宇の万事屋</title>
         <meta name="author" content="阿小橙">
         <meta name="description" content="                  ————黎明卿">
         <meta name="keywords" content="好想赚大钱然后摆烂啊！">
@@ -163,7 +163,7 @@
                         
 <div class="article">
     <div>
-        <h1>JAVA实训 </h1>
+        <h1>JAVA实训01 </h1>
     </div>
     <div class="info">
         <span class="date">
@@ -190,14 +190,14 @@
             
             <span class="tag">
                 
-                <a href="/tags/java实训/" style="color: #03a9f4">
+                <a href="/tags/java实训/" style="color: #00bcd4">
                     java实训
                 </a>
             </span>
             
             <span class="tag">
                 
-                <a href="/tags/DAY1/" style="color: #03a9f4">
+                <a href="/tags/DAY1/" style="color: #00bcd4">
                     DAY1
                 </a>
             </span>
@@ -207,9 +207,697 @@
     </div>
     <div class="content" v-pre>
         <h1 id="今日知识"><a href="#今日知识" class="headerlink" title="今日知识"></a>今日知识</h1><ul>
-<li>jdk安装配置</li>
+<li>jdk安装和配置</li>
+<li>java基础补充</li>
+<li>javaweb安装和配置</li>
+<li>maven安装和配置</li>
+<li>框架简介</li>
 </ul>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+<h1 id="jdk安装和配置"><a href="#jdk安装和配置" class="headerlink" title="jdk安装和配置"></a>jdk安装和配置</h1><ul>
+<li><p>JAVA_HOME&#x3D;安装目录</p>
+</li>
+<li><p>PATH&#x3D;;%JAVA_HOME%&#x2F;bin;</p>
+<blockquote>
+<p>目的:cmd窗口可以直接使用bin目录下面的可执行文件</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h1><h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><p>底层采用可变数组的线性列表</p>
+<h2 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h2><ul>
+<li>List<ul>
+<li>ArrayList</li>
+</ul>
+</li>
+</ul>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li><p>元素有序,可以重复</p>
+<blockquote>
+<p>因为底层采用可变数组</p>
+</blockquote>
+</li>
+<li><p>存放的是对象的引用</p>
+</li>
+</ul>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><pre><code class="java">public class ListDemo &#123;
+ 
+    //ArrayList
+       //含义:底层采用可变数组的线性集合
+       //体系结构
+           //List接口
+              //ArrayList类
+       //注意点
+           //集合里面存储的是对象引用 
+       
+    public static void main(String[] args) &#123;
+        User user = new User();
+        user.name=&quot;zs&quot;;
+        
+        
+        
+        List&lt;User&gt; dataList= new ArrayList&lt;&gt;();
+        
+        //添加
+        dataList.add(user);
+        
+        //获取
+        System.out.println(dataList.get(0));
+        
+        user.name=&quot;ls&quot;;
+        System.out.println(dataList.get(0));
+        
+        System.out.println(user.name);
+        
+        //常用的方法
+           //add 添加
+           //get 获取
+           //isEmpty 是否为空
+           //size 元素的个数
+           //contains 是否包含
+           //remove 删除
+        
+        List&lt;String&gt; nameList = new ArrayList&lt;&gt;();
+        
+        nameList.add(&quot;zs&quot;);
+        nameList.add(&quot;ls&quot;);
+        
+        System.out.println(nameList.get(0));    //zs
+        
+        System.out.println(nameList.isEmpty()); //false
+        
+        System.out.println(nameList.size());    //2
+        System.out.println(nameList.contains(&quot;ww&quot;));  //false
+        
+        nameList.remove(0);
+        
+        System.out.println(nameList); //ls
+    &#125;
+&#125;
+class User&#123;
+    
+    public String name;
+
+    @Override
+    public String toString() &#123;
+        return &quot;User [name=&quot; + name + &quot;]&quot;;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><h2 id="含义-1"><a href="#含义-1" class="headerlink" title="含义"></a>含义</h2><p>输入输出</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ul>
+<li>游戏分数</li>
+<li>数据传输</li>
+<li>文件保存</li>
+<li>等等</li>
+</ul>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li><p>方向</p>
+<ul>
+<li>输入流</li>
+<li>输出流</li>
+</ul>
+</li>
+<li><p>传输的单位</p>
+<ul>
+<li><p>字符流</p>
+</li>
+<li><p>字节流</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="案例一"><a href="#案例一" class="headerlink" title="案例一"></a>案例一</h2><p>字节输入流</p>
+<pre><code class="java">public class _01IODemo &#123;
+    
+    //参照物
+        //程序本身
+    
+    //字节流
+       //含义:代表我们操作的是字节
+    //字符流
+       //含义:代表我们操作的是字符
+    
+    //read write close(释放) flush
+    
+    public static void main(String[] args) &#123;
+        //字节输入流
+        
+        //abstract
+        InputStream inputStream = null;
+        try &#123;
+            inputStream = new FileInputStream(&quot;D:\\11.txt&quot;);
+         
+        
+            
+            //读取一个字节并打印
+            //int data = inputStream.read();
+            //System.out.println(data);
+         
+        
+            //循环读取一个字节并打印
+            /*
+            int len = -1;
+            while((len=inputStream.read())!=-1)&#123;
+                System.out.println((char)len);
+            &#125;
+            */
+            
+            /*
+            byte [] cache = new byte[3];
+            
+            int len = -1;
+            
+            //len代表读取到的字节个数
+            len = inputStream.read(cache);//[97,98,99]
+            System.out.println(new String(cache));//
+            
+
+            len = inputStream.read(cache);//[100,98,99]
+            System.out.println(len);
+            
+            //String(byte bytes[], int offset, int length)
+            System.out.println(new String(cache,0,len));//dbc
+             
+            */
+            
+            
+            byte [] cache = new byte[3];
+            int len =-1;
+            while((len=inputStream.read(cache))!=-1)&#123;
+                System.out.println(new String(cache,0,len));
+            &#125;
+        &#125;catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            //不管有没有异常都会执行
+            if(inputStream!=null)&#123;
+                try &#123;
+                    inputStream.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例二"><a href="#案例二" class="headerlink" title="案例二"></a>案例二</h2><p>字节输出流</p>
+<pre><code class="java">public class _02IODemo &#123;
+    //字节输出流
+    
+    //close flush read write
+    public static void main(String[] args) &#123;
+        String content = &quot;abc&quot;;
+        
+        OutputStream outputStream = null;
+        try &#123;
+            outputStream = new FileOutputStream(&quot;D:\\22.txt&quot;);
+             
+            //一个一个字节输出
+            //outputStream.write(97);
+            //outputStream.write(98);
+            //outputStream.write(99);
+            
+            outputStream.write(content.getBytes());
+            
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(outputStream!=null)&#123;
+                try &#123;
+                    outputStream.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;	
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例三"><a href="#案例三" class="headerlink" title="案例三"></a>案例三</h2><p>字符输入和输出流</p>
+<pre><code class="java">/**
+ * 
+ * @author Administrator
+ *
+ */
+public class _03IODemo &#123;
+    
+    //字节流
+       //特点:XXStream结尾
+    //字符流
+       //特点:XXReader || XXWriter 结尾
+ 
+ 
+    /**
+     * 
+     * @param args
+     */
+    public static void main(String[] args) &#123;
+         
+        //readDataByChar();
+        
+        writeDataByChar();
+    &#125;
+    
+    private static void writeDataByChar()&#123;
+        
+        Writer writer = null;
+        try &#123;
+            writer = new FileWriter(&quot;D:\\a.txt&quot;);
+            
+            //输出的内容来自控制台
+            //System.in标准输入流【控制台】
+            
+            System.out.println(&quot;请输入要保存的内容&quot;);
+            Scanner scanner = new Scanner(System.in);
+            String content = scanner.nextLine();
+            
+            
+            writer.write(content);
+            
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(writer!=null)&#123;
+                try &#123;
+                    writer.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+        
+    &#125;
+ 
+    
+    /**
+     * 字符输入流案例
+     */
+    private static void readDataByChar()&#123;
+        
+        //字符流
+        
+        Reader reader=null;
+        try &#123;
+            reader = new FileReader(&quot;D:\\a.txt&quot;);
+            
+            
+            //读取一个字符
+            //System.out.println((char)reader.read());
+             
+            //循环读取字符
+            /*
+            int len = -1;
+            while((len=reader.read())!=-1)&#123;
+                System.out.println((char)len);
+            &#125;
+            */
+            
+            /*
+            char [] cache = new char[3];//中国加
+            int len = -1;
+            
+            len = reader.read(cache);   //3
+            
+            System.out.println(len);
+            System.out.println(new String(cache,0,len));
+            
+            
+            
+            len = reader.read(cache);   //油国加
+            
+            System.out.println(len);    //1
+            System.out.println(new String(cache,0,len)); //油国加
+            */
+            
+            //含义:字符串的拼接(append)类
+            StringBuilder SB = new StringBuilder();
+            
+            char [] cache = new char[3];//中国加
+            int len = -1;
+            
+            while((len=reader.read(cache))!=-1)&#123;
+                //System.out.println(new String(cache,0,len)); 
+                SB.append(new String(cache,0,len));
+            &#125;
+            
+            System.out.println(SB);
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(reader!=null)&#123;
+                try &#123;
+                    reader.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+        
+    &#125;
+&#125;
+</code></pre>
+<h1 id="File"><a href="#File" class="headerlink" title="File"></a>File</h1><h2 id="含义-2"><a href="#含义-2" class="headerlink" title="含义"></a>含义</h2><ul>
+<li>jdk提供的类</li>
+<li>file对象代表一个文件或文件夹</li>
+</ul>
+<h2 id="案例一-1"><a href="#案例一-1" class="headerlink" title="案例一"></a>案例一</h2><p>File入门</p>
+<pre><code class="java">public class FileDemo &#123;
+    
+    //File
+      //含义
+          //jdk提供的类
+          //一个File对象代表一个文件或文件夹
+    
+    public static void main(String[] args) &#123;
+        
+        File file = new File(&quot;D:\\暨南大学\\Day01&quot;);
+        
+        
+        //false
+        System.out.println(file.isFile());
+        //true
+        System.out.println(file.isDirectory());
+        
+        File children [] = file.listFiles();
+             //
+        for(File child : children)&#123;
+            
+            System.out.println(child.getName());
+            System.out.println(child.getAbsolutePath());
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例二-1"><a href="#案例二-1" class="headerlink" title="案例二"></a>案例二</h2><p>文件递归</p>
+<pre><code class="java">/**
+ * 
+ * @author Administrator
+ *
+ */
+public class FileOtherDemo &#123;
+    
+    //罗列出D:\暨南大学\Day01文件夹下的所有视频名字
+    
+    //递归
+       //含义:有限次数自己调用自己
+       //注意点:递归次数【深度】太多【太深】会造成栈溢出[StackOverflowError]
+
+    //方法的调用其实就是方法的入栈和出栈的过程
+    
+    
+    
+    public static void main(String[] args) &#123;
+        
+        
+        
+        String parentPath = &quot;D:\\暨南大学\\Day01&quot;;
+        listVideoName(parentPath);
+     
+    &#125;
+    
+    /**
+     * 列出当前路径所在的视频名称和孩子文件夹的视频名称
+     * @param parentPath
+     */
+    private static void listVideoName(String parentPath)&#123;
+        
+        if(parentPath==null || &quot;&quot;.equals(parentPath.trim()))&#123;
+            return;
+        &#125;
+        
+        //罗列出当前路径下的视频名称
+        File parentFile = new File(parentPath);
+        
+        File children [] = parentFile.listFiles();
+        
+        for(File child : children)&#123;
+            
+            //判断是不是MP4视频格式
+            if(child.isFile())&#123;
+                if(child.getName().endsWith(&quot;.mp4&quot;) )&#123;
+                    System.out.println(child.getName());
+                &#125;
+            &#125;else&#123;
+                //文件夹
+                listVideoName(child.getAbsolutePath());
+            &#125;
+            
+        &#125;
+        
+    &#125;
+&#125;
+</code></pre>
+<h1 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h1><h2 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h2><p> <img src="/../imgs/1688544024834.png" alt="1688544024834"></p>
+<h2 id="案例一-2"><a href="#案例一-2" class="headerlink" title="案例一"></a>案例一</h2><p>字符输出缓冲流</p>
+<pre><code class="java">public class BufferedDemo &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        //缓冲流
+           //含义:内部有缓冲区,读取数据的时候是从缓冲区里面读取的。写出数据是先写到缓冲区
+                                                            //缓冲区里面的数据什么时候会刷新【输出】到磁盘文件中?
+                                                                 //缓冲区满了;//flush;//close
+        
+
+        //字符输出缓冲流
+        Writer writer=null;
+        BufferedWriter bufferedWriter=null;
+        try &#123;
+            writer = new FileWriter(&quot;D:\\c.txt&quot;);
+            bufferedWriter = new BufferedWriter(writer);
+            
+            bufferedWriter.write(&quot;abcd&quot;);
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(bufferedWriter!=null)&#123;
+                try &#123;
+                    bufferedWriter.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例二-2"><a href="#案例二-2" class="headerlink" title="案例二"></a>案例二</h2><p>字符输入缓冲流</p>
+<pre><code class="java">public class BufferedOtherDemo &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        //字符输入缓冲流
+        Reader reader=null;
+        BufferedReader bufferedReader=null;
+        try &#123;
+            reader = new FileReader(&quot;D:\\c.txt&quot;);
+            bufferedReader = new BufferedReader(reader);
+            
+            String content = null;
+            
+            while((content=bufferedReader.readLine())!=null)&#123;
+                
+                System.out.println(content);
+            &#125;
+            
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(bufferedReader!=null)&#123;
+                try &#123;
+                    bufferedReader.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="代码统计"><a href="#代码统计" class="headerlink" title="代码统计"></a>代码统计</h1><pre><code class="java">public class Test &#123;
+    
+    static int sum=0;
+    public static void main(String[] args) &#123;
+        
+        String targetPath = &quot;C:\\Users\\Administrator\\workspace&quot;;
+        
+        //统计多少行代码? 
+           //思路
+              //找到所有的.java文件
+              //读取.java文件有多少行
+              //累加
+        
+        listJavaFile(targetPath);
+        System.out.println(sum);
+    &#125;
+    
+    /**
+     * 递归读取java文件
+     * @param parentPath
+     */
+    private static void listJavaFile(String parentPath)&#123;
+        if(parentPath==null || &quot;&quot;.equals(parentPath.trim()))&#123;
+            return;
+        &#125;
+        
+        File parentFile = new File(parentPath);
+        
+        //罗列孩子
+        File children [] = parentFile.listFiles();
+        
+        for(File child : children)&#123;
+            
+            if(child.isFile())&#123;
+                //是不是java文件
+                if(child.getName().endsWith(&quot;.java&quot;))&#123;
+                    //是java文件 TODO
+                    int count = calCount(child.getAbsolutePath());
+                    sum+=count;
+                &#125;
+            &#125;else&#123;
+                //文件夹
+                listJavaFile(child.getAbsolutePath());
+            &#125;
+        &#125;
+    &#125;
+
+
+    /**
+     * 读取某一个java文件的代码行数
+     * @param path
+     */
+    private static int calCount(String path)&#123;
+        int count = 0;
+         
+        BufferedReader bufferedReader=null;
+        try &#123;
+            bufferedReader = new BufferedReader(new FileReader(path));
+            
+            //读一行加1
+            String content = null;
+            while((content=bufferedReader.readLine())!=null)&#123;
+                if(!&quot;&quot;.equals(content.trim()))&#123;
+                    count++;
+                &#125;
+            &#125;
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(bufferedReader!=null)&#123;
+                try &#123;
+                    bufferedReader.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+        return count;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><pre><code class="java">public class Server &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        ServerSocket serverSocket = null;
+        try &#123;
+            serverSocket = new ServerSocket(8080);
+            
+            System.out.println(&quot;等待客户端连接&quot;);
+            
+            //等待[阻塞]连接
+            Socket socket = serverSocket.accept();
+            
+        
+            System.out.println(&quot;有客户端连接了&quot;);
+            //有客户端连接了
+            
+            //读取客户端发送过来的数据【输入流】
+            InputStream inputStream = socket.getInputStream();
+            
+            byte [] cache = new byte[1024];
+            int len = -1;
+            
+            StringBuilder content = new StringBuilder();
+            //while((len=inputStream.read(cache))!=-1)&#123;
+                len=inputStream.read(cache);
+                content.append(new String(cache,0,len));
+            //&#125;
+            
+            System.out.println(&quot;收到客户端的内容&quot;+content.toString());
+            
+            
+            //响应数据给客户端【输出流】
+            OutputStream outputStream = socket.getOutputStream();
+            outputStream.write(content.toString().getBytes());
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(serverSocket!=null)&#123;
+                try &#123;
+                    serverSocket.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><pre><code class="java">public class Client &#123;
+    
+    public static void main(String[] args) &#123;
+        //localhost 127.0.0.1 代表本机
+        
+        Socket socket=null;
+        try &#123;
+            socket = new Socket(&quot;localhost&quot;, 8080);
+            
+            String content = &quot;hello world&quot;;
+            
+            //发送到服务器【输出流】
+            OutputStream outputStream = socket.getOutputStream();
+            outputStream.write(content.getBytes());
+         
+            
+            //获取到服务器响应回来的数据【输入流】
+            
+            InputStream inputStream = socket.getInputStream();
+            StringBuilder SB = new StringBuilder();
+            
+            int len = -1;
+            byte [] cache = new byte[1024];
+            //while((len=inputStream.read(cache))!=-1)&#123;
+            	len=inputStream.read(cache);
+                SB.append(new String(cache,0,len));
+            //&#125;
+            
+            System.out.println(&quot;服务器响应的内容:&quot;+SB.toString());
+            
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(socket!=null)&#123;
+                try &#123;
+                    socket.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<h1 id="javaweb安装和配置"><a href="#javaweb安装和配置" class="headerlink" title="javaweb安装和配置"></a>javaweb安装和配置</h1><p>TODO</p>
+<h1 id="maven安装和配置"><a href="#maven安装和配置" class="headerlink" title="maven安装和配置"></a>maven安装和配置</h1><p>TODO</p>
+<h1 id="框架简介"><a href="#框架简介" class="headerlink" title="框架简介"></a>框架简介</h1><p>TODO</p>
+
     </div>
     
     <link rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.7.2/gitalk.min.css">

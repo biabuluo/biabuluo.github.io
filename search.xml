@@ -3638,18 +3638,2342 @@ Class cls = classLoader.loadClass(classAllPath);
       </tags>
   </entry>
   <entry>
-    <title>JAVA实训</title>
+    <title>JAVA实训01</title>
     <url>/2023/07/05/JAVA%E5%AE%9E%E8%AE%AD/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="今日知识"><a href="#今日知识" class="headerlink" title="今日知识"></a>今日知识</h1><ul>
-<li>jdk安装配置</li>
+<li>jdk安装和配置</li>
+<li>java基础补充</li>
+<li>javaweb安装和配置</li>
+<li>maven安装和配置</li>
+<li>框架简介</li>
 </ul>
-<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
+<h1 id="jdk安装和配置"><a href="#jdk安装和配置" class="headerlink" title="jdk安装和配置"></a>jdk安装和配置</h1><ul>
+<li><p>JAVA_HOME&#x3D;安装目录</p>
+</li>
+<li><p>PATH&#x3D;;%JAVA_HOME%&#x2F;bin;</p>
+<blockquote>
+<p>目的:cmd窗口可以直接使用bin目录下面的可执行文件</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h1><h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><p>底层采用可变数组的线性列表</p>
+<h2 id="体系结构"><a href="#体系结构" class="headerlink" title="体系结构"></a>体系结构</h2><ul>
+<li>List<ul>
+<li>ArrayList</li>
+</ul>
+</li>
+</ul>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li><p>元素有序,可以重复</p>
+<blockquote>
+<p>因为底层采用可变数组</p>
+</blockquote>
+</li>
+<li><p>存放的是对象的引用</p>
+</li>
+</ul>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><pre><code class="java">public class ListDemo &#123;
+ 
+    //ArrayList
+       //含义:底层采用可变数组的线性集合
+       //体系结构
+           //List接口
+              //ArrayList类
+       //注意点
+           //集合里面存储的是对象引用 
+       
+    public static void main(String[] args) &#123;
+        User user = new User();
+        user.name=&quot;zs&quot;;
+        
+        
+        
+        List&lt;User&gt; dataList= new ArrayList&lt;&gt;();
+        
+        //添加
+        dataList.add(user);
+        
+        //获取
+        System.out.println(dataList.get(0));
+        
+        user.name=&quot;ls&quot;;
+        System.out.println(dataList.get(0));
+        
+        System.out.println(user.name);
+        
+        //常用的方法
+           //add 添加
+           //get 获取
+           //isEmpty 是否为空
+           //size 元素的个数
+           //contains 是否包含
+           //remove 删除
+        
+        List&lt;String&gt; nameList = new ArrayList&lt;&gt;();
+        
+        nameList.add(&quot;zs&quot;);
+        nameList.add(&quot;ls&quot;);
+        
+        System.out.println(nameList.get(0));    //zs
+        
+        System.out.println(nameList.isEmpty()); //false
+        
+        System.out.println(nameList.size());    //2
+        System.out.println(nameList.contains(&quot;ww&quot;));  //false
+        
+        nameList.remove(0);
+        
+        System.out.println(nameList); //ls
+    &#125;
+&#125;
+class User&#123;
+    
+    public String name;
+
+    @Override
+    public String toString() &#123;
+        return &quot;User [name=&quot; + name + &quot;]&quot;;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h1><h2 id="含义-1"><a href="#含义-1" class="headerlink" title="含义"></a>含义</h2><p>输入输出</p>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ul>
+<li>游戏分数</li>
+<li>数据传输</li>
+<li>文件保存</li>
+<li>等等</li>
+</ul>
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li><p>方向</p>
+<ul>
+<li>输入流</li>
+<li>输出流</li>
+</ul>
+</li>
+<li><p>传输的单位</p>
+<ul>
+<li><p>字符流</p>
+</li>
+<li><p>字节流</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="案例一"><a href="#案例一" class="headerlink" title="案例一"></a>案例一</h2><p>字节输入流</p>
+<pre><code class="java">public class _01IODemo &#123;
+    
+    //参照物
+        //程序本身
+    
+    //字节流
+       //含义:代表我们操作的是字节
+    //字符流
+       //含义:代表我们操作的是字符
+    
+    //read write close(释放) flush
+    
+    public static void main(String[] args) &#123;
+        //字节输入流
+        
+        //abstract
+        InputStream inputStream = null;
+        try &#123;
+            inputStream = new FileInputStream(&quot;D:\\11.txt&quot;);
+         
+        
+            
+            //读取一个字节并打印
+            //int data = inputStream.read();
+            //System.out.println(data);
+         
+        
+            //循环读取一个字节并打印
+            /*
+            int len = -1;
+            while((len=inputStream.read())!=-1)&#123;
+                System.out.println((char)len);
+            &#125;
+            */
+            
+            /*
+            byte [] cache = new byte[3];
+            
+            int len = -1;
+            
+            //len代表读取到的字节个数
+            len = inputStream.read(cache);//[97,98,99]
+            System.out.println(new String(cache));//
+            
+
+            len = inputStream.read(cache);//[100,98,99]
+            System.out.println(len);
+            
+            //String(byte bytes[], int offset, int length)
+            System.out.println(new String(cache,0,len));//dbc
+             
+            */
+            
+            
+            byte [] cache = new byte[3];
+            int len =-1;
+            while((len=inputStream.read(cache))!=-1)&#123;
+                System.out.println(new String(cache,0,len));
+            &#125;
+        &#125;catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            //不管有没有异常都会执行
+            if(inputStream!=null)&#123;
+                try &#123;
+                    inputStream.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例二"><a href="#案例二" class="headerlink" title="案例二"></a>案例二</h2><p>字节输出流</p>
+<pre><code class="java">public class _02IODemo &#123;
+    //字节输出流
+    
+    //close flush read write
+    public static void main(String[] args) &#123;
+        String content = &quot;abc&quot;;
+        
+        OutputStream outputStream = null;
+        try &#123;
+            outputStream = new FileOutputStream(&quot;D:\\22.txt&quot;);
+             
+            //一个一个字节输出
+            //outputStream.write(97);
+            //outputStream.write(98);
+            //outputStream.write(99);
+            
+            outputStream.write(content.getBytes());
+            
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(outputStream!=null)&#123;
+                try &#123;
+                    outputStream.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;	
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例三"><a href="#案例三" class="headerlink" title="案例三"></a>案例三</h2><p>字符输入和输出流</p>
+<pre><code class="java">/**
+ * 
+ * @author Administrator
+ *
+ */
+public class _03IODemo &#123;
+    
+    //字节流
+       //特点:XXStream结尾
+    //字符流
+       //特点:XXReader || XXWriter 结尾
+ 
+ 
+    /**
+     * 
+     * @param args
+     */
+    public static void main(String[] args) &#123;
+         
+        //readDataByChar();
+        
+        writeDataByChar();
+    &#125;
+    
+    private static void writeDataByChar()&#123;
+        
+        Writer writer = null;
+        try &#123;
+            writer = new FileWriter(&quot;D:\\a.txt&quot;);
+            
+            //输出的内容来自控制台
+            //System.in标准输入流【控制台】
+            
+            System.out.println(&quot;请输入要保存的内容&quot;);
+            Scanner scanner = new Scanner(System.in);
+            String content = scanner.nextLine();
+            
+            
+            writer.write(content);
+            
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(writer!=null)&#123;
+                try &#123;
+                    writer.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+        
+    &#125;
+ 
+    
+    /**
+     * 字符输入流案例
+     */
+    private static void readDataByChar()&#123;
+        
+        //字符流
+        
+        Reader reader=null;
+        try &#123;
+            reader = new FileReader(&quot;D:\\a.txt&quot;);
+            
+            
+            //读取一个字符
+            //System.out.println((char)reader.read());
+             
+            //循环读取字符
+            /*
+            int len = -1;
+            while((len=reader.read())!=-1)&#123;
+                System.out.println((char)len);
+            &#125;
+            */
+            
+            /*
+            char [] cache = new char[3];//中国加
+            int len = -1;
+            
+            len = reader.read(cache);   //3
+            
+            System.out.println(len);
+            System.out.println(new String(cache,0,len));
+            
+            
+            
+            len = reader.read(cache);   //油国加
+            
+            System.out.println(len);    //1
+            System.out.println(new String(cache,0,len)); //油国加
+            */
+            
+            //含义:字符串的拼接(append)类
+            StringBuilder SB = new StringBuilder();
+            
+            char [] cache = new char[3];//中国加
+            int len = -1;
+            
+            while((len=reader.read(cache))!=-1)&#123;
+                //System.out.println(new String(cache,0,len)); 
+                SB.append(new String(cache,0,len));
+            &#125;
+            
+            System.out.println(SB);
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(reader!=null)&#123;
+                try &#123;
+                    reader.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+        
+    &#125;
+&#125;
+</code></pre>
+<h1 id="File"><a href="#File" class="headerlink" title="File"></a>File</h1><h2 id="含义-2"><a href="#含义-2" class="headerlink" title="含义"></a>含义</h2><ul>
+<li>jdk提供的类</li>
+<li>file对象代表一个文件或文件夹</li>
+</ul>
+<h2 id="案例一-1"><a href="#案例一-1" class="headerlink" title="案例一"></a>案例一</h2><p>File入门</p>
+<pre><code class="java">public class FileDemo &#123;
+    
+    //File
+      //含义
+          //jdk提供的类
+          //一个File对象代表一个文件或文件夹
+    
+    public static void main(String[] args) &#123;
+        
+        File file = new File(&quot;D:\\暨南大学\\Day01&quot;);
+        
+        
+        //false
+        System.out.println(file.isFile());
+        //true
+        System.out.println(file.isDirectory());
+        
+        File children [] = file.listFiles();
+             //
+        for(File child : children)&#123;
+            
+            System.out.println(child.getName());
+            System.out.println(child.getAbsolutePath());
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例二-1"><a href="#案例二-1" class="headerlink" title="案例二"></a>案例二</h2><p>文件递归</p>
+<pre><code class="java">/**
+ * 
+ * @author Administrator
+ *
+ */
+public class FileOtherDemo &#123;
+    
+    //罗列出D:\暨南大学\Day01文件夹下的所有视频名字
+    
+    //递归
+       //含义:有限次数自己调用自己
+       //注意点:递归次数【深度】太多【太深】会造成栈溢出[StackOverflowError]
+
+    //方法的调用其实就是方法的入栈和出栈的过程
+    
+    
+    
+    public static void main(String[] args) &#123;
+        
+        
+        
+        String parentPath = &quot;D:\\暨南大学\\Day01&quot;;
+        listVideoName(parentPath);
+     
+    &#125;
+    
+    /**
+     * 列出当前路径所在的视频名称和孩子文件夹的视频名称
+     * @param parentPath
+     */
+    private static void listVideoName(String parentPath)&#123;
+        
+        if(parentPath==null || &quot;&quot;.equals(parentPath.trim()))&#123;
+            return;
+        &#125;
+        
+        //罗列出当前路径下的视频名称
+        File parentFile = new File(parentPath);
+        
+        File children [] = parentFile.listFiles();
+        
+        for(File child : children)&#123;
+            
+            //判断是不是MP4视频格式
+            if(child.isFile())&#123;
+                if(child.getName().endsWith(&quot;.mp4&quot;) )&#123;
+                    System.out.println(child.getName());
+                &#125;
+            &#125;else&#123;
+                //文件夹
+                listVideoName(child.getAbsolutePath());
+            &#125;
+            
+        &#125;
+        
+    &#125;
+&#125;
+</code></pre>
+<h1 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h1><h2 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h2><p> <img src="/../imgs/1688544024834.png" alt="1688544024834"></p>
+<h2 id="案例一-2"><a href="#案例一-2" class="headerlink" title="案例一"></a>案例一</h2><p>字符输出缓冲流</p>
+<pre><code class="java">public class BufferedDemo &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        //缓冲流
+           //含义:内部有缓冲区,读取数据的时候是从缓冲区里面读取的。写出数据是先写到缓冲区
+                                                            //缓冲区里面的数据什么时候会刷新【输出】到磁盘文件中?
+                                                                 //缓冲区满了;//flush;//close
+        
+
+        //字符输出缓冲流
+        Writer writer=null;
+        BufferedWriter bufferedWriter=null;
+        try &#123;
+            writer = new FileWriter(&quot;D:\\c.txt&quot;);
+            bufferedWriter = new BufferedWriter(writer);
+            
+            bufferedWriter.write(&quot;abcd&quot;);
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(bufferedWriter!=null)&#123;
+                try &#123;
+                    bufferedWriter.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例二-2"><a href="#案例二-2" class="headerlink" title="案例二"></a>案例二</h2><p>字符输入缓冲流</p>
+<pre><code class="java">public class BufferedOtherDemo &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        //字符输入缓冲流
+        Reader reader=null;
+        BufferedReader bufferedReader=null;
+        try &#123;
+            reader = new FileReader(&quot;D:\\c.txt&quot;);
+            bufferedReader = new BufferedReader(reader);
+            
+            String content = null;
+            
+            while((content=bufferedReader.readLine())!=null)&#123;
+                
+                System.out.println(content);
+            &#125;
+            
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(bufferedReader!=null)&#123;
+                try &#123;
+                    bufferedReader.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="代码统计"><a href="#代码统计" class="headerlink" title="代码统计"></a>代码统计</h1><pre><code class="java">public class Test &#123;
+    
+    static int sum=0;
+    public static void main(String[] args) &#123;
+        
+        String targetPath = &quot;C:\\Users\\Administrator\\workspace&quot;;
+        
+        //统计多少行代码? 
+           //思路
+              //找到所有的.java文件
+              //读取.java文件有多少行
+              //累加
+        
+        listJavaFile(targetPath);
+        System.out.println(sum);
+    &#125;
+    
+    /**
+     * 递归读取java文件
+     * @param parentPath
+     */
+    private static void listJavaFile(String parentPath)&#123;
+        if(parentPath==null || &quot;&quot;.equals(parentPath.trim()))&#123;
+            return;
+        &#125;
+        
+        File parentFile = new File(parentPath);
+        
+        //罗列孩子
+        File children [] = parentFile.listFiles();
+        
+        for(File child : children)&#123;
+            
+            if(child.isFile())&#123;
+                //是不是java文件
+                if(child.getName().endsWith(&quot;.java&quot;))&#123;
+                    //是java文件 TODO
+                    int count = calCount(child.getAbsolutePath());
+                    sum+=count;
+                &#125;
+            &#125;else&#123;
+                //文件夹
+                listJavaFile(child.getAbsolutePath());
+            &#125;
+        &#125;
+    &#125;
+
+
+    /**
+     * 读取某一个java文件的代码行数
+     * @param path
+     */
+    private static int calCount(String path)&#123;
+        int count = 0;
+         
+        BufferedReader bufferedReader=null;
+        try &#123;
+            bufferedReader = new BufferedReader(new FileReader(path));
+            
+            //读一行加1
+            String content = null;
+            while((content=bufferedReader.readLine())!=null)&#123;
+                if(!&quot;&quot;.equals(content.trim()))&#123;
+                    count++;
+                &#125;
+            &#125;
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(bufferedReader!=null)&#123;
+                try &#123;
+                    bufferedReader.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+        return count;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><pre><code class="java">public class Server &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        ServerSocket serverSocket = null;
+        try &#123;
+            serverSocket = new ServerSocket(8080);
+            
+            System.out.println(&quot;等待客户端连接&quot;);
+            
+            //等待[阻塞]连接
+            Socket socket = serverSocket.accept();
+            
+        
+            System.out.println(&quot;有客户端连接了&quot;);
+            //有客户端连接了
+            
+            //读取客户端发送过来的数据【输入流】
+            InputStream inputStream = socket.getInputStream();
+            
+            byte [] cache = new byte[1024];
+            int len = -1;
+            
+            StringBuilder content = new StringBuilder();
+            //while((len=inputStream.read(cache))!=-1)&#123;
+                len=inputStream.read(cache);
+                content.append(new String(cache,0,len));
+            //&#125;
+            
+            System.out.println(&quot;收到客户端的内容&quot;+content.toString());
+            
+            
+            //响应数据给客户端【输出流】
+            OutputStream outputStream = socket.getOutputStream();
+            outputStream.write(content.toString().getBytes());
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(serverSocket!=null)&#123;
+                try &#123;
+                    serverSocket.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><pre><code class="java">public class Client &#123;
+    
+    public static void main(String[] args) &#123;
+        //localhost 127.0.0.1 代表本机
+        
+        Socket socket=null;
+        try &#123;
+            socket = new Socket(&quot;localhost&quot;, 8080);
+            
+            String content = &quot;hello world&quot;;
+            
+            //发送到服务器【输出流】
+            OutputStream outputStream = socket.getOutputStream();
+            outputStream.write(content.getBytes());
+         
+            
+            //获取到服务器响应回来的数据【输入流】
+            
+            InputStream inputStream = socket.getInputStream();
+            StringBuilder SB = new StringBuilder();
+            
+            int len = -1;
+            byte [] cache = new byte[1024];
+            //while((len=inputStream.read(cache))!=-1)&#123;
+            	len=inputStream.read(cache);
+                SB.append(new String(cache,0,len));
+            //&#125;
+            
+            System.out.println(&quot;服务器响应的内容:&quot;+SB.toString());
+            
+            
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(socket!=null)&#123;
+                try &#123;
+                    socket.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+
+&#125;
+</code></pre>
+<h1 id="javaweb安装和配置"><a href="#javaweb安装和配置" class="headerlink" title="javaweb安装和配置"></a>javaweb安装和配置</h1><p>TODO</p>
+<h1 id="maven安装和配置"><a href="#maven安装和配置" class="headerlink" title="maven安装和配置"></a>maven安装和配置</h1><p>TODO</p>
+<h1 id="框架简介"><a href="#框架简介" class="headerlink" title="框架简介"></a>框架简介</h1><p>TODO</p>
+]]></content>
       <categories>
         <category>后端学习</category>
       </categories>
       <tags>
         <tag>java实训</tag>
         <tag>DAY1</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JAVA实训02</title>
+    <url>/2023/07/06/JAVA%E5%AE%9E%E8%AE%AD02/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><pre><code class="java">package com.neu.server.manager;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class ServerManager &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        //Server
+            //开发步骤
+               //创建ServerSocket 并绑定监听端口
+               //等待客户端连接【accept】
+               //获取到和客户端通信的Socket对象
+        
+        ServerSocket serverSocket=null;
+        try &#123;
+            serverSocket = new ServerSocket(8080);
+            
+            //等待客户端连接【阻塞】
+            System.out.println(&quot;等待客户端连接&quot;);
+            Socket socket = serverSocket.accept();
+            
+            InputStream inputStream = socket.getInputStream();
+            
+            OutputStream outputStream = socket.getOutputStream();
+            //转换流
+            //InputStreamReader reader = new InputStreamReader(inputStream);
+            //OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+            
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            
+            BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+            
+            //请求 request
+            //响应 response
+            
+            //读取一行,然后响应给客户端
+            
+            String content = bufferedReader.readLine();//\r\n
+            
+            //bufferedWriter.write(content+&quot;\r\n&quot;);
+            bufferedWriter.write(content);
+            //响应换行标示
+            bufferedWriter.newLine();
+            bufferedWriter.flush();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;finally &#123;
+            if(serverSocket!=null)&#123;
+                try &#123;
+                    serverSocket.close();
+                &#125; catch (IOException e) &#123;
+                    e.printStackTrace();
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><pre><code class="java">public class ChatView extends JFrame implements ActionListener&#123;
+    
+    //布局管理器
+        //含义:控制组件该如何摆放
+        //常见
+           //边界布局管理器
+                //含义:JFrame默认的布局管理器,分成上北下南左西右东中间是center区域
+           //流式布局管理器
+           //网格布局管理器
+           //卡片布局管理器
+           //....
+
+    private JPanel bottomJPanel;
+    private JTextField contentJTextField;
+    private JButton sendJButton;
+    
+    private JTextArea chatLog;
+    
+    //图形界面
+       //步骤
+          //extends JFrame [窗口]
+          //设置
+              //设置标题、大小、位置、是否可见、、关闭的默认行为、内容
+    
+    
+    private Socket socket;
+    private BufferedWriter bufferedWriter;
+    
+    public ChatView()&#123;
+        setTitle(&quot;聊天界面&quot;);
+        setBounds(0, 0, 400, 300);
+        
+        
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        chatLog = new JTextArea(10, 20);
+        chatLog.setEditable(false);
+         
+        
+        bottomJPanel = new JPanel();  //面板默认的布局管理器是流式布局
+        
+        contentJTextField = new JTextField(20);
+        sendJButton = new JButton(&quot;发送&quot;);
+        //绑定点击事件
+        sendJButton.addActionListener(this);//ActionListener
+        
+        bottomJPanel.add(contentJTextField);
+        bottomJPanel.add(sendJButton);
+        
+        
+        setLayout(new BorderLayout());
+        
+        add(bottomJPanel,  BorderLayout.SOUTH);
+        add(chatLog,  BorderLayout.CENTER);
+        
+        setVisible(true);
+        
+        //连接服务器
+        try &#123;
+            socket = new Socket(&quot;127.0.0.1&quot;,8080);
+            
+            OutputStream outputStream = socket.getOutputStream();
+            bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+            
+            //输入流
+            InputStream inputStream = socket.getInputStream();
+            
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String responseContent = bufferedReader.readLine();
+            
+            chatLog.append(responseContent+&quot;\r\n&quot;);
+        &#125; catch (UnknownHostException e) &#123;
+            e.printStackTrace();
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+    
+    public static void main(String[] args) &#123;
+        
+        ChatView chatView = new ChatView();
+        
+    &#125;
+
+    @Override
+    public void actionPerformed(ActionEvent event) &#123;
+        //事件源【事件在哪个组件发送】
+        Object source =  event.getSource();
+        if(source==sendJButton)&#123;
+            //获取输入的内容
+            String content = contentJTextField.getText();
+            
+            //发送出去
+            //bufferedWriter.write(content+&quot;\r\n&quot;);
+            try &#123;
+                bufferedWriter.write(content);
+                bufferedWriter.newLine();
+                bufferedWriter.flush();
+            &#125; catch (IOException e) &#123;
+                e.printStackTrace();
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
+<li><p>进程</p>
+<blockquote>
+<p>含义:一个正在运行的软件【程序】</p>
+</blockquote>
+</li>
+<li><p>线程</p>
+<ul>
+<li>一个进程至少要有一个线程</li>
+<li>任务分支索引</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><ul>
+<li>耗时的操作</li>
+<li>网络通信</li>
+<li>多线程文件下载</li>
+</ul>
+<h2 id="创建线程的方式"><a href="#创建线程的方式" class="headerlink" title="创建线程的方式"></a>创建线程的方式</h2><ul>
+<li>extends Thread</li>
+<li>implement Runnable</li>
+</ul>
+<h2 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h2><ul>
+<li><p>getId</p>
+</li>
+<li><p>getName</p>
+</li>
+<li><p>Thread.currentThread</p>
+</li>
+<li><p>Thread.sleep</p>
+</li>
+<li><p>run</p>
+<blockquote>
+<p>设置线程的任务</p>
+</blockquote>
+</li>
+<li><p>start</p>
+<blockquote>
+<p>启动线程</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="案例一"><a href="#案例一" class="headerlink" title="案例一"></a>案例一</h2><pre><code class="java">public class _01Thread &#123;
+    //进程
+       //含义:一个正在运行的软件【程序】
+    //线程
+       //含义:任务分支【索引】
+       //注意点
+          //一个进程至少要求有一个线程
+    
+    //常用的api
+       //Thread.currentThread 获取当前线程对象
+       //getName
+       //getId
+    
+    //方式
+       //extends Thread
+            //重写run方法【含义:指定线程的任务】
+            //创建线程对象
+            //调用线程对象.start() 【含义:启动】
+       //implements Runnable
+    
+    public static void main(String[] args) &#123;
+        
+        /*
+        Thread thread = Thread.currentThread();
+        System.out.println(thread.getId());
+        System.out.println(thread.getName());
+        System.out.println(thread);
+        */
+        
+        //创建线程对象
+        Thread leftThread = new LeftThread();
+        leftThread.start();
+        
+        Thread rightThread = new RightThread();
+        rightThread.start();
+        
+        System.out.println(&quot;main&quot;);
+    &#125;
+&#125;
+
+class LeftThread extends Thread&#123;
+    @Override
+    public void run() &#123;
+     System.out.println(&quot;画圆&quot;);
+    &#125;
+&#125;
+
+class RightThread extends Thread&#123;
+    @Override
+    public void run() &#123;
+        System.out.println(&quot;画正方形&quot;);
+    &#125;
+&#125;
+</code></pre>
+<h2 id="案例二"><a href="#案例二" class="headerlink" title="案例二"></a>案例二</h2><pre><code class="java">public class _02Thread &#123;
+    
+    public static void main(String[] args) &#123;
+        
+        Runnable draw = new Draw();
+        Thread thread = new Thread(draw);
+        
+        thread.start();
+        
+        
+        for(int i=0;i&lt;10;i++)&#123;
+            System.out.println(&quot;maini=&quot;+i);
+        &#125;
+    &#125;
+
+&#125;
+
+class Draw implements Runnable&#123;
+    
+
+    /**
+     * 指定任务
+     */
+    @Override
+    public void run() &#123;
+        
+        int count = 10;
+        for(int i=0;i&lt;count;i++)&#123;
+            System.out.println(&quot;子线程i=&quot;+i);
+        &#125;
+        
+    &#125;
+&#125;
+</code></pre>
+<h2 id="扩展知识"><a href="#扩展知识" class="headerlink" title="扩展知识"></a>扩展知识</h2><ul>
+<li>线程安全</li>
+<li>线程池</li>
+</ul>
+<h1 id="tomcat"><a href="#tomcat" class="headerlink" title="tomcat"></a>tomcat</h1><h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><p>servlet的容器</p>
+<blockquote>
+<p>servlet是用来处理请求产生响应的java类</p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>解压</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><ul>
+<li>CATALINA_HOME&#x3D;解压目录</li>
+<li>PATH&#x3D;;%CATALINA_HOME%\bin;</li>
+</ul>
+<h2 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h2><ul>
+<li>启动<ul>
+<li>cmd下面输入startup.bat</li>
+<li>bin目录下面直接双击startup.bat</li>
+</ul>
+</li>
+<li>关闭<ul>
+<li>直接关闭窗口</li>
+<li>cmd下面输入shutdown.bat</li>
+<li>bin目录下面直接双击shutdown.bat</li>
+</ul>
+</li>
+</ul>
+<h2 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h2><p><a href="http://localhost:8080/">http://localhost:8080</a></p>
+<h1 id="关联tomcat"><a href="#关联tomcat" class="headerlink" title="关联tomcat"></a>关联tomcat</h1><ul>
+<li><p>步骤一</p>
+<p> <img src="/../imgs/1688624168623.png" alt="1688624168623"></p>
+</li>
+<li><p>步骤二</p>
+<p> <img src="/../imgs/1688624207305.png" alt="1688624207305"></p>
+</li>
+<li><p>步骤三</p>
+<p> <img src="/../imgs/1688624247344.png" alt="1688624247344"></p>
+</li>
+<li><p>步骤四</p>
+<p> <img src="/../imgs/1688624305169.png" alt="1688624305169"></p>
+</li>
+<li><p>步骤五</p>
+<p><img src="/../imgs/1688624498609.png" alt="1688624498609"></p>
+</li>
+</ul>
+<h1 id="创建web项目"><a href="#创建web项目" class="headerlink" title="创建web项目"></a>创建web项目</h1><ul>
+<li><p>步骤一</p>
+<p> <img src="/../imgs/1688624733856.png" alt="1688624733856"></p>
+</li>
+<li><p>步骤二</p>
+<p> <img src="/../imgs/1688624781275.png" alt="1688624781275"></p>
+</li>
+<li><p>步骤三</p>
+<p> <img src="/../imgs/1688624879727.png" alt="1688624879727"></p>
+</li>
+</ul>
+<h1 id="web项目结构"><a href="#web项目结构" class="headerlink" title="web项目结构"></a>web项目结构</h1><p> <img src="/../imgs/1688640797040.png" alt="1688640797040"></p>
+<h1 id="部署web项目"><a href="#部署web项目" class="headerlink" title="部署web项目"></a>部署web项目</h1><ul>
+<li><p>步骤一</p>
+<p> <img src="/../imgs/1688625085552.png" alt="1688625085552"></p>
+</li>
+<li><p>步骤二</p>
+<p> <img src="/../imgs/1688625132678.png" alt="1688625132678"></p>
+</li>
+<li><p>步骤三</p>
+<p> <img src="/../imgs/1688625196674.png" alt="1688625196674"></p>
+</li>
+</ul>
+<h1 id="servlet"><a href="#servlet" class="headerlink" title="servlet"></a>servlet</h1><h2 id="含义-1"><a href="#含义-1" class="headerlink" title="含义"></a>含义</h2><p>用来处理请求产生响应的tomcat提供的java类</p>
+<h2 id="开发步骤"><a href="#开发步骤" class="headerlink" title="开发步骤"></a>开发步骤</h2><ul>
+<li><p>extends HttpServlet</p>
+</li>
+<li><p>重写doGet或doPost方法</p>
+</li>
+<li><p>配置</p>
+<ul>
+<li><p>基于注解配置</p>
+<blockquote>
+<p>语法:@WebServlet(“&#x2F;请求路径”)</p>
+</blockquote>
+</li>
+<li><p>基于web.xml配置</p>
+<blockquote>
+<p>TODO</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>index.html</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method=&quot;post&quot; action=&quot;/WebDay01/hello&quot;&gt;
+      &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;br/&gt;
+  
+      &lt;input type=&quot;password&quot; name=&quot;pwd&quot;&gt;&lt;br/&gt;
+      
+      &lt;input type=&quot;submit&quot; value=&quot;登录&quot;&gt;&lt;br/&gt;
+  &lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>HelloServlet.java</p>
+<pre><code class="java">@WebServlet(&quot;/hello&quot;)
+public class HelloServlet extends HttpServlet&#123;
+    
+    //Servlet
+        //含义:用来处理请求产生响应的java类
+        //开发步骤
+            //extends HttpServlet
+            //重写doGet || doPost
+            //配置
+                //web.xml
+                //注解方式
+                    //@WebServlet
+    
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+
+        String content = &quot;hello java&quot;;
+        resp.getOutputStream().write(content.getBytes());
+    
+    &#125;
+    
+    /**
+     * 处理post请求的 
+     */
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+        
+        //请求
+           //含义:包含请求的全部信息
+           //组成[了解]
+                //请求行
+                     //请求路径、请求协议和版本、请求的方式
+                //请求头
+                     //含义:用来描述请求的额外信息
+                     //getHeader
+                //请求体
+                     //用来携带请求参数的,
+                     //get请求没有请求体,他的参数拼接在url后面
+                     //post请求有请求体
+        
+        String url = req.getRequestURL().toString();
+        System.out.println(&quot;url=&quot;+url);
+        
+        String protocol = req.getProtocol();
+        System.out.println(&quot;protocol=&quot;+protocol);
+        
+        String method = req.getMethod();
+        System.out.println(&quot;method=&quot;+method);
+         
+        //获取请求参数
+        String name = req.getParameter(&quot;name&quot;);
+        String pwd = req.getParameter(&quot;pwd&quot;);
+        
+        //响应[不能同时使用,否则会报错]
+           //方式一:resp.getOutputStream();  //字节流,文件下载
+           //方式二:PrintWriter printWriter = resp.getWriter();//字符流,响应文本
+           
+        PrintWriter printWriter = resp.getWriter();
+        printWriter.print(&quot;name=&quot;+name);
+        printWriter.print(&quot;pwd=&quot;+pwd);
+    &#125;
+&#125;
+</code></pre>
+<h1 id="示意图一"><a href="#示意图一" class="headerlink" title="示意图一"></a>示意图一</h1><p> <img src="/../imgs/1688629881569.png" alt="1688629881569"></p>
+<h1 id="示意图二"><a href="#示意图二" class="headerlink" title="示意图二"></a>示意图二</h1><p> <img src="/../imgs/1688629915781.png" alt="1688629915781"></p>
+<h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><h2 id="含义-2"><a href="#含义-2" class="headerlink" title="含义"></a>含义</h2><p>java提供的一套用于操作数据库的规范,不同的数据库厂商实现该规范并打成一个jar包【即:数据库驱动】</p>
+<h2 id="开发步骤-1"><a href="#开发步骤-1" class="headerlink" title="开发步骤"></a>开发步骤</h2><ul>
+<li><p>导入驱动包</p>
+</li>
+<li><p>编写代码</p>
+<ul>
+<li><p>注册驱动</p>
+<blockquote>
+<p>Class.forName(“com.mysql.cj.jdbc.Driver”);</p>
+</blockquote>
+</li>
+<li><p>获取连接对象</p>
+<blockquote>
+<p>Connection conn &#x3D; DriverManager.getConnection(“jdbc:mysql:&#x2F;&#x2F;主机:端口&#x2F;数据库名”,”账号”,”密码”);</p>
+</blockquote>
+</li>
+<li><p>获取操作数据库对象</p>
+<blockquote>
+<p>PreparedStatment preparedStatment &#x3D; conn.prepareStatment(“sql语句”);</p>
+<p>设置占位符参数</p>
+<p>preparedStatment.setXX(第几个占位符参数,从1开始,参数值);、</p>
+</blockquote>
+</li>
+<li><p>释放资源</p>
+<blockquote>
+<p>ResultSet、PreparedStament、Connection对象的close方法</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="注册功能"><a href="#注册功能" class="headerlink" title="注册功能"></a>注册功能</h1><h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><pre><code class="sql">SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pwd` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_user
+-- ----------------------------
+
+SET FOREIGN_KEY_CHECKS = 1;
+</code></pre>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>&#x2F;WebContent&#x2F;register.html</p>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;form method=&quot;post&quot; action=&quot;/WebDay01/register&quot;&gt;
+      &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;br/&gt;
+  
+      &lt;input type=&quot;password&quot; name=&quot;pwd&quot;&gt;&lt;br/&gt;
+      
+      &lt;input type=&quot;submit&quot; value=&quot;注册&quot;&gt;&lt;br/&gt;
+  &lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>RegisterController.java</p>
+<pre><code class="java">public class RegisterServlet extends HttpServlet&#123;
+    
+    //注册
+        //注解
+        //web.xml 【WEB-INF/web.xml】 
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException &#123;
+
+        //获取请求参数
+        String name = req.getParameter(&quot;name&quot;);
+        String pwd = req.getParameter(&quot;pwd&quot;);
+        
+        
+        UserService userService = new UserServiceImpl();
+        int result = userService.add(name, pwd);
+        if(result==1)&#123;
+            resp.getWriter().print(&quot;success&quot;);
+        &#125;else&#123;
+            resp.getWriter().print(&quot;failure&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>UserService.java</p>
+<pre><code class="java">public interface UserService &#123;
+
+    int add(String name,String pwd);
+&#125;
+</code></pre>
+<p>UserServiceImpl.java</p>
+<pre><code class="java">public class UserServiceImpl implements UserService&#123;
+
+    /**
+     * 添加用户
+     * @return 返回添加成功的记录
+     */
+    @Override
+    public int add(String name, String pwd) &#123;
+        //调用dao
+        
+        UserDao userDao = new UserDaoImpl();
+        return userDao.add(name, pwd);
+    &#125;
+&#125;
+</code></pre>
+<p>UserDao.java</p>
+<pre><code class="java">public interface UserDao &#123;
+   int add(String name,String pwd);
+&#125;
+</code></pre>
+<p>UserDaoImpl.java</p>
+<pre><code class="java">public class UserDaoImpl implements UserDao&#123;
+
+    @Override
+    public int add(String name, String pwd) &#123;
+     
+        //操作数据库
+        Connection conn = JDBCUtil.getConn();
+        
+        String sql = &quot;insert into t_user(name,pwd) values(?,?)&quot;;
+        
+        //操作数据库对象【执行sql语句】
+        PreparedStatement preparedStatement=null;
+        try &#123;
+            preparedStatement = conn.prepareStatement(sql);
+            //设置占位符参数值
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, pwd);
+            
+            //发送【执行】sql语句,返回的是所影响的记录数
+            return preparedStatement.executeUpdate();
+        &#125; catch (SQLException e) &#123;
+            e.printStackTrace();
+            return -1;
+        &#125;finally &#123;
+            JDBCUtil.close(null, preparedStatement, conn);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>JDBCUtil.java</p>
+<pre><code class="java">public class JDBCUtil &#123;
+
+    // 注册驱动
+       // 一次就好
+     
+    //静态代码块,这里面的代码只会执行一次
+    static &#123;
+        try &#123;
+            Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);
+        &#125; catch (ClassNotFoundException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+
+    /**
+     * 获取连接对象
+     * 
+     * @return
+     */
+    public static Connection getConn() &#123;
+        try &#123;
+            return DriverManager.getConnection(&quot;jdbc:mysql://localhost:3306/jida&quot;, &quot;root&quot;, &quot;sdcx123456,&quot;);
+        &#125; catch (SQLException e) &#123;
+            e.printStackTrace();
+            return null;
+        &#125;
+    &#125;
+
+    
+    /**
+     * 释放资源
+     * @param resultSet
+     * @param preparedStatement
+     * @param conn
+     */
+    public static void close(ResultSet resultSet, PreparedStatement preparedStatement, Connection conn) &#123;
+        try &#123;
+            if (resultSet != null) &#123;
+                resultSet.close();
+            &#125;
+            if (preparedStatement != null) &#123;
+                preparedStatement.close();
+            &#125;
+            if (conn != null) &#123;
+                conn.close();
+            &#125;
+        &#125; catch (SQLException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>web.xml</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+&lt;web-app xmlns=&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;
+  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+  xsi:schemaLocation=&quot;http://xmlns.jcp.org/xml/ns/javaee
+                      http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd&quot;
+  version=&quot;3.1&quot;
+  metadata-complete=&quot;false&quot;&gt;
+  
+  &lt;!-- serlvet --&gt;
+  &lt;servlet&gt;
+     &lt;servlet-name&gt;registerServlet&lt;/servlet-name&gt;
+     &lt;!-- 全限定名,按ctrl + 鼠标左键检查 --&gt;
+     &lt;servlet-class&gt;com.neu.day01.servet.RegisterServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;registerServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/register&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;
+</code></pre>
+<h1 id="maven安装和配置"><a href="#maven安装和配置" class="headerlink" title="maven安装和配置"></a>maven安装和配置</h1><p>TODO</p>
+<h1 id="常见坐标"><a href="#常见坐标" class="headerlink" title="常见坐标"></a>常见坐标</h1><pre><code class="xml">&lt;dependency&gt;
+    &lt;groupId&gt;mysql&lt;/groupId&gt;
+    &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+    &lt;version&gt;8.0.28&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api --&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;
+    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;
+    &lt;version&gt;4.0.1&lt;/version&gt;
+    &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h1 id="框架简介"><a href="#框架简介" class="headerlink" title="框架简介"></a>框架简介</h1><p>TODO</p>
+]]></content>
+      <categories>
+        <category>后端学习</category>
+      </categories>
+      <tags>
+        <tag>java实训</tag>
+        <tag>DAY2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JAVA实训04</title>
+    <url>/2023/07/08/JAVA%E5%AE%9E%E8%AE%AD04/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="今日知识点"><a href="#今日知识点" class="headerlink" title="今日知识点"></a>今日知识点</h1><ul>
+<li>Mapper接口实现CRUD</li>
+<li>动态SQL</li>
+<li>Spring框架介绍</li>
+<li>ApplicationContext</li>
+</ul>
+<p>添加依赖</p>
+<p>编写配置文件</p>
+<p>代码编写</p>
+<h1 id="代理设计模式"><a href="#代理设计模式" class="headerlink" title="代理设计模式"></a>代理设计模式</h1><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><ul>
+<li>保户</li>
+<li>增强</li>
+</ul>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><ul>
+<li>静态代理</li>
+<li>动态代理<ul>
+<li>JDK动态代理</li>
+<li>CGLib动态代理</li>
+</ul>
+</li>
+</ul>
+<h1 id="JDK动态代理"><a href="#JDK动态代理" class="headerlink" title="JDK动态代理"></a>JDK动态代理</h1><h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><ul>
+<li>目标类要实现接口</li>
+</ul>
+<h2 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h2><p> <img src="/../imgs/assets04/1688781163488.png" alt="1688781163488"></p>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><p>Star.java</p>
+<pre><code class="java">public interface Star &#123;
+    void sign(int money);
+&#125;
+</code></pre>
+<p>LDH.java</p>
+<pre><code class="java">public class LDH implements Star&#123;
+    @Override
+    public void sign(int money) &#123;
+        if(money==2000)&#123;
+            System.out.println(&quot;冰雨&quot;);
+        &#125;else if(money&gt;2000)&#123;
+            System.out.println(&quot;爱你一万年&quot;);
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<p>Fans.java</p>
+<pre><code class="java">public class Fans &#123;
+
+    public static void main(String[] args) &#123;
+
+        //为什么要用代理对象
+            //第一:保护目标
+            //第二:增强
+
+        //技术方案
+            //静态代理
+            //动态代理
+               //jdk动态代理
+                  //要求:目标要实现接口
+                  //接口和类
+                      //Proxy
+                      //InvocationHandler
+
+               //cglib动态代理
+
+        //LDH ldh = new LDH();
+        //ldh.sign(1000000);
+
+        //Proxy.newProxyInstance(类加载器,目标实现的接口数组,调用代理对象方法的回调);
+
+        InvocationHandler invocationHandler = new MyInvocationHandler();
+        Star proxy = (Star) Proxy.newProxyInstance(Fans.class.getClassLoader(),
+                LDH.class.getInterfaces(),invocationHandler);
+        proxy.sign(10000);
+    &#125;
+
+&#125;
+
+class MyInvocationHandler implements InvocationHandler&#123;
+
+    LDH target = new LDH();
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;
+
+        //System.out.println(method.getName());
+        //System.out.println(args[0]);
+
+        System.out.println(&quot;布置场地&quot;);
+        Object result =  method.invoke(target,args);
+        System.out.println(&quot;清理场地&quot;);
+        return result;
+    &#125;
+&#125;
+</code></pre>
+]]></content>
+      <categories>
+        <category>后端学习</category>
+      </categories>
+      <tags>
+        <tag>java实训</tag>
+        <tag>DAY4</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JAVA实训03</title>
+    <url>/2023/07/08/JAVA%E5%AE%9E%E8%AE%AD03/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="抛出问题"><a href="#抛出问题" class="headerlink" title="抛出问题"></a>抛出问题</h1><ul>
+<li>网上下载jar包麻烦</li>
+<li>jar包版本更新也麻烦</li>
+</ul>
+<h1 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h1><h2 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h2><p>构建项目的工具</p>
+<h2 id="示意图一"><a href="#示意图一" class="headerlink" title="示意图一"></a>示意图一</h2><p> <img src="/../imgs/assets03/1688690979059.png" alt="1688690979059"></p>
+<h2 id="示意图二"><a href="#示意图二" class="headerlink" title="示意图二"></a>示意图二</h2><p> <img src="/../imgs/assets03/1688690950869.png" alt="1688690950869"></p>
+<h2 id="maven安装和配置"><a href="#maven安装和配置" class="headerlink" title="maven安装和配置"></a>maven安装和配置</h2><ul>
+<li><p>解压</p>
+</li>
+<li><p>配置</p>
+<blockquote>
+<p>MAVEN_HOME&#x3D;解压目录</p>
+<p>PATH&#x3D;;%MAVEN_HOME%\bin;</p>
+</blockquote>
+</li>
+<li><p>验证</p>
+<blockquote>
+<p>mvn -v</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="maven关键名词"><a href="#maven关键名词" class="headerlink" title="maven关键名词"></a>maven关键名词</h1><ul>
+<li><p>仓库</p>
+<blockquote>
+<p>用来存放资源的【jar等资源】</p>
+<p>本地仓库</p>
+<p>中央【远程】仓库</p>
+</blockquote>
+</li>
+<li><p>pom文件 (pom.xml),每一个maven项目都有一个pom文件,这是核心文件</p>
+<blockquote>
+<p>描述当前项目的依赖信息</p>
+</blockquote>
+</li>
+<li><p>groupId 用来划分项目的。一般就是包名</p>
+</li>
+<li><p>artifactId 代表项目名</p>
+</li>
+<li><p>package </p>
+<ul>
+<li>代表打包类型,比如:jar\war\pom(如果是pom一般都是父项目)</li>
+</ul>
+</li>
+</ul>
+<h1 id="settings-xml"><a href="#settings-xml" class="headerlink" title="settings.xml"></a>settings.xml</h1><ul>
+<li><p><strong>localRepository配置本地仓库</strong></p>
+<pre><code class="xml">&lt;localRepository&gt;D://work/repo&lt;/localRepository&gt;
+</code></pre>
+</li>
+<li><p><strong>mirrors 配置镜像,可以设置远程仓库为国内站点</strong></p>
+<pre><code class="xml">&lt;mirror&gt;
+    &lt;id&gt;alimaven&lt;/id&gt;
+    &lt;name&gt;aliyun maven&lt;/name&gt;
+    &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
+    &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;       
+&lt;/mirror&gt;
+</code></pre>
+</li>
+<li><p><strong>profiles 额外设置</strong></p>
+<pre><code class="xml">&lt;profile&gt;
+  &lt;id&gt;jdk-1.8&lt;/id&gt;
+  &lt;activation&gt;
+    &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+    &lt;jdk&gt;1.8&lt;/jdk&gt;
+  &lt;/activation&gt;
+  &lt;properties&gt;
+    &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+    &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+    &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;
+  &lt;/properties&gt;
+&lt;/profile&gt;
+</code></pre>
+</li>
+<li><p><strong>activeProfiles 激活设置</strong></p>
+<pre><code class="xml">&lt;activeProfile&gt;jdk-1.8&lt;/activeProfile&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="参考案例"><a href="#参考案例" class="headerlink" title="参考案例"></a>参考案例</h2><pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+&quot;License&quot;); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+&quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+--&gt;
+
+&lt;!--
+ | This is the configuration file for Maven. It can be specified at two levels:
+ |
+ |  1. User Level. This settings.xml file provides configuration for a single user,
+ |                 and is normally provided in $&#123;user.home&#125;/.m2/settings.xml.
+ |
+ |                 NOTE: This location can be overridden with the CLI option:
+ |
+ |                 -s /path/to/user/settings.xml
+ |
+ |  2. Global Level. This settings.xml file provides configuration for all Maven
+ |                 users on a machine (assuming they&#39;re all using the same Maven
+ |                 installation). It&#39;s normally provided in
+ |                 $&#123;maven.conf&#125;/settings.xml.
+ |
+ |                 NOTE: This location can be overridden with the CLI option:
+ |
+ |                 -gs /path/to/global/settings.xml
+ |
+ | The sections in this sample file are intended to give you a running start at
+ | getting the most out of your Maven installation. Where appropriate, the default
+ | values (values used when the setting is not specified) are provided.
+ |
+ |--&gt;
+&lt;settings xmlns=&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;
+          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+          xsi:schemaLocation=&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;&gt;
+  &lt;!-- localRepository
+   | The path to the local repository maven will use to store artifacts.
+   |
+   | Default: $&#123;user.home&#125;/.m2/repository
+  &lt;localRepository&gt;/path/to/local/repo&lt;/localRepository&gt;
+  --&gt;
+  &lt;localRepository&gt;D:\work\repo&lt;/localRepository&gt;
+
+  &lt;!-- interactiveMode
+   | This will determine whether maven prompts you when it needs input. If set to false,
+   | maven will use a sensible default value, perhaps based on some other setting, for
+   | the parameter in question.
+   |
+   | Default: true
+  &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;
+  --&gt;
+
+  &lt;!-- offline
+   | Determines whether maven should attempt to connect to the network when executing a build.
+   | This will have an effect on artifact downloads, artifact deployment, and others.
+   |
+   | Default: false
+  &lt;offline&gt;false&lt;/offline&gt;
+  --&gt;
+
+  &lt;!-- pluginGroups
+   | This is a list of additional group identifiers that will be searched when resolving plugins by their prefix, i.e.
+   | when invoking a command line like &quot;mvn prefix:goal&quot;. Maven will automatically add the group identifiers
+   | &quot;org.apache.maven.plugins&quot; and &quot;org.codehaus.mojo&quot; if these are not already contained in the list.
+   |--&gt;
+  &lt;pluginGroups&gt;
+    &lt;!-- pluginGroup
+     | Specifies a further group identifier to use for plugin lookup.
+    &lt;pluginGroup&gt;com.your.plugins&lt;/pluginGroup&gt;
+    --&gt;
+  &lt;/pluginGroups&gt;
+
+  &lt;!-- proxies
+   | This is a list of proxies which can be used on this machine to connect to the network.
+   | Unless otherwise specified (by system property or command-line switch), the first proxy
+   | specification in this list marked as active will be used.
+   |--&gt;
+  &lt;proxies&gt;
+    &lt;!-- proxy
+     | Specification for one proxy, to be used in connecting to the network.
+     |
+    &lt;proxy&gt;
+      &lt;id&gt;optional&lt;/id&gt;
+      &lt;active&gt;true&lt;/active&gt;
+      &lt;protocol&gt;http&lt;/protocol&gt;
+      &lt;username&gt;proxyuser&lt;/username&gt;
+      &lt;password&gt;proxypass&lt;/password&gt;
+      &lt;host&gt;proxy.host.net&lt;/host&gt;
+      &lt;port&gt;80&lt;/port&gt;
+      &lt;nonProxyHosts&gt;local.net|some.host.com&lt;/nonProxyHosts&gt;
+    &lt;/proxy&gt;
+    --&gt;
+  &lt;/proxies&gt;
+
+  &lt;!-- servers
+   | This is a list of authentication profiles, keyed by the server-id used within the system.
+   | Authentication profiles can be used whenever maven must make a connection to a remote server.
+   |--&gt;
+  &lt;servers&gt;
+    &lt;!-- server
+     | Specifies the authentication information to use when connecting to a particular server, identified by
+     | a unique name within the system (referred to by the &#39;id&#39; attribute below).
+     |
+     | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
+     |       used together.
+     |
+    &lt;server&gt;
+      &lt;id&gt;deploymentRepo&lt;/id&gt;
+      &lt;username&gt;repouser&lt;/username&gt;
+      &lt;password&gt;repopwd&lt;/password&gt;
+    &lt;/server&gt;
+    --&gt;
+
+    &lt;!-- Another sample, using keys to authenticate.
+    &lt;server&gt;
+      &lt;id&gt;siteServer&lt;/id&gt;
+      &lt;privateKey&gt;/path/to/private/key&lt;/privateKey&gt;
+      &lt;passphrase&gt;optional; leave empty if not used.&lt;/passphrase&gt;
+    &lt;/server&gt;
+    --&gt;
+  &lt;/servers&gt;
+
+  &lt;!-- mirrors
+   | This is a list of mirrors to be used in downloading artifacts from remote repositories.
+   |
+   | It works like this: a POM may declare a repository to use in resolving certain artifacts.
+   | However, this repository may have problems with heavy traffic at times, so people have mirrored
+   | it to several places.
+   |
+   | That repository definition will have a unique id, so we can create a mirror reference for that
+   | repository, to be used as an alternate download site. The mirror site will be the preferred
+   | server for that repository.
+   |--&gt;
+  &lt;mirrors&gt;
+    &lt;!-- mirror
+     | Specifies a repository mirror site to use instead of a given repository. The repository that
+     | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
+     | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
+     |
+    &lt;mirror&gt;
+      &lt;id&gt;mirrorId&lt;/id&gt;
+      &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt;
+      &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;
+      &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt;
+    &lt;/mirror&gt;
+     --&gt;
+
+    &lt;mirror&gt;
+      &lt;id&gt;nexus-aliyun&lt;/id&gt;
+      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;
+      &lt;name&gt;Nexus aliyun&lt;/name&gt;
+      &lt;url&gt;http://maven.aliyun.com/nexus/content/repositories/central&lt;/url&gt;
+    &lt;/mirror&gt;
+
+  &lt;/mirrors&gt;
+
+  &lt;!-- profiles
+   | This is a list of profiles which can be activated in a variety of ways, and which can modify
+   | the build process. Profiles provided in the settings.xml are intended to provide local machine-
+   | specific paths and repository locations which allow the build to work in the local environment.
+   |
+   | For example, if you have an integration testing plugin - like cactus - that needs to know where
+   | your Tomcat instance is installed, you can provide a variable here such that the variable is
+   | dereferenced during the build process to configure the cactus plugin.
+   |
+   | As noted above, profiles can be activated in a variety of ways. One way - the activeProfiles
+   | section of this document (settings.xml) - will be discussed later. Another way essentially
+   | relies on the detection of a system property, either matching a particular value for the property,
+   | or merely testing its existence. Profiles can also be activated by JDK version prefix, where a
+   | value of &#39;1.4&#39; might activate a profile when the build is executed on a JDK version of &#39;1.4.2_07&#39;.
+   | Finally, the list of active profiles can be specified directly from the command line.
+   |
+   | NOTE: For profiles defined in the settings.xml, you are restricted to specifying only artifact
+   |       repositories, plugin repositories, and free-form properties to be used as configuration
+   |       variables for plugins in the POM.
+   |
+   |--&gt;
+  &lt;profiles&gt;
+    &lt;!-- profile
+     | Specifies a set of introductions to the build process, to be activated using one or more of the
+     | mechanisms described above. For inheritance purposes, and to activate profiles via &lt;activatedProfiles/&gt;
+     | or the command line, profiles have to have an ID that is unique.
+     |
+     | An encouraged best practice for profile identification is to use a consistent naming convention
+     | for profiles, such as &#39;env-dev&#39;, &#39;env-test&#39;, &#39;env-production&#39;, &#39;user-jdcasey&#39;, &#39;user-brett&#39;, etc.
+     | This will make it more intuitive to understand what the set of introduced profiles is attempting
+     | to accomplish, particularly when you only have a list of profile id&#39;s for debug.
+     |
+     | This profile example uses the JDK version to trigger activation, and provides a JDK-specific repo.
+    &lt;profile&gt;
+      &lt;id&gt;jdk-1.4&lt;/id&gt;
+
+      &lt;activation&gt;
+        &lt;jdk&gt;1.4&lt;/jdk&gt;
+      &lt;/activation&gt;
+
+      &lt;repositories&gt;
+        &lt;repository&gt;
+          &lt;id&gt;jdk14&lt;/id&gt;
+          &lt;name&gt;Repository for JDK 1.4 builds&lt;/name&gt;
+          &lt;url&gt;http://www.myhost.com/maven/jdk14&lt;/url&gt;
+          &lt;layout&gt;default&lt;/layout&gt;
+          &lt;snapshotPolicy&gt;always&lt;/snapshotPolicy&gt;
+        &lt;/repository&gt;
+      &lt;/repositories&gt;
+    &lt;/profile&gt;
+    --&gt;
+
+    &lt;!--
+     | Here is another profile, activated by the system property &#39;target-env&#39; with a value of &#39;dev&#39;,
+     | which provides a specific path to the Tomcat instance. To use this, your plugin configuration
+     | might hypothetically look like:
+     |
+     | ...
+     | &lt;plugin&gt;
+     |   &lt;groupId&gt;org.myco.myplugins&lt;/groupId&gt;
+     |   &lt;artifactId&gt;myplugin&lt;/artifactId&gt;
+     |
+     |   &lt;configuration&gt;
+     |     &lt;tomcatLocation&gt;$&#123;tomcatPath&#125;&lt;/tomcatLocation&gt;
+     |   &lt;/configuration&gt;
+     | &lt;/plugin&gt;
+     | ...
+     |
+     | NOTE: If you just wanted to inject this configuration whenever someone set &#39;target-env&#39; to
+     |       anything, you could just leave off the &lt;value/&gt; inside the activation-property.
+     |
+    &lt;profile&gt;
+      &lt;id&gt;env-dev&lt;/id&gt;
+
+      &lt;activation&gt;
+        &lt;property&gt;
+          &lt;name&gt;target-env&lt;/name&gt;
+          &lt;value&gt;dev&lt;/value&gt;
+        &lt;/property&gt;
+      &lt;/activation&gt;
+
+      &lt;properties&gt;
+        &lt;tomcatPath&gt;/path/to/tomcat/instance&lt;/tomcatPath&gt;
+      &lt;/properties&gt;
+    &lt;/profile&gt;
+    --&gt;
+
+     &lt;profile&gt;  
+        &lt;id&gt;jdk-1.8&lt;/id&gt;  
+        &lt;activation&gt;  
+            &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;  
+            &lt;jdk&gt;1.8&lt;/jdk&gt;  
+        &lt;/activation&gt;  
+        &lt;properties&gt;  
+            &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;  
+            &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;  
+            &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;  
+        &lt;/properties&gt;  
+    &lt;/profile&gt;
+
+
+  &lt;/profiles&gt;
+
+  &lt;!-- activeProfiles
+   | List of profiles that are active for all builds.
+   |
+  &lt;activeProfiles&gt;
+    &lt;activeProfile&gt;alwaysActiveProfile&lt;/activeProfile&gt;
+    &lt;activeProfile&gt;anotherAlwaysActiveProfile&lt;/activeProfile&gt;
+  &lt;/activeProfiles&gt;
+  --&gt;
+
+   &lt;activeProfiles&gt;
+       &lt;activeProfile&gt;jdk-1.8&lt;/activeProfile&gt;
+   &lt;/activeProfiles&gt;
+&lt;/settings&gt;
+</code></pre>
+<h1 id="idea和maven关联"><a href="#idea和maven关联" class="headerlink" title="idea和maven关联"></a>idea和maven关联</h1><h2 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h2><p> <img src="/../imgs/assets03/1665476650558.png" alt="1665476650558"></p>
+<h2 id="步骤二"><a href="#步骤二" class="headerlink" title="步骤二"></a>步骤二</h2><p> <img src="/../imgs/assets03/1665476773949.png" alt="1665476773949"></p>
+<h1 id="maven网址"><a href="#maven网址" class="headerlink" title="maven网址"></a>maven网址</h1><p><a href="https://mvnrepository.com/">https://mvnrepository.com/</a></p>
+<h1 id="创建SE项目步骤"><a href="#创建SE项目步骤" class="headerlink" title="创建SE项目步骤"></a>创建SE项目步骤</h1><h2 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h2><ul>
+<li>步骤一<br> <img src="/../imgs/assets03/1665478807736.png" alt="1665478807736"></li>
+<li>步骤二<br> <img src="/../imgs/assets03/1665478873740.png" alt="1665478873740"></li>
+<li>步骤三<br> <img src="/../imgs/assets03/1665478968465.png" alt="1665478968465"></li>
+</ul>
+<h1 id="创建WEB项目"><a href="#创建WEB项目" class="headerlink" title="创建WEB项目"></a>创建WEB项目</h1><ul>
+<li><p>步骤一</p>
+<p><img src="/../imgs/assets03/1665479190875.png" alt="1665479190875"></p>
+</li>
+<li><p>步骤二</p>
+<p> <img src="/../imgs/assets03/1665479299423.png" alt="1665479299423"></p>
+</li>
+<li><p>步骤三</p>
+<p><img src="/../imgs/assets03/1665479353127.png" alt="1665479353127"></p>
+</li>
+</ul>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p> <img src="/../imgs/assets03/1665480234205.png" alt="1665480234205"></p>
+<h1 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h1><ul>
+<li><p>mvn clean</p>
+<blockquote>
+<p>编译的产物全部清空</p>
+</blockquote>
+</li>
+<li><p>mvn compile</p>
+<blockquote>
+<p>编译</p>
+</blockquote>
+</li>
+<li><p>mvn test</p>
+<blockquote>
+<p>执行单元测试</p>
+</blockquote>
+</li>
+<li><p>mvn package</p>
+<blockquote>
+<p>打包</p>
+</blockquote>
+</li>
+<li><p>mvn install</p>
+<blockquote>
+<p>打包+安装【将打包后的文件放入到本地仓库】</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="tomcat插件"><a href="#tomcat插件" class="headerlink" title="tomcat插件"></a>tomcat插件</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code class="xml">&lt;build&gt;                                                         
+    &lt;plugins&gt;                                                   
+        &lt;!-- tomcat7 插件 --&gt;                                     
+        &lt;plugin&gt;                                                
+            &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;          
+            &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;       
+            &lt;version&gt;2.2&lt;/version&gt;                              
+            &lt;configuration&gt;                                     
+               &lt;!-- tomcat的端口 --&gt;                               
+               &lt;port&gt;80&lt;/port&gt;                                  
+               &lt;!-- 上下文路径 --&gt;                                   
+               &lt;path&gt;/&lt;/path&gt;                                   
+            &lt;/configuration&gt;                                    
+        &lt;/plugin&gt;                                               
+    &lt;/plugins&gt;                                                  
+&lt;/build&gt;                                                        
+</code></pre>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><ul>
+<li><p>步骤一</p>
+<p><img src="/../imgs/assets03/1688697995815.png" alt="1688697995815"></p>
+</li>
+<li><p>步骤二<br><img src="/../imgs/assets03/1688697593489.png" alt="1688697593489"></p>
+</li>
+<li><p>步骤三<br><img src="/../imgs/assets03/1688697622414.png" alt="1688697622414"></p>
+</li>
+</ul>
+<h1 id="scope属性"><a href="#scope属性" class="headerlink" title="scope属性"></a>scope属性</h1><h2 id="含义-1"><a href="#含义-1" class="headerlink" title="含义"></a>含义</h2><p>用来控制依赖的作用范围</p>
+<h2 id="种类"><a href="#种类" class="headerlink" title="种类"></a>种类</h2><p> <img src="/../imgs/assets03/1688711450072.png" alt="1688711450072"></p>
+<h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><h2 id="含义-2"><a href="#含义-2" class="headerlink" title="含义"></a>含义</h2><ul>
+<li>处理某一领域的最佳的解决方案</li>
+<li>基于框架上实现我们的业务逻辑</li>
+</ul>
+<h2 id="常见"><a href="#常见" class="headerlink" title="常见"></a>常见</h2><ul>
+<li>spring</li>
+<li>springmvc</li>
+<li>mybatis</li>
+<li>springBoot</li>
+<li>springCloud</li>
+<li>等等</li>
+</ul>
+<h1 id="mybatis"><a href="#mybatis" class="headerlink" title="mybatis"></a>mybatis</h1><h2 id="含义-3"><a href="#含义-3" class="headerlink" title="含义"></a>含义</h2><ul>
+<li>基于jdbc的ORM框架</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ul>
+<li><p>添加依赖</p>
+<ul>
+<li>驱动</li>
+<li>mybatis自己的依赖</li>
+</ul>
+</li>
+<li><p>配置文件</p>
+<ul>
+<li>主配置文件<ul>
+<li>数据库的连接信息</li>
+<li>指定映射文件</li>
+</ul>
+</li>
+<li>映射文件<ul>
+<li>包含sql语句</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>写代码</p>
+<ul>
+<li>SqlSessionFactoryBuilder</li>
+<li>SqlSessionFactory 【连接池】</li>
+<li>SqlSession 【Connection】<ul>
+<li>相关方法</li>
+</ul>
+</li>
+<li>资源释放</li>
+</ul>
+</li>
+</ul>
+<h2 id="入门案例"><a href="#入门案例" class="headerlink" title="入门案例"></a>入门案例</h2><ul>
+<li><p>添加依赖</p>
+<pre><code class="xml">&lt;!--mysql驱动--&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;mysql&lt;/groupId&gt;
+  &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+  &lt;version&gt;8.0.28&lt;/version&gt;
+  &lt;scope&gt;runtime&lt;/scope&gt;
+&lt;/dependency&gt;
+
+&lt;!--mybatis依赖--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+   &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+   &lt;version&gt;3.5.6&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+</li>
+<li><p>配置文件</p>
+<ul>
+<li><p>主配置文件</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE configuration
+        PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+&lt;configuration&gt;
+    &lt;environments default=&quot;development&quot;&gt;
+        &lt;environment id=&quot;development&quot;&gt;
+            &lt;transactionManager type=&quot;JDBC&quot;/&gt;
+            &lt;dataSource type=&quot;POOLED&quot;&gt;
+                &lt;property name=&quot;driver&quot; value=&quot;com.mysql.cj.jdbc.Driver&quot;/&gt;
+                &lt;property name=&quot;url&quot; value=&quot;jdbc:mysql://localhost:3306/examination&quot;/&gt;
+                &lt;property name=&quot;username&quot; value=&quot;root&quot;/&gt;
+                &lt;property name=&quot;password&quot; value=&quot;sdcx123456,&quot;/&gt;
+            &lt;/dataSource&gt;
+        &lt;/environment&gt;
+    &lt;/environments&gt;
+
+    &lt;!--指定映射文件【sql语句】--&gt;
+    &lt;mappers&gt;
+        &lt;mapper resource=&quot;mapper/UserMapper.xml&quot;/&gt;
+    &lt;/mappers&gt;
+&lt;/configuration&gt;
+</code></pre>
+</li>
+<li><p>映射文件</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE mapper
+        PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
+        &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+
+
+&lt;mapper namespace=&quot;com.neu.mapper.UserMapper&quot;&gt;
+
+    &lt;resultMap id=&quot;baseResultMap&quot; type=&quot;com.neu.vo.UserVO&quot;&gt;
+        &lt;id column=&quot;id&quot; property=&quot;id&quot;&gt;&lt;/id&gt;
+        &lt;result column=&quot;user_name&quot; property=&quot;name&quot;&gt;&lt;/result&gt;
+        &lt;result column=&quot;password&quot; property=&quot;password&quot;&gt;&lt;/result&gt;
+        &lt;result column=&quot;age&quot; property=&quot;age&quot;&gt;&lt;/result&gt;
+    &lt;/resultMap&gt;
+
+    &lt;!--查询全部员工信息--&gt;
+    &lt;!--
+      namespace+id要唯一
+      resultType一行记录封装成什么类型的对象
+
+      resultMap:用来描述列名和属性名的对应关系 user_name列名  name属性
+    --&gt;
+    &lt;select id=&quot;findAll&quot; resultMap=&quot;baseResultMap&quot;&gt;
+        select * from t_user
+    &lt;/select&gt;
+
+
+    &lt;!--根据id查找数据--&gt;
+    &lt;select id=&quot;findById&quot; resultMap=&quot;baseResultMap&quot;&gt;
+        select * from t_user where id = #&#123;xx&#125;
+    &lt;/select&gt;
+
+    &lt;insert id=&quot;add&quot; parameterType=&quot;com.neu.domain.User&quot;&gt;
+        insert into t_user(user_name,password,age) values(#&#123;name&#125;,#&#123;password&#125;,#&#123;age&#125;)
+    &lt;/insert&gt;
+
+    &lt;!--int？--&gt;
+    &lt;delete id=&quot;deleteById&quot; parameterType=&quot;int&quot; &gt;
+        delete from t_user where id = #&#123;yy&#125;
+    &lt;/delete&gt;
+
+    &lt;update id=&quot;update&quot; parameterType=&quot;com.neu.domain.User&quot;&gt;
+      update t_user set user_name=#&#123;name&#125;,password=#&#123;password&#125;,age=#&#123;age&#125; where id = #&#123;id&#125;
+    &lt;/update&gt;
+&lt;/mapper&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>代码</p>
+<ul>
+<li><p>UserVO.java</p>
+<pre><code class="java">public class UserVO &#123;
+
+    private Integer id;
+    private String name;
+    private String password;
+    private Integer age;
+
+    public Integer getId() &#123;
+        return id;
+    &#125;
+
+    public void setId(Integer id) &#123;
+        this.id = id;
+    &#125;
+
+    public String getName() &#123;
+        return name;
+    &#125;
+
+    public void setName(String name) &#123;
+        this.name = name;
+    &#125;
+
+    public String getPassword() &#123;
+        return password;
+    &#125;
+
+    public void setPassword(String password) &#123;
+        this.password = password;
+    &#125;
+
+    public Integer getAge() &#123;
+        return age;
+    &#125;
+
+    public void setAge(Integer age) &#123;
+        this.age = age;
+    &#125;
+
+    @Override
+    public String toString() &#123;
+        return &quot;UserVO&#123;&quot; +
+                &quot;id=&quot; + id +
+                &quot;, name=&#39;&quot; + name + &#39;\&#39;&#39; +
+                &quot;, password=&#39;&quot; + password + &#39;\&#39;&#39; +
+                &quot;, age=&quot; + age +
+                &#39;&#125;&#39;;
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>SqlSessionFactoryUtil.java</p>
+<pre><code class="java">public class SqlSessionFactoryUtil &#123;
+
+    private static SqlSessionFactory sqlSessionFactory;
+    static&#123;
+        InputStream inputStream = null;
+        try &#123;
+            inputStream = Resources.getResourceAsStream(&quot;mybatis.xml&quot;);
+            SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+            sqlSessionFactory = builder.build(inputStream);
+        &#125; catch (IOException e) &#123;
+            e.printStackTrace();
+        &#125;
+    &#125;
+
+    public static SqlSession openSession()&#123;
+        return sqlSessionFactory.openSession();
+    &#125;
+&#125;
+</code></pre>
+</li>
+<li><p>CRUDTest.java</p>
+<pre><code class="java">public class CRUDTest &#123;
+
+    public static void main(String[] args) throws IOException &#123;
+
+
+        //mybatis
+            //添加依赖
+            //编写配置文件
+                //主配置文件
+                //映射文件
+            //代码
+                //SqlSessionFactoryBuilder
+                     //SqlSessionFactory[连接池]
+                          //SqlSession[Connection对象]
+                              //调用方法
+                              //释放资源
+
+        //findAll();
+
+        //findById(5);
+
+        User user = new User();
+        user.setPassword(&quot;root&quot;);
+        user.setAge(30);
+        user.setName(&quot;zhangsan&quot;);
+
+        //add(user);
+
+        //deleteById(10);
+
+        user.setId(5);
+        update(user);
+        findAll();
+    &#125;
+
+    /**
+     * 查询全部
+     * @throws IOException
+     */
+    public static void findAll() throws IOException &#123;
+        /*
+        InputStream inputStream =  Resources.getResourceAsStream(&quot;mybatis.xml&quot;);
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory sqlSessionFactory = builder.build(inputStream);
+
+        //Connection
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+         */
+
+        SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
+        List&lt;UserVO&gt; dataList = sqlSession.selectList(&quot;com.neu.mapper.UserMapper.findAll&quot;);
+
+        for(UserVO userVO:dataList)&#123;
+            System.out.println(userVO);
+        &#125;
+
+        sqlSession.close();
+    &#125;
+
+    /**
+     * 根据id查询
+     * @param id
+     */
+    public static void findById(int id)&#123;
+        SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
+        //sqlSession.selectOne(&quot;sql的id&quot;,参数值);
+        UserVO userVO = sqlSession.selectOne(&quot;com.neu.mapper.UserMapper.findById&quot;,id);
+
+        System.out.println(userVO);
+        sqlSession.close();
+    &#125;
+
+    public static void add(User user)&#123;
+        SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
+        //sqlSession.insert(&quot;sql的id&quot;,参数值);
+        sqlSession.insert(&quot;com.neu.mapper.UserMapper.add&quot;,user);
+
+        //dml操作
+             //insert update delete 需要提交事务
+        sqlSession.commit();
+
+        sqlSession.close();
+    &#125;
+
+    public static void deleteById(int id)&#123;
+        SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
+
+        //sqlSession.delete(&quot;sql的id&quot;,参数);
+        sqlSession.delete(&quot;com.neu.mapper.UserMapper.deleteById&quot;,id);
+        sqlSession.commit();
+        sqlSession.close();
+    &#125;
+
+    public static void update(User user)&#123;
+        SqlSession sqlSession = SqlSessionFactoryUtil.openSession();
+
+        //sqlSession.update(&quot;sql的id&quot;,参数);
+        sqlSession.update(&quot;com.neu.mapper.UserMapper.update&quot;,user);
+        sqlSession.commit();
+        sqlSession.close();
+    &#125;
+&#125;
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h1><pre><code class="sql">SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `age` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of t_user
+-- ----------------------------
+INSERT INTO `t_user` VALUES (5, &#39;python&#39;, &#39;123&#39;, NULL);
+INSERT INTO `t_user` VALUES (6, &#39;xxx&#39;, &#39;123&#39;, NULL);
+INSERT INTO `t_user` VALUES (7, &#39;c++&#39;, &#39;123&#39;, NULL);
+INSERT INTO `t_user` VALUES (8, &#39;php&#39;, &#39;123&#39;, NULL);
+
+SET FOREIGN_KEY_CHECKS = 1;
+</code></pre>
+]]></content>
+      <categories>
+        <category>后端学习</category>
+      </categories>
+      <tags>
+        <tag>java实训</tag>
+        <tag>DAY3</tag>
       </tags>
   </entry>
 </search>
